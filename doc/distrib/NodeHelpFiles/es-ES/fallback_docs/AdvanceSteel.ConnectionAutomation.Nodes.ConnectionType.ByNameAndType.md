@@ -1,7 +1,7 @@
 ## En detalle:
-This node returns the connection type when given connection name, type name, and file path. This functions as a filter from the list of connections provided in the Revit model associated to the file path.
+Este nodo devuelve el tipo de conexión cuando se le proporciona el nombre de la conexión, el nombre del tipo y la ruta de archivo. Funciona como un filtro de la lista de conexiones proporcionada en el modelo de Revit asociado a la ruta de archivo.
 
-In this example, we have provided the file path to a Revit model, the type name as well as connection name of base plate. In return, the response is the connection type for the base plate.
+En este ejemplo, se ha proporcionado la ruta de archivo a un modelo de Revit, el nombre del tipo y el nombre de la conexión de la pletina base. La respuesta obtenida es el tipo de conexión de la pletina base.
 ___
 ## Archivo de ejemplo
 

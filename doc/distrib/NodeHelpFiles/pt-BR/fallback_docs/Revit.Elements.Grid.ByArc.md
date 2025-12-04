@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a grid based on a arc input.
+Esse nó cria um eixo com base em uma entrada de arco.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+Neste exemplo, é criado um ponto como o centro a ser usado como o ponto central de um arco. Esse arco é usado como entrada para Grid.ByArc, e um eixo é criado.
 
 
 ___

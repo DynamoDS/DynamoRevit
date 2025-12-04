@@ -1,7 +1,7 @@
 ## Подробности
-This node sets the default sketch plane in a given view.
+Этот узел задает плоскость эскиза по умолчанию для данного вида.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+В этом примере все плоскости эскиза извлекаются из проекта и фильтруются до плоскости эскиза «Парковка». Эта плоскость эскиза «Парковка» затем используется в качестве входных данных (SketchPlane) для узла View.SetSketchPlane вместе с видом (view). В последних двух узлах наряду с именем новой плоскости эскиза отображается имя исходной плоскости эскиза.
 
 ___
 ## Файл примера

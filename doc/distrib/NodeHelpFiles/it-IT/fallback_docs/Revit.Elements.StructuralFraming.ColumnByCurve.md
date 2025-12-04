@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Questo nodo crea un pilastro strutturale basato su una curva, un livello e un tipo di famiglia di pilastri. L'output è l'elemento pilastro strutturale appena creato nel progetto.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+In questo esempio, viene disegnata una linea all'intersezione della griglia A4 tra i livelli L1 35 Low e L3 nel modello strutturale Snowdon. Il nodo utilizza questa curva, insieme al livello e al tipo di pilastro selezionati, per creare un pilastro strutturale.
 ___
 ## File di esempio
 

@@ -1,9 +1,9 @@
 ## 詳細
-This node retrieves the transformation matrix applied to a Revit Link Element within the host model.
-In other words, it returns the position, rotation, and scaling transform that maps the linked element’s coordinate system into the host Revit project’s coordinate system.
-This is useful when you need to align, analyze, or manipulate geometry between linked models.
+このノードは、ホスト モデル内の Revit リンク要素に適用された変換行列を取得します。
+つまり、リンクされた要素の座標系をホスト Revit プロジェクトの座標系にマッピングする位置、回転、スケール変換を返します。
+これは、リンク モデル間でジオメトリの位置合わせ、解析、操作を行う必要がある場合に便利です。
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkTransform.  The output is the position, rotation and scaling transform of the linked element.
+この例では、レベル L3 でリンクされた Revit 要素がすべて選択され、LinkElement.LinkTransform に入力されます。出力は、リンクされた要素の位置、回転、およびスケール変換です。
 ___
 ## サンプル ファイル
 

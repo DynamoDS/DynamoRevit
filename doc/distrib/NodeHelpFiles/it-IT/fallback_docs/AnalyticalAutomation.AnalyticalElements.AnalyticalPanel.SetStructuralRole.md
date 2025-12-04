@@ -1,7 +1,7 @@
 ## In profondità
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Questo nodo imposta il ruolo strutturale di un pannello analitico. Il nodo aggiorna il pannello selezionato con il ruolo scelto senza alterarne la geometria o altri parametri.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+In questo esempio, un pannello analitico creato da un elemento fisico nel modello strutturale Snowdon viene impostato per avere il ruolo strutturale Pavimento.
 ___
 ## File di esempio
 

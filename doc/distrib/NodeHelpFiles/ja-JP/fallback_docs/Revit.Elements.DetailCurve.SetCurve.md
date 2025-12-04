@@ -1,7 +1,7 @@
 ## 詳細
-This node sets the curve of an existing detail curve.
+このノードは、既存の詳細曲線の曲線を設定します。
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+この例では、2 本の線分が作成され、1 本はビュー(Partition Type – CMU)に沿って詳細曲線を作成するために使用されます。この detailCurve は、次に、DetailCurve.SetCurve の「detailCurve」への入力として、「曲線」への入力としての 2 番目の線分とともに使用されます。出力では null が読み込まれますが、詳細曲線は新しい位置に変更されています。
 
 ___
 ## サンプル ファイル

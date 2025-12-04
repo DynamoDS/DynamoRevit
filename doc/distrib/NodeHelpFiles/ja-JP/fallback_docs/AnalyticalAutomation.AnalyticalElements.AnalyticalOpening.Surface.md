@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the surfaces of analytical openings.
+このノードは、解析用開口部のサーフェスを返します。
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+この例では、Snowdon 構造モデルの床を使用して解析用パネルを作成します。パネル内の開口部が選択され、このノードはこれらの開口部のサーフェスを出力します。
 ___
 ## サンプル ファイル
 

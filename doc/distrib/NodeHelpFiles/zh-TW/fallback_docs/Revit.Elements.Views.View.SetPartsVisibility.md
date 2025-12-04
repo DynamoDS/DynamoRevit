@@ -1,7 +1,7 @@
 ## 深入資訊
-This node sets how Parts are displayed within a specified Revit View. This node allows you to control whether the view shows; "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal", or "unset".
+此節點設定零件在指定 Revit 視圖內的顯示方式。此節點允許您控制視圖是否顯示零件:「ShowPartsOnly」、「ShowOriginalOnly」、「ShowPartsAndOriginal」或「unset」。
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+在此範例中，選取視圖 (3D View) 作為 View.SetPartsVisibility 節點的輸入 (view)，同時提供 View Parts Visibilities 節點中的任何預設值。最後 2 個節點顯示視圖零件可見性設定的原始設定及修訂的設定。
 ___
 ## 範例檔案
 

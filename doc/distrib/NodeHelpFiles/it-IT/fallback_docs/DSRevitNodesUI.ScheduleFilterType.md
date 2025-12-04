@@ -1,7 +1,7 @@
 ## In profondità
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+Questo nodo contiene un elenco a discesa di tipi di filtro di abaco consentiti (Equal, NotEqual, GreaterThan, LessThan, Contains,..). I risultati filtreranno tutte le porte che iniziano con "Exterior".
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+In questo esempio, viene selezionata una vista e vengono esposti i campi della vista. Il campo "Type" è isolato e viene utilizzato per creare un filtro di abaco insieme ad un valore di filtro e al tipo di filtro di abaco "BeginsWith". Questo filtro viene quindi applicato alla vista abaco selezionata "WV_Wall Schedule".
 ___
 ## File di esempio
 

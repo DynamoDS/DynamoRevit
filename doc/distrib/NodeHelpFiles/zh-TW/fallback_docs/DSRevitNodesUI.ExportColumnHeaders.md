@@ -1,7 +1,7 @@
 ## 深入資訊
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+此節點會取得所有明細表欄標頭選項 (OneRow、MultipleRows 和 None)。
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+在此範例中，使用 columnHeaders (OneRow) 作為 ScheduleView.Export 節點的輸入，產生典型的匯出選項。
 
 ___
 ## 範例檔案

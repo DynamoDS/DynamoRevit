@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves all texture images associated with the rendering asset of a given AppearanceAssetElement in Revit. An Appearance Asset defines the visual properties of a material (such as color, reflectivity, bump, or transparency).
+このノードは、Revit の指定された AppearanceAssetElement のレンダリング アセットに関連付けられているすべてのテクスチャ イメージを取得します。外観アセットで、マテリアルの表示プロパティ(色、反射率、バンプ、透過度など)を定義します。
 
-In this example, the AppearanceAssetElement's are selected and used as the input to the AppearanceAssetElement.GetRenderingAssetTextureImages node.  The results are the image properties and image paths for the given appearance asset element.  Empty lists are displayed when the appearance asset element has no value.
+この例では、AppearanceAssetElement が選択され、AppearanceAssetElement.GetRenderingAssetTextureImages ノードへの入力として使用されます。結果は、指定した外観アセット要素のイメージ プロパティとイメージ パスです。外観アセット要素に値がない場合、空のリストが表示されます。
 
 ___
 ## サンプル ファイル

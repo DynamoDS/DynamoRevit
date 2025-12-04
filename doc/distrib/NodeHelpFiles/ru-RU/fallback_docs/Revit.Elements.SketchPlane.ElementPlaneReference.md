@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+Этот узел извлекает опорную плоскость, связанную с заданным элементом плоскости эскиза. Это помогает идентифицировать или повторно использовать одну и ту же опорную плоскость для создания или изменения геометрии.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+В этом примере плоскость определяется и соединяется с узлом SketchPlane.ByPlane, который создает соответствующую плоскость эскиза. Эта плоскость эскиза используется в качестве входных данных для узла SketchPlane.ElementPlaneReference, в котором внешний вид затем можно использовать для нанесения размеров, выравнивания, наложения зависимостей и других операций, для которых требуется ссылка Revit.
 
 ___
 ## Файл примера

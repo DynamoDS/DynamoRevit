@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the sheet a schedule is on.
+Ten węzeł pobiera arkusz, na którym znajduje się zestawienie.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+W tym przykładzie na arkuszu w określonym położeniu umieszczane jest zestawienie. Zestawienie jest następnie przekazywane do węzła ScheduleOnSheet.Sheet, w którym ujawniana jest nazwa arkusza (Name = Cover). Na koniec ta nazwa jest wyodrębniana do ciągu.
 
 ___
 ## Plik przykładowy

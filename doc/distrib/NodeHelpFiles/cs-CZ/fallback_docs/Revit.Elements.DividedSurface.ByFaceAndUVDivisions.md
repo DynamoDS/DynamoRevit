@@ -1,12 +1,12 @@
 ## Podrobnosti
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions.  A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+Tento uzel vytvoří nový prvek rozděleného povrchu na vybrané ploše prvku aplikace Revit a definuje jeho rozvržení pomocí zadaných dělení U a V.  Rozdělený povrch je vzorovaná osnova použitá na plochu, obvykle používaná k umístění panelů obvodového pláště, adaptivních komponent nebo panelových systémů podél povrchu tvaru.
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+Dílky U a V určují, kolik úseků se vyskytne v každém směru povrchu, zatímco parametr otočení upravuje orientaci rastru vzhledem k souřadnicovému systému U-V povrchu.
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisions along with UDivs, VDivs which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+V tomto příkladu je vybrána plocha a použije se jako vstup do povrchu pro uzel DividedSurface.ByFaceUVDivisions spolu s uzly UDivs a VDivs, které jsou řízeny posuvníky.  Poslední uzly odhalují hodnoty rozděleného povrchu.  Při spuštění tohoto vzorového grafu bude nutné sledovat upozornění aplikace Revit a odstranit navrhované prvky, aby se osnovy zobrazily na vybraném povrchu.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Další informace naleznete v tomto odkazu.
+https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Vzorový soubor
 

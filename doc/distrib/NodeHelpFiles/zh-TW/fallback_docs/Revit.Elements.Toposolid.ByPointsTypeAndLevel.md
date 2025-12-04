@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a Topography by using points a toposolidType along with a level.
+此節點會使用點、地形實體類型和樓層來建立地形。
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+在此範例中，使用相等弦長的點建立一個矩形，作為 Toposolid.ByPointsTypeAndLevel 節點的點輸入，搭配矩形、ToposolidType 和樓層。
 ___
 ## 範例檔案
 

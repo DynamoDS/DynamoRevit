@@ -1,13 +1,13 @@
 ## Подробности
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions and an optional rotation angle.
-A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+Этот узел служит для создания нового элемента разделенной поверхности на выбранной грани элемента Revit и определяет его компоновку с использованием заданных делений U и V и, при необходимости, угол поворота.
+Разделенная поверхность представляет собой сетку с образцом, применяемую к грани, которая обычно используется для размещения панелей витража, адаптивных компонентов или панельных систем на поверхности формы.
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+Деления U и V определяют количество делений в каждом направлении поверхности, а параметр поворота регулирует ориентацию сетки относительно системы координат U-V.
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisionsAndRotation along with UDivs, VDivs and gridRotation, which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+В этом примере выбрана грань, которая используется в качестве входных данных для поверхности для узла DividedSurface.ByFaceUVDivisionsAndRotation, а также UDivs, VDivs и gridRotation, для управления которыми используются регуляторы. В последних узлах отображаются значения разделенной поверхности. При запуске этого примера графика необходимо просмотреть предупреждение Revit и удалить предлагаемые элементы, чтобы сетки появились на выбранной поверхности.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Дополнительные сведения см. по ссылке.
+https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Файл примера
 

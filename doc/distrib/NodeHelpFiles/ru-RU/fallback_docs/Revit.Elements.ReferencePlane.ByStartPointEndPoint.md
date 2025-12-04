@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a new Reference Plane in the model by defining its start and end points.
+Этот узел создает новую опорную плоскость в модели путем определения ее начальной и конечной точек.
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+В этом примере с помощью узла Point.ByCoordinates создаются две точки с использованием числовых входных данных. Затем эти точки передаются в узел ReferencePlane.ByStartPointEndPoint, который создает пользовательскую опорную плоскость непосредственно между двумя координатами.
 ___
 ## Файл примера
 

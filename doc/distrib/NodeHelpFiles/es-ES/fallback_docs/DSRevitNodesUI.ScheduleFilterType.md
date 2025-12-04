@@ -1,7 +1,7 @@
 ## En detalle:
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+Este nodo tiene una lista desplegable de tipos de filtro de tabla de planificación permitidos (Equal, NotEqual, GreaterThan,LessThan, Contains,..). Los resultados filtrarán todas las puertas que comiencen con "Exterior""
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+En este ejemplo, se selecciona una vista y se exponen los campos de vista. El campo "Tipo" se aísla y se utiliza para crear un filtro de tabla de planificación junto con un valor de filtro y un tipo de filtro de tabla de planificación "BeginsWith". Este filtro se aplica a la vista de tabla de planificación seleccionada "WV_Wall Schedule".
 ___
 ## Archivo de ejemplo
 

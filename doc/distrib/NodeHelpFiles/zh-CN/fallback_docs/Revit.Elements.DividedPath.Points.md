@@ -1,7 +1,7 @@
 ## 详细
-This node returns the collection of points that make up the divisions along a given Divided Path element in Revit. Each point corresponds to a division location along the underlying curve or surface path created by the DividedPath element.
+此节点返回组成沿 Revit 中给定分割路径图元的分区的点集合。每个点都对应于沿由“分割路径”图元创建的基础曲线或曲面路径的一个分割位置。
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve along with a integer value defining the number of equal divisions along the curve. The final node DividedPath.Points displays the resulting division points along the curve.
+在此示例中，基于指定的起点和终点创建模型曲线，然后将其用作输入曲线，同时还使用一个整数值定义沿曲线的相等分割数。最后一个节点 DividedPath.Points 显示沿曲线生成的分割点。
 ___
 ## 示例文件
 

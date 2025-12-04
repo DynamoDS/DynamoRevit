@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Ce nœud crée un marqueur d'altitude dans le document Revit actif en spécifiant le type de vue et un point d'emplacement dans le modèle.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+Dans cet exemple, un point est créé à l'emplacement souhaité où l'altitude sera placée. Ce point est fourni en tant qu'entrée d'emplacement pour le nœud ElevationMarker.ByViewTypeLocation, avec une famille de type de vue et une échelle spécifiées. L'ElevationMarker obtenu est ensuite utilisé pour générer les vues d'altitude à l'échelle définie.
 ___
 ## Exemple de fichier
 

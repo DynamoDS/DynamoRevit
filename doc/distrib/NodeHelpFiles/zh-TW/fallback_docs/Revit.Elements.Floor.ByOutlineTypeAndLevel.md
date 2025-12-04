@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a floor using curves, floor types and level.
+此節點會使用曲線、樓板類型和樓層建立樓板。
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+在此範例中，使用數字滑棒產生一個矩形，作為 Floor.ByOutlineTypeAndLevel 的輸入，同時提供給定的樓板類型和樓層。
 
 ___
 ## 範例檔案

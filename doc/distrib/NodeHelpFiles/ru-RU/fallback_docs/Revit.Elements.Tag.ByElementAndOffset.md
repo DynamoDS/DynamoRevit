@@ -1,7 +1,7 @@
 ## Подробности
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Этот узел присваивает в качестве входных данных элементам Revit параметры view, element, offset, horizontalAligment, verticalAlignment, horizontal (если нет, ориентация марки выполняется на основе элемента) и addLeader.
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+В этом примере в виде Studio Live Work Core B выбрана дверь, которая используется в качестве входных данных для узла Tag.ByelementAndOffset. Местоположение этой двери извлекается и используется в качестве начальной точки вектора. Та же точка изменяется с помощью ползунка, изменяющего координаты X и Y, и используется в качестве конечной точки вектора. Этот вектор используется в качестве входных данных для смещения наряду с истинными значениями во входных параметрах horizontal и addLeader. Параметр horizontalAlignment определяется значениями раскрывающегося списка узла Selection Horizontal Text Alignment (Left, Center, Right) и значениями раскрывающегося списка узла Selection Vertical Text Alignment (Bottom, Middle, Top).
 
 ___
 ## Файл примера

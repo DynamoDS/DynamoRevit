@@ -1,7 +1,7 @@
 ## En detalle:
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Este nodo devuelve el identificador de Revit asociado con las conexiones vinculadas al elemento de datos de estructura.
 
-In this example, a column has been selected.
+En este ejemplo, se ha seleccionado un pilar.
 ___
 ## Archivo de ejemplo
 

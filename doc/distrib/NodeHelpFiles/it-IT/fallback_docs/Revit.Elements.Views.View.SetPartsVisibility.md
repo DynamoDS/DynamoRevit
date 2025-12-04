@@ -1,7 +1,7 @@
 ## In profondità
-This node sets how Parts are displayed within a specified Revit View. This node allows you to control whether the view shows; "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal", or "unset".
+Questo nodo imposta la modalità di visualizzazione delle parti all'interno di una vista di Revit specificata. Questo nodo consente di controllare se la vista mostra "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal" o "unset".
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+In questo esempio, viene selezionata una vista (3D View) che è poi utilizzata come input (view) nel nodo View.SetPartsVisibility insieme a qualsiasi valore di default del nodo stesso. Gli ultimi 2 nodi mostrano l'impostazione originale di visibilità delle parti della vista e quella rivista.
 ___
 ## File di esempio
 

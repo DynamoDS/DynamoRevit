@@ -1,7 +1,7 @@
 ## Em profundidade
-This node provides a drop-down list to choose how text fields should be wrapped or qualified when exporting data to a text-based format (often CSV-style exports)..  These values will define the character that will surround text values in an exported schedule.  (Example; DoubleQuote, The quote character - " - is used to qualify text.  None, No text qualifier.  Quote, The quote character - ' - is used to qualify text).
+Esse nó fornece uma lista suspensa para escolher como os campos de texto devem ser quebrados ou qualificados ao exportar dados para um formato com base em texto (geralmente exportações no estilo CSV). Esses valores definirão o caractere que circundará os valores de texto em uma tabela exportada. (Exemplo; DoubleQuote, o caractere de aspas – “” – é usado para qualificar o texto. None, nenhum qualificador de texto. Quote, o caractere de aspas – “” – é usado para qualificar o texto).
 
-In this example Export Text Qualifier (Quote) is used as an input to the ScheduleView.Export node to generate a typical export option.
+Neste exemplo, o qualificador de exportação de texto (Quote) é usado como uma entrada para o nó ScheduleView.Export para gerar uma opção de exportação típica.
 
 ___
 ## Arquivo de exemplo

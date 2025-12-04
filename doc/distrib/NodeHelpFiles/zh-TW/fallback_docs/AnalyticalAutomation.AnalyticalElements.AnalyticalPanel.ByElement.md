@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates an analytical panel from a selected model element.
+此節點會從選取的模型元素建立分析板。
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+在此範例中，從 Snowdon 結構模型中選取樓板元素，作為節點的輸入。節點可以根據來源元素更新分析板的幾何圖形和參數，選擇性增加或維持與元素的關聯，並放入在原始元素中找到的任何開口。輸出是產生的分析板。
 ___
 ## 範例檔案
 

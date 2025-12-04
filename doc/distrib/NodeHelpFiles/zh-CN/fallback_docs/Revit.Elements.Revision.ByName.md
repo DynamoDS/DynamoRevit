@@ -1,7 +1,7 @@
 ## 详细
-The Revision.ByName node in Dynamo is used to create or access a revision within a Revit project by specifying its name. This node provides control over several revision parameters, including revision date, description, issued status, issued by, issued to, visibility, and numbering type. By leveraging this node, users can automate the revision process in Revit.
+Dynamo 中的 Revision.ByName 节点用于在 Revit 项目中创建或访问修订，方法是指定其名称。此节点提供对多个修订参数的控制，包括修订日期、说明、发布状态、发布者、发布对象、可见性和编号类型。通过利用此节点，用户可以在 Revit 中自动执行修订过程。
 
-The provided Dynamo graph demonstrates the automation of revision creation by connecting project-specific inputs to the Revision.ByName node. Key details such as revision set name, date, description, consultant, client, visibility option, and numbering type are supplied as inputs. Once executed, the node generates or updates the revision in Revit based on these parameters. This workflow minimizes manual data entry, enforces standardization, and streamlines revision management across project sheets.
+提供的 Dynamo 图形演示了通过将特定于项目的输入连接到 Revision.ByName 节点来自动创建修订。修订集名称、日期、说明、顾问、客户、可见性选项和编号类型等关键详细信息作为输入提供。执行后，节点会基于这些参数在 Revit 中生成或更新修订。此工作流最大限度地减少了手动数据输入、实施了标准化，并简化了项目图纸之间的修订管理。
 
 ___
 ## 示例文件

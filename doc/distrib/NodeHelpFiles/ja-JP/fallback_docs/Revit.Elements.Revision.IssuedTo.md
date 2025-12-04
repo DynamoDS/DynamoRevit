@@ -1,7 +1,7 @@
 ## 詳細
-The Revision.IssuedTo node in Dynamo is used to read the “Issued To” information from a revision in Revit. This helps teams track who the revision was issued to.
+Dynamo の Revision.IssuedTo ノードは、Revit の改訂から「発行先」情報を読み込むために使用されます。これは、チームによる改訂の発行先追跡に役立ちます。
 
-In this graph, the Select Revision node is used to pick a specific revision from the project. The Revision.IssuedTo node then extracts the “Issued To” field, and the result is displayed in the Watch node.
+このグラフでは、Select Revision ノードを使用して、プロジェクトから特定の改訂を選択します。次に、Revision.IssuedTo ノードによって[発行先]フィールドが抽出され、結果が Watch ノードに表示されます。
 
 ___
 ## サンプル ファイル

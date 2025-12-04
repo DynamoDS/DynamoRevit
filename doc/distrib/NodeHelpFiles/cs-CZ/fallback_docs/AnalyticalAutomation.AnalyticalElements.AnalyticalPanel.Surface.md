@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the surface of an analytical panel.
+Tento uzel vrací povrch analytické desky.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+V tomto příkladu je vybrána podlaha v konstrukčním modelu Snowdon a převedena na analytickou desku. Výstupem uzlu je odpovídající povrch dané desky.
 ___
 ## Vzorový soubor
 

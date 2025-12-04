@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a Divided Path element in a massing family by dividing curves into a specified number of equal segments.
+Tento uzel vytvoří prvek Rozdělená cesta v rodině objemů rozdělením křivek na určený počet stejných segmentů.
 
-In this example, 2 model curves are created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurvesAndDivisions node. An integer value defines the number of equal divisions along the curves. The final node displays the resulting division points along the curves.
+V tomto příkladu jsou vytvořeny dvě křivky modelu ze zadaného počátečního a koncového bodu a poté jsou použity jako vstupní křivka pro uzel DividedPath.ByCurvesAndDivisions. Celočíselná hodnota definuje počet stejných dělení podél křivek. Koncový uzel zobrazí výsledné body dělení podél křivek.
 ___
 ## Vzorový soubor
 

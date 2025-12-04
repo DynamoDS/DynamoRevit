@@ -1,7 +1,7 @@
 ## 상세
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+이 노드는 곡선, 레벨 및 기둥 패밀리 유형을 기반으로 구조 기둥을 작성합니다. 출력은 프로젝트에 새로 작성된 구조 기둥 요소입니다.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+이 예에서는 Snowdon Structural 모델의 L1 35 Low 레벨과 L3 사이의 A4를 교차하는 그리드에 선이 그려져 있습니다. 노드는 선택한 레벨 및 기둥 유형과 함께 이 곡선을 사용하여 구조 기둥을 작성합니다.
 ___
 ## 예제 파일
 

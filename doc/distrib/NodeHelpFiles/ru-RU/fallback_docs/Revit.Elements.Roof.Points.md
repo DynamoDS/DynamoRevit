@@ -1,7 +1,7 @@
 ## Подробности
-This node gets the sketch points of a selected roof.
+Этот узел получает эскизные точки выбранной крыши.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+В этом примере выбраны все крыши и они используются в качестве входных данных для узла Roof.Points. Результатом является каждая точка выбранного эскиза крыши.
 ___
 ## Файл примера
 

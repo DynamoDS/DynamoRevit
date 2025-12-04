@@ -1,7 +1,7 @@
 ## Description approfondie
-This node moves an element to a new location given a new point.
+Ce noeud déplace un élément vers un nouvel emplacement en fonction d'un nouveau point.
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+Dans cet exemple, un élément est sélectionné et entré dans le nœud Element.SetLocation.  La position d'origine des éléments est affichée et utilisée pour se déplacer le long des plans x et y, qui est contrôlé par le curseur numérique.  La sortie de translation est utilisée comme entrée de géométrie pour Element.SetLocation.  Une valeur nulle s'affiche, mais l'élément est en mouvement.
 
 ___
 ## Exemple de fichier

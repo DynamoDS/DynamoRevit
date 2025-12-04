@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the underlying geometric plane from a Reference Plane element.
+Этот узел извлекает базовую геометрическую плоскость из элемента опорной плоскости.
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+На этом графике две точки определены с помощью координат и соединены с узлом ReferencePlane.ByStartPointEndPoint для создания опорной плоскости. Созданная опорная плоскость затем передается в узел ReferencePlane.Plane, который выводит свою геометрическую плоскость, а затем в узел 3D-просмотра.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Dieser Block erstellt eine Bemaßung basierend auf einem Element, einer Richtung (Vektor) und einer bestimmten Ansicht. Andere Eingaben können Linie, Suffix und Präfix sein.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+In diesem Beispiel wird die Ansicht “L1” aus Plan A101 als Eingabe in Dimension.ByElementDirection zusammen mit einem Element (Wand), einer Linienrichtung von der Wand, einem Suffix (Dynamo) und einem Präfix (Dynamo) verwendet. Die letzten beiden Blöcke zeigen die Bemaßungswerte und ihr Präfix an.
 
 ___
 ## Beispieldatei

@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the connection name associated with connections linked to the structure data element.
+このノードは、構造データ要素にリンクされた接合に関連付けられている接合名を返します。
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+この例では、ベース プレート、モーメント接合、ボルト接合の 3 つの接合を持つ柱が選択されています。
 ___
 ## サンプル ファイル
 

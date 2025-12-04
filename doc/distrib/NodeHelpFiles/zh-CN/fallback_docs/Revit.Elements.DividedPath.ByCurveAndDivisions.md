@@ -1,7 +1,7 @@
 ## 详细
-This node creates a Divided Path element in a massing family by dividing a given curve into a specified number of equal segments.
+此节点通过将给定曲线分割为指定数量的相等线段，在体量族中创建“分割路径”图元。
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurveAndDivisions node. An integer value defines the number of equal divisions along the curve. The final node displays the resulting division points along the curve.
+在此示例中，基于指定的起点和终点创建模型曲线，然后将其用作“DividedPath.ByCurveAndDivisions”节点的输入曲线。整数值定义沿曲线的相等分段数。最后一个节点显示沿曲线生成的分割点。
 ___
 ## 示例文件
 

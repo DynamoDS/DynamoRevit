@@ -1,8 +1,8 @@
 ## 深入資訊
-This node extracts the actual Revit element reference of a selected reference plane. This is useful when you need to use that plane as a hosting reference for geometry or dimensions inside Revit.
+此節點會擷取所選參考平面的實際 Revit 元素參考。當您要在 Revit 內將該平面作為幾何圖形或尺寸標註的依附參考時，此功能非常有用。
 
 範例:
-In this graph, two points are defined using coordinates, and a reference plane is created between them with ReferencePlane.ByStartPointEndPoint. That reference plane is then connected to ReferencePlane.ElementPlaneReference, which outputs the plane’s Revit-native reference, making it ready to be used for hosting or alignment tasks.
+在此圖表中，使用座標定義兩點，並利用 ReferencePlane.ByStartPointEndPoint 在這兩點之間建立參考平面，然後將該參考平面連接到 ReferencePlane.ElementPlaneReference 輸出平面的 Revit 原生參考，可用於依附或對齊工作。
 ___
 ## 範例檔案
 

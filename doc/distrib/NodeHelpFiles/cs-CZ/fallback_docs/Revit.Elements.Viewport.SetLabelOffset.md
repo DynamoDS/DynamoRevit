@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node allows you to place the view label at a specific point on a sheet.
+Tento uzel umožňuje umístit popisek pohledu do určitého bodu ve výkresu.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+V tomto příkladu se vytvoří nový výkres „Výkres Dynamo“ a pohled „L1 Wall Base“ se umístí do bodu „0,0,0“.  Pohled je přemístěn a použit ve vstupu výřezu do uzlu Viewport.SetLabelOffset společně s definovaným bodem k umístění popisku pohledu.
 
 
 ___

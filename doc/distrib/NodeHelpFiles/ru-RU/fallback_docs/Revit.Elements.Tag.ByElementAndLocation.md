@@ -1,7 +1,7 @@
 ## Подробности
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Этот узел присваивает в качестве входных данных элементам Revit параметры view, element, location, horizontal (если нет, марка ориентируется относительно элемента) и addLeader.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+В данном примере выбрана дверь в виде Studio Live Work Core B. Расположение этой двери извлекается и используется в качестве исходного входного значения для узла Tag.ByElementAndLocation вместе с логическими значениями для horizontal и addLeader. Исходное расположение изменяется таким образом, чтобы расположение марки не накладывалось непосредственно на элемент с помощью узла Tag.SetHeadLocation.
 
 ___
 ## Файл примера

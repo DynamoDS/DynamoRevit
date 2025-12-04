@@ -1,7 +1,7 @@
 ## 詳細
-This node returns a list of available connection types that can be loaded from an external Revit (.rvt) file.
+このノードは、外部の Revit (.rvt)ファイルからロードすることができる使用可能な接合タイプのリストを返します。
 
-In this example, we return a list of connections that are available in the Revit model associated to an external Revit file from the provided file path.  Note that the connection types loaded should not already exist in the model or an error will be thrown.
+この例では、指定されたファイル パスから外部の Revit ファイルに関連付けられている Revit モデルで使用可能な接合のリストを返します。ロードされる接合タイプは、モデル内に既に存在してはなりません。存在する場合は、エラーが発生します。
 ___
 ## サンプル ファイル
 

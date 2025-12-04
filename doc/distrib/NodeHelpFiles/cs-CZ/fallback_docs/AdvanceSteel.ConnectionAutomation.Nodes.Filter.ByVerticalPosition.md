@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node filters input elements based on their vertical placement within the model. It allows you to choose whether to evaluate an element’s Top or Bottom Z-coordinate (height) for comparison or logical filtering. Its typically used as part of a filtering system, often in conjunction with a ConnectionNode, to isolate elements above or below certain elevations. It is useful in workflows that involve spatial analysis, such as separating building elements by level or zone.
+Tento uzel filtruje vstupní prvky podle jejich vertikálního umístění v modelu. Umožňuje vybrat, zda se má vyhodnotit horní nebo dolní souřadnice Z (výška) prvku pro porovnání nebo logické filtrování. Obvykle se používá jako součást systému filtrování, často ve spojení s objektem ConnectionNode, k izolaci prvků nad nebo pod určitými výškami. Je užitečný v pracovních postupech, které zahrnují prostorovou analýzu, například při rozdělování stavebních prvků podle podlaží nebo zóny.
 
-In this example, we are filtering all the selected structure data items by their "Top" z-coordinate position (height). This can be used to further determine if the position is lower than a level, floor, or ceiling.
+V tomto příkladu filtrujeme všechny vybrané položky konstrukčních dat podle jejich „Horní“ pozice (výšky) souřadnice Z. Pomocí toho lze dále určit, zda je pozice nižší než podlaží, podlaha nebo podhled.
 ___
 ## Vzorový soubor
 

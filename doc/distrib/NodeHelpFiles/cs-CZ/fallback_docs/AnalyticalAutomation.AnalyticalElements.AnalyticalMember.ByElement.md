@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+Tento uzel vytvoří analytický prut z existujícího fyzického prvku. Uzel může převzít geometrii a geometrické parametry prvku, přenášet hodnoty parametrů a volitelně vytvořit nebo zachovat asociaci s původním prvkem.
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+V tomto příkladu je vybrán fyzikální prvek z konstrukčního modelu Snowdon a pomocí tohoto uzlu je převeden na analytický prut.
 ___
 ## Vzorový soubor
 

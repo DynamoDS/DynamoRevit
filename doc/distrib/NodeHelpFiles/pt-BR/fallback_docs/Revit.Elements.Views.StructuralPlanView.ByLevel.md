@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a view based off a level input.
+Esse nó cria uma vista com base em uma entrada de nível.
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+Neste exemplo, é usado um nível (L2) como uma entrada (nível) para o nó StructrualPlanView.ByLevel e a saída é uma nova vista. O último nó mostra o nome da vista (L2).
 
 ___
 ## Arquivo de exemplo

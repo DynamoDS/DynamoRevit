@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a roof given a outline (closed curve), roof type, and level.
+Ten węzeł tworzy dach na podstawie zarysu (krzywej zamkniętej), typu dachu i poziomu.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+W tym przykładzie zostaje utworzony prostokąt i zostaje on użyty jako dane wejściowe zarysu (outline) w węźle RoofByOutlineTypeAndLevel wraz z typem dachu i poziomem. Ostatni węzeł ustawia wartość 10 dla odsunięcia podstawy od poziomu.
 
 ___
 ## Plik przykładowy

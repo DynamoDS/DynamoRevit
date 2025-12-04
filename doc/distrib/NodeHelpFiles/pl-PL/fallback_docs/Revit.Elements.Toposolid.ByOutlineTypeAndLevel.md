@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+Ten węzeł tworzy model terenu przy użyciu zestawu krzywych lub zarysów wraz pozycjami danych wejściowych toposolidType i level.
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+W tym przykładzie zostaje utworzony prostokąt, który jest używany jako dane wejściowe węzła Toposolid.ByOutlineTypeAndLevel. Zostaje wybrany typ ToposolidType używany jako pozycja danych wejściowych toposolidType, a następnie zostaje wybrany poziom używany jako pozycja danych wejściowych level. Wynikiem jest bryła terenu (Toposolid).
 ___
 ## Plik przykładowy
 

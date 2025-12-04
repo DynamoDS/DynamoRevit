@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node sets the curve of an existing detail curve.
+Ten węzeł ustawia krzywą istniejącej krzywej szczegółu.
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+W tym przykładzie tworzone są 2 linie: jedna z nich jest używana do utworzenia krzywej szczegółu wraz z widokiem (Partition Type — CMU). Ta krzywa detailCurve jest następnie używana jako dane wejściowe „detailCurve” dla węzła DetailCurve.SetCurve wraz z drugą linią przekazywaną jako dane wejściowe „curve”. Dane wyjściowe to null, ale położenie krzywej szczegółu zmieniono na nowe.
 
 ___
 ## Plik przykładowy

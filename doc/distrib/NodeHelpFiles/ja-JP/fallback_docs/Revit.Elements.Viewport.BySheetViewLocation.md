@@ -1,7 +1,7 @@
 ## 詳細
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+このノードは、定義された位置点に指定されたビューを配置して、指定されたシートにビューポートを配置します。
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+この例では、新しいシート「Dynamo Sheet」が作成され、Viewport.BySheetViewLocation ノードへのシート入力として、ビュー「L1 Wall Base」と位置入力の点「0,0,0」とともに使用されます。
 ___
 ## サンプル ファイル
 

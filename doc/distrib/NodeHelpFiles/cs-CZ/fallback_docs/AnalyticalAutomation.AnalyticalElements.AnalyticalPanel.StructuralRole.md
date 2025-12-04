@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node provides the structural role of an analytical panel.
+Tento uzel poskytuje konstrukční roli analytické desky.
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+V tomto příkladu je vybrán prvek podlahy z konstrukčního modelu Snowdon a převeden na analytickou desku. Výstupem uzlu je konstrukční role přiřazená k této desce.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-This node extracts the underlying geometric plane from a Reference Plane element.
+此節點會從參考平面元素擷取基本幾何平面。
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+在此圖表中，使用座標定義兩點，並連接到 ReferencePlane.ByStartPointEndPoint 節點建立參考平面，然後將建立的參考平面傳入 ReferencePlane.Plane 節點輸出其幾何平面，再傳入 3D Watch 節點。
 ___
 ## 範例檔案
 

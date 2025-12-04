@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a view based off a level input.
+このノードは、レベル入力に基づいてビューを作成します。
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+この例では、レベル(L2)が StructrualPlanView.ByLevel ノードへの入力(レベル)として使用され、出力は新しいビューです。最後のノードで、ビュー名(L2)が示されます。
 
 ___
 ## サンプル ファイル

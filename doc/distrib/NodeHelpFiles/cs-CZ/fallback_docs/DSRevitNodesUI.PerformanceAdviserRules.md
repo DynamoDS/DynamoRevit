@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+Tento uzel načte seznam všech dostupných pravidel nástroje Poradce pro výkon. Tato pravidla představují stejné vestavěné kontroly, které aplikace Revit používá k identifikaci potenciálních problémů s výkonem nebo modelováním.
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+V tomto příkladu se uzel PerformanceAdviserRules používá k vyžádání pravidla „Oříznutí pohledu je zakázáno“ z úplného seznamu, které pak lze připojit k jiným uzlům a zkontrolovat jeho vlastnosti nebo chování. To pomáhá uživatelům rychle pracovat se specifickými pravidly výkonu.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node returns the existing connections of the structure data element/s selected.
+Esse nó retorna as conexões existentes dos elementos de dados de estrutura selecionados.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+Neste exemplo, uma coluna foi selecionada com três conexões: uma placa base, uma conexão de momento e uma conexão parafusada.
 ___
 ## Arquivo de exemplo
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Esse nó identifica os elementos do Revit com uma vista, um elemento, uma localização, horizontal (caso contrário, o identificador orientará com base no elemento) e addLeader como entradas.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+Neste exemplo, é selecionada uma porta na vista “Studio Live Work Core B”. A localização dessa porta é extraída e usada como a entrada original para Tag.ByElementAndLocation junto com valores booleanos para horizontal e addLeader. A localização original é modificada para que a localização do identificador não se sobreponha diretamente à parte superior do elemento usando o nó Tag.SetHeadLocation.
 
 ___
 ## Arquivo de exemplo

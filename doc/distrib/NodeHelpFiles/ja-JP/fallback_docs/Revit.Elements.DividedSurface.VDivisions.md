@@ -1,10 +1,10 @@
 ## 詳細
-This node returns the number of V divisions applied to a given Divided Surface in Revit. The grid is defined in two directions—U and V—and the V divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “V” direction). In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+このノードは、Revit の指定された分割されたサーフェスに適用される V 分割の数を返します。通芯は U 方向と V 方向の 2 方向で定義され、V 分割によって、サーフェスが 1 つの軸(通常はサーフェスのパラメトリックな「V」方向に対応する)に沿って分割されるセグメントの数が決まります。Revit コンセプト マス環境またはアダプティブ コンポーネント ファミリでは、分割されたサーフェスは、面(壁、屋根、フォーム面など)に適用されるパターン化された通芯です。
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.VDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of V divisions applied to the divided surface.
+この例では、面が選択され、分割されたサーフェスの生成に使用されます。この分割されたサーフェスは、DividedSurface.VDivisions の入力です。最後のノードで、分割されたサーフェスの他の値が公開されます。このサンプル グラフを実行する場合は、Revit の警告を確認し、提案された要素を削除して、選択したサーフェスに通芯が表示されるようにする必要があります。V 分割の数が分割されたサーフェスに適用されます。
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+詳細については、リンクを参照してください。
+https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## サンプル ファイル
 

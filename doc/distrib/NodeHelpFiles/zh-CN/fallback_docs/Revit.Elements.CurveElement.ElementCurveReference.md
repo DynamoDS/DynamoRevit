@@ -1,7 +1,7 @@
 ## 详细
-This node retrieves the curve reference associated with a given Revit CurveElement, such as a model curve or detail line. The reference can then be used as input to other nodes that require a geometry reference—such as dimensioning, alignment, or divided path creation.
+此节点检索与给定 Revit CurveElement (如模型曲线或详图线)关联的曲线参照。然后，可以将该参照用作需要几何图形参照的其他节点的输入 - 例如标注、对齐或分割路径创建。
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.ElementCurveReference node.  the output is a geometric reference of the curve element that can be used in downstream operations.
+在此示例中，使用起点和终点创建模型曲线，然后输入到 CurveElement.ElementCurveReference 节点。输出是曲线图元的几何参照，可用于下游操作。
 ___
 ## 示例文件
 

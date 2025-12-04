@@ -1,7 +1,7 @@
 ## 详细
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+此节点将分析图元与物理模型图元相关联，以便它们相互参照。如果关联已存在，则在节点设置允许的情况下，可以替换它。
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+在此示例中，Snowdon 结构模型中栅格交点 A4 和 A5 处的两个点定义了该位置。标高(L2 TOS)建立垂直放置，这些点之间的线形成分析构件。然后，选择位于同一位置的物理梁，并且此节点将分析图元链接到该梁。
 ___
 ## 示例文件
 

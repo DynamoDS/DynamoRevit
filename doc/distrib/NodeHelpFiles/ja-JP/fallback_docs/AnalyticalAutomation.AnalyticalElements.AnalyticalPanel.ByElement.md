@@ -1,7 +1,7 @@
 ## 詳細
-This node creates an analytical panel from a selected model element.
+このノードは、選択されたモデル要素から解析用パネルを作成します。
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+この例では、Snowdon 構造モデルから床要素が選択され、ノードへの入力として提供されます。このノードでは、ソース要素に基づいてパネルのジオメトリとパラメータを更新したり、必要に応じて要素との関連付けを追加または維持したり、元の要素で見つかった開口部を含めることができます。出力は、作成された解析用パネルです。
 ___
 ## サンプル ファイル
 

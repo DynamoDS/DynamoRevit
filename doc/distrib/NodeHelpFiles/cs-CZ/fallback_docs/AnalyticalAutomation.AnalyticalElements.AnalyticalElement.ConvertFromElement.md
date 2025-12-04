@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node converts an analytical member or analytical panel into an analytical element.
+Tento uzel převede analytický prut nebo analytickou desku na analytický prvek.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+V tomto příkladu je vybrán analytický prut, který je vložen do uzlu. Výstupem je analytický prvek, který odpovídá vstupu a ukazuje rozdíl mezi analytickým prutem a analytickým prvkem, i když se jejich vlastnosti zdají podobné.
 ___
 ## Vzorový soubor
 

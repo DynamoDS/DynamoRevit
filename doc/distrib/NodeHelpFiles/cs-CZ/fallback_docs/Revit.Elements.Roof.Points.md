@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the sketch points of a selected roof.
+Tento uzel získá body náčrtu vybrané střechy.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+V tomto příkladu jsou vybrány všechny střechy a použijí se jako vstup pro uzel Roof.Points.  Výstupem jsou všechny body vybraného náčrtu střechy.
 ___
 ## Vzorový soubor
 

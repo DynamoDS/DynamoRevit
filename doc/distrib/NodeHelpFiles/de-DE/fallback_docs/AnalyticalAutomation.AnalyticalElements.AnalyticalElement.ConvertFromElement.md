@@ -1,7 +1,7 @@
 ## Im Detail
-This node converts an analytical member or analytical panel into an analytical element.
+Dieser Block konvertiert einen analytischen Stab oder eine analytische Schale in ein analytisches Element.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+In diesem Beispiel wird ein analytisches Element (Stab) ausgewählt und an den Block übergeben. Die Ausgabe ist ein analytisches Element, das der Eingabe entspricht und den Unterschied zwischen einem analytischen Stab und einem analytischen Element anzeigt, obwohl ihre Eigenschaften ähnlich erscheinen.
 ___
 ## Beispieldatei
 

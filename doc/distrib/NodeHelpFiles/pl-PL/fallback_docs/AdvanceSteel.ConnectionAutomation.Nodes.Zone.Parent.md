@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the parent zone or parent element of a given Zone.
+Ten węzeł pobiera strefę nadrzędną lub element nadrzędny danej strefy.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+W tym przykładzie wybrano kilka elementów, wyodrębniono dane konstrukcyjne, udostępniono węzeł połączenia i użyto go do zidentyfikowania wszystkich stref mających zastosowanie do tego węzła połączenia. Te strefy są danymi wejściowymi węzła Zone.Parent, w którego wynikach wyświetlane są dane konstrukcyjne poszczególnych pozycji wejściowych strefy nadrzędnej. Ostatnie węzły pokazują typ przekroju i położenie wyników.
 ___
 ## Plik przykładowy
 

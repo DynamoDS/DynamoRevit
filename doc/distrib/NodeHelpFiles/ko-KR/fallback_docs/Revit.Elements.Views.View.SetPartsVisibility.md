@@ -1,7 +1,7 @@
 ## 상세
-This node sets how Parts are displayed within a specified Revit View. This node allows you to control whether the view shows; "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal", or "unset".
+이 노드는 지정된 Revit 뷰 내에서 부품이 표시되는 방식을 설정합니다. 이 노드를 사용하면 "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal" 또는 "unset" 중에서 어떤 표시 방식을 표시할지 제어할 수 있습니다.
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+이 예에서는 뷰(3D 뷰)를 선택하고 노드 뷰 부품 가시성의 기본값과 함께 노드 View.SetPartsVisibility에 대한 입력(뷰)으로 사용합니다. 마지막 두 노드는 원래 설정의 뷰 부품 가시성 설정과 수정된 설정을 보여 줍니다.
 ___
 ## 예제 파일
 

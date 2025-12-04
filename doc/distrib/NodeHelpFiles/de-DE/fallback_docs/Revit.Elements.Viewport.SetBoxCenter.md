@@ -1,7 +1,7 @@
 ## Im Detail
-This node moves the center point of a given viewport to a new location on the sheet.
+Dieser Block verschiebt den Mittelpunkt eines bestimmten Ansichtsfensters an eine neue Position im Plan.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+In diesem Beispiel wird ein neuer Plan "Dynamo Sheet" erstellt, und die Ansicht "L1 Wall Base" wird am Punkt "0,0,0" platziert. Diese Ansicht wird in der Ansichtsfenstereingabe für den Block Viewport.SetBoxCenter zusammen mit einem neuen Punkt verwendet. Die Ausgabe ist eine neu positionierte Ansicht.
 ___
 ## Beispieldatei
 

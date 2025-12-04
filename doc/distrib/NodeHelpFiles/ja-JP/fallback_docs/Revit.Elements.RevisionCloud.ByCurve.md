@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+このノードは、指定されたビューに改訂雲マークを作成します。入力は、ビュー、曲線のリスト、「雲マークの外枠」、および定義された改訂です。
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+この例では、2 つの数値スライダで長方形の幅と長さを定義し、次に、曲線に展開します。これらの曲線は、正しい方向を維持するために反転され、RevisionCloud.ByCurve ノードに接続されます。このグラフでは、アクティブなビュー(1 階の平面図)と選択した改訂(Seq. 2 – Not For Construction)も入力として受け取ります。また、定義した形状に基づいて、選択したビューに改訂雲マークが自動的に生成されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## 详细
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+此节点通过将给定视图放置在定义的位置点，将视口放置在指定的图纸上。
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+在此示例中，将创建一张新图纸“Dynamo Sheet”并用作 Viewport.BySheetViewLocation 节点的图纸输入以及视图“L1 Wall Base”和位置输入中的点“0,0,0”。
 ___
 ## 示例文件
 

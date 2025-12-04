@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Tento uzel získá všechny možnosti záhlaví sloupců výkazu (OneRow, MultipleRows a None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+V tomto příkladu se položka columnHeaders (OneRow) použije jako vstup uzlu ScheduleView.Export k vygenerování typické možnosti exportu.
 
 ___
 ## Vzorový soubor

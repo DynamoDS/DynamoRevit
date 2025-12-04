@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the sketch points of a selected roof.
+Ten węzeł pobiera punkty szkicu wybranego dachu.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+W tym przykładzie zostają wybrane wszystkie dachy i zostają one użyte jako dane wejściowe węzła Roof.Points. Wynikiem są poszczególne punkty wybranego szkicu dachu.
 ___
 ## Plik przykładowy
 

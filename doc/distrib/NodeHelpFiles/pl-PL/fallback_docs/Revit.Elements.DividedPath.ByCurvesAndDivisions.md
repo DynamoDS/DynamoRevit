@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a Divided Path element in a massing family by dividing curves into a specified number of equal segments.
+Ten węzeł tworzy element podzielonej ścieżki w rodzinie brył przez podzielenie krzywych na określoną liczbę równych segmentów.
 
-In this example, 2 model curves are created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurvesAndDivisions node. An integer value defines the number of equal divisions along the curves. The final node displays the resulting division points along the curves.
+W tym przykładzie tworzone są 2 krzywe modelu na podstawie określonego punktu początkowego i końcowego, a następnie są one wykorzystywane jako krzywa wejściowa dla węzła DividedPath.ByCurvesAndDivisions. Liczba całkowita definiuje liczbę równych podziałów wzdłuż krzywej. Węzeł końcowy wyświetla wynikowe punkty podziału wzdłuż krzywej.
 ___
 ## Plik przykładowy
 

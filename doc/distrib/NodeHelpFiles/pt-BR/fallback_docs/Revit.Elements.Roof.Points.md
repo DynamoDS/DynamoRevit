@@ -1,7 +1,7 @@
 ## Em profundidade
-This node gets the sketch points of a selected roof.
+Esse nó obtém os pontos de esboço de um telhado selecionado.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+Neste exemplo, todos os telhados são selecionados e usados como entrada para Roof.Points. A saída é cada ponto do esboço de telhado selecionado.
 ___
 ## Arquivo de exemplo
 

@@ -1,10 +1,10 @@
 ## Podrobnosti
-This dropdown node provides a list of Revit “View Parts Visibility” options that control whether Parts (elements created by the Parts command, such as subdivided walls, floors, etc.) are visible, hidden, or shown instead of their original elements in a given Revit view.
+Tento rozevírací uzel poskytuje seznam možností „Zobrazit viditelnost součástí“ aplikace Revit, které určují, zda budou součásti (prvky vytvořené příkazem Součásti, například rozdělené stěny, podlahy atd.) v daném pohledu aplikace Revit viditelné, skryté nebo zobrazené místo svých původních prvků.
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+V tomto příkladu je vybrán pohled (3D pohled) a použit se jako vstup (pohled) pro uzel View.SetPartsVisibility společně s libovolnou výchozí hodnotou z uzlu Zobrazit součásti Viditelnost. Poslední dva uzly zobrazují nastavení viditelnosti součástí pohledu při původním nastavení a revidovaném nastavení.
 
-For Additional information see link below.
-https://help.autodesk.com/view/RVT/2019/ENU/?guid=GUID-37A4B924-AB44-486F-AD27-02F414DE4683
+Další informace naleznete pod níže uvedeným odkazem.
+https://help.autodesk.com/view/RVT/2019/CSY/?guid=GUID-37A4B924-AB44-486F-AD27-02F414DE4683
 ___
 ## Vzorový soubor
 

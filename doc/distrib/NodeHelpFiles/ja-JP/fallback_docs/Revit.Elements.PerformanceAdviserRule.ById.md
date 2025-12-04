@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieve a specific Performance Adviser rule from Revit by its unique Rule ID.
+このノードは、一意の規則 ID で Revit から特定のパフォーマンス アドバイザ規則を取得します。
 
-In this example, the rule “Project contains unused families and types” is selected and its RuleId is extracted. That ID is converted to a string and then passed back into PerformanceAdviserRule.ById, which re-identifies and retrieves the same rule for further use or automation.
+この例では、規則「プロジェクトには、未使用のファミリとタイプが含まれています」が選択され、その RuleId が抽出されます。その ID は文字列に変換され、次に、PerformanceAdviserRule.ById に渡されます。そこでは、後で使用したり自動化するために同じ規則が再識別されて取得されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+Этот узел создает топографию, используя набор кривых или контуров, а также тип топотела и уровень в качестве входных данных.
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+В этом примере создается прямоугольник и используется в качестве входного параметра для Toposolid.ByOutlineTypeAndLevel. Выбирается тип ToposolidType, который используется в качестве входного элемента toposolidType, а затем выбирается уровень, который используется в качестве входного элемента уровня. На выходе получается топотело.
 ___
 ## Файл примера
 

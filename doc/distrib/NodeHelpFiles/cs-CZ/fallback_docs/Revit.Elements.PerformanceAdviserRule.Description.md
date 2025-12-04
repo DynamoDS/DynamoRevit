@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the descriptive text of a Performance Adviser rule.
+Tento uzel extrahuje popisný text pravidla nástroje Poradce pro výkon.
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+V tomto příkladu je vybrané pravidlo „Oříznutí pohledu je zakázáno“ předáno do uzlu PerformanceAdviserRule.Description. Popis se pak zobrazí v uzlu Watch a zobrazí účel a účinek pravidla.
 ___
 ## Vzorový soubor
 

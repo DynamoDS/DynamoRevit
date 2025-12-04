@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a Topography by using points a toposolidType along with a level.
+Questo nodo crea una topografia utilizzando points, toposolidType e level.
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+In questo esempio, viene creato un rettangolo con un punto di uguale lunghezza della corda e utilizzato come input points nel nodo Toposolid.ByPointsTypeAndLevel insieme a rectangle, ToposolidType e level.
 ___
 ## File di esempio
 

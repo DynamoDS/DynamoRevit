@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+Ten węzeł wyodrębnia pętle krzywych (zazwyczaj łuki i linie), które tworzą widoczny obwód chmurki rewizji. Każdy segment chmurki jest reprezentowany jako obiekt krzywej (zwykle łuk) odpowiadający „bąbelkowemu” kształtowi znacznika rewizji w widoku lub na arkuszu.
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+W tym przykładzie tworzony jest prostokąt przy użyciu suwaka Number Slider definiującego jego wymiary, a następnie jest on dzielony na krzywe i odwracany w celu ustalenia orientacji. Te krzywe, wraz z wybranym widokiem (Site Plan) i rewizją (Seq. 2 – Not For Construction), służą do wygenerowania chmurki rewizji za pomocą węzła RevisionCloud.ByCurve. Utworzona chmurka rewizji zostaje następnie połączona z węzłem RevisionCloud.Curves, który wyodrębnia i wyświetla krzywe definiujące tę chmurkę. Pomaga to użytkownikom zweryfikować geometrię chmurki rewizji i zapewnia elastyczną możliwość ponownego użycia lub dalszej automatyzacji.
 ___
 ## Plik przykładowy
 

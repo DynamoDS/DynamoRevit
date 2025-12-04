@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+Ten węzeł udostępnia listę rozwijaną dopuszczalnych typów filtrów zestawień (Equal, NotEqual, GreaterThan, LessThan, Contains,..). Wyniki filtrują wszystkie drzwi zaczynające się ciągiem „Exterior”
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+W tym przykładzie wybierany jest widok i zostają udostępnione pola widoku. Pole „Type” zostaje wyodrębnione i służy do utworzenia filtru zestawienia wraz z wartością filtru i typem filtru zestawienia „BeginsWith”. Ten filtr jest następnie stosowany do wybranego widoku zestawienia „WV_Wall Schedule”.
 ___
 ## Plik przykładowy
 

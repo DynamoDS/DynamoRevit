@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Questo nodo crea una quota in base ad un elemento, una direzione (vettore) e una vista specificata. Altri input possono essere linea, suffisso e prefisso.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+In questo esempio, la vista “L1” della tavola A101 viene utilizzata come input in Dimension.ByElementDirection insieme a un elemento (muro), una direzione della linea dal muro, un suffisso (Dynamo) e un prefisso (Dynamo). Gli ultimi 2 nodi mostrano i valori delle quote e il relativo prefisso.
 
 ___
 ## File di esempio

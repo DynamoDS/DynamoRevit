@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+Tento uzel vytvoří topografii pomocí sady křivek nebo obrysů společně se vstupy typu toposolidType a podlaží.
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+V tomto příkladu se vytvoří obdélník, který se použije jako vstup do uzlu Toposolid.ByOutlineTypeAndLevel.  Vybere se objekt ToposolidType, který se použije jako vstupní objekt toposolidType a poté se vybere podlaží a použije se jako vstup podlaží.  Výstupem je terénní útvar.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a roof given a outline (closed curve), roof type, and level.
+Этот узел создает крышу по контуру (замкнутая кривая), типу крыши и уровню.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+В этом примере создается прямоугольник, который используется в качестве входного параметра контура для узла RoofByOutlineTypeAndLevel, а также типа крыши и уровня. Последний узел задает базовое смещение от уровня, равное 10.
 
 ___
 ## Файл примера

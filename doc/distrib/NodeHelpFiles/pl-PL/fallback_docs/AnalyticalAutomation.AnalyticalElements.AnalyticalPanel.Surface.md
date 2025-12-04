@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the surface of an analytical panel.
+Ten węzeł zwraca powierzchnię panelu analitycznego.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+W tym przykładzie z modelu konstrukcyjnego Snowdon zostaje wybrany strop i zostaje on przekształcony w panel analityczny. Węzeł zwraca odpowiednią powierzchnię tego panelu.
 ___
 ## Plik przykładowy
 

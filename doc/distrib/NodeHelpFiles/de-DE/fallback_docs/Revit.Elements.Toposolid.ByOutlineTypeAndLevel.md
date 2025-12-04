@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+Dieser Block erstellt Topografie mithilfe eines Satzes von Kurven oder Umrissen zusammen mit einem toposolidType und einer Ebene als Eingaben.
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+In diesem Beispiel wird ein Rechteck erstellt und als Eingabe für Toposolid.ByOutlineTypeAndLevel verwendet. Ein ToposolidType wird ausgewählt und als Eingabe-toposolidType verwendet. Anschließend wird eine Ebene ausgewählt und als Ebeneneingabe verwendet. Die Ausgabe ist ein Geländemodell.
 ___
 ## Beispieldatei
 

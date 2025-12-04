@@ -1,7 +1,7 @@
 ## 상세
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+이 노드는 요소에서 모든 곡선 참조 객체를 가져옵니다. 곡선이 없는 요소에 대해서는 Null 값이 지정됩니다.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+이 예에서는 요소(난간)를 선택하고 Elements.ElementCurveReferences에 대한 입력으로 사용합니다. 출력은 해당 요소의 곡선 참조입니다.
 
 ___
 ## 예제 파일

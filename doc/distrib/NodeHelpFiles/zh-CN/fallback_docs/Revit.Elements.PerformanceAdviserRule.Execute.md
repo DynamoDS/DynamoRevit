@@ -1,7 +1,7 @@
 ## 详细
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+此节点针对一组 Revit 图元运行特定的 Performance Adviser 规则。
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+在此示例中，Performance Adviser 规则检查是否“视图剪裁已禁用”。结果将传递到 FailureMessage.FailingElements 节点，该节点输出模型中未通过此检查的特定图元。此工作流使用户可以更轻松地跟踪和修复导致问题的确切图元。
 
 ___
 ## 示例文件

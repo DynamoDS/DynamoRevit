@@ -1,7 +1,7 @@
 ## En detalle:
-This node controls how a Revit schedule is exported.
+Este nodo controla cómo se exporta una tabla de planificación de Revit.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+En este ejemplo, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote) y title (Boolean) se utilizan como entradas para crear una opción de exportación de tabla de planificación coherente. Esta salida se puede utilizar en el nodo ScheduleView.Export.
 
 ___
 ## Archivo de ejemplo

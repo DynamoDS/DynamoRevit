@@ -1,7 +1,7 @@
 ## Подробности
-This node gets the location of a schedule on a sheet.
+Этот узел получает расположение спецификации на листе.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+В этом примере спецификация размещается на листе в заданном месте, который затем вводится в узел ScheduleOnSheet.Location, где отображается расположение спецификации.
 
 ___
 ## Файл примера

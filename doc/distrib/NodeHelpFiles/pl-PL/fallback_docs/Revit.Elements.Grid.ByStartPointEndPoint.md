@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a grid line based on a start point and end point.
+Ten węzeł tworzy linię siatki na podstawie punktu początkowego i punktu końcowego.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+W tym przykładzie zostają wygenerowane 2 punkty i zostają one użyte jako dane wejściowe węzła Grid.ByStartPointEndPoint. Zostaje utworzona siatka o nazwie „Dynamo”.
 
 ___
 ## Plik przykładowy

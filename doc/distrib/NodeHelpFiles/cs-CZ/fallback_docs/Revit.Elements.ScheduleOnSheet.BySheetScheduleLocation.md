@@ -1,9 +1,9 @@
 ## Podrobnosti
 
 
-This node adds a schedule to a sheet at a specified point.
+Tento uzel přidá výkaz do výkresu v určeném bodě.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+V tomto příkladu se k vytvoření bodu použijí číselné posuvníky, které se použijí jako vstupní „umístění“ pro uzel ScheduleOnSheet.BySheetScheduleLocation společně s pohledem výkazu a listem.  Výstupem je výkaz a jeho umístění na výkresu a název výkresu.
 
 
 

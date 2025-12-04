@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the unit being used in a project for any given Spec Type.
+Ten węzeł pobiera jednostkę używaną w projekcie dla danego typu specyfikacji.
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+W tym przykładzie wartości typów specyfikacji (Area, czyli powierzchnia, i Cost per Area, koszt na powierzchnię) są wprowadzane na listę. Ta lista jest używana w węźle Document.UnitTypeBySpecType jako dane wejściowe specType wraz z bieżącym dokumentem przekazywanym jako dane wejściowe document. Wyniki przedstawiają wartości jednostek typów specyfikacji dla bieżącego projektu.
 
 ___
 ## Plik przykładowy

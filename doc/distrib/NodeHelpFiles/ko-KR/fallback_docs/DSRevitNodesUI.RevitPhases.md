@@ -1,7 +1,7 @@
 ## 상세
-This node lets you choose a specific Phase from the model using a drop-down menu.
+이 노드를 사용하면 드롭다운 메뉴를 사용하여 모델에서 특정 단계를 선택할 수 있습니다.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+이 예에서는 벽을 선택하고 단계 선택 노드를 적용하여 해당 단계 지정을 수정합니다. 마지막 노드에서는 업데이트된 단계 이름인 "기존"을 표시하여 변경 사항을 확인합니다.
 ___
 ## 예제 파일
 

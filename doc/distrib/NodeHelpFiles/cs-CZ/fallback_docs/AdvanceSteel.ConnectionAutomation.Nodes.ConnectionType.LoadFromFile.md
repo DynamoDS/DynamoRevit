@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns a list of available connection types that can be loaded from an external Revit (.rvt) file.
+Tento uzel vrací seznam dostupných typů přípojů, které lze načíst z externího souboru aplikace Revit (.rvt).
 
-In this example, we return a list of connections that are available in the Revit model associated to an external Revit file from the provided file path.  Note that the connection types loaded should not already exist in the model or an error will be thrown.
+V tomto příkladu vrátíme ze zadané cesty souboru seznam přípojů, které jsou k dispozici v modelu aplikace Revit asociovaném s externím souborem aplikace Revit.  Všimněte si, že načtené typy přípojů by již neměly v modelu existovat, jinak dojde k chybě.
 ___
 ## Vzorový soubor
 

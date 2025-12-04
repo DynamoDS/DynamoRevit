@@ -1,10 +1,10 @@
 ## Em profundidade
-This node returns the number of V divisions applied to a given Divided Surface in Revit. The grid is defined in two directions—U and V—and the V divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “V” direction). In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+Esse nó retorna o número de divisões V aplicadas a uma determinada superfície dividida no Revit. O eixo é definido em duas direções – U e V – e as divisões V determinam em quantos segmentos a superfície é dividida ao longo de um eixo (normalmente, correspondendo à direção “V” paramétrica da superfície). No ambiente de massa conceitual do Revit ou em famílias de componentes adaptativos, uma superfície dividida é um eixo padronizado aplicado a uma face (como uma parede, um telhado ou uma face de forma).
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.VDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of V divisions applied to the divided surface.
+Neste exemplo, é selecionada uma face e usada para gerar uma superfície dividida. Essa superfície dividida é a entrada para DividedSurface.VDivisions. Os últimos nós expõem os outros valores da superfície dividida. Ao executar este gráfico de exemplo, será necessário observar o aviso do Revit e excluir os elementos sugeridos para que os eixos apareçam na superfície selecionada. O número de divisões V aplicado à superfície dividida.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Consulte o link para obter mais informações.
+https://help.autodesk.com/view/RVT/2025/PTB/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Arquivo de exemplo
 

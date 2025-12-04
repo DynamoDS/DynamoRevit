@@ -1,4 +1,4 @@
-## En detalle
+## En detalle:
 "Seleccionar alineación de texto vertical" permite seleccionar las siguientes opciones de alineación para los elementos de texto:
 - Abajo
 - Centro

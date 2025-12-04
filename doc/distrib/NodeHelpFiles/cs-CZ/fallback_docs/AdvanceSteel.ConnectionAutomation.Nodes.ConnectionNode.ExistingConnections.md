@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the existing connections of the structure data element/s selected.
+Tento uzel vrací existující přípoje vybraných prvků konstrukčních dat.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+V tomto příkladu byl vybrán sloup se třemi připojeními: patní deskou, momentovým připojením a šroubovým spojem.
 ___
 ## Vzorový soubor
 

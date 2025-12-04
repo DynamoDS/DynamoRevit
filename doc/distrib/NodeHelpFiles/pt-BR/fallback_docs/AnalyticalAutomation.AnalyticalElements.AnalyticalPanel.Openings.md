@@ -1,7 +1,7 @@
 ## Em profundidade
-This node provides the openings within an analytical panel.
+Esse nó fornece as aberturas em um painel analítico.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+Neste exemplo, um piso no modelo estrutural Snowdon é selecionado e convertido em um painel analítico. O nó gera uma lista de aberturas naquele painel.
 ___
 ## Arquivo de exemplo
 

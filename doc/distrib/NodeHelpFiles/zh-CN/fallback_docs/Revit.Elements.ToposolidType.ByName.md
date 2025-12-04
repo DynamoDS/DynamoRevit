@@ -1,7 +1,7 @@
 ## 详细
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+此节点从给定字符串输入的项目检索该 ToposolidType。项目中必须存在该类型，否则将赋予 null。
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+在此示例中，“Toposolid 1”用作 ToposolidType.ByName 的输入，输出为 ToposolidType。此输出用于生成 topoSolid。
 ___
 ## 示例文件
 

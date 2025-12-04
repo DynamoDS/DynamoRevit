@@ -1,7 +1,7 @@
 ## Подробности
-This node performs a ray bounce analysis within the Revit model. Starting from a given origin point and traveling along a specified direction vector, it traces the path of the ray as it intersects elements in the model. When the ray hits a surface, it can continue bouncing off that surface, depending on the number of bounces allowed, simulating light, visibility, or path reflection behavior.
+Этот узел выполняет анализ отражения лучей в модели Revit. Начиная с заданной исходной точки и перемещаясь вдоль заданного вектора направления, она отслеживает траекторию луча при его пересечении с элементами в модели. Когда луч попадает на поверхность, он может продолжать отскакивать, в зависимости от разрешенного количества отскоков, имитируя освещенность, видимость или поведение отражения на траектории.
 
-In this example, an element is selected and its' location is used for input origin to node RayBounce.ByOriginDirection, along with a direction, maxBounces and, a view.
+В этом примере выбирается элемент, и его расположение используется в качестве начала координат для входного элемента узла RayBounce.ByOriginDirection, а также направления, значения maxBounces и вида.
 ___
 ## Файл примера
 

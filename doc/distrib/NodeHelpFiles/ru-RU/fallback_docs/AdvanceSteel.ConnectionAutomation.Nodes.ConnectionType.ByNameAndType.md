@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the connection type when given connection name, type name, and file path. This functions as a filter from the list of connections provided in the Revit model associated to the file path.
+Этот узел возвращает тип соединения, если заданы имя соединения, имя типа и путь к файлу. Этот параметр служит фильтром из списка соединений в модели Revit, связанных с заданным путем к файлу.
 
-In this example, we have provided the file path to a Revit model, the type name as well as connection name of base plate. In return, the response is the connection type for the base plate.
+В этом примере указан путь к файлу модели Revit, имя типа и имя соединение опорной плиты. В ответ возвращается тип соединения для опорной плиты.
 ___
 ## Файл примера
 

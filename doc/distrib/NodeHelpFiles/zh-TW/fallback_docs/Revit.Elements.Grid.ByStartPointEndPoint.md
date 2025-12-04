@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a grid line based on a start point and end point.
+此節點會根據起點和終點建立網格。
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+在此範例中，產生 2 個點作為 Grid.ByStartPointEndPoint 的輸入。建立網格並命名為「Dynamo」。
 
 ___
 ## 範例檔案

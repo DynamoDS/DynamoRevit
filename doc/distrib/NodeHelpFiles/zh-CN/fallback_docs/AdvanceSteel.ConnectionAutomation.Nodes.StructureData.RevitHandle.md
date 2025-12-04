@@ -1,7 +1,7 @@
 ## 详细
-This node returns the Revit handle associated with the connections linked to the structure data element.
+此节点返回与链接到结构数据图元的连接关联的 Revit 控制柄。
 
-In this example, a column has been selected.
+在此示例中，已选择一列。
 ___
 ## 示例文件
 

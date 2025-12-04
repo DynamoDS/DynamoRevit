@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns all elements within a Revit Link Instance that are hosted on or associated with a specified Level.
+Tento uzel vrací všechny prvky v instanci připojeného souboru aplikace Revit, které jsou hostovány nebo asociovány s daným podlažím.
 
-In this example all Revit links are selected and input into LinkInstance.AllElementsAtLevel along with a level.  The output exposes all the Revit linked elements on or related to level L3.  The last 2 nodes give the link transform and inverse transform.
+V tomto příkladu jsou vybrány všechny připojené soubory aplikace Revit a vloženy do objektu LinkInstance.AllElementsAtLevel společně s podlažím.  Výstup zobrazí všechny prvky připojené k aplikaci Revit, které se nacházejí na podlaží L3 nebo s ním souvisí.  Poslední dva uzly předávají transformaci spojnice a inverzní transformaci.
 
 ___
 ## Vzorový soubor

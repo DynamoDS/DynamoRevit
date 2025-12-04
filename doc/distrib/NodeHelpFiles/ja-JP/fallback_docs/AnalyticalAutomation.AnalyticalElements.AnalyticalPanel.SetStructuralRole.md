@@ -1,7 +1,7 @@
 ## 詳細
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+このノードは、解析用パネルの構造の役割を設定します。パネルのジオメトリやその他のパラメータに影響を与えることなく、選択された役割で選択されたパネルを更新します。
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+この例では、Snowdon 構造モデルの物理要素から作成された解析用パネルが、床の構造の役割を持つように設定されます。
 ___
 ## サンプル ファイル
 

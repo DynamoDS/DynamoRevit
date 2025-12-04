@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+このノードは、指定された立面図マーカーに現在関連付けられている立面図ビューの数を取得します。
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+この例では、すべての立面図マーカーが選択され、ElevationMarker.CurrentViewCount への入力として使用されます。出力で、その立面図マーカーに関連付けられている立面図ビューの合計数を表す整数値が返されます。
 ___
 ## サンプル ファイル
 

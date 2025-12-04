@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+Этот узел создает пометочное облако на заданном виде. Входными данными являются вид, список кривых «контур облака» и определенное изменение.
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+В этом примере два числовых регулятора определяют ширину и длину прямоугольника, который затем разделяется на кривые. Эти кривые разворачиваются для сохранения правильной ориентации, а затем соединяются с узлом RevisionCloud.ByCurve. В качестве входных данных для графика также используется активный вид (план первого этажа) и выбранное изменение («Последовательность 2 — не для строительства»). Вместе они автоматически создают пометочное облако в выбранном виде на основе заданной формы.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+此節點會擷取連結到 Revit 中特定修訂雲形的修訂元素，提供與該雲形相關聯的修訂資料，允許使用者在專案中以程式設計方式檢查、追蹤或驗證修訂詳細資料。
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+在此範例中，使用數字滑棒表示寬度和長度來建立一個矩形，然後將其分解成曲線並根據正確方位反轉。使用這些曲線以及選擇的視圖 (L1_SD) 和選取的修訂 (Seq. 2 – Not For Construction) 透過 RevisionCloud.ByCurve 節點產生修訂雲形。將產生的修訂雲形連接到 RevisionCloud.Revision 節點，擷取並輸出與該雲形相關聯的修訂。這可確保使用者能夠確認每個修訂雲形連結到的修訂。
 ___
 ## 範例檔案
 

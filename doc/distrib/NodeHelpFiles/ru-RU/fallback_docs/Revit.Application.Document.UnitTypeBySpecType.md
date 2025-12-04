@@ -1,7 +1,7 @@
 ## Подробности
-This node gets the unit being used in a project for any given Spec Type.
+Этот узел получает единицы, используемые в проекте для любого заданного типа миникаталога.
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+В этом примере в список вводятся значения типов миникаталогов (площадь и стоимость на единицу площади). Этот список используется в узле Document.UnitTypeBySpecType в качестве входного элемента specType вместе с текущим документом в качестве входного параметра документа. В качестве результатов отображаются значения единиц измерения типа миникаталога для текущего проекта.
 
 ___
 ## Файл примера

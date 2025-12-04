@@ -1,7 +1,7 @@
 ## Подробности
-This node returns a list of available connection types that can be loaded.
+Этот узел возвращает список доступных типов соединений, которые можно загрузить.
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+В этом примере возвращается список соединений, доступных в модели Revit, которые связаны с заданным путем к файлу.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the surface of an analytical panel.
+このノードは、解析用パネルのサーフェスを返します。
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+この例では、Snowdon 構造モデルの床が選択され、解析用パネルに変換されます。ノードは、そのパネルの対応するサーフェスを出力します。
 ___
 ## サンプル ファイル
 

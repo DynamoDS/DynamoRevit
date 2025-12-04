@@ -1,7 +1,7 @@
 ## 상세
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+이 노드에는 허용되는 일람표 필터 유형(같음, 같지 않음, 보다 큼, 보다 작음, 포함,..)의 드롭다운 리스트가 있습니다. 결과는 "외부"로 시작하는 모든 문을 필터링합니다.
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+이 예에서는 뷰가 선택되고 뷰 필드가 노출됩니다. "유형" 필드는 분리되어 필터 값 및 일람표 필터 유형 "BeginsWith"와 함께 일람표 필터를 작성하는 데 사용됩니다. 이 필터는 선택한 일람표 뷰 "WV_Wall Schedule"에 적용됩니다.
 ___
 ## 예제 파일
 

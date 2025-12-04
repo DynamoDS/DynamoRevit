@@ -1,7 +1,7 @@
 ## Подробности
-This node provides the openings within an analytical panel.
+Этот узел предоставляет проемы в аналитической панели.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+В этом примере в модели конструкции Snowdon выбирается перекрытие, которое преобразуется в аналитическую панель. Узел выводит список проемов на этой панели.
 ___
 ## Файл примера
 

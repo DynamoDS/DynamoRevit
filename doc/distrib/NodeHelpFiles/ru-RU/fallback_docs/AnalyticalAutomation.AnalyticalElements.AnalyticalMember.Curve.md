@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the curve of an analytical member.
+Этот узел извлекает кривую аналитического элемента.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+В этом примере выбирается балка в модели конструкции Snowdon. Узел выводит кривую, определенную аналитическим элементом.
 ___
 ## Файл примера
 

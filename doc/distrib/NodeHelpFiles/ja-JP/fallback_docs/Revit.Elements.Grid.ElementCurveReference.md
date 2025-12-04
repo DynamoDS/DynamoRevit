@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the Revit curve reference associated with a given grid element.
+このノードは、指定されたグリッド要素に関連付けられた Revit 曲線参照を返します。
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+この例では、プロジェクト内のすべてのグリッド要素が選択され、GridElementCUrveReference ノードへの入力として使用されます。このノードで、寸法記入、パス ベースの要素配置、ジオメトリ解析などの他の操作で使用できるように、その参照が公開されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node controls how a Revit schedule is exported.
+Этот узел управляет экспортом спецификации Revit.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+В этом примере в качестве входных данных для создания согласованного параметра экспорта спецификации используются такие параметры, как columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean). Эти выходные данные могут использоваться узлом ScheduleView.Export.
 
 ___
 ## Файл примера

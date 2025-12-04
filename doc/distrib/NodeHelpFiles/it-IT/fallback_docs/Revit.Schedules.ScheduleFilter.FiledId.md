@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves the ScheduleFieldId associated with a given ScheduleFilter.  Each schedule filter in Revit is linked to a specific field (for example, Level, Family and Type, Area). This node exposes that connection by returning the field identifier used by the filter.
+Questo nodo recupera l'elemento ScheduleFieldId associato ad un determinato ScheduleFilter. Ogni filtro di abaco in Revit è collegato ad un campo specifico (ad esempio, Level, Family and Type, Area). Questo nodo espone tale connessione restituendo l'identificatore di campo utilizzato dal filtro.
 
-In this example, a schedule filter is created and used as the input to ScheduleFilter.FileId.
+In questo esempio, viene creato un filtro di abaco che è poi utilizzato come input in ScheduleFilter.FileId.
 ___
 ## File di esempio
 

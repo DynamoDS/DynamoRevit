@@ -1,7 +1,7 @@
 ## 詳細
-This node allows you to select a specific Revision element from the active Revit document.
+このノードを使用すると、アクティブな Revit ドキュメントから特定の改訂要素を選択することができます。
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+この例では、ドロップダウン メニューを使用して現在のドキュメントから改訂を選択することで、Select Revision ノードが使用されます。最後の 2 つのノードで、いくつかの改訂プロパティが示されます。
 ___
 ## サンプル ファイル
 

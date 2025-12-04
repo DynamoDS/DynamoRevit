@@ -1,7 +1,7 @@
 ## Im Detail
-The Revision.IssuedBy node in Dynamo is used to read the “Issued By” information from a revision in Revit. It helps teams quickly identify who created or issued a revision, making documentation more transparent and easier to track.
+Der Block Revision.IssuedBy in Dynamo wird verwendet, um die Informationen unter “Ausgegeben von” aus einer Änderung in Revit zu lesen. So können Teams schnell erkennen, wer eine Änderung erstellt oder ausgegeben hat. Dadurch wird die Dokumentation transparenter und leichter nachvollziehbar.
 
-In this graph, the Select Revision node is used to choose a revision from the project. The Revision.IssuedBy node extracts the “Issued By” value, and the Watch node displays the result. This setup allows users to review revision ownership without opening Revit’s revision manager manually.
+In diesem Diagramm wird der Block Select Revision verwendet, um eine Änderung aus dem Projekt auszuwählen. Der Revision.IssuedBy-Block extrahiert den Wert “Ausgegeben von”, und der Watch-Block zeigt das Ergebnis an. Mit dieser Einrichtung können Benutzer die Änderungseigentümerschaft überprüfen, ohne die Änderungsverwaltung von Revit manuell öffnen zu müssen.
 
 ___
 ## Beispieldatei

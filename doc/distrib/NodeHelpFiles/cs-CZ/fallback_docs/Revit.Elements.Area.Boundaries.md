@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the lines (curves) used to generate the boundary of an area.
+Tento uzel získá úsečky (křivky) použité k vygenerování hranice plochy.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+V tomto příkladu jsou načteny všechny plochy projektu.  Název prvku (plochy) a hodnota Area.Boundries jsou extrahovány a zobrazeny.
 
 ___
 ## Vzorový soubor
