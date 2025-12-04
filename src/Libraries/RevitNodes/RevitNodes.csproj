@@ -82,4 +82,7 @@
   <ItemGroup>
     <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DYNAMOCORENODES_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RevitNodes.Analyzers\RevitNodes.Analyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 </Project>
