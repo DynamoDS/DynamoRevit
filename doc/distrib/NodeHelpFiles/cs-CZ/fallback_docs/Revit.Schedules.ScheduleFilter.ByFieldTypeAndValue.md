@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Tento uzel vytvoří filtr výkazu na základě identifikace pole, typu filtru a hodnoty.  Tento filtr je pak možné použít ve výkazu.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+V tomto příkladu je vybrán pohled (WV_Wall Scheudle), zobrazí se pole výkazu, vybere se položka „Typ“ a použije se jako vstup do pole v uzlu ScheduleFilter.ByFieldTypeAndValue spolu s typem filtru „ZačínáS“ a hodnotou „Vnější“.  Tento typ filtru se pak použije ke změně položek, které se zobrazí v pohledu výkazu WV_Wall Scheudle.  Tento filtr zobrazí pouze stěny, kde typ začíná textem „Vnější“.
 
 ___
 ## Vzorový soubor

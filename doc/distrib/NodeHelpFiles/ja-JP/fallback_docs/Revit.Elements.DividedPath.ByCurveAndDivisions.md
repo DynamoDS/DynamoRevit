@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a Divided Path element in a massing family by dividing a given curve into a specified number of equal segments.
+このノードは、指定された曲線を指定された数の等間隔のセグメントに分割して、マス ファミリに分割されたパス要素を作成します。
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurveAndDivisions node. An integer value defines the number of equal divisions along the curve. The final node displays the resulting division points along the curve.
+この例では、指定した始点と終点からモデル曲線が作成され、次に、DividedPath.ByCurveAndDivisions ノードの入力曲線として使用されます。整数値で、曲線に沿った等間隔の分割数を定義します。最後のノードで、曲線に沿って作成された分割点が表示されます。
 ___
 ## サンプル ファイル
 

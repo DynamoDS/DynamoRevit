@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a grid based on a line input.
+Esse nó cria um eixo com base em uma entrada de linha.
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+Neste exemplo, é criado um ponto e usado como a entrada startPoint para o nó Line.ByStartPointDirectLength, junto com uma direção e um comprimento. A saída é um eixo.
 ___
 ## Arquivo de exemplo
 

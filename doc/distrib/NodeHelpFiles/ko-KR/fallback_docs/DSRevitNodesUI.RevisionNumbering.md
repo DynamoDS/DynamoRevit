@@ -1,10 +1,10 @@
 ## 상세
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+이 노드는 Revit 프로젝트에서 수정기호 번호 매기기가 관리되는 방법을 전역적으로(프로젝트당) 또는 시트당 개별적으로(시트당) 정의하는 드롭다운 리스트를 제공합니다.
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."
+이 예에서는 수정기호 번호 매기기 선택 노드의 값인 "PerProject"을 사용하여 새 수정기호를 작성합니다.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+수정기호에 대한 자세한 내용은 링크를 참고하십시오.
+https://help.autodesk.com/view/RVT/2025/KOR/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## 예제 파일

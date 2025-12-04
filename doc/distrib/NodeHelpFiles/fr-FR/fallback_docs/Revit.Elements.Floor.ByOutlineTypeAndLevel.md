@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a floor using curves, floor types and level.
+Ce nœud crée un sol à l'aide de courbes, de types d'étages et de niveaux.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+Dans cet exemple, un curseur numérique est utilisé pour générer un rectangle et utilisé en entrée pour Floor.ByOutlineTypeAndLevel avec un type et un niveau d'étage donnés.
 
 ___
 ## Exemple de fichier

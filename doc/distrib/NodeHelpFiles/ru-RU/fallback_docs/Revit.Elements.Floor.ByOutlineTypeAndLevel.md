@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a floor using curves, floor types and level.
+Этот узел создает перекрытие с использованием кривых, типов перекрытий и уровня.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+В этом примере используется числовой регулятор для создания прямоугольника, который задается в качестве входных данных для узла Floor.ByOutlineTypeAndLevel, а также заданного типа перекрытия и уровня.
 
 ___
 ## Файл примера

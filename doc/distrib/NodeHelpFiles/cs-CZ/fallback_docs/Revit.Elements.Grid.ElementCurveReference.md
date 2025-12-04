@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the Revit curve reference associated with a given grid element.
+Tento uzel vrací referenci křivky aplikace Revit asociovanou s daným prvkem osnovy.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+V tomto příkladu jsou vybrány všechny prvky osnovy v projektu a použijí se jako vstup do uzlu GridElementCUrveReference.  Tento uzel zpřístupňuje referenci, aby ji bylo možné použít v jiných operacích, jako je kótování, umístění prvků podle cesty nebo geometrická analýza.
 ___
 ## Vzorový soubor
 

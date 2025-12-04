@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+Ten węzeł zmienia kolejność łączenia między dwoma elementami programu Revit, które są już połączone geometrycznie. Ten węzeł umożliwia użytkownikowi określenie, który element geometrii ma być „przecinającym” lub mieć pierwszeństwo przed innym.
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+W tym przykładzie zostają wybrane dwie połączone ściany i zostają one użyte jako dane wejściowe (cuttingElement i otherElement) węzła Element.SetGeometryJoinOrder. Wynikiem węzła jest przypisana kolejność łączenia.
 
 ___
 ## Plik przykładowy

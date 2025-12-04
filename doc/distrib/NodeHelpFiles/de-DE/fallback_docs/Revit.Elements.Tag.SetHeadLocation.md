@@ -1,7 +1,7 @@
 ## Im Detail
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+Dieser Block nimmt eine Beschriftung entgegen und ändert ihre Textposition. Dadurch können wir ein konsistentes Platzierungsverhalten automatisieren, sodass Beschriftungen direkt über dem Element platziert werden, das sie beschriften.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+In diesem Beispiel wird eine Tür in der Ansicht “Studio Live Work Core B” ausgewählt. Die Position dieser Tür wird extrahiert und dann zusammen mit den booleschen Werten für die horizontal-Angabe und addLeader als ursprüngliche Eingabe für Tag.ByElementAndLocation verwendet. Die ursprüngliche Position wird so geändert, dass die Beschriftungsposition nicht direkt über dem Element liegt, indem der Tag.SetHeadLocation-Block verwendet wird.
 
 ___
 ## Beispieldatei

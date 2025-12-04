@@ -1,7 +1,7 @@
 ## 详细
-This node creates a new Revit Space element at a specified Level and location point.
+此节点在指定的标高和位置点处创建新的 Revit 空间图元。
 
-In this example, a modeled element has been selected and the location is used as the input to the Space.ByLevelLocation node along with a level, a name and number.
+在此示例中，已选择模型化图元，并将该位置与标高、名称和编号一起用作 Space.ByLevelLocation 节点的输入。
 ___
 ## 示例文件
 

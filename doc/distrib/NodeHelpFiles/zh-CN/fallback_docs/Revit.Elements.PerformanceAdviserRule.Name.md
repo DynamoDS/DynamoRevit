@@ -1,7 +1,7 @@
 ## 详细
-This node retrieve the display name of a Performance Adviser rule.
+此节点检索 Performance Adviser 规则的显示名称。
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+在此图中，选择了特定的性能顾问规则并将其传递到 PerformanceAdviserRule.Name，这将输出规则的显示名称“项目包含未使用的族和类型”。
 ___
 ## 示例文件
 

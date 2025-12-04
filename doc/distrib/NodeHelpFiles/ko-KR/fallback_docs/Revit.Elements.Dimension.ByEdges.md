@@ -1,7 +1,7 @@
 ## 상세
-This node creates a dimension based on one or more edge references in a given view.
+이 노드는 지정된 뷰에서 하나 이상의 모서리 참조를 기반으로 치수를 작성합니다.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+이 예에서는 시트 A101의 뷰 "L1"이 referenceCurves, 선, 접미어 및 접두어와 함께 Dimension.ByEdges의 입력으로 사용됩니다. 선 입력을 사용하면 선택한 면으로부터 치수를 간격띄우기할 수 있습니다. 마지막 두 노드는 치수 값과 해당 접두어를 표시합니다.
 
 ___
 ## 예제 파일

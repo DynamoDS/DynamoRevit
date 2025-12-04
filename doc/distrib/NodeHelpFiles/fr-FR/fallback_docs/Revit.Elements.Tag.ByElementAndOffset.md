@@ -1,7 +1,7 @@
 ## Description approfondie
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Ce nœud étiquette les éléments Revit ayant reçu une vue, un élément, un décalage, un alignement horizontal, verticalAlignement, horizontal (si non, l'étiquette sera orientée en fonction de l'élément) et addLeader en tant qu'entrées.
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+Dans cet exemple, une porte est sélectionnée dans la vue "Studio Live Work Core B" et est utilisée comme entrée pour Tag.ByelementAndOffset.  L'emplacement de cette porte est extrait et utilisé comme point de départ vectoriel.  Le même point est modifié à l'aide d'un curseur changeant les points x et y et utilisé comme point d'extrémité vectoriel.  Ce vecteur est utilisé comme entrée pour le décalage avec les valeurs vraies dans les entrées horizontal et addLeader.  L'alignement horizontal est défini par les valeurs déroulantes du nœud Alignement horizontal du texte de la sélection (Gauche, Centre, Droite) et les valeurs déroulantes du nœud Alignement vertical du texte de la sélection (Bas, Milieu, Haut).
 
 ___
 ## Exemple de fichier

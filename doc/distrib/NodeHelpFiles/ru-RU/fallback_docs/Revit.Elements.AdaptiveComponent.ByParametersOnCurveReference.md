@@ -1,9 +1,9 @@
 ## Подробности
-This node places adaptive components by mapping parameter values along a selected curve to define placement positions for the adaptive family type.
+Этот узел служит для размещения адаптивных компонентов путем сопоставления значений параметров вдоль выбранной кривой для определения положений размещения типа адаптивного семейства.
 
-In this example, a curve is drawn in the mass family and used for curve input. Parameter values are provided to position instances along the curve, and the "Diagnostic Tripod – 1 Point.rfa" family is chosen as the family type. The AdaptiveComponent.ByParametersOnCurveReference node outputs adaptive components placed along the selected curve.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+В этом примере кривая выстраивается в семействе формообразующих элементов и используется в качестве входных данных кривой. Для размещения экземпляров вдоль кривой задаются значения параметров, а в качестве типа семейства выбирается семейство Di agnostic Tripod – 1 Point.rfa. Узел AdaptiveComponent.ByParametersOnCurveReference выводит адаптивные компоненты, размещенные вдоль выбранной кривой. Обратите внимание, что перед запуском этого графика в семейство формообразующих элементов необходимо загрузить файл Diagnostic Tripod – 1 Point.rfa.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Для запуска данного файла справки по узлу необходимо загрузить в файл Revit файл Diagnostics Tripod-1 point.rfa. Семейство хранится по следующему пути: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 
 ___
 ## Файл примера

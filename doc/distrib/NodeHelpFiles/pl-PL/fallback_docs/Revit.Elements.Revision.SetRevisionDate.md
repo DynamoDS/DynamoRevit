@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-The Revision.SetRevisionDate node is used to update or assign a date to a specific revision in Revit. It allows users to automate the process of setting revision dates.
+Węzeł Revision.SetRevisionDate służy do aktualizowania lub przypisywania daty do określonej rewizji w programie Revit. Pozwala to użytkownikom zautomatyzować proces ustawiania dat rewizji.
 
-In this graph, the Select Revision node is used to choose a revision from the project, and an input string (e.g., 08/31/2025) is provided as the new date. The Revision.SetRevisionDate node then applies this value to the selected revision.
+Na tym wykresie węzeł Select Revision służy do wybrania rewizji z projektu, a ciąg wejściowy (np. wskazujący 31 sierpnia 2025 r.) jest podawany jako nowa data. Następnie węzeł Revision.SetRevisionDate stosuje tę wartość do wybranej rewizji.
 
 ___
 ## Plik przykładowy

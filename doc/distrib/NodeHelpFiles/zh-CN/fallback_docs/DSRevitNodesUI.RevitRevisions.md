@@ -1,7 +1,7 @@
 ## 详细
-This node allows you to select a specific Revision element from the active Revit document.
+此节点可用于从活动的 Revit 文档中选择特定的修订图元。
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+在此示例中，通过使用下拉菜单并从当前文档中选择一个修订来使用“选择修订”节点。最后 2 个节点显示某些修订属性。
 ___
 ## 示例文件
 

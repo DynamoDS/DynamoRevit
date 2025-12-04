@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a new Revit Space element at a specified Level and location point.
+Tento uzel vytvoří nový prvek prostoru aplikace Revit na zadaném podlaží a v určeném bodě umístění.
 
-In this example, a modeled element has been selected and the location is used as the input to the Space.ByLevelLocation node along with a level, a name and number.
+V tomto příkladu byl vybrán modelovaný prvek a dané umístění se použije jako vstup uzlu Space.ByLevelLocation společně s podlažím, názvem a číslem.
 ___
 ## Vzorový soubor
 

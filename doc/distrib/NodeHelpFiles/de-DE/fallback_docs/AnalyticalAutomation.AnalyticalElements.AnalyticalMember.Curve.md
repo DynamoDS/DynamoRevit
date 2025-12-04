@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the curve of an analytical member.
+Dieser Block extrahiert die Kurve eines analytischen Elements.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+In diesem Beispiel wird ein Träger aus dem Snowdon-Tragwerksmodell ausgewählt. Der Block gibt die Kurve aus, die durch das analytische Element definiert ist.
 ___
 ## Beispieldatei
 

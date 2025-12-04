@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+Dieser Block ruft die Liste aller verfügbaren Leistungsberater-Regeln ab. Diese Regeln sind dieselben integrierten Prüfungen, die Revit verwendet, um potenzielle Leistungs- oder Modellierungsprobleme zu erkennen.
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+In diesem Beispiel wird der PerformanceAdviserRules-Block verwendet, um die Regel “Zuschneiden deaktiviert für Ansicht” aus der vollständigen Liste abzurufen. Die Regel kann dann mit anderen Blöcken verknüpft werden, um ihre Eigenschaften oder ihr Verhalten zu überprüfen.Dies hilft Benutzern, schnell mit bestimmten Leistungsregeln zu arbeiten.
 ___
 ## Beispieldatei
 

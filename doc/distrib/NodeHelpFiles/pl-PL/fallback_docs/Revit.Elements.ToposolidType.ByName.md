@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+Ten węzeł pobiera tę pozycję ToposolidType z projektu na podstawie pozycji danych wejściowych string. Typ musi istnieć w projekcie — w przeciwnym razie zostanie zwrócona wartość null.
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+W tym przykładzie bryła terenu „Toposolid 1” jest używana jako dane wejściowe węzła ToposolidType.ByName, a dane wyjściowe to ToposolidType. Te dane wyjściowe są używane do wygenerowania bryły terenu (topoSolid).
 ___
 ## Plik przykładowy
 

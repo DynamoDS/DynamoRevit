@@ -1,7 +1,7 @@
 ## Im Detail
-This node sets the location of the elbow point in a “free-end” tag.
+Dieser Block legt die Position des Bogenpunkts in einer Beschriftung mit freiem Ende fest.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+In diesem Beispiel wird eine Beschriftung ausgewählt, und die ursprünglichen Punkte werden extrahiert. Der X-Wert wird geändert, und die neuen XYZ-Punkte werden definiert und als Eingabe für die Position des Tag.SetLeaderElbow-Blocks zusammen mit der ursprünglich ausgewählten Beschriftung verwendet. Die Ausgabe ist die neue Position des Beschriftungsbogens. Weitere Informationen finden Sie in der Ansicht des Grundrisses L1.
 
 ___
 ## Beispieldatei

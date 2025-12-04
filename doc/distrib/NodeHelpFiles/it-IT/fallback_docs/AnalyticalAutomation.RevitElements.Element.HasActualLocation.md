@@ -1,7 +1,7 @@
 ## In profondità
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+Questo nodo valuta l'elemento fornito e restituisce un valore Boolean che indica se l'elemento dispone di una posizione definita, insieme a eventuali messaggi di eccezione che ne spiegano il motivo.
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+In questo esempio, l'elemento viene definito dal relativo ID elemento utilizzando il nodo Element.ById e quindi fornito per Element.HasActualLocation. Gli output indicano true se l'elemento ha una posizione effettiva o false con un messaggio di eccezione se non ce l'ha.
 ___
 ## File di esempio
 

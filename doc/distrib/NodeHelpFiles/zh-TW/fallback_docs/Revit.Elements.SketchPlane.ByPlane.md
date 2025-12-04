@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a sketch plane based on the input of a plane.
+此節點會根據輸入平面建立草圖平面。
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+在此範例中，定義平面，然後連接到 SketchPlane.ByPlane 節點，產生對應的草圖平面。
 
 ___
 ## 範例檔案

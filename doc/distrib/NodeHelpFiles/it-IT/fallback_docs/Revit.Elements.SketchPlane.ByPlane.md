@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a sketch plane based on the input of a plane.
+Questo nodo crea un piano di disegno in base all'input di un piano.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+In questo esempio, viene definito un piano che è poi connesso al nodo SketchPlane.ByPlane, che genera un piano di disegno corrispondente.
 
 ___
 ## File di esempio

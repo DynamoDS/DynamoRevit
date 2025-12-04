@@ -1,7 +1,7 @@
 ## Im Detail
-This node returns the surface of an analytical panel.
+Dieser Block gibt die Oberfläche einer analytischen Schale zurück.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+In diesem Beispiel wird eine Geschossdecke im Snowdon-Tragwerksmodell ausgewählt und in eine analytische Schale konvertiert. Der Block gibt die entsprechende Oberfläche dieser Schale aus.
 ___
 ## Beispieldatei
 

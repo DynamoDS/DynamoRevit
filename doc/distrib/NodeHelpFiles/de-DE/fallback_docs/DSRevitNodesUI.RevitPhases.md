@@ -1,7 +1,7 @@
 ## Im Detail
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Mit diesem Block können Sie eine bestimmte Phase aus dem Modell mithilfe eines Dropdown-Menüs auswählen.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+In diesem Beispiel wird eine Wand ausgewählt, und der Block Select Phase wird angewendet, um die Phasenzuweisung zu ändern. Der letzte Block bestätigt die Änderung, indem der aktualisierte Phasenname ("Existing") angezeigt wird.
 ___
 ## Beispieldatei
 

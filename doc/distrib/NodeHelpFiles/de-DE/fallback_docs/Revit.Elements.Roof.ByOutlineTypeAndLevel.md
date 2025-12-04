@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a roof given a outline (closed curve), roof type, and level.
+Dieser Block erstellt ein Dach anhand eines Umrisses (geschlossene Kurve), eines Dachtyps und einer Ebene.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+In diesem Beispiel wird ein Rechteck erstellt und als Umrisseingabe für den Block RoofByOutlineTypeAndLevel zusammen mit einem Dachtyp und einer Ebene verwendet. Der letzte Block legt den Wert für Basisversatz von Ebene auf 10 fest.
 
 ___
 ## Beispieldatei

@@ -1,9 +1,9 @@
 ## Подробности
 
 
-This node adds a schedule to a sheet at a specified point.
+Этот узел добавляет спецификацию на лист в указанной точке.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+В этом примере используются числовые регуляторы для создания точки и задаются в качестве входного «расположения» для узла ScheduleOnSheet.BySheetScheduleLocation, а также вида спецификации и листа. Результатом является спецификация и ее расположение на листе, а также имя листа.
 
 
 

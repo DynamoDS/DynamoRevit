@@ -1,7 +1,7 @@
 ## 详细
-This node moves an element to a new location given a new point.
+此节点根据新点将图元移动到新位置。
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+在此示例中，在 Element.SetLocation 节点中选择一个图元并输入它。图元的原始位置将显示并用于沿 x 和 y 平面平移，该平面由数字滑块控制。平移输出用作“Element.SetLocation”的几何图形输入。将显示 null 值，但图元正在移动。
 
 ___
 ## 示例文件

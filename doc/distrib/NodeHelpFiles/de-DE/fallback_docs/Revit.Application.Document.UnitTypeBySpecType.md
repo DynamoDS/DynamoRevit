@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets the unit being used in a project for any given Spec Type.
+Dieser Block ruft die Einheit ab, die in einem Projekt für einen bestimmten Rohrklassentyp verwendet wird.
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+In diesem Beispiel werden Werte für Rohrklassentypen (Fläche und Kosten pro Fläche) in eine Liste eingegeben. Diese Liste wird im Block Document.UnitTypeBySpecType als Eingabe für den specType zusammen mit dem aktuellen Dokument als Dokumenteingabe verwendet. Die Ergebnisse zeigen die projektspezifischen Rohrklassen-Einheitenwerte für das aktuelle Projekt an.
 
 ___
 ## Beispieldatei

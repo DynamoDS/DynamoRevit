@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets the sketch points of a selected roof.
+Este nodo obtiene los puntos de boceto de la cubierta seleccionada.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+En este ejemplo, se seleccionan todas las cubiertas y se utilizan como entrada para Roof.Points. El resultado es cada uno de los puntos del boceto de cubierta seleccionado.
 ___
 ## Archivo de ejemplo
 

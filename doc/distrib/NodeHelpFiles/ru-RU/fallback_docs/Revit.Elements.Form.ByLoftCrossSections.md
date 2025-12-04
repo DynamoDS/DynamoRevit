@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+Этот узел создает форму на основе списка кривых и логического значения, определяющего, является ли выходная форма телом или поверхностью. Этот узел работает с семействами формообразующих элементов, адаптивными семействами и семействами на основе образца.
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+В этом примере определяется несколько кривых поперечных сечений, которые передаются в узел Form.ByLoftCrossSections. Затем узел создает непрерывную 3D-форму путем лофтинга через эти сечения.
 
 ___
 ## Файл примера

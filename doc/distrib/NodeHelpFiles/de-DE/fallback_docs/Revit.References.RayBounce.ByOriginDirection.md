@@ -1,7 +1,7 @@
 ## Im Detail
-This node performs a ray bounce analysis within the Revit model. Starting from a given origin point and traveling along a specified direction vector, it traces the path of the ray as it intersects elements in the model. When the ray hits a surface, it can continue bouncing off that surface, depending on the number of bounces allowed, simulating light, visibility, or path reflection behavior.
+Dieser Block führt eine Strahlreflexionsanalyse im Revit-Modell durch. Ausgehend von einem bestimmten Ursprungspunkt und entlang eines festgelegten Richtungsvektors wird der Pfad des Strahls verfolgt, während er Elemente im Modell schneidet. Wenn der Strahl auf eine Oberfläche trifft, kann er abhängig von der Anzahl der zulässigen Reflexionen weiter von dieser Oberfläche abprallen. So wird Licht, Sichtbarkeit oder Pfadreflexionsverhalten simuliert.
 
-In this example, an element is selected and its' location is used for input origin to node RayBounce.ByOriginDirection, along with a direction, maxBounces and, a view.
+In diesem Beispiel wird ein Element ausgewählt, dessen Position als Eingabeursprung für den Block RayBounce.ByOriginDirection verwendet wird, zusammen mit einer Richtung, maxBounces und einer Ansicht.
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node sets how Parts are displayed within a specified Revit View. This node allows you to control whether the view shows; "ShowPartsOnly", "ShowOriginalOnly", "ShowPartsAndOriginal", or "unset".
+Tento uzel nastavuje způsob zobrazení součástí v určeném pohledu aplikace Revit. Tento uzel umožňuje řídit, zda se pohled zobrazí; „ZobrazitPouzeSoučásti“, „ZobrazitPouzePůvodní“, „ZobrazitSoučástiAPůvodní“ nebo „nenastaveno“.
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+V tomto příkladu je vybrán pohled (3D pohled) a použit se jako vstup (pohled) pro uzel View.SetPartsVisibility společně s libovolnou výchozí hodnotou z uzlu Zobrazit součásti Viditelnost. Poslední dva uzly zobrazují nastavení viditelnosti součástí pohledu při původním nastavení a revidovaném nastavení.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## En detalle:
-This node sets the default sketch plane in a given view.
+Este nodo define el plano de boceto por defecto en una vista determinada.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+En este ejemplo, se recuperan todos los planos de boceto del proyecto y se filtran hasta el plano de boceto "Parking". Este plano de boceto "Parking" se utiliza como entrada (SketchPlane) para el nodo View.SetSketchPlane, junto con una vista (view). Los dos últimos nodos muestran el nombre del plano de boceto original junto con el nombre del plano de boceto nuevo.
 
 ___
 ## Archivo de ejemplo

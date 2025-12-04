@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a dimension based on one or more edge references in a given view.
+Tento uzel vytvoří kótu založenou na jedné nebo více referencích hrany v daném pohledu.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+V tomto příkladu je pohled „L1“ z výkresu A101 použit jako vstup do uzlu Dimension.ByEdges společně s referenčními křivkami, čárou, příponou a předponou.  Vstup čáry umožňuje odsazení kóty od vybraných ploch.  Poslední dva uzly zobrazují hodnoty kót a jejich předponu.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## Подробности
-This node checks whether a surface is valid for creating an opening in an analytical panel.
+Этот узел проверяет пригодность поверхности для создания проема в аналитической панели.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the intended opening location. The level L2 sets the vertical placement. Lines connect the points and are offset to form the surface representing the opening. A floor at L2 is used to create the analytical panel, and this node evaluates the surface for its validity as an opening in that panel.
+В этом примере четыре точки на пересечениях линий сетки A4–A5 и B4–B5 в модели конструкции Snowdon определяют предполагаемое расположение проема. Уровень L2 задает вертикальное положение. Линии соединяют точки и смещаются, образуя поверхность, представляющую проем. Перекрытие на уровне L2 используется для создания аналитической панели, а этот узел оценивает поверхность на предмет ее пригодности в качестве проема в этой панели.
 ___
 ## Файл примера
 

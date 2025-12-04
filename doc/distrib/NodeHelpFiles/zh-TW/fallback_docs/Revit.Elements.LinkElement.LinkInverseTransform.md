@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the inverse transformation matrix of a given Revit Link Element.  In Revit, linked models may be positioned with transformations (translation, rotation, scaling). This node allows you to get the inverse of that transformation,  effectively converting coordinates from the linked model’s space back into the host Revit model’s coordinate system.
+此節點會擷取給定 Revit 連結元素的逆轉換矩陣。在 Revit 中，可透過轉換 (平移、旋轉、調整比例) 放置連結模型。此節點可讓您取得逆轉換，有效地將座標從連結模型的空間轉換回 Revit 主體模型的座標系統。
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkInverseTransform.  The output is the host Revit model’s coordinate system.
+在此範例中，選取樓層 L3 的所有 Revit 連結元素，並輸入 LinkElement.LinkInverseTransform。輸出是 Revit 主體模型的座標系統。
 ___
 ## 範例檔案
 

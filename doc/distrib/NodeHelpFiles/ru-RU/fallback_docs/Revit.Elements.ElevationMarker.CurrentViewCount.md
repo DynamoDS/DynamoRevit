@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Этот узел извлекает количество видов фасада, связанных в данный момент с заданным маркером фасада.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+В этом примере выбраны все маркеры фасада и используются в качестве входных данных для узла ElevationMarker.CurrentViewCount. На выходе возвращается целое число, представляющее общее количество видов фасада, связанных с данным маркером фасада.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+このノードは、指定されたスケッチ平面要素に関連付けられた参照面を取得します。これは、ジオメトリの作成や修正に同じ参照面を識別または再利用する場合に役立ちます。
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+この例では、平面が定義され、次に、SketchPlane.ByPlane ノードに接続されて、対応するスケッチ平面が生成されます。このスケッチ平面は、SketchPlane.ElementPlaneReference への入力として使用されます。このノードの出力は、寸法記入、位置合わせ、拘束、Revit 参照を必要とするその他の操作に使用することができます。
 
 ___
 ## サンプル ファイル

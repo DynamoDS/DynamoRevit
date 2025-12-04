@@ -1,7 +1,7 @@
 ## 상세
-This node returns the surfaces of analytical openings.
+이 노드는 해석 개구부의 표면을 반환합니다.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+이 예에서는 Snowdon Structural 모델의 바닥이 해석 패널을 작성하는 데 사용됩니다. 패널의 개구부가 선택되고 이 노드는 해당 개구부의 표면을 출력합니다.
 ___
 ## 예제 파일
 

@@ -1,7 +1,7 @@
 ## 詳細
-The ReferencePlane.ByLine node in Dynamo creates a Revit reference plane by using a defined line as its base. This allows you to generate custom reference planes at specific positions and orientations.
+Dynamo の ReferencePlane.ByLine ノードは、定義された線分を基準として使用して Revit 参照面を作成します。これを使用すると、特定の位置と方向にカスタム参照面を生成することができます。
 
-In this example, two points are defined using Point.ByCoordinates with adjustable sliders. A Line.ByStartPointEndPoint is then created between these two points, and finally, the ReferencePlane.ByLine node generates a reference plane along that line.
+この例では、Point.ByCoordinates と調整可能なスライダを使用して、2 つの点を定義します。次に、これら 2 点の間に Line.ByStartPointEndPoint が作成され、最後に ReferencePlane.ByLine ノードによって、この線分に沿って参照面が生成されます。
 ___
 ## サンプル ファイル
 

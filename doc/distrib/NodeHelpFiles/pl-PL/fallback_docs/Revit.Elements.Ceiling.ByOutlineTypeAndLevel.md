@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Ten węzeł tworzy sufit na podstawie zarysu (krzywej zamkniętej), typu sufitu i poziomu.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+W tym przykładzie zostaje utworzony prostokąt, który zostaje następnie użyty jako zarys wejściowy węzła Ceiling.ByOutlineTypeAndLevel wraz z typem i poziomem sufitu.
 
 ___
 ## Plik przykładowy

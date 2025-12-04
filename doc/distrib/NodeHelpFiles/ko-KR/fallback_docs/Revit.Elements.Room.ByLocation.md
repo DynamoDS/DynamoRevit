@@ -1,7 +1,7 @@
 ## 상세
-This node creates a room based on points, a level, a room name and a room number.
+이 노드는 점, 레벨, 룸 이름 및 룸 번호를 기준으로 룸을 작성합니다.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+이 예에서는 점이 엔클로저 내부의 패밀리에서 파생됩니다(룸으로 정의되지 않음). 이러한 점은 지정된 레벨, 룸 이름 및 룸 번호와 함께 "위치" 입력으로 사용됩니다. Room.ByLocation 다음의 노드는 노드가 성공적으로 실행되었음을 표시하기 위해 작성된 룸 이름 및 룸 번호 매개변수를 추출합니다.
 
 ___
 ## 예제 파일

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Ce nœud vous permet de choisir une phase spécifique dans le modèle à l'aide d'un menu déroulant.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+Dans cet exemple, un mur est sélectionné et le noeud Sélectionner une phase est appliqué pour modifier son affectation de phase. Le nœud final confirme la modification en affichant le nom de phase mis à jour, "Existant".
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 详细
-This node gets the sketch points of a selected roof.
+此节点用于获取选定屋顶的草图点。
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+在此示例中，将选择所有屋顶并将其用作 Roof.Points 的输入。输出为选择屋顶草图的每个点。
 ___
 ## 示例文件
 

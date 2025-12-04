@@ -1,7 +1,7 @@
 ## 詳細
-This node casts a ray into a linked Revit model from a specified origin and direction, then traces its successive bounces off linked elements. Each bounce represents a point where the ray intersects geometry in the linked model, up to a defined maximum number of reflections.
+このノードは、指定された基準点と方向から、Revit リンク モデルに光線を照射し、次に、リンクされた要素からの連続するバウンスをトレースします。各バウンスは、定義された最大反射数までの、光線がリンク モデル内のジオメトリと交差する点を表します。
 
-In this example, a linked element is selected and the location of that element is used as the origin input to LinkElement.ByRayBounce along with a direction, maxBounces and a view.  The outputs are points and linked elements.
+この例では、リンクされた要素が選択され、その要素の位置が LinkElement.ByRayBounce への基準点入力として、方向、maxBounces、ビューとともに使用されます。出力は、点とリンクされた要素です。
 ___
 ## サンプル ファイル
 

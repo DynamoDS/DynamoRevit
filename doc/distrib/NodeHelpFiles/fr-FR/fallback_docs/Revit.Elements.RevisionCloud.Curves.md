@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+Ce nœud extrait les boucles de courbes (généralement des arcs et des lignes) qui constituent le périmètre visible d'un nuage de révision. Chaque segment du nuage est représenté par un objet courbe (généralement un arc) correspondant à la forme "bulle" du repère de révision dans une vue ou une feuille.
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+Dans cet exemple, un rectangle est créé à l'aide de curseurs numériques pour définir ses cotes, qui sont ensuite décomposées en courbes et inversées pour s'orienter. Ces courbes, ainsi qu'une vue sélectionnée (Plan du site) et une révision (Séq. 2 – Non destiné à la construction), sont utilisées pour générer un nuage de révision avec le nœud RevisionCloud.ByCurve. Le nuage de révision créé est ensuite connecté au nœud RevisionCloud.Curves, qui extrait et affiche les courbes définies de ce nuage. Cela aide les utilisateurs à vérifier la géométrie du nuage de révision et offre une flexibilité pour la réutilisation ou une automatisation plus poussée.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+このノードは、解析用パネルから開口部を削除します。ノードは、パネルのジオメトリや構造の役割に影響を与えることなく、指定された開口部を削除してパネルを更新します。
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+この例では、Snowdon 構造モデルの床から解析用パネルが作成されます。パネルの最初の開口部が選択され、このノードを使用して削除されます。
 ___
 ## サンプル ファイル
 

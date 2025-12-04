@@ -1,7 +1,7 @@
 ## In profondità
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+Questo nodo ottiene l'identificatore univoco (RuleId) di una regola di Suggerimenti prestazioni.
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+In questo esempio, la regola selezionata “Project contains unused families and types” è connessa a PerformanceAdviserRule.RuleId, che genera il suo identificatore univoco. Tale ID viene quindi convertito in una stringa.
 ___
 ## File di esempio
 

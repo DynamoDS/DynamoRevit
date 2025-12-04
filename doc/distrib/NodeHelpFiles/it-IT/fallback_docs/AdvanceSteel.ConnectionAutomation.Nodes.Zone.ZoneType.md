@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves the Zone Type for a given Advance Steel Zone element.  In Advance Steel’s Connection Automation framework, zones define distinct regions of a steel member (such as the start, body, or end) where connection features can be applied.  The Zone Type identifies which of these regions a particular zone represents, essential when automating joint placement, cutbacks, or stiffener locations.
+Questo nodo recupera il tipo di zona per un determinato elemento zona di Advance Steel. Nel framework di Automazione connessioni di Advance Steel, le zone definiscono regioni distinte di un membro in acciaio (ad esempio l'inizio, il corpo o la fine) dove è possibile applicare gli oggetti di connessione. Il tipo di zona identifica quale di queste regioni rappresenta una zona specifica; questo è essenziale quando si automatizzano il posizionamento dei giunti, i tagli o le posizioni degli irrigidimenti.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to Zone.ZoneType node where the output defines the region of the steel member (start, body, or end).
+In questo esempio, vengono selezionati diversi elementi, vengono estratti i dati strutturali, viene esposto il nodo di connessione e poi utilizzato per identificare tutte le zone applicabili al nodo stesso. Queste zone rappresentano l'input nel nodo Zone.ZoneType dove l'output definisce la regione del membro in acciaio (inizio, corpo o fine).
 ___
 ## File di esempio
 

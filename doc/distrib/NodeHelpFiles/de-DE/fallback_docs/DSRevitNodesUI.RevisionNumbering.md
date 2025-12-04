@@ -1,10 +1,10 @@
 ## Im Detail
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+Dieser Block enthält eine Dropdown-Liste, in der definiert wird, wie die Änderungsnummerierung in einem Revit-Projekt verwaltet wird: global (PerProject) oder einzeln (PerSheet).
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."
+In diesem Beispiel wird eine neue Änderung mithilfe des Blocks Select Revision Numbering und dem Wert PerProject erstellt.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Weitere Informationen zu Änderungen finden Sie unter dem Link.
+https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## Beispieldatei

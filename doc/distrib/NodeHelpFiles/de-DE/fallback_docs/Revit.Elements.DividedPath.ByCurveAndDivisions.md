@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a Divided Path element in a massing family by dividing a given curve into a specified number of equal segments.
+Dieser Block erstellt ein Element des Typs Geteilter Pfad in einer Körperfamilie, indem eine bestimmte Kurve in eine angegebene Anzahl gleicher Segmente geteilt wird.
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurveAndDivisions node. An integer value defines the number of equal divisions along the curve. The final node displays the resulting division points along the curve.
+In diesem Beispiel wird eine Modellkurve aus einem bestimmten Start- und Endpunkt erstellt und dann als Eingabekurve für den DividedPath.ByCurveAndDivisions-Block verwendet. Ein Ganzzahlwert definiert die Anzahl der gleichen Unterteilungen entlang der Kurve. Der letzte Block zeigt die resultierenden Teilungspunkte entlang der Kurve an.
 ___
 ## Beispieldatei
 

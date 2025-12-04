@@ -1,7 +1,7 @@
 ## 详细
-This node checks whether a surface is valid for creating an opening in an analytical panel.
+此节点检查表面是否可用于在分析面板中创建洞口。
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the intended opening location. The level L2 sets the vertical placement. Lines connect the points and are offset to form the surface representing the opening. A floor at L2 is used to create the analytical panel, and this node evaluates the surface for its validity as an opening in that panel.
+在此示例中，Snowdon Structural 模型中轴网交点 A4–A5 和 B4–B5 处的四个点定义了预期的洞口位置。标高 L2 设置垂直放置。线连接点并偏移以形成表示洞口的曲面。L2 处的楼板用于创建分析面板，此节点评估表面作为该面板中洞口的有效性。
 ___
 ## 示例文件
 

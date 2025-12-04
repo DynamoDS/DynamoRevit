@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a grid based on a arc input.
+Este nodo crea una rejilla basada en una entrada de arco.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+En este ejemplo, se crea un punto de centro para utilizarlo como centro de un arco. Este arco se utiliza como entrada para Grid.ByArc y se crea una rejilla.
 
 
 ___

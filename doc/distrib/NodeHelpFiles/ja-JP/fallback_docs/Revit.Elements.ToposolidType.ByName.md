@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+このノードは、文字列入力が指定されたプロジェクトからその ToposolidType を取得します。タイプはプロジェクト内に存在する必要があります。存在しない場合は null が出力されます。
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+この例では、ToposolidType.ByName への入力として「Toposolid 1」が使用され、出力は ToposolidType です。この出力は、地形ソリッドの生成に使用されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+Dieser Block erstellt ein physisches Tragwerkselement aus einem analytischen Element oder aktualisiert ein vorhandenes physisches Element, das bereits mit dem analytischen Element verknüpft ist. Der Block kann abhängig von den Eingabeeinstellungen die Geometrie oder Parameter des physischen Elements basierend auf dem analytischen Element aktualisieren. Wenn das analytische Element mit keinem physischen Element verknüpft ist, wird das physische Element anhand der Informationen des analytischen Elements erstellt.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+In diesem Beispiel wird ein analytisches Element aus dem ACO-Supermarket-Modell aus einer Tragwerksstütze ausgewählt. Das analytische Element ist mit diesem Block verbunden, und eine boolesche Eingabe wird verwendet, um die Vorgabeeinstellungen zum Aktualisieren von Geometrie und Parametern anzuzeigen. Der Block erzeugt die entsprechende physische Stütze basierend auf dem Berechnungsmodell.
 ___
 ## Beispieldatei
 

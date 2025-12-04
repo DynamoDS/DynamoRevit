@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieve the severity level of a given FailureMessage object.  Severity values are "Warning", "Error" and "Critical."
+Этот узел извлекает уровень серьезности для заданного объекта FailureMessage. Значения серьезности: «Предупреждение», «Ошибка» и «Критическая».
 
-In this example, a Performance Adviser Rule is executed to check for the condition “View clipping is disabled”. The resulting failure messages are passed to the FailureMessage.Severity node, which reports the severity level of each issue.
+В этом примере выполняется правило Консультанта по производительности, которое проверяет наличие условия «Подрезка вида отключена». Полученные сообщения об ошибках передаются в узел FailureMessage.Severity, который сообщает уровень серьезности каждой проблемы.
 ___
 ## Файл примера
 

@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
 
 
-This node adds a schedule to a sheet at a specified point.
+Ten węzeł dodaje zestawienie do arkusza w określonym punkcie.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+W tym przykładzie za pomocą suwaków Number Slider zostaje utworzony punkt, który zostaje następnie przekazany jako dane wejściowe „location” do węzła ScheduleOnSheet.BySheetScheduleLocation wraz z widokiem zestawienia i arkuszem. Wynikiem jest zestawienie i jego położenie na arkuszu oraz nazwa arkusza.
 
 
 

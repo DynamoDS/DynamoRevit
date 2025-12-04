@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns the Revit curve reference associated with a given grid element.
+此節點會傳回與給定網格元素相關聯的 Revit 曲線參考。
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+在此範例中，選取專案中的所有網格元素，作為 GridElementCUrveReference 節點的輸入。此節點會顯示該參考，方便在其他作業 (例如標註尺寸、放置路徑型元素，或進行幾何分析) 使用。
 ___
 ## 範例檔案
 

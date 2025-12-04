@@ -1,7 +1,7 @@
 ## En detalle:
-This node moves the center point of a given viewport to a new location on the sheet.
+Este nodo desplaza el punto central de una ventana gráfica determinada a una nueva ubicación en el plano.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+En este ejemplo, se crea un nuevo plano "Dynamo Sheet" y se coloca la vista "L1 Wall Base" en el punto "0,0,0". Esta vista se utiliza en la entrada de ventana gráfica para el nodo Viewport.SetBoxCenter junto con un nuevo punto. El resultado es una vista reubicada.
 ___
 ## Archivo de ejemplo
 

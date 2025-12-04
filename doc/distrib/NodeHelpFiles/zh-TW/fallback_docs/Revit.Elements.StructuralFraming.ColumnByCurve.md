@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+此節點會根據曲線、樓層和柱族群類型建立結構柱。輸出是在專案中新建立的結構柱元素。
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+在此範例中，於 Snowdon 結構模型中樓層 L1 35 和 L3 之間的網格交叉處 A4 繪製一條線。節點使用這條曲線以及選取的樓層和柱類型建立結構柱。
 ___
 ## 範例檔案
 

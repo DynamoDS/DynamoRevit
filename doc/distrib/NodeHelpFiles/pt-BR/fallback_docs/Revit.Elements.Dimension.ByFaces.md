@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Esse nó cria uma cota com base na seleção de duas faces planas de elementos do modelo, medindo a distância entre essas faces.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+Neste exemplo, a vista “L1” da folha A101 é usada como uma entrada em Dimension.ByFaces junto com superfícies, uma linha, um sufixo e um prefixo. A entrada de linha permite que a cota seja deslocada das faces selecionadas.
 
 ___
 ## Arquivo de exemplo

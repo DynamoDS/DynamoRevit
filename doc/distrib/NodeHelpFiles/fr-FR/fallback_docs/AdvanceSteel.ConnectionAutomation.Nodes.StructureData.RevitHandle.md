@@ -1,7 +1,7 @@
 ## Description approfondie
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Ce noeud renvoie le descripteur Revit associé aux connexions liées à l'élément de données de structure.
 
-In this example, a column has been selected.
+Dans cet exemple, une colonne a été sélectionnée.
 ___
 ## Exemple de fichier
 

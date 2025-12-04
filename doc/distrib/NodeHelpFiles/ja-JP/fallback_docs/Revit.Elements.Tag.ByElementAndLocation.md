@@ -1,7 +1,7 @@
 ## 詳細
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+このノードは、入力としてビュー、要素、位置、水平(いいえの場合、タグは要素に基づいて方向付けされます)、および addLeader を指定して Revit 要素にタグを付けます。
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+この例では、「Studio Live Work Core B」ビューでドアが選択されています。このドアの位置が抽出され、次に、Tag.ByElementAndLocation への元の入力として、水平および addLeader のブール値とともに使用されます。Tag.SetHeadLocation ノードを使用して、タグの位置が要素の上に直接重ならないように、元の位置が変更されます。
 
 ___
 ## サンプル ファイル

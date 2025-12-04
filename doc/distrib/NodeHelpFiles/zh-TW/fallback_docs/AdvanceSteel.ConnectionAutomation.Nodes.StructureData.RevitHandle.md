@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns the Revit handle associated with the connections linked to the structure data element.
+此節點會傳回與連結到結構資料元素的接頭相關聯的 Revit 控點。
 
-In this example, a column has been selected.
+在此範例中，已選取一根柱。
 ___
 ## 範例檔案
 

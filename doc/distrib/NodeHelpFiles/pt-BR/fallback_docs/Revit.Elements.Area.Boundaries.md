@@ -1,7 +1,7 @@
 ## Em profundidade
-This node gets the lines (curves) used to generate the boundary of an area.
+Esse nó obtém as linhas (curvas) usadas para gerar o limite de uma área.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+Neste exemplo, todas as áreas do projeto são recuperadas. O nome do elemento (área) e Area.Boundries são extraídos e exibidos.
 
 ___
 ## Arquivo de exemplo

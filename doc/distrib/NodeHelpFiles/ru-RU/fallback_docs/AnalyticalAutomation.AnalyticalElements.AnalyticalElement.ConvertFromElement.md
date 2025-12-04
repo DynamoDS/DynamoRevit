@@ -1,7 +1,7 @@
 ## Подробности
-This node converts an analytical member or analytical panel into an analytical element.
+Этот узел преобразует аналитический элемент или аналитическую панель в элемент аналитической модели.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+В этом примере выполняется выбор аналитического элемента и его подача в узел. На выходе получается элемент аналитической модели, соответствующий входным данным, что позволяет увидеть различия между аналитическим элементом и элементом аналитической модели, даже если их свойства кажутся похожими.
 ___
 ## Файл примера
 

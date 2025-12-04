@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a roof given a outline (closed curve), roof type, and level.
+給定一個輪廓 (封閉曲線)、屋頂類型和樓層，此節點會建立屋頂。
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+在此範例中，建立一個矩形作為 RoofByOutlineTypeAndLevel 節點的輪廓輸入，同時提供屋頂類型和樓層。最後一個節點會將距離樓層的基準偏移值設定為 10。
 
 ___
 ## 範例檔案

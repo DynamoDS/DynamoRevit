@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Questo nodo recupera il numero di viste di prospetto attualmente associate ad un determinato contrassegno di prospetto.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+In questo esempio, vengono selezionati tutti i contrassegni di prospetto che sono poi utilizzati come input in ElevationMarker.CurrentViewCount. L'output restituisce un valore integer che rappresenta il numero totale di viste di prospetto associate a tale contrassegno di prospetto.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node converts an analytical member or analytical panel into an analytical element.
+このノードは、解析用部材または解析用パネルを解析要素に変換します。
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+この例では、解析用部材が選択され、ノードに入力されています。出力は入力に対応する解析要素なので、解析用部材と解析要素のプロパティは似ているように見えますが、区別することができます。
 ___
 ## サンプル ファイル
 

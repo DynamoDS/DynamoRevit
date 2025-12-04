@@ -1,7 +1,7 @@
 ## Подробности
-This node moves the center point of a given viewport to a new location on the sheet.
+Этот узел перемещает центральную точку заданного видового экрана в новое положение на листе.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+В этом примере создается новый лист Dynamo Sheet, а вид L1 Wall Base размещается в точке 0,0,0. Этот вид используется во входных данных видового экрана для узла Viewport.SetBoxCenter вместе с новой точкой. На выходе получается перемещенный вид.
 ___
 ## Файл примера
 

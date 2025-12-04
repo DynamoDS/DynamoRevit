@@ -1,7 +1,7 @@
 ## Im Detail
-This node returns the existing connections of the structure data element/s selected.
+Dieser Block gibt die vorhandenen Verbindungen des/r ausgewählten Tragwerksdatenelements/e zurück.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+In diesem Beispiel wurde eine Stütze mit drei Verbindungen ausgewählt: einer Fußplatte, einem biegesteifen Trägerstoß (geschweißt) und einer Schraubverbindung.
 ___
 ## Beispieldatei
 

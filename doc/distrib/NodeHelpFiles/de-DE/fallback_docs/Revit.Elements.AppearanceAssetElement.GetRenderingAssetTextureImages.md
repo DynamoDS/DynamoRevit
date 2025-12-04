@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves all texture images associated with the rendering asset of a given AppearanceAssetElement in Revit. An Appearance Asset defines the visual properties of a material (such as color, reflectivity, bump, or transparency).
+Dieser Block ruft alle Texturbilder ab, die mit dem Renderobjekt eines bestimmten AppearanceAssetElement in Revit verknüpft sind. Ein Darstellungsobjekt definiert die visuellen Eigenschaften eines Materials (z. B. Farbe, Reflektivität, Relief oder Transparenz).
 
-In this example, the AppearanceAssetElement's are selected and used as the input to the AppearanceAssetElement.GetRenderingAssetTextureImages node.  The results are the image properties and image paths for the given appearance asset element.  Empty lists are displayed when the appearance asset element has no value.
+In diesem Beispiel werden die AppearanceAssetElement-Objekte ausgewählt und als Eingabe für den AppearanceAssetElement.GetRenderingAssetTextureImages-Block verwendet. Die Ergebnisse sind die Bildeigenschaften und Bildpfade für das angegebene Darstellungsobjekt-Element. Leere Listen werden angezeigt, wenn das Darstellungsobjekt keinen Wert hat.
 
 ___
 ## Beispieldatei

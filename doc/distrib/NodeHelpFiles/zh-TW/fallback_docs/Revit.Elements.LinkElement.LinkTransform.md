@@ -1,9 +1,9 @@
 ## 深入資訊
-This node retrieves the transformation matrix applied to a Revit Link Element within the host model.
-In other words, it returns the position, rotation, and scaling transform that maps the linked element’s coordinate system into the host Revit project’s coordinate system.
-This is useful when you need to align, analyze, or manipulate geometry between linked models.
+此節點會擷取套用到主體模型中 Revit 連結元素的轉換矩陣。
+換句話說，節點會傳回將連結元素的座標系統對映到 Revit 主體專案的座標系統的位置、旋轉和比例轉換。
+當您要對齊、分析或操控連結模型之間的幾何圖形時，此功能非常有用。
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkTransform.  The output is the position, rotation and scaling transform of the linked element.
+在此範例中，選取樓層 L3 的所有 Revit 連結元素，並輸入 LinkElement.LinkTransform。輸出是連結元素的位置、旋轉和比例轉換。
 ___
 ## 範例檔案
 

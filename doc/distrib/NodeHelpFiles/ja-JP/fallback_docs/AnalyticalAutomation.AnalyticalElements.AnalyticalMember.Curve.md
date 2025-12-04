@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the curve of an analytical member.
+このノードは、解析用部材の曲線を抽出します。
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+この例では、Snowdon 構造モデルから梁が選択されています。ノードは、解析用部材によって定義された曲線を出力します。
 ___
 ## サンプル ファイル
 

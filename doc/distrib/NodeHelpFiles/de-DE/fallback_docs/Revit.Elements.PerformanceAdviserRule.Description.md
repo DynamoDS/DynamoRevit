@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the descriptive text of a Performance Adviser rule.
+Dieser Block extrahiert den beschreibenden Text einer Leistungsberater-Regel.
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+In diesem Beispiel wird die ausgewählte Regel “Zuschneiden deaktiviert für Ansicht” an den Block PerformanceAdviserRule.Description übergeben. Die Beschreibung wird dann im Watch-Block mit dem Zweck und der Auswirkung der Regel angezeigt.
 ___
 ## Beispieldatei
 

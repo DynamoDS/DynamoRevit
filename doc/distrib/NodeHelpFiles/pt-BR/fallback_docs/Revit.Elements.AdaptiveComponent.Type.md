@@ -1,9 +1,9 @@
 ## Em profundidade
-This node retrieves the family and family type of a selected adaptive component.
+Esse nó recupera a família e o tipo de família de um componente adaptativo selecionado.
 
-In this example, all placed adaptive components are then provided as input to the AdaptiveComponent.Type node. The output is the family and family type names.
+Neste exemplo, todos os componentes adaptativos colocados são fornecidos como entrada para o nó AdaptiveComponent.Type. A saída é a família e os nomes de tipo da família.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Para que esse arquivo de exemplo de ajuda do nó seja executado, é necessário carregar “Diagnostics Tripod-1 point.rfa” no arquivo do Revit. A família é armazenada aqui. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Arquivo de exemplo
 

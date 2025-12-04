@@ -1,7 +1,7 @@
 ## En detalle:
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+Este nodo recupera una vista de alzado específica de un marcador de alzado en función de un valor de índice especificado. Un marcador de alzado puede albergar hasta cuatro alzados (uno por cada dirección). Este nodo permite extraer una de estas vistas de alzado asociadas para su uso o modificación más adelante (0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+En este ejemplo, se seleccionan todos los marcadores de alzado y se utilizan como entrada elevationMarker junto con todas las opciones de índice: 0,1,2,3. La salida muestra todas las direcciones de elevación posibles y un valor nulo si no existe ninguna elevación. El último nodo muestra el número total de alzados asociados a un marcador de elemento determinado.
 ___
 ## Archivo de ejemplo
 

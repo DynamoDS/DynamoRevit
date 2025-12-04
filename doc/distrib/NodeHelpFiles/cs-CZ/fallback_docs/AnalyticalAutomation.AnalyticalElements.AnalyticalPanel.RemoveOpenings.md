@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Tento uzel odebere otvory z analytické desky. Uzel aktualizuje desku odstraněním zadaných otvorů, aniž by to ovlivnilo geometrii nebo konstrukční roli desky.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+V tomto příkladu je analytická deska vytvořena z podlahy v konstrukčním modelu Snowdon. Pomocí tohoto uzlu se vybere a odebere první otvor v desce.
 ___
 ## Vzorový soubor
 

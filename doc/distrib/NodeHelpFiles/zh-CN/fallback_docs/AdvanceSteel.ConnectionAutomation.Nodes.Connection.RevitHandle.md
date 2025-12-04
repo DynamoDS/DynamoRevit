@@ -1,7 +1,7 @@
 ## 详细
-This node returns the Revit handle associated with the connections linked to the structure data element.
+此节点返回与链接到结构数据图元的连接关联的 Revit 控制柄。
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+在本例中，选择了具有三个连接的柱: 底板、力矩连接和螺栓连接。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## 详细
-This node filters a list of ConnectionNodes by checking whether the force value at a specified index falls within a defined range. The force data comes from either structural analysis results or the Revit analytical model, and is filtered by the selected result type (e.g., Fx, Fy, Fz, Mx, My, Mz).
+此节点通过检查指定索引处的力值是否在定义的范围内来过滤 ConnectionNode 列表。力数据来自结构分析结果或 Revit 分析模型，并按选定的结果类型(例如，Fx、Fy、Fz、Mx、My、Mz)过滤。
 
-In this example, a set of column elements is selected and evaluated based on the Fz force component, using the chosen analysis result and load case. Only those elements whose Fz value falls within the specified force range are returned as accepted connections.
+在此示例中，使用所选的分析结果和荷载工况，基于 Fz 力分量选择和评估一组柱图元。只有 Fz 值在指定力范围内的那些图元才会返回为接受的连接。
 ___
 ## 示例文件
 

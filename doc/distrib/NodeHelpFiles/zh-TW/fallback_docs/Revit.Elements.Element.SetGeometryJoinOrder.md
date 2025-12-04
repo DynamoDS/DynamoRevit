@@ -1,7 +1,7 @@
 ## 深入資訊
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+此節點會變更兩個已經幾何接合的 Revit 元素之間的接合順序。此節點可讓使用者決定哪個元素的幾何圖形要「切割」或優先於另一個幾何圖形。
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+在此範例中，選取兩面接合的牆作為 Element.SetGeometryJoinOrder 節點的輸入 (cuttingElement 和 otherElement)。輸出是指定的接合順序。
 
 ___
 ## 範例檔案

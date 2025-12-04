@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the connection type when given connection name, type name, and file path. This functions as a filter from the list of connections provided in the Revit model associated to the file path.
+Ten węzeł zwraca typ połączenia po podaniu nazwy połączenia, nazwy typu i ścieżki pliku. Działa to jak filtr z listy połączeń dostarczonych w modelu programu Revit skojarzonych ze ścieżką pliku.
 
-In this example, we have provided the file path to a Revit model, the type name as well as connection name of base plate. In return, the response is the connection type for the base plate.
+W tym przykładzie podaliśmy ścieżkę pliku do modelu programu Revit, nazwę typu oraz nazwę połączenia blachy podstawy. W odpowiedzi podawany jest typ połączenia dla blachy podstawy.
 ___
 ## Plik przykładowy
 

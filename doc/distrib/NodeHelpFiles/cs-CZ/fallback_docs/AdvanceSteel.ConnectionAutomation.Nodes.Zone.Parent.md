@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the parent zone or parent element of a given Zone.
+Tento uzel načte nadřazenou zónu nebo nadřazený prvek dané zóny.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+V tomto příkladu je vybráno několik prvků, extrahují se konstrukční data, zobrazí se uzel přípoje a použije se k identifikaci všech zón, které se na tento uzel přípoje vztahují.  Tyto zóny jsou vstupem uzlu Zone.Parent, kde výstup zobrazuje konstrukční data každého vstupu nadřazené zóny.  Poslední uzly zobrazují typ řezu a umístění výsledků.
 ___
 ## Vzorový soubor
 

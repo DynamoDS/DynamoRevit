@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+Tento uzel vytvoří revizní obláček v určeném pohledu.  Vstupy jsou pohled, seznam křivek, „obrys obláčku“ a definovaná revize.
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+V tomto příkladu dva číselné posuvníky definují šířku a délku obdélníku, který je potom rozložen na křivky. Tyto oblouky jsou obráceny, aby byla zachována správná orientace, a poté jsou připojeny kuzlu RevisionCloud.ByCurve. Graf také přebírá jako vstupy aktivní pohled (Půdorys prvního podlaží) a vybranou revizi (násl. 2 – Není určeno pro konstrukci). Společně automaticky vygeneruje revizní obláček ve vybraném pohledu na základě definovaného tvaru.
 ___
 ## Vzorový soubor
 

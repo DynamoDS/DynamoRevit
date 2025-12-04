@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Questo nodo crea una quota in base alla selezione di due facce piane di elementi del modello, misurando la distanza tra tali facce.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+In questo esempio, la vista “L1” della tavola A101 viene utilizzata come input in Dimension.ByFaces insieme a superfici, una linea, un suffisso e un prefisso. L'input line consente di eseguire l'offset della quota dalle facce selezionate.
 
 ___
 ## File di esempio

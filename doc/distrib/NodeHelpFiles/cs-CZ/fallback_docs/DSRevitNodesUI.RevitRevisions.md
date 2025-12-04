@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node allows you to select a specific Revision element from the active Revit document.
+Tento uzel umožňuje vybrat konkrétní prvek revize z aktivního dokumentu aplikace Revit.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+V tomto příkladu se uzel Vybrat revizi použije pomocí rozevírací nabídky a výběrem revize z aktuálního dokumentu.  Poslední dva uzly zobrazují některé vlastnosti revize.
 ___
 ## Vzorový soubor
 

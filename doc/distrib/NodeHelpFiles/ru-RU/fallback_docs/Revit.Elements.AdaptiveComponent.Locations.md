@@ -1,9 +1,9 @@
 ## Подробности
-This node retrieves the locations of a given adaptive component.
+Этот узел извлекает расположения заданного адаптивного компонента.
 
-In this example a adaptive component in placed and all types are selected then used as adaptiveComponent input for the AdaptiveComponent.Locations.  The output is the position of the adaptive component placed.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+В этом примере размещается адаптивный компонент и выбираются все типы, а затем в качестве входных данных используются значения adaptiveComponent для узла AdaptiveComponent.Locations. Выходные данные представляют собой положение размещенного адаптивного компонента. Обратите внимание, что перед запуском этого графика в семейство формообразующих элементов необходимо загрузить файл Diagnostic Tripod – 1 Point.rfa.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Для запуска данного файла справки по узлу необходимо загрузить в файл Revit файл Diagnostics Tripod-1 point.rfa. Семейство хранится по следующему пути: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Файл примера
 

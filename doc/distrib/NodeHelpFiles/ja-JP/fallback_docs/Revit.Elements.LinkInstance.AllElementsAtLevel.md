@@ -1,7 +1,7 @@
 ## 詳細
-This node returns all elements within a Revit Link Instance that are hosted on or associated with a specified Level.
+このノードは、指定されたレベルにホストされている、または関連付けられている、Revit リンク インスタンス内のすべての要素を返します。
 
-In this example all Revit links are selected and input into LinkInstance.AllElementsAtLevel along with a level.  The output exposes all the Revit linked elements on or related to level L3.  The last 2 nodes give the link transform and inverse transform.
+この例では、すべての Revit リンクが選択され、レベルとともに LinkInstance.AllElementsAtLevel に入力されます。出力では、レベル L3 にリンクされた、またはレベル L3 に関連するすべてのリンクされた Revit 要素が公開されます。最後の 2 つのノードは、リンク変換と逆変換を行います。
 
 ___
 ## サンプル ファイル

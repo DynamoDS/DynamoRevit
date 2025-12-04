@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Tento uzel najde všechny uzly přípoje, které jsou vůči sobě permutacemi { [beam1, beam2], [beam2, beam1] }, ponechá pouze první uzel { [beam1, beam2] } a odebere položky null a prázdné položky.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+V tomto příkladu jsou vybrány tři trámy, které se setkávají v jednom průsečíku, aby se zobrazilo výchozí chování každého uzlu přípoje a jak se snižuje počet možných permutací.
 ___
 ## Vzorový soubor
 

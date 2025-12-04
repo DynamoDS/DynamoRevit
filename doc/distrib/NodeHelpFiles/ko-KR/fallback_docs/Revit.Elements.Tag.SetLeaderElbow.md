@@ -1,7 +1,7 @@
 ## 상세
-This node sets the location of the elbow point in a “free-end” tag.
+이 노드는 "끝 붙어 있지 않음" 태그에서 엘보 점의 위치를 설정합니다.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+이 예에서는 태그를 선택하고 원래 점을 추출합니다. X 값이 수정되고 새 XYZ 점이 정의되고, 선택한 원래 태그와 함께 Tag.SetLeaderElbow 노드의 위치에 대한 입력으로 사용됩니다. 출력은 태그 엘보의 새 위치입니다. 뷰 평면도 L1을 참고하십시오.
 
 ___
 ## 예제 파일

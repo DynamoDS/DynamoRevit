@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Ten węzeł zwraca uchwyt programu Revit skojarzony z połączeniami połączonymi z elementem danych konstrukcyjnych.
 
-In this example, a column has been selected.
+W tym przykładzie wybrano słup.
 ___
 ## Plik przykładowy
 

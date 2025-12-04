@@ -1,7 +1,7 @@
 ## 详细
-This node creates a grid based on a arc input.
+此节点根据圆弧输入创建栅格。
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+在此示例中，将创建一个点作为圆心，用作圆弧的圆心。此圆弧用作“Grid.ByArc”的输入，并创建栅格。
 
 
 ___

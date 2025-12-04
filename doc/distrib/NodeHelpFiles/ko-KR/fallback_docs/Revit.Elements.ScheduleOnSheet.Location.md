@@ -1,7 +1,7 @@
 ## 상세
-This node gets the location of a schedule on a sheet.
+이 노드는 시트에서 일람표의 위치를 가져옵니다.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+이 예에서는 시트의 지정된 위치에 일람표를 배치한 다음 일람표 위치가 표시되는 ScheduleOnSheet.Location 노드에 입력합니다.
 
 ___
 ## 예제 파일

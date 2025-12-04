@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+Этот узел извлекает элементы, вызвавшие сбой, из заданного объекта FailureMessage.
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+В этом примере правило Консультанта по производительности проверяет, отключена ли подрезка вида. Результаты передаются в узел FailureMessage.FailingElements, который выводит определенные элементы модели, не прошедшие проверку.
 ___
 ## Файл примера
 

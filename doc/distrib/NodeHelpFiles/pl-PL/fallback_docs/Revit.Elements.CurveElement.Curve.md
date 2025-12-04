@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the underlying geometric curve associated with a given Revit CurveElement.
+Ten węzeł pobiera źródłową krzywą geometryczną skojarzoną z danym elementem Revit CurveElement.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.Curve node.  The output exposes that curve geometry so it can be used for analysis, modification, or as input to other Dynamo nodes.
+W tym przykładzie zostaje utworzona krzywa modelu przy użyciu punktu początkowego i punktu końcowego, a następnie zostaje ona przekazana jako dane wejściowe do węzła CurveElement.Curve. W danych wyjściowych zostaje uwidoczniona geometria krzywej, dzięki czemu można jej używać do analizy, modyfikacji lub jako danych wejściowych dla innych węzłów Dynamo.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Esse nó cria uma cota com base em um elemento, direção (vetor) e uma determinada vista. As outras entradas podem ser linha, sufixo e prefixo.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+Neste exemplo, a vista “L1” da folha A101 é usada como uma entrada para Dimension.ByElementDirection junto com um elemento (parede), uma direção de linha da parede, um sufixo (Dynamo) e um prefixo (Dynamo). Os últimos dois nós mostram os valores das cotas e seus prefixos.
 
 ___
 ## Arquivo de exemplo

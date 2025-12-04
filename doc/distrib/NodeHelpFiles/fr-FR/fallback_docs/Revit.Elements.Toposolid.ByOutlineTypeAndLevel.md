@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+Ce nœud crée une topographie à l'aide d'un ensemble de courbes ou de contours, ainsi que d'un toposolidType et d'un niveau en entrée.
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+Dans cet exemple, un rectangle est créé et utilisé en tant qu'entrée de Toposolid.ByOutlineTypeAndLevel.  Un type de toposolide est choisi et utilisé en tant que toposolidType en entrée, puis un niveau est sélectionné et utilisé en tant qu'entrée de niveau.  La sortie est un solide topographique.
 ___
 ## Exemple de fichier
 

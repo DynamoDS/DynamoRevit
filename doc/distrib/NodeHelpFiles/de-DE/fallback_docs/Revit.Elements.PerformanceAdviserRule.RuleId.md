@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+Dieser Block ruft die eindeutige Kennung (RuleId) einer Leistungsberater-Regel ab.
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+In diesem Beispiel wird die ausgewählte Regel “Projekt enthält nicht verwendete Familien und Typen” mit PerformanceAdviserRule.RuleId verknüpft, wodurch die eindeutige Kennung generiert wird. Diese ID wird dann in eine Zeichenfolge konvertiert.
 ___
 ## Beispieldatei
 

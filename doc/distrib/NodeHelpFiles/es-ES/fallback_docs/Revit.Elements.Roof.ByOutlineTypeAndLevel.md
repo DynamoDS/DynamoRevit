@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a roof given a outline (closed curve), roof type, and level.
+Este nodo crea una cubierta a partir de un contorno (curva cerrada), un tipo de cubierta y un nivel especificados.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+En este ejemplo, se crea un rectángulo y se utiliza como entrada de contorno en el nodo RoofByOutlineTypeAndLevel junto con un tipo de cubierta y un nivel. El último nodo establece en 10 el valor del desfase de base respecto al nivel.
 
 ___
 ## Archivo de ejemplo

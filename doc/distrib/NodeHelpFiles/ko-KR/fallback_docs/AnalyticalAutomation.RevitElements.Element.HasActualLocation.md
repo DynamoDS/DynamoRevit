@@ -1,7 +1,7 @@
 ## 상세
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+이 노드는 제공된 요소를 평가하고, 요소에 정의된 위치가 있는지 여부를 나타내는 부울 값을 반환하며, 그렇지 않은 이유를 설명하는 예외 메시지를 반환합니다.
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+이 예에서는 요소가 Element By Id 노드를 사용하여 요소 ID로 정의된 다음 Element.HasActualLocation에 제공됩니다. 출력은 요소에 실제 위치가 있으면 true를 표시하고, 그렇지 않으면 예외 메시지와 함께 false를 표시합니다.
 ___
 ## 예제 파일
 

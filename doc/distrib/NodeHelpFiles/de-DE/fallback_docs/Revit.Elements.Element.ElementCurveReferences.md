@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Dieser Block ruft alle Kurvenreferenzobjekte aus einem Element ab. Für Elemente, die keine Kurven haben, werden Nullwerte angegeben.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+In diesem Beispiel wird ein Element (Geländer) ausgewählt und als Eingabe für Elements.ElementCurveReferences verwendet. Die Ausgaben sind die Kurvenreferenz dieses Elements.
 
 ___
 ## Beispieldatei

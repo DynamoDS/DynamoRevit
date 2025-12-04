@@ -1,7 +1,7 @@
 ## Подробности
-The Revision.SetIssuedBy node in Dynamo is used to set or update the “Issued By” value for a revision in Revit. It helps automate revision control by recording who issued the revision, ensuring documentation is clear and consistent without manual edits in Revit.
+Узел Revision.SetIssuedBy в Dynamo используется для задания или обновления значения «Кем выдано» для изменения в Revit. Это позволяет автоматизировать контроль изменений, регистрируя выдавшего изменения пользователя, что обеспечивает понятность и согласованность документации без редактирования сведений в Revit вручную.
 
-In this graph, the Select Revision node is used to pick the required revision, and a string input (e.g., ABC) provides the issuer’s name. The Revision.SetIssuedBy node then applies this value to the selected revision, updating the “Issued By” field directly in the Revit model.
+На этом графике узел Select Revision используется для выбора требуемого изменения, а входной строковое значение (например, ABC) предоставляет имя издателя. Затем узел Revision.SetIssuedBy применяет это значение к выбранному изменению, обновляя поле «Кем выдано» непосредственно в модели Revit.
 
 ___
 ## Файл примера

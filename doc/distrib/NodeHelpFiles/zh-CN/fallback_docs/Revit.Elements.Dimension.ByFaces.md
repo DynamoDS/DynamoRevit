@@ -1,7 +1,7 @@
 ## 详细
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+此节点基于选择模型图元的两个平面来创建尺寸，并测量这两个面之间的距离。
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+在此示例中，图纸 A101 中的视图“L1”与曲面、直线、后缀和前缀一起用作 Dimension.ByFaces 的输入。直线输入允许尺寸从选定面偏移。
 
 ___
 ## 示例文件

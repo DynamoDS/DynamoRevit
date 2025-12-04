@@ -1,7 +1,7 @@
 ## Im Detail
-The ReferencePlane.ByLine node in Dynamo creates a Revit reference plane by using a defined line as its base. This allows you to generate custom reference planes at specific positions and orientations.
+Der Block ReferencePlane.ByLine in Dynamo erstellt eine Revit-Referenzebene, indem eine definierte Linie als Basis verwendet wird. Auf diese Weise können Sie benutzerdefinierte Referenzebenen an bestimmten Positionen und mit bestimmten Ausrichtungen erstellen.
 
-In this example, two points are defined using Point.ByCoordinates with adjustable sliders. A Line.ByStartPointEndPoint is then created between these two points, and finally, the ReferencePlane.ByLine node generates a reference plane along that line.
+In diesem Beispiel werden zwei Punkte mithilfe von Point.ByCoordinates mit anpassbaren Schiebereglern definiert. Anschließend wird zwischen diesen beiden Punkten ein Line.ByStartPointEndPoint-Objekt erstellt, und schließlich generiert der ReferencePlane.ByLine-Block eine Referenzebene entlang dieser Linie.
 ___
 ## Beispieldatei
 

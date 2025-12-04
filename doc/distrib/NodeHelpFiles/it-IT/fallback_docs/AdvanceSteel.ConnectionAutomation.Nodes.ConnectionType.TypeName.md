@@ -1,7 +1,7 @@
 ## In profondità
-This node returns the connection type name associated with the connections linked to the structure data element.
+Questo nodo restituisce il nome del tipo di connessione associato alle connessioni collegate all'elemento dei dati della struttura.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+In questo esempio, è stato selezionato un pilastro con tre connessioni: una piastra di base, una connessione momento e una connessione bullonata.
 ___
 ## File di esempio
 

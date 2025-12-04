@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+このノードは、曲線、レベル、柱ファミリ タイプに基づいて構造柱を作成します。出力は、プロジェクトに新しく作成された構造柱要素です。
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+この例では、Snowdon 構造モデルのレベル L1 35 Low と L3 の間の通芯交差 A4 に線分が描画されます。ノードで、この曲線と、選択したレベルと柱タイプが使用されて、構造柱が作成されます。
 ___
 ## サンプル ファイル
 

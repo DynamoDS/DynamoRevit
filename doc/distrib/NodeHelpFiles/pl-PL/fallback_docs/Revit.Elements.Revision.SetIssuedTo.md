@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-The Revision.SetIssuedTo node is used to set or update the “Issued To” value of a revision in Revit. It helps automate the process of recording the recipient of a revision, ensuring accuracy and consistency in project documentation without manual entry in Revit.
+Węzeł Revision.SetIssuedTo służy do ustawiania lub aktualizowania wartości „Issued To” (Wydano dla) rewizji w programie Revit. Pomaga on zautomatyzować proces rejestrowania odbiorcy rewizji, zapewniając dokładność i spójność dokumentacji projektu bez ręcznego wprowadzania zmian w programie Revit.
 
-In this graph, the Select Revision node is used to choose the required revision, while a string input (e.g., XYZ) defines the recipient. The Revision.SetIssuedTo node then applies this value to the selected revision, updating the “Issued To” field directly in the Revit model.
+Na tym wykresie węzeł Select Revision służy do wybrania wymaganej rewizji, natomiast odbiorca jest definiowany za pomocą wejściowego ciągu (np. XYZ). Następnie węzeł Revision.SetIssuedTo stosuje tę wartość do wybranej rewizji, aktualizując pole „Issued To” bezpośrednio w modelu programu Revit.
 ___
 ## Plik przykładowy
 

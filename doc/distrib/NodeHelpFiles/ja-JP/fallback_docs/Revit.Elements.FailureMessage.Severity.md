@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieve the severity level of a given FailureMessage object.  Severity values are "Warning", "Error" and "Critical."
+このノードは、指定された FailureMessage オブジェクトの重大度レベルを取得します。重大度の値は、「警告」、「エラー」、「重大」です。
 
-In this example, a Performance Adviser Rule is executed to check for the condition “View clipping is disabled”. The resulting failure messages are passed to the FailureMessage.Severity node, which reports the severity level of each issue.
+この例では、パフォーマンス アドバイザ規則を実行して、条件「ビュー クリップが無効」を確認します。結果のエラー メッセージは FailureMessage.Severity ノードに渡され、各問題の重大度レベルが報告されます。
 ___
 ## サンプル ファイル
 

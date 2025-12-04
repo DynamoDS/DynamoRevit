@@ -1,7 +1,7 @@
 ## 상세
-The Revision.ByName node in Dynamo is used to create or access a revision within a Revit project by specifying its name. This node provides control over several revision parameters, including revision date, description, issued status, issued by, issued to, visibility, and numbering type. By leveraging this node, users can automate the revision process in Revit.
+Dynamo의 Revision.ByName 노드는 수정기호의 이름을 지정하여 Revit 프로젝트 내에서 수정기호를 작성하거나 액세스하는 데 사용됩니다. 이 노드에서는 수정기호 날짜, 설명, 발행 상태, 발행자, 발행 위치, 가시성, 번호 매기기 유형 등 여러 수정기호 매개변수를 제어할 수 있습니다. 사용자는 이 노드를 활용하여 Revit에서 수정기호 프로세스를 자동화할 수 있습니다.
 
-The provided Dynamo graph demonstrates the automation of revision creation by connecting project-specific inputs to the Revision.ByName node. Key details such as revision set name, date, description, consultant, client, visibility option, and numbering type are supplied as inputs. Once executed, the node generates or updates the revision in Revit based on these parameters. This workflow minimizes manual data entry, enforces standardization, and streamlines revision management across project sheets.
+제공된 Dynamo 그래프는 프로젝트별 입력을 Revision.ByName 노드에 연결하여 수정기호를 자동으로 작성하는 방법을 보여줍니다. 수정기호 세트 이름, 날짜, 설명, 컨설턴트, 클라이언트, 가시성 옵션 및 번호 매기기 유형과 같은 주요 상세 정보가 입력으로 제공됩니다. 실행되면 노드는 이러한 매개변수를 기반으로 Revit에서 수정기호를 생성하거나 업데이트합니다. 이 워크플로우는 수동 데이터 입력을 최소화하고, 표준화를 적용하며, 프로젝트 시트 간의 수정기호 관리를 간소화합니다.
 
 ___
 ## 예제 파일

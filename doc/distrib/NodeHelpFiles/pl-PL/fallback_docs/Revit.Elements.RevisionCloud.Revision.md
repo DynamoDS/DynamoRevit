@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+Ten węzeł wyodrębnia element rewizji połączony z określoną chmurką rewizji w programie Revit. Udostępnia on dane rewizji skojarzone z tą chmurką, umożliwiając użytkownikom sprawdzanie, śledzenie i weryfikowanie szczegółów rewizji w ramach projektu.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+W tym przykładzie zostaje utworzony prostokąt za pomocą suwaków Number Slider określających szerokość i długość, a następnie zostaje on rozbity na krzywe i odwrócony w celu uzyskania odpowiedniej orientacji. Te krzywe, wraz z wybranym widokiem (L1_SD) i wybraną rewizją (Seq. 2 – Not For Construction), są używane do wygenerowania chmurki rewizji za pomocą węzła RevisionCloud.ByCurve. Wynikowa chmurka rewizji jest połączona z węzłem RevisionCloud.Revision, który pobiera i zwraca rewizję skojarzoną z tą chmurką. Dzięki temu użytkownicy mogą potwierdzić, która rewizja jest powiązana z daną chmurką rewizji.
 ___
 ## Plik przykładowy
 

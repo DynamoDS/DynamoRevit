@@ -1,7 +1,7 @@
 ## In profondità
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Questo nodo restituisce l'handle di Revit associato alle connessioni collegate all'elemento dei dati della struttura.
 
-In this example, a column has been selected.
+In questo esempio, è stato selezionato un pilastro.
 ___
 ## File di esempio
 

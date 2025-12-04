@@ -1,7 +1,7 @@
 ## 深入資訊
-This node gets the unit being used in a project for any given Spec Type.
+此節點取得專案中針對任何給定「規格類型」所使用的單位。
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+在此範例中，於清單中輸入「規格類型」值 (「面積」和「單位面積的成本」)。在 Document.UnitTypeBySpecType 節點中使用此清單作為 specType 的輸入，同時提供目前文件當作文件輸入。結果顯示目前專案的專案特定規格類型單位值。
 
 ___
 ## 範例檔案

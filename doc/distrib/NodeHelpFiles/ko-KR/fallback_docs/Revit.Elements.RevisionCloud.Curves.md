@@ -1,7 +1,7 @@
 ## 상세
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+이 노드는 구름형 수정기호의 가시적 둘레를 구성하는 곡선 루프(일반적으로 호 및 선)를 추출합니다. 구름의 각 세그먼트는 뷰 또는 시트에 있는 수정기호 표식의 "버블링된" 모양에 해당하는 곡선 객체(일반적으로 호)로 표현됩니다.
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+이 예에서는 숫자 슬라이더를 사용하여 직사각형을 작성하여 치수를 정의한 다음 곡선으로 분해하고 방향 지정을 반전시킵니다. 이러한 곡선은 선택한 뷰(대지 평면도) 및 수정기호(순서 2 - 시공 금지)와 함께 RevisionCloud.ByCurve 노드를 사용하여 구름형 수정기호를 생성하는 데 사용됩니다. 작성된 구름형 수정기호는 RevisionCloud.Curves 노드에 연결되어 해당 구름의 정의 곡선을 추출하여 표시합니다. 이를 통해 사용자는 구름형 수정기호의 형상을 쉽게 확인할 수 있으며, 재사용 또는 추가 자동화를 위한 유연성을 제공합니다.
 ___
 ## 예제 파일
 

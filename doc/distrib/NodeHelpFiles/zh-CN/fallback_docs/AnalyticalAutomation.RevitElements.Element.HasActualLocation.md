@@ -1,7 +1,7 @@
 ## 详细
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+此节点计算提供的图元，并返回一个布尔值，指示图元是否具有定义的位置，以及解释其可能未定义位置的任何异常消息。
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+在此示例中，图元由其“图元 ID”使用“按 ID 定义的图元 ID”节点，然后提供给 Element.HasActualLocation。如果图元有实际位置，则输出指示 true；如果没有，则输出指示 false 并显示异常消息。
 ___
 ## 示例文件
 

@@ -1,12 +1,12 @@
 ## 详细
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions.  A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+此节点在 Revit 图元的选定面上创建新的分割表面图元，并使用指定的 U 和 V 分割定义其布局。分割表面是应用到面上的图案化网格，通常用于在形状表面上定位幕墙嵌板、自适应构件或嵌板系统。
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+U 向分段数和 V 向分段数确定每个曲面方向上出现的细分数，而旋转参数则相对于曲面的 U-V 坐标系调整栅格方向。
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisions along with UDivs, VDivs which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+在此示例中，选择了一个面，并将其用作节点 DividedSurface.ByFaceUVDivisions 以及由滑块控制的 UDiv、VDiv 的曲面输入。最后的节点会显示分割表面的值。运行此示例图形时，您需要遵照 Revit 警告并删除建议的图元，以便栅格显示在选定表面上。
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+有关更多信息，请参见链接。
+https://help.autodesk.com/view/RVT/2025/CHS/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## 示例文件
 
