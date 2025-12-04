@@ -76,8 +76,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 		Config.xml = Config.xml
 		Config\CS_SDK.props = Config\CS_SDK.props
 		Config\dynamo-nuget.config = Config\dynamo-nuget.config
-		Config\packages-template.aget = Config\packages-template.aget
-		Config\packages.aget = Config\packages.aget
 		Config\packages_versions.props = Config\packages_versions.props
 		Config\user_local.props = Config\user_local.props
 	EndProjectSection
@@ -90,7 +88,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		restorepackages.bat = restorepackages.bat
 		transform_all.bat = transform_all.bat
 	EndProjectSection
 EndProject

@@ -21,7 +21,7 @@
         <PYTHONNET_PY38_VERSION>2.5.1</PYTHONNET_PY38_VERSION>
         <NewtonsoftJson_VERSION>13.0.1</NewtonsoftJson_VERSION> <!-- TODO: is this still needed? -->
         <NUnit_VERSION>3.13.3</NUnit_VERSION>
-        <NUnit_Engine_VERSION>3.13.0</NUnit_Engine_VERSION>
+        <NUnit_Engine_VERSION>3.13.2</NUnit_Engine_VERSION>
         <NUnit3TestAdapter_VERSION>4.2.1</NUnit3TestAdapter_VERSION>
         
     </PropertyGroup>

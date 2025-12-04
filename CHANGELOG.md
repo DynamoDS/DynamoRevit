@@ -1,3 +1,7 @@
+## 0.7.69
+* Add Diagnostic Tripod-1 point.rfa
+* remove dependency on aget
+
 ## 0.7.68
 * Update one sample to PythonNet3
 * renamed samples on all languages to allow better samples filenames' translation

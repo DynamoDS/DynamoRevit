@@ -54,6 +54,7 @@
     <PackageReference Include="DynamoVisualProgramming.Tests" Version="$(DYNAMOTESTS_VERSION)" ExcludeAssets="runtime" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
 	  <PackageReference Include="NUnit" Version="$(NUnit_VERSION)" />
+	  <PackageReference Include="NUnit.Engine" Version="$(NUnit_Engine_VERSION)" />
 	  <PackageReference Include="NUnit3TestAdapter" Version="$(NUnit3TestAdapter_VERSION)" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
       <Private>False</Private>
