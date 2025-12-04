@@ -17,9 +17,11 @@
   <PropertyGroup>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
+  <!--
   <Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
     <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" />
   </Target>
+  -->
   <ItemGroup>
     <None Update="AssemblySharedInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
