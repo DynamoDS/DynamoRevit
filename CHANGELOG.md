@@ -1,3 +1,7 @@
+## 0.7.70
+* updated FilterScheduleView test
+* resaved samples en-US
+
 ## 0.7.69
 * Add Diagnostic Tripod-1 point.rfa
 * remove dependency on aget
