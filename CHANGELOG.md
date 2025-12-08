@@ -1,3 +1,6 @@
+## 0.7.71
+* remove unnecessary dependency on NUnit.Engine to fix regression tests
+
 ## 0.7.70
 * updated FilterScheduleView test
 * resaved samples en-US
