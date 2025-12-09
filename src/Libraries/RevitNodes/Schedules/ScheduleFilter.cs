@@ -81,7 +81,7 @@ namespace Revit.Schedules
         /// <summary>
         /// Related Schedule Field Id
         /// </summary>
-        public int FiledId
+        public int FieldId
         {
             get
             {
@@ -121,7 +121,7 @@ namespace Revit.Schedules
 
         public override string ToString()
         {
-            return string.Format("ScheduleFilter(FilterType: {0}, FieldId: {1}, Value: {2})", this.FilterType, this.FiledId, this.Value);
+            return string.Format("ScheduleFilter(FilterType: {0}, FieldId: {1}, Value: {2})", this.FilterType, this.FieldId, this.Value);
         }
 
         public override bool Equals(object obj)
@@ -135,17 +135,17 @@ namespace Revit.Schedules
 
             if (this.InternalScheduleFilter.IsDoubleValue)
             {
-                return (this.FilterType.Equals(item.FilterType) && this.FiledId.Equals(item.FiledId) && Equals4DigitPrecision((double)this.Value, (double)item.Value));
+                return (this.FilterType.Equals(item.FilterType) && this.FieldId.Equals(item.FieldId) && Equals4DigitPrecision((double)this.Value, (double)item.Value));
             }
             else
             {
-                return (this.FilterType.Equals(item.FilterType) && this.FiledId.Equals(item.FiledId) && this.Value.Equals(item.Value));
+                return (this.FilterType.Equals(item.FilterType) && this.FieldId.Equals(item.FieldId) && this.Value.Equals(item.Value));
             }
         }
 
         public override int GetHashCode()
         {
-            return this.FilterType.GetHashCode() ^ this.FiledId.GetHashCode() ^ this.Value.GetHashCode();
+            return this.FilterType.GetHashCode() ^ this.FieldId.GetHashCode() ^ this.Value.GetHashCode();
         }
 
         #region Helpers
