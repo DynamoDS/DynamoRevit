@@ -1,7 +1,7 @@
 ## In profondità
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Questo nodo rimuove le aperture da un pannello analitico. Il nodo aggiorna il pannello eliminando le aperture specificate senza influire sulla geometria o sul ruolo strutturale del pannello.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+In questo esempio, viene creato un pannello analitico da un pavimento nel modello strutturale Snowdon. La prima apertura nel pannello viene selezionata e rimossa utilizzando questo nodo.
 ___
 ## File di esempio
 

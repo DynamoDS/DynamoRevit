@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the curve of an analytical member.
+Ce noeud extrait la courbe d'un élément analytique.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+Dans cet exemple, une poutre est sélectionnée dans le modèle structurel de Snowdon. Le noeud génère la courbe définie par l'élément analytique.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+このノードは、入力としビュー、要素、オフセット、horizontalAligment、verticalAlignment、水平(いいえの場合、タグは要素に基づいて方向付けされます)、および addLeader を指定して Revit 要素にタグを付けます。
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+この例では、「Studio Live Work Core B」ビューでドアが選択され、Tag.ByelementAndOffset への入力として使用されます。このドアの位置が抽出され、ベクトルの始点として使用されます。同じ点を、x 点と y 点を変更するスライダを使用して修正し、ベクトルの終点として使用します。このベクトルが、オフセットの入力として、true 値の水平入力と addLeader 入力とともに使用されます。horizontalAlignment は、Selection Horizontal Text Alignment ノードのドロップ ダウン値([左]、[中心]、[右])と、Selection Vertical Text Alignment ノードのドロップダウン値([下]、[中央]、[上])によって定義されます。
 
 ___
 ## サンプル ファイル

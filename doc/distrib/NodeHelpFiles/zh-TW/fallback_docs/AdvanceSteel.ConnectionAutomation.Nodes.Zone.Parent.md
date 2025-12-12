@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the parent zone or parent element of a given Zone.
+此節點會擷取給定區域的父系區域或父系元素。
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+在此範例中，選取數個元素、擷取結構資料、顯示接頭節點並用來識別套用到該接頭節點的所有區域。這些區域是 Zone.Parent 節點的輸入，輸出顯示每個父系區域輸入的結構資料。最後一個節點顯示結果的剖面類型和位置。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node outputs the structural role assigned to an analytical member.
+Dieser Block gibt die Tragwerksverwendung aus, die einem analytischen Element zugewiesen ist.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+In diesem Beispiel wird ein Träger aus dem Snowdon-Tragwerksmodell in ein analytisches Element konvertiert, und dieser Block gibt seine aktuelle Tragwerksverwendung zurück.
 ___
 ## Beispieldatei
 

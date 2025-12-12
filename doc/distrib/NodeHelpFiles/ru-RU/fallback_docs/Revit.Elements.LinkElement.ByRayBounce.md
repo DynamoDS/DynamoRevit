@@ -1,7 +1,7 @@
 ## Подробности
-This node casts a ray into a linked Revit model from a specified origin and direction, then traces its successive bounces off linked elements. Each bounce represents a point where the ray intersects geometry in the linked model, up to a defined maximum number of reflections.
+Этот узел отбрасывает луч в связанную модель Revit из заданного начала координат и направления, а затем отслеживает его последовательные отскоки от связанных элементов. Каждый отскок представляет собой точку, в которой луч пересекает геометрию в связанной модели до определенного максимального количества отражений.
 
-In this example, a linked element is selected and the location of that element is used as the origin input to LinkElement.ByRayBounce along with a direction, maxBounces and a view.  The outputs are points and linked elements.
+В этом примере выбран связанный элемент, и расположение этого элемента используется в качестве исходного входного параметра для узла LinkElement.ByRayBounce вместе с направлением, значением maxBounces и видом. Результатом являются точки и связанные элементы.
 ___
 ## Файл примера
 

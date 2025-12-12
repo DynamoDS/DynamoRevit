@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the inverse transformation matrix of a given Revit Link Element.  In Revit, linked models may be positioned with transformations (translation, rotation, scaling). This node allows you to get the inverse of that transformation,  effectively converting coordinates from the linked model’s space back into the host Revit model’s coordinate system.
+Tento uzel načte matici inverzní transformace daného prvku připojení aplikace Revit. V aplikaci Revit lze připojené modely umístit pomocí transformací (posunutí, otočení, změny měřítka). Tento uzel umožňuje získat inverzní hodnotu transformace a efektivně převést souřadnice z prostoru připojeného modelu zpět do souřadnicového systému hostitelského modelu aplikace Revit.
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkInverseTransform.  The output is the host Revit model’s coordinate system.
+V tomto příkladu jsou vybrány všechny připojené prvky aplikace Revit na podlaží L3 a vloženy do uzlu LinkElement.LinkInverseTransform.  Výstupem je souřadnicový systém hostitelského modelu aplikace Revit.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Этот узел создает новый маркер фасада в активном документе Revit путем указания типа вида и точки расположения в модели.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+В этом примере создается точка в требуемом расположении, где будет размещен фасад. Эта точка является входным параметром расположения для узла ElevationMarker.ByViewTypeLocation вместе с заданным семейством типов видов и масштабным коэффициентом. Полученный в результате элемент ElevationMarker используется затем для формирования видов фасадов в заданном масштабе.
 ___
 ## Файл примера
 

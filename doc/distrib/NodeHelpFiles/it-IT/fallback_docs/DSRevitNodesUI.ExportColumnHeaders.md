@@ -1,7 +1,7 @@
 ## In profondità
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Questo nodo ottiene tutte le opzioni dell'intestazione di colonna dell'abaco (OneRow, MultipleRows e None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+In questo esempio, l'opzione columnHeaders (OneRow) viene utilizzata come input nel nodo ScheduleView.Export per generare una tipica opzione di esportazione.
 
 ___
 ## File di esempio

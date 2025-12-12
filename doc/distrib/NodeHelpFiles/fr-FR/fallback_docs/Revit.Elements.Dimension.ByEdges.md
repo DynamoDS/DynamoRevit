@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a dimension based on one or more edge references in a given view.
+Ce noeud crée une cote basée sur une ou plusieurs références d'arête dans une vue donnée.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+Dans cet exemple, la vue "L1" de la feuille A101 est utilisée comme entrée dans Dimension.ByEdges avec referenceCurves, une ligne, un suffixe et un préfixe.  L'entrée ligne permet de décaler la cote par rapport aux faces sélectionnées.  Les 2 derniers noeuds affichent les valeurs des dimensions et leur préfixe.
 
 ___
 ## Exemple de fichier

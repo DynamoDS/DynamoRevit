@@ -1,7 +1,7 @@
 ## 深入資訊
-This node gets the sheet a schedule is on.
+此節點會取得明細表所在的圖紙。
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+在此範例中，將明細表放在圖紙上指定的位置，然後輸入到 ScheduleOnSheet.Sheet 節點，會顯示圖紙名稱 (名稱 = Cover)。最後，以字串擷取名稱。
 
 ___
 ## 範例檔案

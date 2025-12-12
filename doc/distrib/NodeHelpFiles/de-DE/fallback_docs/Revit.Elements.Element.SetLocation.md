@@ -1,7 +1,7 @@
 ## Im Detail
-This node moves an element to a new location given a new point.
+Dieser Block verschiebt ein Element an eine neue Position, wenn ein neuer Punkt angegeben wird.
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+In diesem Beispiel wird ein Element ausgewählt und in den Element.SetLocation-Block eingegeben. Die ursprüngliche Position der Elemente wird angezeigt und zum Verschieben entlang der X- und Y-Ebene verwendet. Die Steuerung erfolgt durch den Zahlen-Schieberegler. Die Translationsausgabe wird als Geometrieeingabe für Element.SetLocation verwendet. Ein Nullwert wird angezeigt, aber das Element wird verschoben.
 
 ___
 ## Beispieldatei

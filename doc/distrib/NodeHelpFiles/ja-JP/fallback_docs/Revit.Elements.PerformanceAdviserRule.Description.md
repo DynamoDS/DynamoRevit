@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the descriptive text of a Performance Adviser rule.
+このノードは、パフォーマンス アドバイザ規則の説明テキストを抽出します。
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+この例では、選択した規則「ビュー クリップが無効」を PerformanceAdviserRule.Description ノードに渡します。すると、説明が Watch ノードに表示され、規則の目的と効果が示されます。
 ___
 ## サンプル ファイル
 

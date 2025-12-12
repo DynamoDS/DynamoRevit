@@ -1,7 +1,7 @@
 ## 详细
-This node outputs the structural role assigned to an analytical member.
+此节点输出指定给分析构件的结构角色。
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+在此示例中，Snowdon Structural 模型中的梁被转换为分析构件，并且此节点将返回其当前结构角色。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a roof given a outline (closed curve), roof type, and level.
+Tento uzel vytvoří střechu s daným obrysem (uzavřenou křivkou), typem střechy a podlažím.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+V tomto příkladu se vytvoří obdélník, který se použije jako vstup obrysu do uzlu RoofByOutlineTypeAndLevel společně s typem střechy a podlažím.  Poslední uzel nastaví hodnotu odsazení základny od podlaží na 10.
 
 ___
 ## Vzorový soubor

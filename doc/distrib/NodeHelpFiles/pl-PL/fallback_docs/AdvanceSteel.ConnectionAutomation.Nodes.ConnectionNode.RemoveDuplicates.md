@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Ten węzeł znajduje wszystkie węzły połączeń, które są swoimi wzajemnymi permutacjami { [belka1, belka2], [belka2, belka1] }, zachowuje tylko pierwszy węzeł { [belka1, belka2] } i usuwa elementy nieznane (null) oraz puste.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+W tym przykładzie zostają wybrane trzy belki, które stykają się w jednym punkcie przecięcia, aby zademonstrować domyślne zachowanie każdego węzła połączenia i sposób zmniejszania liczby możliwych permutacji.
 ___
 ## Plik przykładowy
 

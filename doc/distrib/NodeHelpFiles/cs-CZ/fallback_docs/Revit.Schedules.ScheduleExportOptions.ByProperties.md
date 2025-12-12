@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node controls how a Revit schedule is exported.
+Tento uzel řídí způsob exportu výkazu aplikace Revit.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+V tomto příkladu jsou jako vstupy k vytvoření konzistentní možnosti exportu výkazu použity položky columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote) a title (Boolean).  Tento výstup může použít uzel ScheduleView.Export.
 
 ___
 ## Vzorový soubor

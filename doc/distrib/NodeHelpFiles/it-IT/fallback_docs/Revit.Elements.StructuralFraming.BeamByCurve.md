@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Questo nodo crea una trave strutturale nel modello di Revit lungo una curva definita. La trave è definita dalla curva, dal tipo di telaio selezionato e dal livello associato. L'output è l'elemento trave strutturale creato.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+In questo esempio, viene posizionata una linea sul livello L2 TOS tra le griglie A5 e A6 nel modello strutturale Snowdon. Questa linea viene fornita come input curve e il tipo di telaio e il livello selezionati definiscono la trave. L'output è l'elemento trave strutturale appena creato.
 ___
 ## File di esempio
 

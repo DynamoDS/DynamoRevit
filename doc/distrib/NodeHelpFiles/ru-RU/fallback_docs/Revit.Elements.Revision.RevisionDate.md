@@ -1,7 +1,7 @@
 ## Подробности
-The Revision.RevisionDate node in Dynamo is used to read the date assigned to a specific revision in Revit. It helps users extract revision date information as a text string.
+Узел Revision.RevisionDate в Dynamo используется для считывания даты, назначенной определенному изменению в Revit. Это позволяет извлекать информацию о дате изменения в виде текстовой строки.
 
-In this graph, the Select Revision node is used to pick a revision from the project, and the Revision.RevisionDate node retrieves its date. The result is displayed in the Watch node, allowing users to easily review the chosen revision’s date without opening Revit’s revision settings manually.
+На этом графике узел Select Revision используется для выбора изменения проекта, а узел Revision.RevisionDate извлекает его дату. Результат отображается в узле Watch, что позволяет пользователям с легкостью просмотреть дату выбранного изменения, не открывая параметры изменения Revit вручную.
 
 ___
 ## Файл примера

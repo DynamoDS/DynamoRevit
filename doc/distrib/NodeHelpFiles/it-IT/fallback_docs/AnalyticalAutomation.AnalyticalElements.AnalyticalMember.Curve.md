@@ -1,7 +1,7 @@
 ## In profondità
-This node extracts the curve of an analytical member.
+Questo nodo estrae la curva di un membro analitico.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+In questo esempio, viene selezionata una trave dal modello strutturale Snowdon. Il nodo genera la curva definita dal membro analitico.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node identifies the unit type used for length measurements in the active Revit project and outputs its unit type identifier as a string value.
+Dieser Block identifiziert den Einheitentyp, der im aktiven Revit-Projekt für Längenmessungen verwendet wird, und gibt seine Einheitentypkennung als Zeichenfolgenwert aus.
 
-In this example, the UnitsUtilities.GetCurrentProjectLengthUnit node is placed in the graph with a Watch node connected to its output. The Watch node displays the current project length unit as a string (for example, Feet).
+In diesem Beispiel wird der UnitsUtilities.GetCurrentProjectLengthUnit-Block mit einem Watch-Block im Diagramm platziert, der mit der Ausgabe verknüpft ist. Der Watch-Block zeigt die aktuelle Längeneinheit des Projekts als Zeichenfolge an (z. B. Fuß).
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+Этот узел извлекает список всех доступных правил Консультанта по производительности. Эти правила являются теми же встроенными проверками, которые используются в Revit для выявления потенциальных проблем с производительностью или моделированием.
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+В этом примере узел PerformanceAdviserRules используется для извлечения правила «Подрезка вида отключена» из полного списка, которое затем можно подключить к другим узлам для проверки его свойств или поведения. Это позволяет пользователям быстро работать с определенными правилами производительности.
 ___
 ## Файл примера
 

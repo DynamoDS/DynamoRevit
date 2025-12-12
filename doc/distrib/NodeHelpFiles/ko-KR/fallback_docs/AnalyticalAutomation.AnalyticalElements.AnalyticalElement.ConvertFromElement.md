@@ -1,7 +1,7 @@
 ## 상세
-This node converts an analytical member or analytical panel into an analytical element.
+이 노드는 해석 부재 또는 해석 패널을 해석 요소로 변환합니다.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+이 예에서는 해석 부재를 선택하여 노드에 공급합니다. 출력은 입력에 해당하는 해석 요소로, 해당 특성이 비슷해 보이지만 해석 부재와 해석 요소 간의 차이점을 보여줍니다.
 ___
 ## 예제 파일
 

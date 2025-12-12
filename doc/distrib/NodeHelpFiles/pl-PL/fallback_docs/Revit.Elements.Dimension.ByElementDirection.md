@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Ten węzeł tworzy wymiar na podstawie elementu, kierunku (wektora) i danego widoku. Inne możliwe dane wejściowe to linia, przyrostek i przedrostek.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+W tym przykładzie widok „L1” z arkusza A101 jest używany jako dane wejściowe węzła Dimension.ByElementDirection wraz z elementem (ścianą), kierunkiem linii od ściany, przyrostkiem (Dynamo) i przedrostkiem (Dynamo). Ostatnie dwa węzły pokazują wartości wymiarów i ich przedrostki.
 
 ___
 ## Plik przykładowy

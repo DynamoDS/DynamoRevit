@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates an elevation view from an existing ElevationMarker by specifying the marker index. Each ElevationMarker in Revit can host up to four individual elevation views—one for each direction (North, South, East, and West). This node lets you generate one of those directional elevations by referencing the marker and the desired index number.
+此節點透過指定標識索引，從既有的 ElevationMarker 建立立面視圖。Revit 中的每個 ElevationMarker 最多可以容納四個單獨的立面視圖 — 每個方向 (東、西、南、北) 各一個。此節點可讓您透過參考標識和所需的索引編號，產生其中一個方向的立面。
 
-In this example, a Elevation Marker is created and used as input elevationMarker to node ElevationMarker.CreateElevationByMarkerIndex along with a view and index (0,1,2,3).
+在此範例中，建立一個立面標識作為節點 ElevationMarker.CreateElevationByMarkerIndex 的 elevationMarker 輸入，同時提供視圖和索引 (0,1,2,3)。
 
 ___
 ## 範例檔案

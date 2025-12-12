@@ -1,9 +1,9 @@
 ## Подробности
-This node places adaptive components by applying UV parameter values to a selected face, defining the placement locations for the adaptive family type.
+Этот узел служит для размещения адаптивных компонентов путем применения значений параметров UV к выбранной грани, определяя расположения для размещения типа адаптивного семейства.
 
-In this example, a surface is created within the mass family by extruding a curve (this is done manually), and that surface is selected as the face input. UV values are then provided to determine placement positions, and the Diagnostic Tripod – 1 Point.rfa family is used as the type. The AdaptiveComponent.ByParametersOnFace node outputs adaptive components positioned on the selected face.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+В этом примере поверхность создается внутри семейства формообразующих элементов путем выдавливания кривой (это делается вручную), и эта поверхность выбирается в качестве входного элемента для грани. Затем для определения положений размещения используются UV-значения, и в качестве типа используется семейство Diagnostic Tripod – 1 Point.rfa. Узел AdaptiveComponent.ByParametersOnFace выводит адаптивные компоненты, размещенные на выбранной грани. Обратите внимание, что перед запуском этого графика в семейство формообразующих элементов необходимо загрузить файл Diagnostic Tripod – 1 Point.rfa.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Для запуска данного файла справки по узлу необходимо загрузить в файл Revit файл Diagnostics Tripod-1 point.rfa. Семейство хранится по следующему пути: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Файл примера
 

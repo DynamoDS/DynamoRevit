@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the surfaces of analytical openings.
+Ten węzeł zwraca powierzchnie otworów analitycznych.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+W tym przykładzie strop w modelu konstrukcyjnym Snowdon jest używany do utworzenia panelu analitycznego. Otwory w panelu zostają wybrane, a ten węzeł generuje powierzchnie tych otworów.
 ___
 ## Plik przykładowy
 

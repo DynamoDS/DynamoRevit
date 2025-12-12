@@ -1,7 +1,7 @@
 ## En detalle:
-This node casts a ray into a linked Revit model from a specified origin and direction, then traces its successive bounces off linked elements. Each bounce represents a point where the ray intersects geometry in the linked model, up to a defined maximum number of reflections.
+Este nodo proyecta un rayo en un modelo vinculado de Revit desde un origen y una dirección especificados y, a continuación, traza sus rebotes sucesivos en los elementos vinculados. Cada rebote representa un punto en el que el rayo interseca la geometría del modelo vinculado, hasta alcanzar un número máximo definido de reflejos.
 
-In this example, a linked element is selected and the location of that element is used as the origin input to LinkElement.ByRayBounce along with a direction, maxBounces and a view.  The outputs are points and linked elements.
+En este ejemplo, se selecciona un elemento vinculado y la ubicación de ese elemento se utiliza como entrada de origen para LinkElement.ByRayBounce junto con una dirección, maxBounces y una vista. Las salidas son puntos y elementos vinculados.
 ___
 ## Archivo de ejemplo
 

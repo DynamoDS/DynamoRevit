@@ -1,7 +1,7 @@
 ## En detalle:
-This node returns the connection type associated with the connections linked to the structure data element.
+Este nodo devuelve el tipo de conexión asociado con las conexiones vinculadas al elemento de datos de estructura.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+En este ejemplo, se ha seleccionado un pilar con tres conexiones: una pletina base, una conexión de momento y una conexión atornillada.
 ___
 ## Archivo de ejemplo
 

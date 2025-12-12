@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+此節點會從結構分析結果或 Revit 分析模型擷取指定分析結果類型的力值 (例如 Fx、Fy、Fz、Mx、My、Mz)，演算所選結構元素的每個連接區域的力。
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+在此範例中，選取了一根柱，根據選擇的模型分析模式，顯示柱連結的每個連接區域的 Fz 力分量。
 ___
 ## 範例檔案
 

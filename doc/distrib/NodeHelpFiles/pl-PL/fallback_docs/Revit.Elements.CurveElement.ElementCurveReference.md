@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the curve reference associated with a given Revit CurveElement, such as a model curve or detail line. The reference can then be used as input to other nodes that require a geometry reference—such as dimensioning, alignment, or divided path creation.
+Ten węzeł pobiera odniesienie krzywej skojarzone z danym elementem CurveElement programu Revit, takim jak krzywa modelu lub linia szczegółu. Odniesienie może być następnie używane jako dane wejściowe dla innych węzłów, które wymagają geometrii odniesienia, takich jak służące do wymiarowania, wyrównywania lub tworzenia podzielonych ścieżek.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.ElementCurveReference node.  the output is a geometric reference of the curve element that can be used in downstream operations.
+W tym przykładzie zostaje utworzona krzywa modelu przy użyciu punktu początkowego i punktu końcowego, a następnie zostaje ona przekazana jako dane wejściowe do węzła CurveElement.ElementCurveReference. Dane wyjściowe to odniesienie geometryczne elementu krzywej, które może być używane w kolejnych operacjach.
 ___
 ## Plik przykładowy
 

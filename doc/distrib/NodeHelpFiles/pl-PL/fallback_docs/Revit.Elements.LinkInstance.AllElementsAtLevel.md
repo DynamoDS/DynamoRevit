@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns all elements within a Revit Link Instance that are hosted on or associated with a specified Level.
+Ten węzeł zwraca wszystkie elementy w wystąpieniu połączenia programu Revit, które znajdują się na określonym poziomie lub są z nim skojarzone.
 
-In this example all Revit links are selected and input into LinkInstance.AllElementsAtLevel along with a level.  The output exposes all the Revit linked elements on or related to level L3.  The last 2 nodes give the link transform and inverse transform.
+W tym przykładzie zostają wybrane wszystkie połączenia programu Revit i zostają one przekazane do węzła LinkInstance.AllElementsAtLevel wraz z poziomem. W wyniku tego uwidocznione zostają wszystkie połączone elementy programu Revit znajdujące się na poziomie L3 lub z nim powiązane. Ostatnie 2 węzły zapewniają transformację połączenia i transformację odwrotną.
 
 ___
 ## Plik przykładowy

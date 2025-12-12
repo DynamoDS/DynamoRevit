@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a grid line based on a start point and end point.
+Tento uzel vytvoří čáru osnovy na základě počátečního a koncového bodu.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+V tomto příkladu jsou vygenerovány dva body a použijí se jako vstupy uzlu Grid.ByStartPointEndPoint.    Osnova vytvořená a pojmenovaná Dynamo.
 
 ___
 ## Vzorový soubor

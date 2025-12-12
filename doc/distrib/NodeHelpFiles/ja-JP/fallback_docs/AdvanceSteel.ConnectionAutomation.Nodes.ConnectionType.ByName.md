@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the connection type when given connection name and file path. This functions as a filter from the list of connections provided in the Revit model associated to the file path.
+このノードは、接合名とファイル パスが指定されている場合、接合タイプを返します。これは、ファイル パスに関連付けられている Revit モデルで提供された接合リストのフィルタとして機能します。
 
-In this example, we have provided the file path to a revit model and connection name of base plate. In return, the response is the connection type for the base plate.
+この例では、Revit モデルのファイル パスとベース プレートの接合名を指定しています。応答として、ベース プレートの接合タイプが返されます。
 ___
 ## サンプル ファイル
 

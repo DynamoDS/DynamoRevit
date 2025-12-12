@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieve a specific Model Text Type from the current Revit document by its name.
+このノードは、現在の Revit ドキュメントから特定の立体文字タイプをその名前で取得します。
 
-In this example a string input "10" Trebuchet MS" is connected to the node, which fetches the corresponding ModelTextType from Revit. This ensures that the model text created in later steps uses the exact font style defined in the Revit project.
+この例では、文字列入力「10 Trebuchet MS」がノードに接続され、対応する ModelTextType が Revit から取得されます。これにより、後の手順で作成される立体文字では、Revit プロジェクトで定義されているフォント スタイルがそのまま使用されます。
 ___
 ## サンプル ファイル
 

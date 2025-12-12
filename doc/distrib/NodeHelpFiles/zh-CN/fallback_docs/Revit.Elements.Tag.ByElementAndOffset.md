@@ -1,7 +1,7 @@
 ## 详细
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+此节点以给定的 view、element、offset、horizontalAligment、verticalAlignment、horizontalAlignment、horizontal (如果不是，标记将基于图元进行定向)和 addLeader 作为输入来标记 Revit 图元。
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+在此示例中，在“Studio Live Work Core B”视图中选择了一扇门，并将其用作 Tag.ByElementAndOffset 的输入。将提取该门的位置并用作向量起点。使用更改 x 和 y 点的滑块修改同一点，并将其用作矢量终点。此矢量与 horizontal 和 addLeader 输入中的 true 值一起用作偏移输入。horizontalAlignment 由“选择水平文字对齐”节点下拉值(左、中、右)和“选择垂直文字对齐”节点下拉值(底、中、顶)定义。
 
 ___
 ## 示例文件

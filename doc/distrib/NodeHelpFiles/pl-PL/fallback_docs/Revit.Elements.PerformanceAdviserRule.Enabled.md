@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node checks whether a given Performance Adviser rule is currently enabled in Revit.
+Ten węzeł sprawdza, czy dana reguła doradcy wydajności jest obecnie włączona w programie Revit.
 
-In this example the rule “View clipping is disabled” is connected to the PerformanceAdviserRule.Enabled node. The output is shown in the Watch node as true, confirming that the rule is enabled and ready for use in model checks.
+W tym przykładzie reguła „View clipping is disabled” (Przycinanie widoku jest wyłączone) jest połączona z węzłem PerformanceAdviserRule.Enabled. Dane wyjściowe są wyświetlane w węźle Watch jako true (prawda), co potwierdza, że reguła jest włączona i gotowa do użycia w testach modelu.
 
 
 ___

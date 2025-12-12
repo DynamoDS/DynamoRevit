@@ -1,7 +1,7 @@
 ## 상세
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+이 노드는 지정된 색인 값을 기준으로 입면 표식기에서 특정 입면도를 검색합니다. 입면 표식기는 최대 4개의 입면(각 방향에 하나씩)의 입면을 호스트할 수 있습니다. 이 노드를 사용하면 나중에 사용하거나 수정하기 위해 연관된 입면도 중 하나를 추출할 수 있습니다(0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+이 예에서는 모든 입면 표식기가 선택되어 모든 색인 옵션 0,1,2,3과 함께 입력 elevationMarker에 사용됩니다. 출력에는 가능한 모든 고도 방향이 표시되고 고도가 없는 경우 null이 표시됩니다. 마지막 노드는 지정된 요소 표식기와 연관된 총 고도 수를 표시합니다.
 ___
 ## 예제 파일
 

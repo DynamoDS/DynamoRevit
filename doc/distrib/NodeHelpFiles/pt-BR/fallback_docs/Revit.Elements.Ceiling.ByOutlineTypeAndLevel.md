@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Esse nó cria um forro com base em um contorno (curva fechada), tipo de forro e nível.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+Neste exemplo, é criado um retângulo e usado como contorno de entrada para o nó Ceiling.ByOutlineTypeAndLevel junto com um tipo de forro e nível.
 
 ___
 ## Arquivo de exemplo

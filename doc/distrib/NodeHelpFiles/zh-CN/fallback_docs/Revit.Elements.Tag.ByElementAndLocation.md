@@ -1,7 +1,7 @@
 ## 详细
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+此节点标记给定视图、图元、位置、水平(如果没有，标记将基于图元定向)和 addLeader 作为输入的 Revit 图元。
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+在此示例中，在“Studio Live Work Core B”视图中选择了一扇门。将提取该门的位置，然后将其与 horizontal 和 addLeader 的布尔值一起用作 Tag.ByElementAndLocation 的原始输入。修改原始位置，以便标记位置不会使用 Tag.SetHeadLocation 节点直接覆盖在图元之上。
 
 ___
 ## 示例文件

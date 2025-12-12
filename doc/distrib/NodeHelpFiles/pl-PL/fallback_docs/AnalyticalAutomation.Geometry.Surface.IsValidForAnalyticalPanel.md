@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node evaluates a given surface to determine if it is valid for use in defining an analytical panel. A valid surface is typically planar, continuous, and suitable for conversion into an analytical representation within Revit’s analytical model environment.
+Ten węzeł ocenia daną powierzchnię w celu określenia, czy można jej użyć do zdefiniowania panelu analitycznego. Prawidłowa powierzchnia jest zazwyczaj płaska, ciągła i odpowiednia do przekształcenia w reprezentację analityczną w środowisku modelu analitycznego programu Revit.
 
-In this example, the faces of a slab element from the project are collected, and the top face is provided to the node as input. The node returns a Boolean result indicating whether the selected surface meets the requirements for creating an analytical panel, along with an optional message describing any issues encountered during validation.
+W tym przykładzie pobierane są powierzchnie elementu płyty stropowej z projektu i górna powierzchnia jest przekazywana do węzła jako dane wejściowe. Węzeł zwraca wartość logiczną (Boolean) wskazującą, czy wybrana powierzchnia spełnia wymagania do utworzenia panelu analitycznego, wraz z opcjonalnym komunikatem opisującym wszelkie problemy napotkane podczas sprawdzania poprawności.
 ___
 ## Plik przykładowy
 

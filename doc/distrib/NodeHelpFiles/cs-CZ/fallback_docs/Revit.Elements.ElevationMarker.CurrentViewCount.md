@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Tento uzel načte počet bokorysných pohledů aktuálně asociovaných s danou značkou výšky.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+V tomto příkladu jsou vybrány všechny značky výšky a použijí se jako vstup pro uzel ElevationMarker.CurrentViewCount.  Výstup vrátí celočíselnou hodnotu představující celkový počet bokorysných pohledů asociovaných s danou značkou výšky.
 ___
 ## Vzorový soubor
 

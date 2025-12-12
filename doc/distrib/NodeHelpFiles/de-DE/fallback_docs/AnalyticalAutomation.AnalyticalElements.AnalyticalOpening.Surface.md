@@ -1,7 +1,7 @@
 ## Im Detail
-This node returns the surfaces of analytical openings.
+Dieser Block gibt die Oberflächen analytischer Öffnungen zurück.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+In diesem Beispiel wird eine Geschossdecke im Snowdon-Tragwerksmodell verwendet, um eine analytische Schale zu erstellen. Die Öffnungen in der Schale werden ausgewählt, und dieser Block gibt die Oberflächen dieser Öffnungen aus.
 ___
 ## Beispieldatei
 

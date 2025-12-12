@@ -1,7 +1,7 @@
 ## In profondità
-This node returns a list of available connection types that can be loaded.
+Questo nodo restituisce un elenco dei tipi di connessione disponibili che possono essere caricati.
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+In questo esempio, viene restituito un elenco di connessioni disponibili nel modello di Revit associato al percorso del file specificato.
 ___
 ## File di esempio
 

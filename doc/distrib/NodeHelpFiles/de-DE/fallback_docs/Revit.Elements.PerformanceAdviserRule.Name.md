@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieve the display name of a Performance Adviser rule.
+Dieser Block ruft den Anzeigenamen einer Leistungsberater-Regel ab.
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+In diesem Diagramm wird eine bestimmte Leistungsberater-Regel ausgewählt und an PerformanceAdviserRule.Name übergeben, wodurch der Regel-Anzeigenamen “Projekt enthält nicht verwendete Familien und Typen” ausgegeben wird.
 ___
 ## Beispieldatei
 

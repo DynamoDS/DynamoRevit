@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a dimension based on one or more edge references in a given view.
+Dieser Block erstellt eine Bemaßung basierend auf mindestens einer Kantenreferenzen in einer bestimmten Ansicht.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+In diesem Beispiel wird die Ansicht “L1” aus Plan A101 als Eingabe in Dimension.ByEdges zusammen mit referenceCurves, einer Linie, einem Suffix und einem Präfix verwendet. Die Linieneingabe ermöglicht den Versatz der Bemaßung von den ausgewählten Flächen. Die letzten beiden Blöcke zeigen die Bemaßungswerte und ihr Präfix an.
 
 ___
 ## Beispieldatei

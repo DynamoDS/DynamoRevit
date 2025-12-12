@@ -1,7 +1,7 @@
 ## Em profundidade
-This node converts an analytical member or analytical panel into an analytical element.
+Esse nó converte um membro ou um painel analítico em um elemento analítico.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+Neste exemplo, um membro analítico é selecionado e inserido no nó. A saída é um elemento analítico que corresponde à entrada, revelando a distinção entre um membro analítico e um elemento analítico, embora suas propriedades pareçam semelhantes.
 ___
 ## Arquivo de exemplo
 

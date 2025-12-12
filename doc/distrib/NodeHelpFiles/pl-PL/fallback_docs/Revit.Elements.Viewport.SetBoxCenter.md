@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node moves the center point of a given viewport to a new location on the sheet.
+Ten węzeł przesuwa punkt środkowy danej rzutni do nowego położenia na arkuszu.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+W tym przykładzie tworzony jest nowy arkusz „Dynamo Sheet”, a w punkcie „0,0,0” jest umieszczany widok „L1 Wall Base”. Ten widok jest przekazywany do pozycji danych wejściowych viewport węzła Viewport.SetBoxCenter wraz z nowym punktem. Wynikiem jest ponownie wypozycjonowany widok.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+Ce nœud modifie l'ordre de jointure entre deux éléments Revit qui sont déjà géométriquement joints.  Ce noeud permet à l'utilisateur de déterminer quelle géométrie de l'élément "coupe" ou prend la priorité sur l'autre.
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+Dans cet exemple, deux murs joints sont sélectionnés et utilisés en tant qu'entrées (cuttingElement et otherElement) pour le nœud Element.SetGeometryJoinOrder.  La sortie est l'ordre de jointure attribué.
 
 ___
 ## Exemple de fichier

@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a grid based on a arc input.
+このノードは、円弧入力に基づいて通芯を作成します。
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+この例では、点が中心として作成され、円弧の中心点として使用されます。この円弧は Grid.ByArc への入力として使用され、通芯が作成されます。
 
 
 ___

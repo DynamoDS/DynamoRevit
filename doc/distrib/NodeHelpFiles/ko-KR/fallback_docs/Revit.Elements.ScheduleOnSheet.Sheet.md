@@ -1,7 +1,7 @@
 ## 상세
-This node gets the sheet a schedule is on.
+이 노드는 일람표가 있는 시트를 가져옵니다.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+이 예에서는 시트의 지정된 위치에 일람표를 배치합니다. 그러면 일람표가 ScheduleOnSheet.Sheet 노드에 입력되고 여기서 시트 이름이 표시됩니다(이름 = Cover). 마지막으로 이름이 문자열로 추출됩니다.
 
 ___
 ## 예제 파일

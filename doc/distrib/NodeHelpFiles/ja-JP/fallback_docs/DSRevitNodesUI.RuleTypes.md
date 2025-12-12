@@ -1,7 +1,7 @@
 ## 詳細
-This node provides a list of available Rule Types that can be used when creating or defining filter rules.  For example, whether it equals, contains, is greater than, or begins with a specific value.
+このノードは、フィルタ規則を作成または定義するときに使用することができる、使用可能な規則タイプのリストを提供します。たとえば、特定の値と等しい、特定の値を含む、特定の値より大きい、特定の値で始まるなどです。
 
-In this example, a wall type is identified and the “Fire Rating” parameter is selected to create a filter rule with the value “2HR” and the Select Rule Type set to “Equals.” This FilterRule is then applied to the “L1 Wall Base” view as a view filter.
+この例では、壁タイプが識別され、「耐火等級」パラメータが選択されて、値を「2HR」、規則タイプの選択を「等しい」にしてフィルタ規則が作成されます。次に、この FilterRule が、ビューのフィルタとして「L1 Wall Base」ビューに適用されます。
 ___
 ## サンプル ファイル
 

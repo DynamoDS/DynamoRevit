@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves all texture images associated with the rendering asset of a given AppearanceAssetElement in Revit. An Appearance Asset defines the visual properties of a material (such as color, reflectivity, bump, or transparency).
+Этот узел извлекает все изображения текстур, связанные с компонентом визуализации заданного элемента AppearanceAssetElement в Revit. Набор характеристик представления определяет визуальные свойства материала (такие как цвет, отражательная способность, выдавливание или прозрачность).
 
-In this example, the AppearanceAssetElement's are selected and used as the input to the AppearanceAssetElement.GetRenderingAssetTextureImages node.  The results are the image properties and image paths for the given appearance asset element.  Empty lists are displayed when the appearance asset element has no value.
+В этом примере выбираются элементы AppearanceAssetElement, которые используются в качестве входных данных для узла AppearanceAssetElement.RenderingAssetTextureImages. Результатом являются свойства изображения и пути к изображениям для заданного элемента набора характеристик. Пустые списки отображаются, если элемент набора характеристик не имеет значения.
 
 ___
 ## Файл примера

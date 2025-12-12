@@ -1,6 +1,6 @@
 ## 深入資訊
-The Revision.SetIssued node in Dynamo allows you to control whether a selected revision in Revit is marked as issued or not issued. It takes a revision element and a boolean input (True/False), giving users direct control over the revision status without manually editing it in Revit.
-In this graph, the Select Revision node is used to pick a specific revision (e.g., "Seq. 1 – Schematic Design"). The Boolean node provides a True/False value, which is then connected to the Revision.SetIssued node to update the revision’s issued status automatically.
+Dynamo 中的 Revision.SetIssued 節點可讓您控制 Revit 中選取的修訂是否標記為已發佈。節點會使用修訂元素和布林輸入 (True/False)，讓使用者可以直接控制修訂狀態，無須在 Revit 中手動編輯。
+在此圖表中，使用 Select Revision 節挑選特定修訂 (例如，「Seq. 1 - Schematic Design」)。Boolean 節點提供 True/False 值，然後連接到 Revision.SetIssued 節點自動更新修訂的發佈狀態。
 
 ___
 ## 範例檔案

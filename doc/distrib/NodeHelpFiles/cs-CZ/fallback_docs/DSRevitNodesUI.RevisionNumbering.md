@@ -1,10 +1,10 @@
 ## Podrobnosti
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+Tento uzel poskytuje rozevírací seznam, který definuje, jakým způsobem je spravováno číslování revizí v projektu aplikace Revit – buď globálně (Podle projektu), nebo individuálně pro výkres (Podle výkresu).
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."
+V tomto příkladu je nová revize vytvořena pomocí uzlu Select Revision Numbering (Vybrat číslování revizí) s hodnotou „PerProject“.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Další informace o revizích naleznete v odkazu.
+https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## Vzorový soubor

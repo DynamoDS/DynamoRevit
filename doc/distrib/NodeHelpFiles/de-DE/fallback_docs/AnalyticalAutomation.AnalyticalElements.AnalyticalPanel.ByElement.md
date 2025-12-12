@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates an analytical panel from a selected model element.
+Dieser Block erstellt eine analytische Schale aus einem ausgewählten Modellelement.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+In diesem Beispiel wird ein Geschossdeckenelement aus dem Snowdon-Tragwerksmodell ausgewählt und als Eingabe für den Block bereitgestellt. Der Block kann die Geometrie und Parameter der Schale basierend auf dem Quellelement aktualisieren, optional eine Verknüpfung mit dem Element hinzufügen oder beibehalten und alle im Originalelement gefundenen Öffnungen einbeziehen. Die Ausgabe ist die resultierende analytische Schale.
 ___
 ## Beispieldatei
 

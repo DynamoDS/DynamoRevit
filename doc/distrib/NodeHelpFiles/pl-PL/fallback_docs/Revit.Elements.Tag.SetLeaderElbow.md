@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node sets the location of the elbow point in a “free-end” tag.
+Ten węzeł ustawia położenie punktu kolana w oznaczeniu z końcem swobodnym.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+W tym przykładzie wybierane jest oznaczenie i wyodrębniane są oryginalne punkty. Wartość X zostaje zmodyfikowana, a następnie zostają zdefiniowane nowe punkty XYZ i użyte jako pozycja danych wejściowych location dla węzła Tag.SetLeaderElbow wraz z wybranym oryginalnym oznaczeniem. Wynikiem jest nowe położenie kolana oznaczenia. Zobacz rzut kondygnacji L1.
 
 ___
 ## Plik przykładowy

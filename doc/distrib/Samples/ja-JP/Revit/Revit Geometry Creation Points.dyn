@@ -2,7 +2,7 @@
   "Uuid": "adfb96bf-c673-4a19-8026-70e80871a954",
   "IsCustomNode": false,
   "Description": "このグラフでは、コンセプト マス ファミリ環境でモデル線分と参照点を作成します。",
-  "Name": "Revit Geometry Creation Points",
+  "Name": "Revit のジオメトリ作成点",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -120,7 +120,7 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 327.55555555555554,
+      "WatchWidth": 327.3333333333333,
       "WatchHeight": 40.0,
       "Id": "14e9c97906e24d4f9efc89922056c5f8",
       "NodeType": "ExtensionNode",
@@ -472,20 +472,7 @@
     "warningCount": 0,
     "errorCount": 0
   },
-  "Bindings": [
-    {
-      "NodeId": "32a21b61-d9f2-4239-989f-97ca0a4a4189",
-      "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_32a21b61-d9f2-4239-989f-97ca0a4a4189": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZOWNWNDY9BIitiAEQyCzBHuTsLzb36wpZrQ4zFM9T6vYxwMvcFHLZLXQKLBkaoLFKPu5PeSc8pOUmmJmblbtTU0hvGq/3UShF+8ywfN05aGXQAAAA=="
-      }
-    },
-    {
-      "NodeId": "62bde202-1eb0-4e88-b6aa-be6e7379a978",
-      "Binding": {
-        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_62bde202-1eb0-4e88-b6aa-be6e7379a978": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZOVNmNDY9BIitiAEQyCzBHuTsLzb36wpZrQ4zFM9T6vYxwMvcFHLZzXQKxBSFUCxag7+b3knLJwKi0551y3qhgaw3jV/woH5hfv8gGpEIUgXQAAAA=="
-      }
-    }
-  ],
+  "Bindings": [],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
@@ -617,7 +604,7 @@
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
-        "HeightAdjustment": 12.042883566878345,
+        "HeightAdjustment": 12.042883566878402,
         "UserSetWidth": 320.1284127689007,
         "UserSetHeight": 390.48156933904215,
         "Nodes": [
@@ -627,14 +614,14 @@
         ],
         "HasNestedGroups": false,
         "Left": 2689.2631426791313,
-        "Top": 230.9744683533011,
+        "Top": 230.75224613107886,
         "Width": 321.78237952842665,
-        "Height": 453.59268045015324,
+        "Height": 453.81490267237547,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
         "InitialTop": 304.0855794644122,
-        "InitialHeight": 381.6363946063308,
-        "TextblockHeight": 63.111111111111114,
+        "InitialHeight": 406.43868577216375,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -657,14 +644,14 @@
         ],
         "HasNestedGroups": false,
         "Left": 2686.26604972724,
-        "Top": 768.4231352120189,
-        "Width": 368.44444444444434,
-        "Height": 481.9234042127955,
+        "Top": 768.2009129897966,
+        "Width": 368.0,
+        "Height": 482.3678486572402,
         "FontSize": 36.0,
         "GroupStyleId": "883066aa-1fe2-44a4-9bd1-c3df86bfe9f6",
         "InitialTop": 841.53424632313,
         "InitialHeight": 422.3678486572401,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -682,8 +669,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 3602.0491278189265,
-        "Top": 967.9680172964336,
+        "Left": 3601.9380167078157,
+        "Top": 968.1902395186557,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -735,8 +722,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 3555.958274905806,
-        "Top": 1216.4502170974197,
+        "Left": 3555.8471637946946,
+        "Top": 1216.0057726529753,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -753,7 +740,7 @@
       },
       {
         "Id": "d0f6481a303e4728a927331432a70bed",
-        "Title": "Run this graph in a Conceptual Mass or Generic Model Adaptive family environment. \n\nTo create a new family, go to File > New Family > and select the template located in the folder: \n\nC:\\ProgramData\\Autodesk\\RVT 2027\\Family Templates\\English-Imperial\\Generic Model Adaptive.rft ",
+        "Title": "このグラフをコンセプト マス環境または一般モデルのアダプティブ ファミリ環境で実行します。\n\n新しいファミリを作成するには、[ファイル] > [新しいファミリ] に移動し、次のフォルダにあるテンプレートを選択します。\n\nC:\\ProgramData\\Autodesk\\RVT 2027\\Family Templates\\English-Imperial\\Generic Model Adaptive.rft ",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -814,8 +801,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 4008.8745920020856,
-        "Top": 662.4019607007706,
+        "Left": 4008.5412586687517,
+        "Top": 661.957516256326,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -841,8 +828,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 4118.499326287923,
-        "Top": 912.6262832384925,
+        "Left": 4118.277104065702,
+        "Top": 912.1818387940478,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -868,8 +855,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 3175.2784494578837,
-        "Top": 864.8696678980402,
+        "Left": 3175.167338346773,
+        "Top": 865.3141123424849,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -885,8 +872,8 @@
         "PinnedNode": "2a0405887d4d4166a10168b37f352fc7"
       }
     ],
-    "X": -1405.3784198991132,
-    "Y": -124.74573719850011,
+    "X": -1418.04508656578,
+    "Y": -114.74573719850011,
     "Zoom": 0.5397502601580435
   }
 }

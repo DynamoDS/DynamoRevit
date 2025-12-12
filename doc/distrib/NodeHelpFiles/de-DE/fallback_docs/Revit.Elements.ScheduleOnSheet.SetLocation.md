@@ -1,7 +1,7 @@
 ## Im Detail
-This node resets the location of a schedule on a sheet.
+Dieser Block setzt die Position einer Bauteilliste auf einem Plan zurück.
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+In diesem Beispiel wird eine Bauteilliste auf einem Plan platziert und dann zusammen mit einem neuen Punkt in den Block SheduleOnSheet.SetLocation eingegeben. Die Bauteilliste wird dann auf demselben Plan neu positioniert. Der letzte Block ruft die neue Position der Bauteilliste ab.
 ___
 ## Beispieldatei
 

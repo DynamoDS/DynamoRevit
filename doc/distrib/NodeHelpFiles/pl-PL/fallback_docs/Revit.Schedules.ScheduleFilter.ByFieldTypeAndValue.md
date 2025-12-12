@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Ten węzeł tworzy filtr zestawienia przez zidentyfikowanie pola, typu filtru i wartości. Ten filtr może zostać następnie użyty w zestawieniu.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+W tym przykładzie zostaje wybrany widok (WV_Wall Scheudle), zostają udostępnione pola zestawienia oraz zostaje wybrana opcja „Type” i zostaje ona użyta jako pozycja danych wejściowych field dla węzła ScheduleFilter.ByFieldTypeAndValue wraz z typem filtru „BeginsWIth” i wartością „Exterior”. Ten typ filtru jest następnie używany do zmiany elementów wyświetlanych w widoku zestawienia WV_Wall Scheudle. Ten filtr wyświetla tylko ściany, których nazwa typu zaczyna się od „Exterior”.
 
 ___
 ## Plik przykładowy

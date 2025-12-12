@@ -1,7 +1,7 @@
 ## 深入資訊
-This node allows you to place the view label at a specific point on a sheet.
+此節點可讓您將視圖標示放置在圖紙上的特定一點。
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+在此範例中，建立「Dynamo Sheet」新圖紙，在點「0,0,0」放置「L1 Wall Base」視圖。將此視圖重新定位並作為 Viewport.SetLabelOffset 節點的視埠輸入，同時提供定義的一點以放置視圖標示。
 
 
 ___

@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-This node retrieves the locations of a given adaptive component.
+Ten węzeł pobiera położenia danego komponentu adaptacyjnego.
 
-In this example a adaptive component in placed and all types are selected then used as adaptiveComponent input for the AdaptiveComponent.Locations.  The output is the position of the adaptive component placed.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+W tym przykładzie umieszczany jest komponent adaptacyjny i wybierane są wszystkie typy, a następnie są one używane jako dane wejściowe adaptiveComponent dla węzła AdaptiveComponent.Locations. Wynikiem jest położenie umieszczonego komponentu adaptacyjnego. Przed uruchomieniem tego wykresu należy wczytać plik „Diagnostic Tripod – 1 Point.rfa” do rodziny brył.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Aby można było uruchomić ten przykładowy plik pomocy dla węzłów, należy wczytać plik „Diagnostics Tripod-1 point.rfa” do pliku programu Revit. Rodzina jest przechowywana tutaj: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Plik przykładowy
 

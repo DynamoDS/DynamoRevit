@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Dieser Block erstellt eine Bemaßung basierend auf der Auswahl von zwei ebenen Flächen von Modellelementen, wobei der Abstand dieser beiden Flächen gemessen wird.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+In diesem Beispiel wird die Ansicht “L1” aus Plan A101 zusammen mit Oberflächen, einer Linie, einem Suffix und einem Präfix als Eingabe in Dimension.ByFaces verwendet. Die Linieneingabe ermöglicht den Versatz der Bemaßung von den ausgewählten Flächen.
 
 ___
 ## Beispieldatei

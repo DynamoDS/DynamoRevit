@@ -1,7 +1,7 @@
 ## 深入資訊
-This node checks whether a surface is valid for creating an opening in an analytical panel.
+此節點會檢查曲面是否適合在分析板中建立開口。
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the intended opening location. The level L2 sets the vertical placement. Lines connect the points and are offset to form the surface representing the opening. A floor at L2 is used to create the analytical panel, and this node evaluates the surface for its validity as an opening in that panel.
+在此範例中，Snowdon 結構模型中網格交點 A4–A5 和 B4–B5 處的四個點定義需要的開口位置。樓層 L2 設定垂直位置。線條連接這些點並經過偏移，形成表示開口的曲面。使用 L2 的樓板建立分析板，此節點會演算該曲面是否適合在該分析板中作為開口。
 ___
 ## 範例檔案
 

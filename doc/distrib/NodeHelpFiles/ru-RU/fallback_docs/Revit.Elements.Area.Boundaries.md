@@ -1,7 +1,7 @@
 ## Подробности
-This node gets the lines (curves) used to generate the boundary of an area.
+Этот узел получает линии (кривые), используемые для создания границы области.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+В этом примере извлекаются все области из проекта. Извлекаются и отображаются имя элемента (области) и узел Area.Boundries.
 
 ___
 ## Файл примера

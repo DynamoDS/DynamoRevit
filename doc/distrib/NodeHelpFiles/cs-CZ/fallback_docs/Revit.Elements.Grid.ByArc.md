@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a grid based on a arc input.
+Tento uzel vytvoří osnovu podle vstupu oblouku.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+V tomto příkladu je vytvořen bod jako střed, který se použije jako středový bod oblouku.  Tento oblouk se použije jako vstup pro uzel Grid.ByArc a vytvoří se osnova.
 
 
 ___

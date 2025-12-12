@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+このノードは、使用可能なすべてのパフォーマンス アドバイザ規則のリストを取得します。これらの規則は、Revit がパフォーマンスやモデリングの潜在的な問題の特定に使用されるのと同じ、組み込みのチェックです。
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+この例では、PerformanceAdviserRules ノードを使用して、完全なリストから「ビュー クリップが無効」という規則を取り出します。この規則を他のノードに接続して、そのプロパティや動作を確認することができます。これにより、ユーザは特定のパフォーマンス規則をすばやく操作することができます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a Topography by using points a toposolidType along with a level.
+Dieser Block erstellt eine Topografie mithilfe von Punkten und einem toposolidType zusammen mit einer Ebene.
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+In diesem Beispiel wird ein Rechteck mit einem Punkt bei gleicher Sehnenlänge erstellt und zusammen mit dem Rechteck, einem ToposolidType und einer Ebene als Eingabe für Punkte im Toposolid.ByPointsTypeAndLevel-Block verwendet.
 ___
 ## Beispieldatei
 

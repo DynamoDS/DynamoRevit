@@ -1,7 +1,7 @@
 ## 详细
-This node extracts the curve of an analytical member.
+此节点提取分析构件的曲线。
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+在此示例中，从 Snowdon Structural 模型中选择梁。该节点输出由分析构件定义的曲线。
 ___
 ## 示例文件
 

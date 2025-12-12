@@ -1,7 +1,7 @@
 ## Description approfondie
-This node retrieve the severity level of a given FailureMessage object.  Severity values are "Warning", "Error" and "Critical."
+Ce nœud récupère le niveau de gravité d'un objet FailureMessage donné.  Les valeurs de gravité sont "Avertissement", "Erreur" et "Critique".
 
-In this example, a Performance Adviser Rule is executed to check for the condition “View clipping is disabled”. The resulting failure messages are passed to the FailureMessage.Severity node, which reports the severity level of each issue.
+Dans cet exemple, une règle Performance Adviser est exécutée pour vérifier la condition "Le rognage de la vue est désactivé". Les messages d'erreur qui en résultent sont transmis au nœud FailureMessage.Severity qui signale le niveau de gravité de chaque problème.
 ___
 ## Exemple de fichier
 

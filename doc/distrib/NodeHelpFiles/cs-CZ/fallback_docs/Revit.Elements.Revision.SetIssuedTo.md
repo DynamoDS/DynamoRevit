@@ -1,7 +1,7 @@
 ## Podrobnosti
-The Revision.SetIssuedTo node is used to set or update the “Issued To” value of a revision in Revit. It helps automate the process of recording the recipient of a revision, ensuring accuracy and consistency in project documentation without manual entry in Revit.
+Uzel Revision.SetIssuedTo slouží k nastavení nebo aktualizaci hodnoty revize „Vydáno pro“ v aplikaci Revit. Pomáhá automatizovat proces zaznamenávání příjemce revize a zajišťuje přesnost a konzistenci projektové dokumentace bez nutnosti ručního zadávání v aplikaci Revit.
 
-In this graph, the Select Revision node is used to choose the required revision, while a string input (e.g., XYZ) defines the recipient. The Revision.SetIssuedTo node then applies this value to the selected revision, updating the “Issued To” field directly in the Revit model.
+V tomto grafu se k výběru požadované revize použije uzel Select Revision, zatímco řetězcový vstup (například XYZ) definuje příjemce. Uzel Revision.SetIssuedTo pak použije tuto hodnotu na vybranou revizi a aktualizuje pole „Vydáno pro“ přímo v modelu aplikace Revit.
 ___
 ## Vzorový soubor
 

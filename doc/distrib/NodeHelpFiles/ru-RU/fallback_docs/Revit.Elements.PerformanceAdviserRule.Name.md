@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieve the display name of a Performance Adviser rule.
+Этот узел извлекает отображаемое имя правила Консультанта по производительности.
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+На этом графике определенное правило Консультанта по производительности выбрано и передано в узел PerformanceAdviserRule.Name, который выводит отображаемое имя правила «Проект содержит неиспользуемые семейства и типоразмеры».
 ___
 ## Файл примера
 

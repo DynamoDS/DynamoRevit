@@ -1,10 +1,10 @@
 ## In profondità
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+Questo nodo fornisce un elenco a discesa che definisce la modalità di gestione della numerazione delle revisioni in un progetto di Revit, a livello globale (Per Project) o individuale per tavola (Per sheet).
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."
+In questo esempio, viene creata una nuova revisione utilizzando il nodo Select Revision Numbering, valore "PerProject".
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Per ulteriori informazioni sulle revisioni, vedere il collegamento.
+https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## File di esempio

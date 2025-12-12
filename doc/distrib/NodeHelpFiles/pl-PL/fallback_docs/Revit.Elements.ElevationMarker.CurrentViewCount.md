@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Ten węzeł pobiera liczbę widoków rzędnej aktualnie skojarzonych z danym znacznikiem rzędnej.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+W tym przykładzie zostają wybrane wszystkie znaczniki rzędnej i zostają one użyte jako dane wejściowe węzła ElevationMarker.CurrentViewCount. Wynik to wartość całkowita reprezentująca całkowitą liczbę widoków rzędnych skojarzonych z danym znacznikiem rzędnej.
 ___
 ## Plik przykładowy
 

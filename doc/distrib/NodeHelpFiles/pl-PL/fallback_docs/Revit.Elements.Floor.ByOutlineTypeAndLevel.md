@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a floor using curves, floor types and level.
+Ten węzeł tworzy strop za pomocą krzywych, typów stropów i poziomu.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+W tym przykładzie węzeł Number Slider zostaje użyty do wygenerowania prostokąta, który służy jako dane wejściowe węzła Floor.ByOutlineTypeAndLevel wraz z danym typem stropu i poziomem.
 
 ___
 ## Plik przykładowy

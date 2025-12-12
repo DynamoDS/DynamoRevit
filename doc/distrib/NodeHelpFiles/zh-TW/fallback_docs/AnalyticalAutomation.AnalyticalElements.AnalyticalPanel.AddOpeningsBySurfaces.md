@@ -1,7 +1,7 @@
 ## 深入資訊
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+此節點在分析板中加入開口，使用定義的曲面作為每個開口的造型。您可以視需要套用既有的輸入來更新幾何圖形、參數和關聯。
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+在此範例中，Snowdon 結構模型中網格交點 A4–A5 和 B4–B5 的四個點定義開口的位置，樓層 (L2 TOS) 設定其垂直位置。線條連接這些點並建立表示開口的偏移曲面。使用 L2 TOS 的樓板建立分析板，此節點會將開口曲面連結到分析板，產生對應的分析開口。
 ___
 ## 範例檔案
 

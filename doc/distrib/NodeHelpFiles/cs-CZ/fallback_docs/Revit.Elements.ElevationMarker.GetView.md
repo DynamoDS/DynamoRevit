@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+Tento uzel načte určitý pohled výšky ze značky výšky na základě dané hodnoty indexu.  Značka výšky může hostovat až čtyři výšky (jednu pro každý směr). Tento uzel umožňuje extrahovat jeden z těchto asociovaných bokorysných pohledů pro další použití nebo úpravy (0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+V tomto příkladu jsou vybrány všechny značky výšky a použijí se pro vstupní značku elevationMarker společně se všemi možnostmi indexu 0,1,2,3.  Výstup zobrazí všechny možné směry výšky a pokud žádná výška neexistuje, zobrazí se hodnota null.  Poslední uzel zobrazuje celkový počet výšek asociovaných s danou značkou prvku.
 ___
 ## Vzorový soubor
 

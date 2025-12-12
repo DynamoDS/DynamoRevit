@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the collection of points that make up the divisions along a given Divided Path element in Revit. Each point corresponds to a division location along the underlying curve or surface path created by the DividedPath element.
+Ten węzeł zwraca kolekcję punktów tworzących podziały wzdłuż danego elementu podzielonej ścieżki w programie Revit. Każdy punkt odpowiada położeniu podziału wzdłuż krzywej lub ścieżki powierzchni utworzonej przez element DividedPath.
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve along with a integer value defining the number of equal divisions along the curve. The final node DividedPath.Points displays the resulting division points along the curve.
+W tym przykładzie tworzona jest krzywa modelu na podstawie określonego punktu początkowego i końcowego, a następnie jest ona wykorzystywana jako krzywa wejściowa wraz z liczbą całkowitą definiującą liczbę równych podziałów wzdłuż krzywej. Węzeł końcowy, DividedPath.Points, wyświetla wynikowe punkty podziału wzdłuż krzywej.
 ___
 ## Plik przykładowy
 

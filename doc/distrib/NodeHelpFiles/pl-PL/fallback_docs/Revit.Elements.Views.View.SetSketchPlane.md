@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node sets the default sketch plane in a given view.
+Ten węzeł ustawia domyślną płaszczyznę szkicu w danym widoku.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+W tym przykładzie z projektu są pobierane wszystkie płaszczyzny szkicu i są one filtrowane do płaszczyzny szkicu „Parking”. Ta płaszczyzna szkicu „Parking” jest następnie używana jako dane wejściowe (SketchPlane) węzła View.SetSketchPlane wraz z widokiem (view). Ostatnie dwa węzły wyświetlają nazwę pierwotnej płaszczyzny szkicu obok nazwy nowej płaszczyzny szkicu.
 
 ___
 ## Plik przykładowy

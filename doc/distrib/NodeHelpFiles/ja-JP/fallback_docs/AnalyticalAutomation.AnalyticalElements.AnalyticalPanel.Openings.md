@@ -1,7 +1,7 @@
 ## 詳細
-This node provides the openings within an analytical panel.
+このノードは、解析用パネル内の開口部を提供します。
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+この例では、Snowdon 構造モデルの床が選択され、解析用パネルに変換されます。ノードは、そのパネルの開口部のリストを出力します。
 ___
 ## サンプル ファイル
 

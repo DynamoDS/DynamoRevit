@@ -1,9 +1,9 @@
 ## Im Detail
-This node places adaptive components by mapping parameter values along a selected curve to define placement positions for the adaptive family type.
+Dieser Block platziert adaptive Bauteile durch Zuordnen von Parameterwerten entlang einer ausgewählten Kurve, um die Platzierungspositionen für den adaptiven Familientyp zu definieren.
 
-In this example, a curve is drawn in the mass family and used for curve input. Parameter values are provided to position instances along the curve, and the "Diagnostic Tripod – 1 Point.rfa" family is chosen as the family type. The AdaptiveComponent.ByParametersOnCurveReference node outputs adaptive components placed along the selected curve.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+In diesem Beispiel wird eine Kurve in der Körperfamilie gezeichnet und für die Kurveneingabe verwendet. Parameterwerte werden bereitgestellt, um Exemplare entlang der Kurve zu positionieren, und die Familie "Diagnostic Tripod - 1 Point.rfa" wird als Familientyp ausgewählt. Der Block AdaptiveComponent.ByParametersOnCurveReference gibt adaptive Bauteile aus, die entlang der ausgewählten Kurve platziert wurden. Beachten Sie, dass "Diagnostic Tripod - 1 Point.rfa" in die Körperfamilie geladen werden muss, bevor Sie dieses Diagramm ausführen können.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Damit diese Block-Hilfe-Beispieldatei ausgeführt werden kann, müssen Sie "Diagnostics Tripod - 1 Point.rfa" in die Revit-Datei laden. Die Familie wird hier gespeichert. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 
 ___
 ## Beispieldatei

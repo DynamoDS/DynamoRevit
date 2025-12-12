@@ -1,7 +1,7 @@
 ## 詳細
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+このノードは、相互に順列となっているすべての接合ノード{ [beam1, beam2], [beam2, beam1] }を検索して、最初のノード{ [beam1, beam2] }のみを保持します。また、NULL および空の項目を削除します。
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+この例では、1 つの交点で接する 3 本の梁が選択され、各接合ノードの既定の動作と、可能な順列の数がどのように削減されるかが示されます。
 ___
 ## サンプル ファイル
 

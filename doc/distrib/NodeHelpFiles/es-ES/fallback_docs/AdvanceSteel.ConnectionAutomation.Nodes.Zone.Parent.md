@@ -1,7 +1,7 @@
 ## En detalle:
-This node retrieves the parent zone or parent element of a given Zone.
+Este nodo recupera la zona principal o el elemento principal de una zona determinada.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+En este ejemplo, se seleccionan varios elementos, se extraen los datos estructurales, se expone el nodo de conexión y se utiliza este para identificar todas las zonas que se aplican a ese nodo de conexión. Estas zonas son la entrada del nodo Zone.Parent, donde la salida muestra los datos estructurales de cada entrada de zona principal. Los últimos nodos muestran el tipo de sección y la ubicación de los resultados.
 ___
 ## Archivo de ejemplo
 

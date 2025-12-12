@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node outputs the structural role assigned to an analytical member.
+Ten węzeł zwraca rolę konstrukcyjną przypisaną do liniowego elementu analitycznego.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+W tym przykładzie belka z modelu konstrukcyjnego Snowdon zostaje przekształcona w liniowy element analityczny, a węzeł zwraca jej bieżącą rolę konstrukcyjną.
 ___
 ## Plik przykładowy
 

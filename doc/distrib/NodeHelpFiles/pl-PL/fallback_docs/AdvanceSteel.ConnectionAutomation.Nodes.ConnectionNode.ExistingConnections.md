@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the existing connections of the structure data element/s selected.
+Ten węzeł zwraca istniejące połączenia wybranych elementów danych konstrukcyjnych.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+W tym przykładzie wybrano słup z trzema połączeniami: blachą podstawy, połączeniem na momenty i połączeniem na śruby.
 ___
 ## Plik przykładowy
 

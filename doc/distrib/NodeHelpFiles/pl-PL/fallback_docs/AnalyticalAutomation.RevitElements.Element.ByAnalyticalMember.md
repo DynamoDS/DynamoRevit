@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+Ten węzeł tworzy fizyczny element konstrukcyjny na podstawie liniowego elementu analitycznego lub aktualizuje istniejący element fizyczny, który jest już połączony z liniowym elementem analitycznym. Węzeł może zaktualizować geometrię lub parametry elementu fizycznego na podstawie liniowego elementu analitycznego w zależności od ustawień wejściowych. Gdy ten liniowy element analityczny nie jest skojarzony z żadnym elementem fizycznym, element fizyczny jest tworzony przy użyciu informacji o liniowym elemencie analitycznym.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+W tym przykładzie ze słupa konstrukcyjnego zostaje wybrany liniowy element analityczny z projektu ACO Supermarket. Ten liniowy element analityczny jest połączony z tym węzłem, a wejściowa wartość logiczna (Boolean) służy do wyświetlania domyślnych ustawień aktualizacji geometrii i parametrów. Węzeł tworzy odpowiednią kolumnę fizyczną na podstawie modelu analitycznego.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+Dieser Block ermöglicht es Ihnen, sehr genau anzugeben, mit welchem Teil eines Revit-Elements Sie arbeiten möchten. Im Gegensatz zu Blöcken, mit denen ein ganzes Element (z. B. eine Wand oder eine Geschossdecke) ausgewählt wird, können Sie mit diesem Block eine bestimmte Fläche oder Kante dieses Elements auswählen.
 
-In this example, we have selected an element nested inside a curtain wall.
+In diesem Beispiel haben wir ein Element ausgewählt, das innerhalb einer Fassade verschachtelt ist.
 
 ___
 ## Beispieldatei

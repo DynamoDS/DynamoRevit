@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node performs a ray bounce analysis within the Revit model. Starting from a given origin point and traveling along a specified direction vector, it traces the path of the ray as it intersects elements in the model. When the ray hits a surface, it can continue bouncing off that surface, depending on the number of bounces allowed, simulating light, visibility, or path reflection behavior.
+Ten węzeł wykonuje analizę odbić promienia w modelu programu Revit. Począwszy od danego punktu początkowego i przemieszczając się wzdłuż określonego wektora kierunku, węzeł śledzi ścieżkę promienia przecinającego elementy w modelu. Gdy promień pada na powierzchnię, może nadal odbijać się od tej powierzchni, w zależności od dozwolonej liczby odbić, symulując zachowanie światła, widoczność lub ścieżkę odbicia.
 
-In this example, an element is selected and its' location is used for input origin to node RayBounce.ByOriginDirection, along with a direction, maxBounces and, a view.
+W tym przykładzie wybierany jest element, a jego położenie jest używane jako pozycja danych wejściowych origin dla węzła RayBounce.ByOriginDirection wraz z pozycjami direction, maxBounces i view.
 ___
 ## Plik przykładowy
 

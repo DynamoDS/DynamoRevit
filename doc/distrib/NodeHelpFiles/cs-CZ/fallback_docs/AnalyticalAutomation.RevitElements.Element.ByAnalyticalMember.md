@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+Tento uzel vytvoří fyzický konstrukční prvek z analytického prutu nebo aktualizuje existující fyzický prvek, který je již připojen k analytickému prutu. Uzel může aktualizovat geometrii nebo parametry fyzického prvku podle analytického prutu v závislosti na vstupních nastaveních. Pokud analytický prut není asociován s žádným fyzickým prvkem, vytvoří se fyzický prvek pomocí informací analytického prutu.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+V tomto příkladu je analytický prut z projektu supermarketu ACO vybrán z konstrukčního sloupu. Tento analytický prut je připojen k tomuto uzlu a pomocí booleovského vstupu se zobrazí výchozí nastavení pro aktualizaci geometrie a parametrů. Uzel vytvoří odpovídající fyzický sloup vycházející z analytického modelu.
 ___
 ## Vzorový soubor
 

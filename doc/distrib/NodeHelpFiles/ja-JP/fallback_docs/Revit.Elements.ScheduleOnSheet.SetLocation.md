@@ -1,7 +1,7 @@
 ## 詳細
-This node resets the location of a schedule on a sheet.
+このノードは、シート上の集計表の位置をリセットします。
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+この例では、集計表がシートに配置され、新しい点とともに SheduleOnSheet.SetLocation ノードに入力されます。次に、集計表は同じシート上に再配置されます。最後のノードでは、集計表の新しい位置が取得されます。
 ___
 ## サンプル ファイル
 

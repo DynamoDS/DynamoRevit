@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets the sketch points of a selected roof.
+Dieser Block ruft die Skizzierpunkte eines ausgewählten Dachs ab.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+In diesem Beispiel werden alle Dächer ausgewählt und als Eingabe für Roof.Points verwendet. Die Ausgabe sind die einzelnen Punkte der ausgewählten Dachskizze.
 ___
 ## Beispieldatei
 

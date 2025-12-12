@@ -1,7 +1,7 @@
 ## In profondità
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+Questo nodo estrae la geometria della curva dalla posizione di un elemento telaio strutturale. L'output fornisce informazioni quali i punti iniziale e finale della curva, il vettore di direzione e la lunghezza.
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+In questo esempio, viene selezionata una trave nel modello strutturale Snowdon. Il nodo genera i dati della curva che definiscono la posizione della trave nel progetto.
 ___
 ## File di esempio
 

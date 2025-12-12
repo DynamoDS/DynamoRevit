@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets the lines (curves) used to generate the boundary of an area.
+Dieser Block ruft die Linien (Kurven) ab, die zum Erstellen der Begrenzung einer Fläche verwendet werden.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+In diesem Beispiel werden alle Flächen aus dem Projekt abgerufen. Der Elementname (Fläche) und Area.Boundaries werden extrahiert und angezeigt.
 
 ___
 ## Beispieldatei

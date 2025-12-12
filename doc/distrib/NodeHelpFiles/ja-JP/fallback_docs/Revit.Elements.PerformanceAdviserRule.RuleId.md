@@ -1,7 +1,7 @@
 ## 詳細
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+このノードは、パフォーマンス アドバイザ規則の一意の識別子(RuleId)を取得します。
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+この例では、選択した規則「プロジェクトに未使用のファミリとタイプが含まれます」が PerformanceAdviserRule.RuleId に接続され、一意の識別子が生成されます。次に、その ID が文字列に変換されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the curve reference associated with a given Revit CurveElement, such as a model curve or detail line. The reference can then be used as input to other nodes that require a geometry reference—such as dimensioning, alignment, or divided path creation.
+このノードは、モデル曲線や詳細線分など、指定された Revit CurveElement に関連付けられた曲線参照を取得します。この参照は、寸法記入、位置合わせ、分割されたパスの作成など、ジオメトリ参照を必要とする他のノードへの入力として使用することができます。
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.ElementCurveReference node.  the output is a geometric reference of the curve element that can be used in downstream operations.
+この例では、始点と終点を使用してモデル曲線が作成され、次に、CurveElement.ElementCurveReference ノードに入力されます。出力は、下流の操作で使用することができる曲線要素のジオメトリ参照です。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Esse nó cria um contraventamento estrutural com base em uma curva, um nível e um tipo de família de estrutura. A saída é o elemento de contraventamento recém-criado no projeto.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+Neste exemplo, é desenhada uma linha do nível L2 no cruzamento do eixo A4 para o nível L3 no cruzamento do eixo A5. O nó usa essa curva, juntamente com o nível selecionado e o tipo de família, para criar um contraventamento no modelo estrutural Snowdon.
 ___
 ## Arquivo de exemplo
 

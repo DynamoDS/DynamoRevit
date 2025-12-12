@@ -1,7 +1,7 @@
 ## Em profundidade
-This node allows you to select a specific Revision element from the active Revit document.
+Esse nó permite selecionar um elemento de revisão específico no documento ativo do Revit.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+Neste exemplo, o nó Selecionar revisão é usado por meio do menu suspenso e selecionando uma revisão no documento atual. Os últimos dois nós mostram algumas propriedades de revisão.
 ___
 ## Arquivo de exemplo
 

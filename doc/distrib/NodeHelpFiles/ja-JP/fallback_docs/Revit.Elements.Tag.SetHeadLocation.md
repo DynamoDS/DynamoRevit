@@ -1,7 +1,7 @@
 ## 詳細
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+このノードはタグを取り、そのヘッド位置を変更します。これにより、一貫した配置動作を自動化して、タグをタグ付けする要素の真上に配置することができます。
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+この例では、「Studio Live Work Core B」ビューでドアが選択されています。このドアの位置が抽出され、次に、Tag.ByElementAndLocation への元の入力として、水平および addLeader のブール値とともに使用されます。Tag.SetHeadLocation ノードを使用して、タグの位置が要素の上に直接重ならないように、元の位置が変更されます。
 
 ___
 ## サンプル ファイル

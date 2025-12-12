@@ -1,7 +1,7 @@
 ## Im Detail
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Dieser Block entfernt Öffnungen aus einer analytischen Schale. Der Block aktualisiert die Schale durch Löschen der angegebenen Öffnungen, ohne dass sich dies auf die Geometrie oder Tragwerksverwendung der Schale auswirkt.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+In diesem Beispiel wird eine analytische Schale aus einer Geschossdecke im Snowdon-Tragwerksmodell erstellt. Die erste Öffnung in der Schale wird ausgewählt und mithilfe dieses Blocks entfernt.
 ___
 ## Beispieldatei
 

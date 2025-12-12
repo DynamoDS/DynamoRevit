@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Ten węzeł ustawia rolę konstrukcyjną panelu analitycznego. Węzeł aktualizuje wybrany panel o wybraną rolę, nie zmieniając jego geometrii ani innych parametrów.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+W tym przykładzie dla panelu analitycznego utworzonego na podstawie elementu fizycznego w modelu konstrukcyjnym Snowdon zostaje ustawiona rola konstrukcyjna stropu.
 ___
 ## Plik przykładowy
 

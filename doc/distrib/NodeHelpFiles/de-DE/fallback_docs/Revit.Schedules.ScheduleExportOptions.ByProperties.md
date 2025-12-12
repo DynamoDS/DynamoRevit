@@ -1,7 +1,7 @@
 ## Im Detail
-This node controls how a Revit schedule is exported.
+Dieser Block steuert, wie eine Revit-Bauteilliste exportiert wird.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+In diesem Beispiel werden columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote) und title (Boolean) als Eingaben verwendet, um eine konsistente Exportoption für Bauteillisten zu erstellen. Diese Ausgabe kann vom ScheduleView.Export-Block verwendet werden.
 
 ___
 ## Beispieldatei

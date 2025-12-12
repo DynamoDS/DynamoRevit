@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+Este nodo crea una nube de revisión en una vista especificada. Las entradas son la vista, la lista de curvas, el "contorno de nube" y la revisión definida.
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+En este ejemplo, dos controles deslizantes numéricos definen la anchura y la longitud del rectángulo, que luego se descompone en curvas. Estas curvas se invierten para mantener la orientación correcta y, a continuación, se conectan al nodo RevisionCloud.ByCurve. El gráfico también toma como entradas la vista activa (Plano de la primera planta) y la revisión elegida (Seq. 2 – Not For Construction). Con todo ello, se genera automáticamente una nube de revisión en la vista seleccionada en función de la forma definida.
 ___
 ## Archivo de ejemplo
 

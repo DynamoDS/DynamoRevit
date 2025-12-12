@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a sketch plane based on the input of a plane.
+Tento uzel vytvoří náčrtovou rovinu na základě vstupu roviny.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+V tomto příkladu je definována rovina a poté je připojena k uzlu SketchPlane.ByPlane, který vygeneruje odpovídající náčrtovou rovinu.
 
 ___
 ## Vzorový soubor

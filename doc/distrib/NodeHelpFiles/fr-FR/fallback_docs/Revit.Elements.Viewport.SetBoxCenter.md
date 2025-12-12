@@ -1,7 +1,7 @@
 ## Description approfondie
-This node moves the center point of a given viewport to a new location on the sheet.
+Ce nœud déplace le point central d'une fenêtre donnée vers un nouvel emplacement sur la feuille.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+Dans cet exemple, une nouvelle feuille est créée "Dynamo Sheet" et la vue "L1 Wall Base" est placée au point "0,0,0".  Cette vue est utilisée dans l'entrée de la fenêtre pour le nœud Viewport.SetBoxCenter avec un nouveau point.  La sortie est une vue repositionnée.
 ___
 ## Exemple de fichier
 

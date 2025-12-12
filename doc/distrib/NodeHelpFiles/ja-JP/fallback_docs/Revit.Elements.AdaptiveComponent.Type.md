@@ -1,9 +1,9 @@
 ## 詳細
-This node retrieves the family and family type of a selected adaptive component.
+このノードは、選択されたアダプティブ コンポーネントのファミリとファミリ タイプを取得します。
 
-In this example, all placed adaptive components are then provided as input to the AdaptiveComponent.Type node. The output is the family and family type names.
+この例では、配置されたすべてのアダプティブ コンポーネントが AdaptiveComponent.Type ノードへの入力として提供されます。出力はファミリ名とファミリ タイプ名です。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+このノードのヘルプ サンプル ファイルを実行するには、Revit ファイルに「Diagnostics Tripod-1 point.rfa」をロードする必要があります。ファミリはここ(C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data)に保存されています。
 ___
 ## サンプル ファイル
 

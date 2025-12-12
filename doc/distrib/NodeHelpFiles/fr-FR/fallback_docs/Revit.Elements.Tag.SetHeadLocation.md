@@ -1,7 +1,7 @@
 ## Description approfondie
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+Ce noeud prend une balise et modifie l'emplacement de sa tête.  Cela nous donne la possibilité d'automatiser un comportement de placement cohérent afin que les étiquettes soient directement au-dessus de l'élément qu'elles balisent.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+Dans cet exemple, une porte est sélectionnée dans la vue "Studio Live Work Core B".  L'emplacement de cette porte est extrait, puis utilisé comme entrée d'origine pour Tag.ByElementAndLocation, avec les valeurs booléennes pour horizontal et addLeader.  L'emplacement d'origine est modifié de sorte que l'emplacement de la balise ne se superpose pas directement sur l'élément à l'aide du nœud Tag.SetHeadLocation.
 
 ___
 ## Exemple de fichier

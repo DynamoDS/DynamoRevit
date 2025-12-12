@@ -1,7 +1,7 @@
 ## 상세
-This node provides a list of available Rule Types that can be used when creating or defining filter rules.  For example, whether it equals, contains, is greater than, or begins with a specific value.
+이 노드는 필터 규칙을 작성하거나 정의할 때 사용할 수 있는 사용 가능한 규칙 유형 리스트를 제공합니다. 예를 들어 같은지, 포함하는지, 보다 큰지 또는 특정 값으로 시작하는지 여부입니다.
 
-In this example, a wall type is identified and the “Fire Rating” parameter is selected to create a filter rule with the value “2HR” and the Select Rule Type set to “Equals.” This FilterRule is then applied to the “L1 Wall Base” view as a view filter.
+이 예에서는 벽 유형이 식별되고 "Fire Rating" 매개변수가 선택되어 "2HR" 값과 규칙 유형 선택이 "같음"으로 설정된 필터 규칙을 작성합니다. 그런 다음 이 FilterRule이 뷰 필터로 "L1 Wall Base" 뷰에 적용됩니다.
 ___
 ## 예제 파일
 

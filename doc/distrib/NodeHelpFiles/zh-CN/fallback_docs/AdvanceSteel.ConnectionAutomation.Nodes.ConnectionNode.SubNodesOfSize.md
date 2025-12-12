@@ -1,7 +1,7 @@
 ## 详细
-This nodes generates new connection nodes with exactly the given number of zones.
+此节点生成具有给定分区数的新连接节点。
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+在此示例中，输出中仅包含具有三个或更多连接分区的图元。每个生成的子列表表示原始图元中的不同分组或结构排列。
 ___
 ## 示例文件
 

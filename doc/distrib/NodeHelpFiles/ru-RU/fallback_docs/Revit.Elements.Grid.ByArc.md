@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a grid based on a arc input.
+Этот узел создает сетку на основе входных данных дуги.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+В этом примере создается точка, которая будет являться центром и использоваться в качестве центральной точки дуги. Эта дуга используется в качестве входных данных для узла Grid.ByArc, после чего создается сетка.
 
 
 ___

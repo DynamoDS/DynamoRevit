@@ -1,7 +1,7 @@
 ## 詳細
-This node sets the location of the end point in a “free-end” tag.
+このノードは、[自由な端点]タグの終端の位置を設定します。
 
-In this example, a tag is selected, and the original points are extracted,  The Y value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderEnd along with the original tag selected.  The output is the new location of the tags’ end point.  See view floor plan L1.
+この例では、タグが選択され、元の点が抽出されます。Y 値が修正され、新しい XYZ 点が定義されて、Tag.SetLeaderEnd ノードへの位置の入力として、選択した元のタグとともに使用されます。出力は、タグの終端の新しい位置です。ビュー平面図 L1 を参照してください。
 
 
 ___

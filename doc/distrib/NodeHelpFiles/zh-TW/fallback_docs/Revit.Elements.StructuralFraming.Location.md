@@ -1,7 +1,7 @@
 ## 深入資訊
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+此節點會從結構構架元素的位置擷取曲線幾何圖形。輸出提供如曲線起點和終點、方向向量和長度等資訊。
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+在此範例中，選取 Snowdon 結構模型中的樑。節點會輸出曲線資料，定義樑在專案中的位置。
 ___
 ## 範例檔案
 

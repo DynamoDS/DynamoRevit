@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+Dieser Block extrahiert die Kurvengeometrie aus der Position eines Tragwerkselements. Die Ausgabe enthält Informationen wie die Start- und Endpunkte der Kurve, den Richtungsvektor und die Länge.
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+In diesem Beispiel wird ein Träger im Snowdon-Tragwerksmodell ausgewählt. Der Block gibt die Kurvendaten aus, die die Position des Trägers im Projekt definieren.
 ___
 ## Beispieldatei
 

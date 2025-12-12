@@ -1,7 +1,7 @@
 ## 深入資訊
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+此節點會取得一個標籤並變更其頭部位置。我們可以自動執行一致的放置行為，方便將標籤直接放在要標記的元素上方。
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+在此範例中，選取「Studio Live Work Core B」視圖中的一扇門。擷取該扇門的位置作為 Tag.ByElementAndLocation 的原始輸入，同時提供 horizontal 和 addLeader 的布林值。使用 Tag.SetHeadLocation 節點修改原始位置，讓標籤位置不會直接疊在元素上面。
 
 ___
 ## 範例檔案

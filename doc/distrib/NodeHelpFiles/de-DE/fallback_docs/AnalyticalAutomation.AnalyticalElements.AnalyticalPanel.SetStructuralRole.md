@@ -1,7 +1,7 @@
 ## Im Detail
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Dieser Block legt die Tragwerksverwendung einer analytischen Schale fest. Der Block aktualisiert die ausgewählte Schalen mit der ausgewählten Verwendung, ohne die Geometrie oder andere Parameter zu ändern.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+In diesem Beispiel wird einer analytischen Schale, die aus einem physischen Element im Snowdon-Tragwerksmodell erstellt wurde, die Tragwerksverwendung Geschossdecke zugewiesen.
 ___
 ## Beispieldatei
 

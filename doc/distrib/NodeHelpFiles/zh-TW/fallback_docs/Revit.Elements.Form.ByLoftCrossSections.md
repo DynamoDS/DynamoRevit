@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+此節點會從一個曲線清單和一個定義輸出塑形是實體還是曲面的布林值來建立塑形。此節點適用於量體、自適應和樣式型的族群。
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+在此範例中，定義多條剖面曲線並饋入 Form.ByLoftCrossSections 節點，然後節點會將這些剖面斷面混成而產生一個連續的 3D 塑形。
 
 ___
 ## 範例檔案

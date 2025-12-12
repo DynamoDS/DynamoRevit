@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a room based on points, a level, a room name and a room number.
+Ten węzeł tworzy pomieszczenie na podstawie punktów, poziomu, nazwy pomieszczenia i numeru pomieszczenia.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+W tym przykładzie z rodzin wewnątrz obudowy (niezdefiniowanej jako pomieszczenie) są wyprowadzane punkty. Punkty te są używane jako dane wejściowe „location” wraz z danym poziomem oraz nazwą i numerem pomieszczenia. Węzeł po węźle Room.ByLocation wyodrębnia nazwę pomieszczenia i parametry numeru pomieszczenia, które zostały utworzone, aby pokazać pomyślne uruchomienie węzła.
 
 ___
 ## Plik przykładowy

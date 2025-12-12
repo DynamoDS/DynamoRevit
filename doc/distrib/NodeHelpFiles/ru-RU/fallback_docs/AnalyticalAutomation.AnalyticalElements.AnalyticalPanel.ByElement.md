@@ -1,7 +1,7 @@
 ## Подробности
-This node creates an analytical panel from a selected model element.
+Этот узел служит для создания аналитической панели из выбранного элемента модели.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+В этом примере в модели конструкции Snowdon выбирается элемент перекрытия, который добавляется в узел в качестве входного элемента. Узел может обновлять геометрию и параметры панели на основе исходного элемента, при необходимости добавлять или поддерживать связь с элементом, а также включать все проемы в исходном элементе. На выходе получается аналитическая панель.
 ___
 ## Файл примера
 

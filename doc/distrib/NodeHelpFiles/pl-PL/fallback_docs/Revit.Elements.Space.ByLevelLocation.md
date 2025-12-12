@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a new Revit Space element at a specified Level and location point.
+Ten węzeł tworzy nowy element przestrzeni programu Revit na określonym poziomie i w określonym punkcie położenia.
 
-In this example, a modeled element has been selected and the location is used as the input to the Space.ByLevelLocation node along with a level, a name and number.
+W tym przykładzie wybrano modelowany element i odpowiednie położenie jest używane jako dane wejściowe węzła Space.ByLevelLocation wraz z poziomem, nazwą i numerem.
 ___
 ## Plik przykładowy
 

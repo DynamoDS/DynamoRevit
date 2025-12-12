@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+Этот узел создает физический несущий элемент из аналитического элемента или обновляет существующий элемент физической модели, который уже соединен с аналитическим элементом. Узел может обновлять геометрию или параметры элемента физической модели на основе аналитического элемента в зависимости от входных параметров. Если аналитический элемент не связан ни с одним элементом физической модели, он создается с использованием информации аналитического элемента.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+В этом примере из несущей колонны выбирается аналитический элемент из проекта супермаркета ACO. Этот аналитический элемент соединяется с этим узлом, и используется логический входной параметр для отображения настроек по умолчанию для обновления геометрии и параметров. Узел создает соответствующую физическую колонну на основе аналитической модели.
 ___
 ## Файл примера
 

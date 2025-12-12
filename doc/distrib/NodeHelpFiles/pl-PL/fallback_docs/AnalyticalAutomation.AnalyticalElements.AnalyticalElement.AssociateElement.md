@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+Ten węzeł kojarzy element analityczny z elementem modelu fizycznego, tak aby odnosiły się do siebie. Jeśli skojarzenie już istnieje, można je zastąpić, jeśli zezwalają na to ustawienia węzła.
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+W tym przykładzie położenie definiują dwa punkty na przecięciach linii siatki A4 i A5 w modelu konstrukcyjnym Snowdon. Poziom (TOS L2) określa umieszczenie pionowe, a linia między tymi punktami tworzy liniowy element analityczny. Następnie zostaje wybrana belka fizyczna w tym samym położeniu, a węzeł ten łączy element analityczny z tą belką.
 ___
 ## Plik przykładowy
 

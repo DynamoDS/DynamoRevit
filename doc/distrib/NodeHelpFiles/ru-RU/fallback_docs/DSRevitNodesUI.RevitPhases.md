@@ -1,7 +1,7 @@
 ## Подробности
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Этот узел позволяет выбрать определенную стадию из модели с помощью раскрывающегося меню.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+В этом примере выбрана стена, и для изменения назначения стадии применяется узел Select Phase. Последний узел подтверждает изменение путем вывода обновленного имени стадии: Existing.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## In profondità
-This node provides the structural role of an analytical panel.
+Questo nodo fornisce il ruolo strutturale di un pannello analitico.
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+In questo esempio, viene selezionato un elemento pavimento dal modello strutturale Snowdon e poi convertito in un pannello analitico. Il nodo restituisce il ruolo strutturale assegnato a tale pannello.
 ___
 ## File di esempio
 
