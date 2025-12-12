@@ -1,7 +1,7 @@
 ## Подробности
-This node identifies the unit type used for length measurements in the active Revit project and outputs its unit type identifier as a string value.
+Этот узел определяет тип единиц, используемый для измерения длины в активном проекте Revit, и выводит идентификатор типа единиц измерения в виде строкового значения.
 
-In this example, the UnitsUtilities.GetCurrentProjectLengthUnit node is placed in the graph with a Watch node connected to its output. The Watch node displays the current project length unit as a string (for example, Feet).
+В этом примере узел UnitsUtilities.GetCurrentProjectLengthUnit размещается на графике вместе с узлом Watch, подключенным к его выходным данным. Узел Watch отображает единицы длины текущего проекта в виде строки (например, футы).
 ___
 ## Файл примера
 

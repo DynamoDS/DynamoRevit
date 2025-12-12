@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a room based on points, a level, a room name and a room number.
+Este nodo crea una habitación basada en puntos, un nivel, un nombre y un número de habitación.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+En este ejemplo, los puntos se derivan de las familias que se encuentran dentro de un recinto (no definido como habitación). Estos puntos se utilizan como entrada de "ubicación" junto con un nivel, un nombre y un número de habitación determinados. El nodo que aparece después de Room.ByLocation extrae los parámetros de nombre y número de habitación que se han creado para mostrar que el nodo se ha ejecutado correctamente.
 
 ___
 ## Archivo de ejemplo

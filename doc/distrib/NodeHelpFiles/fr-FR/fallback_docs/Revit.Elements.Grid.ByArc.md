@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a grid based on a arc input.
+Ce nœud crée une grille basée sur une entrée d'arc.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+Dans cet exemple, un point est créé en tant que centre à utiliser comme point central d'un arc.  Cet arc est utilisé comme entrée dans Grid.ByArc et une grille est créée.
 
 
 ___

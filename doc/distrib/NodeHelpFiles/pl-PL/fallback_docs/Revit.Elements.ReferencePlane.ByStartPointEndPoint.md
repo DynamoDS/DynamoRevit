@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a new Reference Plane in the model by defining its start and end points.
+Ten węzeł tworzy nową płaszczyznę odniesienia w modelu przez zdefiniowanie jej punktu początkowego i końcowego.
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+W tym przykładzie za pomocą węzła Point.ByCoordinates generowane są dwa punkty przy użyciu wejściowych wartości liczbowych. Punkty te są następnie przekazywane do węzła ReferencePlane.ByStartPointEndPoint, który tworzy niestandardową płaszczyznę odniesienia bezpośrednio między tymi dwoma współrzędnymi.
 ___
 ## Plik przykładowy
 

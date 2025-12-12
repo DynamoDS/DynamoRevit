@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+このノードは、ビュー タイプとモデル内の位置点を指定して、アクティブな Revit ドキュメント内に新しい立面図マーカーを作成します。
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+この例では、立面図を配置する目的の位置に点が作成されます。この点は、ElevationMarker.ByViewTypeLocation ノードへの位置入力として、指定したビュー タイプ ファミリとスケールとともに提供されます。次に、作成された ElevationMarker が、定義したスケールでの立面図ビューの生成に使用されます。
 ___
 ## サンプル ファイル
 

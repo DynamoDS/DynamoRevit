@@ -1,7 +1,7 @@
 ## 상세
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+이 노드는 Revit의 특정 구름형 수정기호에 링크된 수정기호 요소를 추출합니다. 클라우드와 연관된 수정기호 데이터를 제공하므로 사용자는 프로젝트 내에서 프로그래밍 방식으로 수정기호 상세 정보를 확인, 추적 또는 검증할 수 있습니다.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+이 예에서는 폭과 길이에 대한 숫자 슬라이더를 사용하여 직사각형을 작성한 다음 곡선으로 분해하고 올바른 방향에 맞게 반전합니다. 이러한 곡선은 선택한 뷰(L1_SD) 및 선택한 수정기호(순서 2 - 시공 금지)와 함께 RevisionCloud.ByCurve 노드를 통해 구름형 수정기호를 생성하는 데 사용됩니다. 생성된 구름형 수정기호는 RevisionCloud.Revision 노드에 연결되며, 이 노드는 해당 구름과 연관된 수정기호를 검색하고 출력합니다. 따라서 사용자는 각 구름형 수정기호에 연결된 수정기호를 확인할 수 있습니다.
 ___
 ## 예제 파일
 

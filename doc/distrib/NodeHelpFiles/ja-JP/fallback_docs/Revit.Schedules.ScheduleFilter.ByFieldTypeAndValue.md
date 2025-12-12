@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+このノードは、フィールド、フィルタ タイプ、値を識別して集計表フィルタを作成します。このフィルタは、次に、集計表で使用することができます。
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+この例では、ビュー(WV_Wall Scheudle)が選択され、集計表フィールドが公開され、「タイプ」が選択されて ScheduleFilter.ByFieldTypeAndValue ノードのフィールドへの入力として、フィルタ タイプ「BeginsWIth」および値「Exterior」とともに使用されます。このフィルタ タイプは、次に、集計表ビュー WV_Wall Scheudle に表示される内容を変更するために使用されます。このフィルタは、タイプが「Exterior」で始まる壁のみを表示します。
 
 ___
 ## サンプル ファイル

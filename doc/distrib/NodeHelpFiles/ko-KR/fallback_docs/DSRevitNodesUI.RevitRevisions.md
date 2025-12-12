@@ -1,7 +1,7 @@
 ## 상세
-This node allows you to select a specific Revision element from the active Revit document.
+이 노드를 사용하면 활성 Revit 문서에서 특정 수정기호 요소를 선택할 수 있습니다.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+이 예에서는 드롭다운 메뉴를 사용하고 현재 문서에서 수정기호를 선택하여 수정기호 선택 노드를 사용합니다. 마지막 두 노드는 일부 수정기호 특성을 보여 줍니다.
 ___
 ## 예제 파일
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node checks whether a given Performance Adviser rule is currently enabled in Revit.
+Этот узел проверяет, включено ли данное правило Консультанта по производительности в Revit.
 
-In this example the rule “View clipping is disabled” is connected to the PerformanceAdviserRule.Enabled node. The output is shown in the Watch node as true, confirming that the rule is enabled and ready for use in model checks.
+В этом примере правило «Подрезка вида отключена» подключено к узлу PerformanceAdviserRule.Enabled. Выходные данные отображаются в узле Watch как True, что подтверждает, что правило активировано и готово к использованию при проверке модели.
 
 
 ___

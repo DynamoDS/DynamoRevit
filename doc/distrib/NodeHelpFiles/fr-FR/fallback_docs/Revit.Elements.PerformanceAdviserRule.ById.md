@@ -1,7 +1,7 @@
 ## Description approfondie
-This node retrieve a specific Performance Adviser rule from Revit by its unique Rule ID.
+Ce nœud récupère une règle Performance Adviser spécifique de Revit en fonction de son ID de règle unique.
 
-In this example, the rule “Project contains unused families and types” is selected and its RuleId is extracted. That ID is converted to a string and then passed back into PerformanceAdviserRule.ById, which re-identifies and retrieves the same rule for further use or automation.
+Dans cet exemple, la règle "Le projet contient des familles et des types inutilisés" est sélectionnée et son RuleId est extrait. Cet ID est converti en chaîne, puis renvoyé à PerformanceAdviserRule.ById, qui réidentifie et récupère la même règle pour une utilisation ultérieure ou une automatisation.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node evaluates the selected Revit element to determine if it is suitable for use as an analytical member. If the element is not valid, the output includes an exception message explaining the reason.
+Этот узел оценивает выбранный элемент Revit и определяет его пригодность для использования в качестве аналитического элемента. Если элемент недопустим, выводится сообщение об исключении с объяснением причины.
 
-In this example, an element is defined by its Element ID and provided to Element.IsValidForAnalyticalMember. The outputs include a Boolean result indicating the element’s validity and an exception message if applicable.
+В этом примере элемент определяется по идентификатору и передается в узел Element.IsValidForAnalyticalMember. Выходные данные включают логический результат, указывающий на допустимость элемента, и сообщение об исключении в применимых случаях.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Tento uzel vytvoří novou značku výšky v aktivním dokumentu aplikace Revit zadáním typu pohledu a bodu umístění v modelu.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+V tomto příkladu je bod vytvořen v požadovaném místě, kam bude umístěna výška. Tento bod je zadán jako vstup umístění pro uzel ElevationMarker.ByViewTypeLocation společně se zadanou rodinou typu pohledu a faktorem měřítka. Výsledná značka ElevationMarker se pak použije k vytvoření bokorysných pohledů v definovaném měřítku.
 ___
 ## Vzorový soubor
 

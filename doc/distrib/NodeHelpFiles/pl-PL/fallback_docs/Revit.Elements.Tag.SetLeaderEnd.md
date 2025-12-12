@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node sets the location of the end point in a “free-end” tag.
+Ten węzeł ustawia położenie punktu końcowego w oznaczeniu z końcem swobodnym.
 
-In this example, a tag is selected, and the original points are extracted,  The Y value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderEnd along with the original tag selected.  The output is the new location of the tags’ end point.  See view floor plan L1.
+W tym przykładzie wybierane jest oznaczenie i wyodrębniane są oryginalne punkty. Wartość Y zostaje zmodyfikowana, a następnie zostają zdefiniowane nowe punkty XYZ i użyte jako pozycja danych wejściowych location dla węzła Tag.SetLeaderEnd wraz z wybranym oryginalnym oznaczeniem. Wynikiem jest nowe położenie punktu końcowego oznaczenia. Zobacz rzut kondygnacji L1.
 
 
 ___

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a grid line based on a start point and end point.
+Этот узел создает линию сетки на основе начальной и конечной точек.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+В этом примере создаются две точки, которые используются в качестве входных данных для узла Grid.ByStartPointEndPoint. Создается сетка с именем Dynamo.
 
 ___
 ## Файл примера

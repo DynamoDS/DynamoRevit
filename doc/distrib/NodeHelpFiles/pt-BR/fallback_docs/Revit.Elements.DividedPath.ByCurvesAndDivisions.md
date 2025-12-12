@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a Divided Path element in a massing family by dividing curves into a specified number of equal segments.
+Esse nó cria um elemento de caminho dividido em uma família de massa dividindo as curvas em um número especificado de segmentos iguais.
 
-In this example, 2 model curves are created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurvesAndDivisions node. An integer value defines the number of equal divisions along the curves. The final node displays the resulting division points along the curves.
+Neste exemplo, são criadas duas curvas de modelo com base em um ponto inicial e um ponto final especificados e, em seguida, usadas como a curva de entrada para o nó DividedPath.ByCurvesAndDivisions. Um valor inteiro define o número de divisões iguais ao longo das curvas. O nó final exibe os pontos de divisão resultantes ao longo das curvas.
 ___
 ## Arquivo de exemplo
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node performs a ray bounce analysis within the Revit model. Starting from a given origin point and traveling along a specified direction vector, it traces the path of the ray as it intersects elements in the model. When the ray hits a surface, it can continue bouncing off that surface, depending on the number of bounces allowed, simulating light, visibility, or path reflection behavior.
+このノードは、Revit モデル内でレイ バウンス解析を実行します。指定された始点から開始し、指定された方向ベクトルに沿って移動し、レイがモデル内の要素と交差するときの光線のパスを追跡します。光線はサーフェスに当たると、許可されているバウンスの数に応じて、そのサーフェスで継続的に跳ね返り、照明、可視性、またはパス反射の動作がシミュレートされます。
 
-In this example, an element is selected and its' location is used for input origin to node RayBounce.ByOriginDirection, along with a direction, maxBounces and, a view.
+この例では、要素が選択され、その位置が RayBounce.ByOriginDirection ノードへの入力始点として、方向、maxBounces、ビューとともに使用されます。
 ___
 ## サンプル ファイル
 

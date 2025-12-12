@@ -1,7 +1,7 @@
 ## Im Detail
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Dieser Block weist einem analytischen Element einen Wert für die Tragwerksverwendung zu. Die Verwendung definiert, wie das analytische Element im Berechnungsmodell kategorisiert wird.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+In diesem Beispiel wird ein Element im Snowdon-Tragwerksmodell in ein analytisches Element konvertiert, und dieser Block weist diesem analytischen Element die Rolle Binder zu.
 ___
 ## Beispieldatei
 

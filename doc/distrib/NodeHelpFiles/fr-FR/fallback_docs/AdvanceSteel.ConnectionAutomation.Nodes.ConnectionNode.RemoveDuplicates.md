@@ -1,7 +1,7 @@
 ## Description approfondie
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Ce noeud trouve tous les noeuds de connexion qui sont des permutations les uns des autres { [beam1, beam2], [beam2, beam1] }, ne conserve que le premier noeud { [beam1, beam2] } et supprime les éléments nuls et vides.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+Dans cet exemple, trois poutres qui se rejoignent à une seule intersection sont sélectionnées pour montrer le comportement par défaut de chaque nœud de connexion et comment le nombre de permutations possibles est réduit.
 ___
 ## Exemple de fichier
 

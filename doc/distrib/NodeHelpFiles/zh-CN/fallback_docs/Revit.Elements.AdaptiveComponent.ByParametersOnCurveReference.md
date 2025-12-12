@@ -1,9 +1,9 @@
 ## 详细
-This node places adaptive components by mapping parameter values along a selected curve to define placement positions for the adaptive family type.
+此节点通过沿选定曲线映射参数值来放置自适应构件，从而定义自适应族类型的放置位置。
 
-In this example, a curve is drawn in the mass family and used for curve input. Parameter values are provided to position instances along the curve, and the "Diagnostic Tripod – 1 Point.rfa" family is chosen as the family type. The AdaptiveComponent.ByParametersOnCurveReference node outputs adaptive components placed along the selected curve.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+在本示例中，在体量族中绘制一条曲线，并用于曲线输入。提供了参数值以沿曲线定位实例，并选择了“Diagnostic Tripod – 1 Point.rfa”族作为族类型。AdaptiveComponent.ByParametersOnCurveReference 节点输出沿选定曲线放置的自适应构件。请注意，在运行此图形之前，需要将“Diagnostic Tripod – 1 Point.rfa”载入体量族中。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+要运行此节点帮助示例文件，需要将“Diagnostics Tripod-1 point.rfa”载入到 Revit 文件中。该族存储在此处。C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 
 ___
 ## 示例文件

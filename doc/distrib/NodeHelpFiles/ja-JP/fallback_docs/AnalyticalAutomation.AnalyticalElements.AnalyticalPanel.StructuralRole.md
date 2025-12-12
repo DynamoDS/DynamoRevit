@@ -1,7 +1,7 @@
 ## 詳細
-This node provides the structural role of an analytical panel.
+このノードは、解析用パネルの構造の役割を提供します。
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+この例では、Snowdon 構造モデルから床要素が選択され、解析用パネルに変換されます。ノードは、そのパネルに割り当てられている構造の役割を出力します。
 ___
 ## サンプル ファイル
 

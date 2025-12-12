@@ -1,7 +1,7 @@
 ## 详细
-This node creates a view based off a level input.
+此节点基于标高输入创建视图。
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+在此示例中，标高(L2)用作 StructrualPlanView.ByLevel 节点的输入(标高)，而输出是新视图。最后一个节点显示视图名称(L2)。
 
 ___
 ## 示例文件

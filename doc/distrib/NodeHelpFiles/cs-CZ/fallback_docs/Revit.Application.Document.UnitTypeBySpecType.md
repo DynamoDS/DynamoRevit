@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the unit being used in a project for any given Spec Type.
+Tento uzel získá jednotku, která se používá v projektu pro libovolný daný Typ specifikace.
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+V tomto příkladu se do seznamu zadávají hodnoty Typů specifikací (Plocha a Cena za plochu).  Tento seznam se používá vuzlu Document.UnitTypeBySpecType jako vstup pro prvek specType spolu s aktuálním dokumentem jako vstupem dokumentu.  Výsledky zobrazují  pro aktuální projekt hodnoty jednotek specifické pro projekt.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+Esse nó cria uma forma com base em uma lista de curvas e um valor booleano que define se a forma de saída é sólida ou uma superfície.  Esse nó funciona com famílias de massa, adaptativas e com base em padrões.
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+Neste exemplo, várias curvas de seção transversal são definidas e inseridas no nó Form.ByLoftCrossSections. Em seguida, o nó gera uma forma 3D contínua ao ser elevada por esses cortes.
 
 ___
 ## Arquivo de exemplo

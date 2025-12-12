@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Tento uzel vytvoří strop s daným obrysem (uzavřená křivka), typem stropu a podlažím.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+V tomto příkladu se vytvoří obdélník, který se použije jako vstupní obrys uzlu Ceiling.ByOutlineTypeAndLevel společně s typem stropu a podlažím.
 
 ___
 ## Vzorový soubor

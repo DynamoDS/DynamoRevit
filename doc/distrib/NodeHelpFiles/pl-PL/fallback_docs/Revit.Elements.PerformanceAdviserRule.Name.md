@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieve the display name of a Performance Adviser rule.
+Ten węzeł pobiera nazwę wyświetlaną reguły doradcy wydajności.
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+Na tym wykresie wybrano konkretną regułę doradcy wydajności i przekazano ją do węzła PerformanceAdviserRule.Name, który generuje nazwę wyświetlaną reguły „Project contains unused families and types” (Projekt zawiera nieużywane rodziny i typy).
 ___
 ## Plik przykładowy
 

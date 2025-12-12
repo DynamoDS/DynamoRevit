@@ -1,7 +1,7 @@
 ## In profondità
-This node gets the sheet a schedule is on.
+Questo nodo ottiene la tavola su cui si trova un abaco.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+In questo esempio, viene posizionato un abaco su una tavola in una posizione specificata. L'abaco viene quindi inserito nel nodo ScheduleOnSheet.Sheet, dove viene visualizzato il nome della tavola (Name = Cover). Infine, il nome viene estratto in una stringa.
 
 ___
 ## File di esempio

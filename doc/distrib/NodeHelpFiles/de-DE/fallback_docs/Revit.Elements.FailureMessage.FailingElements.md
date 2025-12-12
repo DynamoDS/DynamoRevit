@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+Dieser Block extrahiert die Elemente, die einen Fehler über ein bestimmtes FailureMessage-Objekt ausgelöst haben.
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+In diesem Beispiel prüft die Leistungsberater-Regel, ob das Zuschneiden für die Ansicht deaktiviert ist. Die Ergebnisse werden an den Block FailureMessage.FailingElements übergeben, der die spezifischen Elemente im Modell ausgibt, für die diese Prüfung fehlgeschlagen ist.
 ___
 ## Beispieldatei
 

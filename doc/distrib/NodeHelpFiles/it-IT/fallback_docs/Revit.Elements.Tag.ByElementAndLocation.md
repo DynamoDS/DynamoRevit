@@ -1,7 +1,7 @@
 ## In profondità
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Questo nodo assegna etichette agli elementi di Revit in base a view, element, location, horizontal (in caso contrario, l'etichetta verrà orientata in base all'elemento) e addLeader come input.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+In questo esempio, viene selezionata una porta nella vista “Studio Live Work Core B”. La posizione di tale porta viene estratta e quindi utilizzata come input originale in Tag.ByElementAndLocation insieme ai valori Boolean per horizontal e addLeader. La posizione originale viene modificata in modo che la posizione dell'etichetta non si sovrapponga direttamente all'elemento utilizzando il nodo Tag.SetHeadLocation.
 
 ___
 ## File di esempio

@@ -1,9 +1,9 @@
 ## 深入資訊
-This node places adaptive components by applying UV parameter values to a selected face, defining the placement locations for the adaptive family type.
+此節點會將 UV 參數值套用到選取的面，並定義自適應族群類型的放置位置，來放置自適應元件。
 
-In this example, a surface is created within the mass family by extruding a curve (this is done manually), and that surface is selected as the face input. UV values are then provided to determine placement positions, and the Diagnostic Tripod – 1 Point.rfa family is used as the type. The AdaptiveComponent.ByParametersOnFace node outputs adaptive components positioned on the selected face.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+在此範例中，透過擠出曲線在量體族群內建立曲面 (手動完成)，然後選取該曲面作為面輸入。接著提供 UV 值決定放置位置，使用「Diagnostic Tripod – 1 Point.rfa」族群作為類型。AdaptiveComponent.ByParametersOnFace 節點會輸出放置在所選面上的自適應元件。請注意，執行此圖表之前，必須將「Diagnostic Tripod – 1 Point.rfa」載入到量體族群中。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+若要執行此節點說明範例檔案，您必須將「Diagnostics Tripod-1 point.rfa」載入到 Revit 檔案中。該族群儲存在 C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## 範例檔案
 

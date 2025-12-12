@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Tento uzel označí prvky aplikace Revit s daným pohledem, prvkem, umístěním, vodorovností (pokud ne, bude popisek orientován podle prvku) a addLeader jako vstupy.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+V tomto příkladu jsou vybrány dveře v pohledu „Studio Live Work: CoreB“.  Umístění těchto dveří je extrahováno a poté použito jako původní vstup do Tag.ByElementAndLocation společně s booleovskými hodnotami pro vodorovnost a addLeader.  Původní umístění je upraveno tak, aby umístění popisku nepřekrývalo přímo horní část prvku pomocí uzlu Tag.SetHeadLocation.
 
 ___
 ## Vzorový soubor

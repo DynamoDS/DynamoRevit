@@ -1,7 +1,7 @@
 ## 深入資訊
-This node evaluates the selected Revit element to determine if it is suitable for use as an analytical member. If the element is not valid, the output includes an exception message explaining the reason.
+此節點會演算選取的 Revit 元素，判定是否適合作為分析構件。如果元素無效，輸出會包含解釋原因的例外訊息。
 
-In this example, an element is defined by its Element ID and provided to Element.IsValidForAnalyticalMember. The outputs include a Boolean result indicating the element’s validity and an exception message if applicable.
+在此範例中，以元素 ID 定義元素，並提供給 Element.IsValidForAnalyticalMember。輸出包括布林結果，指出元素是否有效和例外訊息 (如果適用)。
 ___
 ## 範例檔案
 

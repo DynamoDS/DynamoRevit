@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Этот узел создает потолок по заданному контуру (замкнутая кривая), типу потолка и уровню.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+В этом примере создается прямоугольник, который используется в качестве входного контура для узла Ceiling.ByOutlineTypeAndLevel, а также типа потолка и уровня.
 
 ___
 ## Файл примера

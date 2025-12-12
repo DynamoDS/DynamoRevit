@@ -1,7 +1,7 @@
 ## 深入資訊
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+此節點會移除分析板中的開口。節點會刪除指定的開口並更新分析板，不會影響分析板的幾何圖形或結構角色。
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+在此範例中，從 Snowdon 結構模型中的樓板建立分析板。使用此節點選取分析板中的第一個開口並移除。
 ___
 ## 範例檔案
 

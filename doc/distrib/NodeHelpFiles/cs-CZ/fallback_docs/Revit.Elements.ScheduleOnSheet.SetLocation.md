@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node resets the location of a schedule on a sheet.
+Tento uzel obnoví umístění výkazu na výkresu.
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+V tomto příkladu je výkaz umístěn na výkres a poté zadán do uzlu SheduleOnSheet.SetLocation společně snovým bodem.  Výkaz se poté na stejném výkresu přemístí.  Poslední uzel získá novou pozici výkazů.
 ___
 ## Vzorový soubor
 

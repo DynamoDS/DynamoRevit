@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Ten węzeł pobiera wszystkie obiekty odniesień krzywych z elementu. Dla elementów, które nie mają krzywych, zostaną podane wartości null.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+W tym przykładzie wybierany jest element (poręcz), który jest następnie używany jako dane wejściowe węzła Elements.ElementCurveReferences. Dane wyjściowe to odniesienie krzywej tego elementu.
 
 ___
 ## Plik przykładowy

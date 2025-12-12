@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Ten węzeł tworzy stężenie konstrukcyjne na podstawie krzywej, poziomu i typu rodziny ram. Wynikiem jest nowo utworzony element stężenia w projekcie.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+W tym przykładzie rysowana jest linia od poziomu L2 przy przecięciu siatki A4 do poziomu L3 przy przecięciu siatki A5. Węzeł używa tej krzywej, wraz z wybranym poziomem i typem rodziny, do utworzenia stężenia w modelu konstrukcyjnym Snowdon.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node identifies the unit type used for length measurements in the active Revit project and outputs its unit type identifier as a string value.
+このノードは、アクティブな Revit プロジェクトで長さの計測に使用される単位タイプを識別し、その単位タイプ識別子を文字列値として出力します。
 
-In this example, the UnitsUtilities.GetCurrentProjectLengthUnit node is placed in the graph with a Watch node connected to its output. The Watch node displays the current project length unit as a string (for example, Feet).
+この例では、Watch ノードを出力に接続した状態で UnitsUtilities.GetCurrentProjectLengthUnit ノードがグラフに配置されます。Watch ノードに、現在のプロジェクトの長さの単位が文字列(フィートなど)として表示されます。
 ___
 ## サンプル ファイル
 

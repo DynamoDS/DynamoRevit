@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns a list of available connection types that can be loaded.
+Ten węzeł zwraca listę dostępnych typów połączeń, które można wczytać.
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+W tym przykładzie zwracamy listę połączeń dostępnych w modelu programu Revit skojarzonych z podaną ścieżką pliku.
 ___
 ## Plik przykładowy
 

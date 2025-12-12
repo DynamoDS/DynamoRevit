@@ -1,7 +1,7 @@
 ## 상세
-The Revision.Issued node in Dynamo is used to check whether a revision in Revit is marked as issued. It returns a true or false value (Boolean), helping teams quickly verify the status of revisions without opening the Revit revision settings.
+Dynamo의 Revision.Issued 노드는 Revit의 수정기호가 발행됨으로 표시되는지 여부를 확인하는 데 사용됩니다. true 또는 false 값(부울)을 반환하므로 팀이 Revit 수정기호 설정을 열지 않고도 수정기호의 상태를 신속하게 확인할 수 있습니다.
 
-In this graph, the Select Revision node is used to choose a revision from the project. The Revision.Issued node then checks if the selected revision is issued, and the result is displayed in the Watch node as either true or false. This makes it easy to confirm the issue status of a revision directly through Dynamo.
+이 그래프에서 수정기호 선택 노드는 프로젝트에서 수정기호를 선택하는 데 사용됩니다. 그런 다음 Revision.Issued 노드가 선택한 수정기호가 발행되었는지 확인하고 결과가 Watch 노드에 true 또는 false로 표시됩니다. 이렇게 하면 Dynamo를 통해 직접 수정기호의 이슈 상태를 쉽게 확인할 수 있습니다.
 
 ___
 ## 예제 파일

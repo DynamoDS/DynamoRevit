@@ -1,7 +1,7 @@
 ## Im Detail
-This node provides the structural role of an analytical panel.
+Dieser Block stellt die Tragwerksverwendung einer analytischen Schale bereit.
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+In diesem Beispiel wird ein Geschossdeckenelement aus dem Snowdon-Tragwerksmodell ausgewählt und in eine analytische Schale konvertiert. Der Block gibt die dieser Platte zugewiesene Tragwerksverwendung aus.
 ___
 ## Beispieldatei
 

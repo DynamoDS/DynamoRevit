@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns a list of available connection types that can be loaded from an external Revit (.rvt) file.
+Ten węzeł zwraca listę dostępnych typów połączeń, które można wczytać z zewnętrznego pliku programu Revit (.rvt).
 
-In this example, we return a list of connections that are available in the Revit model associated to an external Revit file from the provided file path.  Note that the connection types loaded should not already exist in the model or an error will be thrown.
+W tym przykładzie zwracamy listę połączeń dostępnych w modelu programu Revit skojarzonych z zewnętrznym plikiem programu Revit z podanej ścieżki pliku. Wczytane typy połączeń nie powinny jeszcze istnieć w modelu, w przeciwnym razie zostanie zgłoszony błąd.
 ___
 ## Plik przykładowy
 

@@ -1,8 +1,8 @@
 ## Informacje szczegółowe
 
-This node adds a point to a given floor.
+Ten węzeł dodaje punkt do danego stropu.
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+W tym przykładzie węzeł Number Slider służy do wygenerowania prostokąta, który jest następnie używany jako dane wejściowe węzła Floor.ByOutlineTypeAndLevel wraz z danym typem stropu i poziomem. Używamy tego stropu wraz z nowym punktem jako pozycji danych wejściowych węzła Floor.AddPoint.
 
 
 ___

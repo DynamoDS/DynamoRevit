@@ -1,7 +1,7 @@
 ## 詳細
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+このノードは、指定された要素を評価し、要素に定義された位置があるかどうかを示すブール値と、定義されていない理由を示す例外メッセージを返します。
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+この例では、要素は Element By Id ノードを使用してその要素 ID で定義され、次に、Element.HasActualLocation に提供されます。出力は、要素に実際の位置がある場合は true、ない場合は false と例外メッセージを示します。
 ___
 ## サンプル ファイル
 

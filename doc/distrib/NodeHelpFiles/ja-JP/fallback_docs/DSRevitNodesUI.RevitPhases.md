@@ -1,7 +1,7 @@
 ## 詳細
-This node lets you choose a specific Phase from the model using a drop-down menu.
+このノードを使用すると、ドロップダウン メニューを使用してモデルから特定の相を選択することができます。
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+この例では、壁を選択し、Select Phase ノードを適用して壁の相の割り当てを修正します。最後のノードで、更新されたフェーズ名「Existing」を表示して変更を確認します。
 ___
 ## サンプル ファイル
 

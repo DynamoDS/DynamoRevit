@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+Ten węzeł pobiera wartość liczbową długości i identyfikator typu jednostki, a następnie konwertuje wartość wejściową na jednostki długości aktywnego projektu programu Revit. Dane wyjściowe to wartość typu double reprezentująca przekonwertowany wynik.
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+W tym przykładzie suwak Number Slider zapewnia wartość długości, a na potrzeby pobrania ciągu Unit.TypeId wybierana jest jednostka (na przykład metry). Obie pozycje są połączone z węzłem UnitsUtilities.ConvertToCurrentProjectLengthUnit, który zwraca przekonwertowaną wartość długości na podstawie ustawień jednostek projektu.
 ___
 ## Plik przykładowy
 

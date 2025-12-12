@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Questo nodo crea un filtro di abaco identificando un campo, un tipo di filtro e un valore. Questo filtro può quindi essere utilizzato in un abaco.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+"In questo esempio, viene selezionata una vista (WV_Wall Schedule), vengono esposti i campi dell'abaco, viene selezionato “Type” che è poi utilizzato come input field nel nodo ScheduleFilter.ByFieldTypeAndValue insieme al tipo di filtro “BeginsWIth” e al valore “Exterior”. Questo tipo di filtro viene quindi utilizzato per modificare ciò che è visualizzato nella vista abaco WV_Wall Schedule. Questo filtro mostra solo i muri il cui tipo inizia con “Exterior”.
 
 ___
 ## File di esempio

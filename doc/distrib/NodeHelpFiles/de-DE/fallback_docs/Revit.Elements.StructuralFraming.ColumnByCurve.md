@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Dieser Block erstellt eine Tragwerksstütze basierend auf einer Kurve, einer Ebene und einem Stützenfamilientyp. Die Ausgabe ist das neu erstellte Tragwerksstützenelement im Projekt.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+In diesem Beispiel wird eine Linie bei Rasterkreuzpunkt A4 zwischen den Ebenen L1 35 Low und L3 im Snowdon-Tragwerksmodell gezeichnet. Der Block verwendet diese Kurve zusammen mit der ausgewählten Ebene und dem ausgewählten Stützentyp, um eine Tragwerksstütze zu erstellen.
 ___
 ## Beispieldatei
 

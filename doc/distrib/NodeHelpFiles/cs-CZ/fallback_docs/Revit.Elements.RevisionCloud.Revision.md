@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+Tento uzel extrahuje prvek revize připojený ke konkrétnímu reviznímu obláčku v aplikaci Revit. Poskytuje data revizí asociovaná s tímto obláčkem a umožňuje uživatelům kontrolovat, sledovat nebo ověřovat podrobnosti revizí programově v rámci projektu.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+V tomto příkladu je obdélník vytvořen pomocí číselných posuvníků šířky a délky, poté rozložen do křivek a obrácen, aby byla zajištěna správná orientace. Tyto křivky se spolu s vybraným pohledem (L1_SD) a vybranou revizí (násl. 2 – Není určeno pro konstrukci) používají ke generování revizního obláčku prostřednictvím uzlu RevisionCloud.ByCurve. Výsledný revizní obláček je připojen k uzlu RevisionCloud.Revision, který načte a vytvoří výstup revize asociované s daným obláčkem. Uživatelé tak mohou potvrdit, která revize je svázána s každým revizním obláčkem.
 ___
 ## Vzorový soubor
 

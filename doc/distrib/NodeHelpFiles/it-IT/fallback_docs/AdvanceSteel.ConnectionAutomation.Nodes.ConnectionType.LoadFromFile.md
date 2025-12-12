@@ -1,7 +1,7 @@
 ## In profondità
-This node returns a list of available connection types that can be loaded from an external Revit (.rvt) file.
+Questo nodo restituisce un elenco dei tipi di connessione disponibili che possono essere caricati da un file (.rvt) di Revit esterno.
 
-In this example, we return a list of connections that are available in the Revit model associated to an external Revit file from the provided file path.  Note that the connection types loaded should not already exist in the model or an error will be thrown.
+In questo esempio, viene restituito un elenco di connessioni disponibili nel modello di Revit associato ad un file di Revit esterno proveniente dal percorso fornito. Tenere presente che i tipi di connessione caricati non devono esistere già nel modello, altrimenti verrà generato un errore.
 ___
 ## File di esempio
 

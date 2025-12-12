@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the collection of points that make up the divisions along a given Divided Path element in Revit. Each point corresponds to a division location along the underlying curve or surface path created by the DividedPath element.
+Этот узел возвращает коллекцию точек, образующих деления вдоль заданного элемента разделенной траектории в Revit. Каждая точка соответствует расположению разделения вдоль исходной кривой или траектории поверхности, созданной элементом DividedPath.
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve along with a integer value defining the number of equal divisions along the curve. The final node DividedPath.Points displays the resulting division points along the curve.
+В этом примере кривая модели создается из заданных начальной и конечной точек, а затем используется в качестве входной кривой вместе с целым значением, определяющим количество равных делений вдоль кривой. Последний узел, DividedPath.Points, отображает полученные точки разделения вдоль кривой.
 ___
 ## Файл примера
 

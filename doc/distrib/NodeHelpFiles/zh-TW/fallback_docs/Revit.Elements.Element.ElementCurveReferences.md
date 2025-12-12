@@ -1,7 +1,7 @@
 ## 深入資訊
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+此節點會取得元素的所有曲線參考物件。對於沒有曲線的元素，將提供空值。
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+在此範例中，選取元素 (扶手) 作為 Elements.ElementCurveReferences 的輸入。輸出是該元素的彎曲參考。
 
 ___
 ## 範例檔案

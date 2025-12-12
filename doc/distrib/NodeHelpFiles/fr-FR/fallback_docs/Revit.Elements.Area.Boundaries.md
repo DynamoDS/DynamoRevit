@@ -1,7 +1,7 @@
 ## Description approfondie
-This node gets the lines (curves) used to generate the boundary of an area.
+Ce noeud récupère les lignes (courbes) utilisées pour générer la limite d'une zone.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+Dans cet exemple, toutes les zones du projet sont récupérées.  Le nom de l'élément (zone) et Area.Boundries sont extraits et affichés.
 
 ___
 ## Exemple de fichier

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node gets the sketch points of a selected roof.
+Ce noeud récupère les points d'esquisse d'un toit sélectionné.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+Dans cet exemple, tous les toits sont sélectionnés et utilisés comme entrée pour Roof.Points.  La sortie correspond à chaque point de l'esquisse de toit sélectionnée.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## En detalle:
-This node converts an analytical member or analytical panel into an analytical element.
+Este nodo convierte una barra o un panel analíticos en un elemento analítico.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+En este ejemplo, se selecciona una barra analítica y se introduce en el nodo. La salida es un elemento analítico que se corresponde con la entrada, lo que revela la distinción entre una barra analítica y un elemento analítico, aunque sus propiedades parezcan similares.
 ___
 ## Archivo de ejemplo
 

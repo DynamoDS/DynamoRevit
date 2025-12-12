@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+Este nodo crea una barra analítica a partir de un elemento físico existente. El nodo puede heredar la geometría y los parámetros geométricos del elemento, transferir valores de parámetros y, opcionalmente, establecer o mantener una asociación con el elemento original.
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+En este ejemplo, se selecciona un elemento físico del modelo estructural de Snowdon y se convierte en una barra analítica empleando este nodo.
 ___
 ## Archivo de ejemplo
 

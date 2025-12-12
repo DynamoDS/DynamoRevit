@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Ten węzeł usuwa otwory z panelu analitycznego. Węzeł aktualizuje panel, usuwając określone otwory bez wpływu na geometrię panelu ani rolę konstrukcyjną.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+W tym przykładzie tworzony jest panel analityczny ze stropu w modelu konstrukcyjnym Snowdon. Pierwszy otwór w panelu zostaje wybrany i usunięty za pomocą tego węzła.
 ___
 ## Plik przykładowy
 

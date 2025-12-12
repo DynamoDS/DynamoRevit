@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the descriptive text of a Performance Adviser rule.
+Ce noeud extrait le texte descriptif d'une règle Performance Adviser.
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+Dans cet exemple, la règle sélectionnée "Le découpage de la vue est désactivé" est transmise au nœud PerformanceAdviserRule.Description. La description s'affiche ensuite dans le nœud Observation, indiquant l'objectif et l'effet de la règle.
 ___
 ## Exemple de fichier
 

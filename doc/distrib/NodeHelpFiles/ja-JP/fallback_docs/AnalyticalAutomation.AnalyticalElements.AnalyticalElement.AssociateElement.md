@@ -1,7 +1,7 @@
 ## 詳細
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+このノードは、解析要素を構造モデル要素に関連付けて、互いに参照し合うようにします。関連付けが既に存在し、ノード設定で許可されている場合は、関連付けを置き換えることができます。
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+この例では、Snowdon 構造モデルの通芯交点 A4 と A5 にある 2 点で位置が定義されています。レベル(L2 TOS)によって垂直方向の配置が確立され、これらの点の間の線分が解析用部材を形成します。次に、同じ位置にある構造梁が選択され、このノードにより解析要素がその梁にリンクされます。
 ___
 ## サンプル ファイル
 

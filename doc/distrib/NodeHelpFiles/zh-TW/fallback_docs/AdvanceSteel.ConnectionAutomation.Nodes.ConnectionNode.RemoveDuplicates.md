@@ -1,7 +1,7 @@
 ## 深入資訊
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+此節點會尋找所有交互排列 { [beam1, beam2], [beam2, beam1] } 的接頭節點，只保留第一個節點 { [beam1, beam2] } 並移除空值和空項目。
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+在此範例中，選取了在單一交點相交的三根樑，以展示每個接頭節點的預設行為，以及如何減少可能的排列數目。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Tento uzel označí prvky aplikace Revit s daným pohledem, prvkem, odsazením, horizontalAligment, verticalAlignment, vodorovností (pokud ne, bude popisek orientován podle prvku) a addLeader jako vstupy.
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+V tomto příkladu jsou dveře vybrány v pohledu „Studio Live Work: Core B“ a použijí se jako vstupy pro uzel Tag.ByelementAndOffset.  Umístění těchto dveří je extrahováno a použito jako počáteční bod vektoru.  Stejný bod je upraven pomocí posuvníku, který změní body x a y, a použije se jako koncový bod vektoru.  Tento vektor se používá jako vstup pro odsazení společně s hodnotami true ve vstupech vodorovnosti a addLeader.  Položka horizontalAlignment je definována rozevíracími hodnotami uzlu vodorovného zarovnání textu výběru (vlevo, na střed, vpravo) a rozevíracími hodnotami uzlu svislého zarovnání textu výběru (dolní, střed, horní).
 
 ___
 ## Vzorový soubor

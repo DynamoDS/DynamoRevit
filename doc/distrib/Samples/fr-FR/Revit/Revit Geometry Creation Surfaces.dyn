@@ -2,7 +2,7 @@
   "Uuid": "c9e9c242-5ada-4606-9641-a5424410938d",
   "IsCustomNode": false,
   "Description": "Ce graphique présente plusieurs méthodes de création de surfaces dans Dynamo et deux méthodes de conversion de géométrie en géométrie Revit.",
-  "Name": "Revit Geometry Creation Surfaces",
+  "Name": "Création de géométrie Revit - Surfaces",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -171,7 +171,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 10.0
     },
     {
@@ -192,7 +192,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 5.0
     },
     {
@@ -589,7 +589,7 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 155.11111111111111,
+      "WatchWidth": 154.66666666666666,
       "WatchHeight": 40.0,
       "Id": "6d24a4fce79f444091061aa0e15184f7",
       "NodeType": "ExtensionNode",
@@ -620,7 +620,7 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 147.55555555555554,
+      "WatchWidth": 147.33333333333334,
       "WatchHeight": 40.0,
       "Id": "6867de7e064c4d3c856f8753c2b00317",
       "NodeType": "ExtensionNode",
@@ -839,7 +839,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": -5.0
     },
     {
@@ -986,7 +986,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 5.0
     },
     {
@@ -1162,7 +1162,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 5.0
     },
     {
@@ -1183,7 +1183,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 10.0
     },
     {
@@ -1204,7 +1204,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 15.0
     },
     {
@@ -1321,7 +1321,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": -10.0
     },
     {
@@ -1429,7 +1429,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Permet de créer un nombre.",
+      "Description": "Crée un nombre.",
       "InputValue": 10.0
     },
     {
@@ -1828,19 +1828,19 @@
     {
       "NodeId": "4969601b-341f-4d9c-96b4-a3886375566c",
       "Binding": {
-        "ByGeometries_InClassDecl-1_InFunctionScope-1_Instance0_4969601b-341f-4d9c-96b4-a3886375566c": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7eB3BDMFrPRMxwKzmJwNMe7u/n1b31xaFWMeAVLfa77nCfBKPCRi017IMvBEbMLFCNn8rmkpMlZLT0ZY8ywHyroBPNd/+ts9H1D2z5omM5sXQAAAA=="
+        "ByGeometries_InClassDecl-1_InFunctionScope-1_Instance0_4969601b-341f-4d9c-96b4-a3886375566c": "H4sIAAAAAAAACh3LIQ7DMAwF0Lt8XEtuOsdO8Ujw4DyQZFpVUjCFVbl7pT7+3ie+pResOB2v/t+PLT8dqyNJiC2aUVMzegStVItGKmySokqoPyZmZm0ijsmRj37fZbaQBsbnAsRZjPNdAAAA"
       }
     },
     {
       "NodeId": "7780a4bc-844f-4f2e-8639-f5c78aa8191d",
       "Binding": {
-        "ByLoftCrossSections_InClassDecl-1_InFunctionScope-1_Instance0_7780a4bc-844f-4f2e-8639-f5c78aa8191d": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSZbukCLxqCRLKIfSjAIUke4OwnjZ32QQw0Y8SiWep/XMU+KUdF7KSYmR0acJRHryHvZqd9LjCFaE0pLzMxDyqxoFPNV/2uN79oX7/YBbp+RdV0AAAA="
+        "ByLoftCrossSections_InClassDecl-1_InFunctionScope-1_Instance0_7780a4bc-844f-4f2e-8639-f5c78aa8191d": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZMy2NqhMWgkRWwjEAyCzBHuTsLzb3mwpZow4DHM9T6vYxoNgyF6F0pQpSKq1DvJlJMESqw+BvEu70zMzFL6aGgM01X/27Xayot3/QCZEuhLXQAAAA=="
       }
     },
     {
       "NodeId": "7104a6e9-86ff-48ef-adb8-a7c7b8509e1d",
       "Binding": {
-        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_7104a6e9-86ff-48ef-adb8-a7c7b8509e1d": "H4sIAAAAAAAACq3MoQ7DIBRG4Xf5dUmg3DCorqmuLBWXFpoaxIYj992X1M7OHXO+raPmT8vnzI0xbR3nE+gRa3vf9VrmiCnCBSomHV4Z8lYRWa9CoKxcLilxsobLqLTW+nXwGDFELLU9rzVBO4EMf7Hpx/YC2WX/ApWhABfKAAAA"
+        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_7104a6e9-86ff-48ef-adb8-a7c7b8509e1d": "H4sIAAAAAAAACq3MqxKDMBBG4Xf5NTuzpLksaAy6kiCSQDs1EW1cZt+9M8jqumPOt3XU89POY0ktYd46jivQI+7t/arPdYmYIyZnfPEiVIIIWRMy5RQ8JRY3+eBMfjAxM4diOWKIWGu73tsoLAod/mL7X3u0Ct11/wJXRaydygAAAA=="
       }
     }
   ],
@@ -2305,14 +2305,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -25168.058639492032,
-        "Top": -21010.305985340234,
-        "Width": 316.68409126498227,
-        "Height": 582.6675444865577,
+        "Top": -21010.528207562456,
+        "Width": 316.9063134872049,
+        "Height": 582.8897667087804,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
         "InitialTop": -20937.194874229124,
-        "InitialHeight": 455.58465989360775,
-        "TextblockHeight": 63.111111111111114,
+        "InitialHeight": 475.55643337544825,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2350,14 +2350,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -25159.832954540354,
-        "Top": -20371.817720476305,
-        "Width": 487.81149113460924,
-        "Height": 1881.8888888888869,
+        "Top": -20372.039942698528,
+        "Width": 487.5892689123866,
+        "Height": 1883.6666666666642,
         "FontSize": 36.0,
         "GroupStyleId": "883066aa-1fe2-44a4-9bd1-c3df86bfe9f6",
         "InitialTop": -20298.706609365196,
         "InitialHeight": 1761.0,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2379,14 +2379,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23629.853342147228,
-        "Top": -20556.32742221032,
-        "Width": 735.9359520734215,
-        "Height": 234.0076070782743,
+        "Top": -20556.549644432544,
+        "Width": 735.7137298511989,
+        "Height": 234.8964959671648,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
         "InitialTop": -20483.21631109921,
         "InitialHeight": 146.8964959671648,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2408,14 +2408,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23144.567283492037,
-        "Top": -20208.008377396054,
-        "Width": 319.55555555555475,
-        "Height": 291.66666666666424,
+        "Top": -20208.452821840503,
+        "Width": 319.3333333333321,
+        "Height": 292.33333333333576,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": -20134.897266284945,
+        "InitialTop": -20135.11948850717,
         "InitialHeight": 232.1111111111095,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2444,14 +2444,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23144.10353852541,
-        "Top": -19894.906125751564,
-        "Width": 1227.1655365784245,
-        "Height": 516.1217711294921,
+        "Top": -19895.128347973787,
+        "Width": 1226.276647689534,
+        "Height": 517.0106600183826,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
         "InitialTop": -19821.795014640455,
         "InitialHeight": 432.6003770655043,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2475,14 +2475,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -24496.453285041793,
-        "Top": -20204.181635406374,
-        "Width": 291.1111111111095,
-        "Height": 1250.6313891879872,
+        "Top": -20204.403857628597,
+        "Width": 291.3333333333321,
+        "Height": 1252.4091669657646,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
         "InitialTop": -20131.070524295264,
         "InitialHeight": 1129.7425002991004,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2504,14 +2504,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -24044.09288179274,
-        "Top": -19087.277396326313,
+        "Top": -19087.499618548536,
         "Width": 431.3050568970575,
-        "Height": 318.7570536672647,
+        "Height": 319.20149811170995,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
         "InitialTop": -19014.166285215204,
         "InitialHeight": 259.20149811170995,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2532,14 +2532,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23719.823744901216,
-        "Top": -20030.621154721284,
+        "Top": -20031.510043610175,
         "Width": 274.6666666666679,
-        "Height": 247.22222222222263,
+        "Height": 248.33333333333576,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
         "InitialTop": -19914.843376943507,
         "InitialHeight": 145.0,
-        "TextblockHeight": 105.77777777777777,
+        "TextblockHeight": 106.66666666666667,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2560,14 +2560,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23718.78332926849,
-        "Top": -19661.211472941908,
+        "Top": -19661.878139608572,
         "Width": 266.6666666666679,
-        "Height": 317.44444444444525,
+        "Height": 319.66666666666424,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
         "InitialTop": -19536.54480627524,
         "InitialHeight": 145.0,
-        "TextblockHeight": 114.66666666666667,
+        "TextblockHeight": 115.33333333333334,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2594,14 +2594,14 @@
         ],
         "HasNestedGroups": false,
         "Left": -23151.157720366686,
-        "Top": -19319.277253851385,
-        "Width": 1428.9722034854967,
+        "Top": -19319.055031629163,
+        "Width": 1428.5277590410515,
         "Height": 511.9137474778581,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": -19246.166142740276,
+        "InitialTop": -19245.72169829583,
         "InitialHeight": 319.6360641189167,
-        "TextblockHeight": 63.111111111111114,
+        "TextblockHeight": 63.333333333333336,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -2619,8 +2619,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -22884.072498998336,
-        "Top": -19599.08352646384,
+        "Left": -22884.40583233167,
+        "Top": -19598.861304241615,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2647,7 +2647,7 @@
         "Nodes": [],
         "HasNestedGroups": false,
         "Left": -23134.567283492037,
-        "Top": -20126.897266284945,
+        "Top": -20127.11948850717,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2673,8 +2673,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -22870.01651653196,
-        "Top": -19238.166142740276,
+        "Left": -22869.905405420846,
+        "Top": -19237.72169829583,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2752,8 +2752,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -22008.62996132563,
-        "Top": -19203.696839706863,
+        "Left": -22008.963294658966,
+        "Top": -19203.474617484637,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2805,8 +2805,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -22446.147831878036,
-        "Top": -19205.255015362185,
+        "Left": -22446.25894298915,
+        "Top": -19205.03279313996,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2822,8 +2822,8 @@
         "PinnedNode": "9ccc54cc765c467997ac565d7a1c4162"
       }
     ],
-    "X": 25530.086019682079,
-    "Y": 21667.010477749656,
-    "Zoom": 1.0697669596723862
+    "X": 9323.02256485023,
+    "Y": 7770.601314498546,
+    "Zoom": 0.36886197315802727
   }
 }

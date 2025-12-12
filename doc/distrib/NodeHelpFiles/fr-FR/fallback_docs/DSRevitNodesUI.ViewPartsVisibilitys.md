@@ -1,9 +1,9 @@
 ## Description approfondie
-This dropdown node provides a list of Revit “View Parts Visibility” options that control whether Parts (elements created by the Parts command, such as subdivided walls, floors, etc.) are visible, hidden, or shown instead of their original elements in a given Revit view.
+Ce nœud de liste déroulante fournit une liste des options "Afficher la visibilité des pièces" de Revit qui déterminent si les éléments (éléments créés par la commande Pièces, tels que les murs subdivisés, les sols, etc.) sont visibles, masqués ou affichés à la place de leurs éléments d'origine dans une vue Revit donnée.
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+Dans cet exemple, une vue est sélectionnée (vue 3D) et utilisée en entrée (vue) pour noeud View.SetPartsVisibility avec l'une des valeurs par défaut du noeud View Parts Visibilities. Les 2 derniers noeuds affichent le paramètre de visibilité des parties de la vue à son réglage d'origine et à son réglage révisé.
 
-For Additional information see link below.
+Pour plus d'informations, cliquez sur le lien ci-dessous.
 https://help.autodesk.com/view/RVT/2019/ENU/?guid=GUID-37A4B924-AB44-486F-AD27-02F414DE4683
 ___
 ## Exemple de fichier

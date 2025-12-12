@@ -1,7 +1,7 @@
 ## 詳細
-This node sets the default sketch plane in a given view.
+このノードは、指定されたビューに既定のスケッチ平面を設定します。
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+この例では、すべてのスケッチ平面がプロジェクトから取得され、「駐車場」スケッチ平面にフィルタされます。この「駐車場」スケッチ平面は、次に、View.SetSketchPlane ノードへの入力(SketchPlane)として、ビュー(view)とともに使用されます。最後の 2 つのノードで、新しいスケッチ平面名の横に元のスケッチ平面名が表示されます。
 
 ___
 ## サンプル ファイル

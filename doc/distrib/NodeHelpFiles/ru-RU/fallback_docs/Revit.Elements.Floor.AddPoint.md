@@ -1,8 +1,8 @@
 ## Подробности
 
-This node adds a point to a given floor.
+Этот узел добавляет точку к заданному перекрытию.
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+В этом примере используется числовой регулятор для создания прямоугольника, который затем используется в качестве входных данных для узла Floor.ByOutlineTypeAndLevel вместе с заданными типом перекрытия и уровнем. Это перекрытие вместе с новой точкой используются в качестве входных данных для узла Floor.AddPoint.
 
 
 ___

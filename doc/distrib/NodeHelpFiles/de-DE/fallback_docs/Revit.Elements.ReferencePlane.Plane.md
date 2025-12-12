@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the underlying geometric plane from a Reference Plane element.
+Dieser Block extrahiert die zugrunde liegende geometrische Ebene aus einem Referenzebenenelement.
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+In diesem Diagramm werden zwei Punkte mit Koordinaten definiert und mit dem ReferencePlane.ByStartPointEndPoint-Block verknüpft, um eine Referenzebene zu erstellen. Die erstellte Referenzebene wird dann an den ReferencePlane.Plane-Block übergeben, der die geometrische Ebene ausgibt, und dann an einen 3D-Watch-Block.
 ___
 ## Beispieldatei
 

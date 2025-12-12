@@ -1,7 +1,7 @@
 ## Em profundidade
-The Revision.RevisionDate node in Dynamo is used to read the date assigned to a specific revision in Revit. It helps users extract revision date information as a text string.
+O nó Revision.RevisionDate no Dynamo é usado para ler a data atribuída a uma revisão específica no Revit. Ele ajuda os usuários a extrair informações sobre a data da revisão como uma sequência de texto.
 
-In this graph, the Select Revision node is used to pick a revision from the project, and the Revision.RevisionDate node retrieves its date. The result is displayed in the Watch node, allowing users to easily review the chosen revision’s date without opening Revit’s revision settings manually.
+Neste gráfico, o nó Selecionar revisão é usado para selecionar uma revisão do projeto, e o nó Revision.RevisionDate recupera sua data. O resultado é exibido no nó Watch, permitindo que os usuários revisem facilmente a data da revisão escolhida sem abrir manualmente as configurações de revisão do Revit.
 
 ___
 ## Arquivo de exemplo

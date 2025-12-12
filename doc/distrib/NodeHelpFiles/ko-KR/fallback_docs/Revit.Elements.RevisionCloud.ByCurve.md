@@ -1,7 +1,7 @@
 ## 상세
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+이 노드는 지정된 뷰에서 구름형 수정기호를 작성합니다. 입력은 뷰, 곡선 리스트 "구름 윤곽선" 및 정의된 수정기호입니다.
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+이 예에서는 두 개의 숫자 슬라이더가 직사각형의 폭과 길이를 정의한 다음 곡선으로 분해합니다. 이러한 곡선은 올바른 방향이 유지되도록 반전된 다음 RevisionCloud.ByCurve 노드에 연결됩니다. 또한 그래프는 활성 뷰(1층 평면도)와 선택한 수정기호(순서 2 - 시공 금지)를 입력으로 사용합니다. 함께 사용하면 정의된 모양을 기준으로 선택한 뷰에 구름형 수정기호가 자동으로 생성됩니다.
 ___
 ## 예제 파일
 

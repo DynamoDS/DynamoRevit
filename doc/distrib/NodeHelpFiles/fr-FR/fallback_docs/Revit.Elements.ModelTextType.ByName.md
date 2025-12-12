@@ -1,7 +1,7 @@
 ## Description approfondie
-This node retrieve a specific Model Text Type from the current Revit document by its name.
+Ce nœud récupère un type de texte de modèle spécifique du document Revit actuel en le nommant.
 
-In this example a string input "10" Trebuchet MS" is connected to the node, which fetches the corresponding ModelTextType from Revit. This ensures that the model text created in later steps uses the exact font style defined in the Revit project.
+Dans cet exemple, une entrée de chaîne "10" Trébuchet MS" est connectée au nœud, qui récupère le ModelTextType correspondant à partir de Revit. Cela permet de s'assurer que le texte du modèle créé dans les étapes ultérieures utilise le style de police exact défini dans le projet Revit.
 ___
 ## Exemple de fichier
 

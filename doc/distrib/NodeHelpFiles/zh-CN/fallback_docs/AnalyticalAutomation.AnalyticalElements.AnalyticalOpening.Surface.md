@@ -1,7 +1,7 @@
 ## 详细
-This node returns the surfaces of analytical openings.
+此节点返回分析洞口的表面。
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+在此示例中，Snowdon Structural 模型中的楼板用于创建分析面板。面板中的开口处于选中状态，并且此节点输出这些开口的表面。
 ___
 ## 示例文件
 

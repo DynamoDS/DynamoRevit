@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Ten węzeł tworzy wymiar na podstawie wyboru dwóch płaskich powierzchni elementów modelu przez zmierzenie odległości między nimi.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+W tym przykładzie widok „L1” z arkusza A101 jest używany jako dane wejściowe węzła Dimension.ByFaces wraz z powierzchniami, linią, przyrostkiem i przedrostkiem. Pozycja wejściowa linii umożliwia odsunięcie wymiaru od wybranych powierzchni.
 
 ___
 ## Plik przykładowy

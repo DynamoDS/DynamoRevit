@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-This node retrieves the transformation matrix applied to a Revit Link Element within the host model.
-In other words, it returns the position, rotation, and scaling transform that maps the linked element’s coordinate system into the host Revit project’s coordinate system.
-This is useful when you need to align, analyze, or manipulate geometry between linked models.
+Ten węzeł pobiera macierz transformacji zastosowaną do elementu połączenia programu Revit w modelu nadrzędnym.
+Innymi słowy: zwraca transformację położenia, obrotu i skalowania, która odwzorowuje układ współrzędnych połączonego elementu na układ współrzędnych nadrzędnego projektu programu Revit.
+Jest to przydatne, gdy trzeba wyrównać geometrię pomiędzy modelami połączonymi, przeanalizować ją lub nią manipulować.
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkTransform.  The output is the position, rotation and scaling transform of the linked element.
+W tym przykładzie zostają wybrane wszystkie elementy połączone programu Revit na poziomie L3 i zostają one przekazane do węzła LinkElement.LinkTransform. Wynikiem jest transformacja położenia, obrotu i skalowania połączonego elementu.
 ___
 ## Plik przykładowy
 

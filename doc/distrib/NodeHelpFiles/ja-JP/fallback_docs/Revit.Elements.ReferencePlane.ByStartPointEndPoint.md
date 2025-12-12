@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a new Reference Plane in the model by defining its start and end points.
+このノードは、始点と終点を定義して、モデルに新しい参照面を作成します。
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+この例では、数値入力を使用して Point.ByCoordinates で 2 つの点を生成します。次に、これらの点を ReferencePlane.ByStartPointEndPoint に入力し、2 つの座標の間に直接カスタム参照面を作成します。
 ___
 ## サンプル ファイル
 

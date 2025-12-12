@@ -1,7 +1,7 @@
 ## 深入資訊
-The Revision.SetRevisionDate node is used to update or assign a date to a specific revision in Revit. It allows users to automate the process of setting revision dates.
+使用 Revision.SetRevisionDate 節點為 Revit 中的特定修訂更新或指定日期。允許使用者自動執行設定修訂日期的程序。
 
-In this graph, the Select Revision node is used to choose a revision from the project, and an input string (e.g., 08/31/2025) is provided as the new date. The Revision.SetRevisionDate node then applies this value to the selected revision.
+在此圖表中，使用 Select Revision 節點選擇專案中的某個修訂，並提供輸入字串 (例如，08/31/2025) 作為新日期。然後 Revision.SetRevisionDate 節點會將此值套用到選取的修訂。
 
 ___
 ## 範例檔案

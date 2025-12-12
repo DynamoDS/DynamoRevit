@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node returns the connection type name associated with the connections linked to the structure data element.
+Ten węzeł zwraca nazwę typu połączenia skojarzonego z połączeniami połączonymi z elementem danych konstrukcyjnych.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+W tym przykładzie wybrano słup z trzema połączeniami: blachą podstawy, połączeniem na momenty i połączeniem na śruby.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a sketch plane based on the input of a plane.
+Ten węzeł tworzy płaszczyznę szkicu na podstawie danych wejściowych określonej płaszczyzny.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+W tym przykładzie zostaje zdefiniowana płaszczyzna, która zostaje następnie połączona z węzłem SketchPlane.ByPlane generującym odpowiednią płaszczyznę szkicu.
 
 ___
 ## Plik przykładowy

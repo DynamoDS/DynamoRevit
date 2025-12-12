@@ -1,7 +1,7 @@
 ## Em profundidade
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+Esse nó assume um valor de comprimento numérico e um identificador de tipo de unidade, convertendo o valor de entrada nas unidades de comprimento do projeto Revit ativo. A saída é um valor duplo que representa o resultado convertido.
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+Neste exemplo, um controle deslizante de número fornece um valor de comprimento, e uma unidade (por exemplo, metros) é selecionada para obter sua sequência de caracteres Unit.TypeId. Ambos estão conectados ao nó UnitsUtilities.ConvertToCurrentProjectLengthUnit, que retorna o valor do comprimento convertido com base nas configurações de unidade do projeto.
 ___
 ## Arquivo de exemplo
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Ten węzeł tworzy nowy znacznik rzędnej w aktywnym dokumencie programu Revit przez określenie typu widoku i punktu położenia w modelu.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+W tym przykładzie tworzony jest punkt w żądanym położeniu, w którym zostanie umieszczona rzędna. Ten punkt jest udostępniany jako dane wejściowe położenia dla węzła ElevationMarker.ByViewTypeLocation wraz z określoną rodziną typu widoku i współczynnikiem skali. Wynikowy obiekt ElevationMarker jest następnie używany do wygenerowania widoków elewacji w zdefiniowanej skali.
 ___
 ## Plik przykładowy
 

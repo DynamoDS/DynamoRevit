@@ -1,10 +1,10 @@
 ## Podrobnosti
-This node returns the number of U divisions applied to a given Divided Surface in Revit.  The grid is defined in two directions—U and V—and the U divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “U” direction).  In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+Tento uzel vrací počet dělení U použitých u daného rozděleného povrchu v aplikaci Revit.  Rastr je definován ve dvou směrech U, V a dělení U určuje, do kolika segmentů je povrch rozdělen podél jedné osy (obvykle odpovídající parametrickému směru „U“ povrchu).  V prostředí koncepčních objemů nebo rodinách adaptivních komponent aplikace Revit představuje rozdělený povrch vzorovanou osnovu použitou na plochu (například stěnu, střechu nebo plochu tvaru).
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.UDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of U divisions applied to the divided surface.
+V tomto příkladu je vybrána plocha a použita k vytvoření rozděleného povrchu.  Tento rozdělený povrch je vstupem pro uzel DividedSurface.UDivisions.  Poslední uzly zobrazí další hodnoty rozděleného povrchu.  Při spuštění tohoto vzorového grafu bude nutné sledovat upozornění aplikace Revit a odstranit navrhované prvky, aby se osnovy zobrazily na vybraném povrchu.  Počet dělení U použitých na rozdělený povrch.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Další informace naleznete v tomto odkazu.
+https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Vzorový soubor
 

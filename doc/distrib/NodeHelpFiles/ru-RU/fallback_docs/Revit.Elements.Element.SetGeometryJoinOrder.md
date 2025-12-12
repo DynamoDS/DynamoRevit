@@ -1,7 +1,7 @@
 ## Подробности
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+Этот узел изменяет порядок соединения между двумя элементами Revit, которые уже геометрически соединены. Этот узел позволяет пользователю определять, какая геометрия элемента является «вырезающей» или имеет приоритет над другой.
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+В этом примере выбраны две соединенные стены, которые используются в качестве входных данных (cuttingElement и otherElement) для узла Element.SetGeometryJoinOrder. На выходе получается назначенный порядок присоединения.
 
 ___
 ## Файл примера

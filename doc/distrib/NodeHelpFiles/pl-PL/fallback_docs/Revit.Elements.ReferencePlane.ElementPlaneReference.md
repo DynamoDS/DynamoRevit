@@ -1,8 +1,8 @@
 ## Informacje szczegółowe
-This node extracts the actual Revit element reference of a selected reference plane. This is useful when you need to use that plane as a hosting reference for geometry or dimensions inside Revit.
+Ten węzeł wyodrębnia rzeczywiste odniesienie elementu programu Revit dla wybranej płaszczyzny odniesienia. Jest to przydatne, gdy trzeba użyć tej płaszczyzny jako odniesienia nadrzędnego dla geometrii lub wymiarów w programie Revit.
 
 Przykład:
-In this graph, two points are defined using coordinates, and a reference plane is created between them with ReferencePlane.ByStartPointEndPoint. That reference plane is then connected to ReferencePlane.ElementPlaneReference, which outputs the plane’s Revit-native reference, making it ready to be used for hosting or alignment tasks.
+Na tym wykresie definiowane są dwa punkty przy użyciu współrzędnych i tworzona jest płaszczyzna odniesienia między nimi za pomocą węzła ReferencePlane.ByStartPointEndPoint. Ta płaszczyzna odniesienia jest następnie łączona z węzłem ReferencePlane.ElementPlaneReference, który generuje odniesienie natywne dla programu Revit, dzięki czemu jest ona gotowa do pełnienia roli obiektu nadrzędnego lub użycia w zadaniach wyrównywania.
 ___
 ## Plik przykładowy
 

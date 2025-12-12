@@ -1,7 +1,7 @@
 ## Подробности
-This node allows you to place the view label at a specific point on a sheet.
+Этот узел позволяет разместить метку вида в определенной точке листа.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+В этом примере создается новый лист Dynamo Sheet, а вид L1 Wall Base размещается в точке 0,0,0. Вид перемещается и используется для ввода видового экрана в узел Viewport.SetLabelOffset вместе с заданной точкой для размещения метки вида.
 
 
 ___

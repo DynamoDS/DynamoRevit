@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a physical wall or floor element from an analytical panel, or updates an existing physical element that is already connected to the analytical panel. The physical element can inherit geometry, parameters, and openings from the analytical panel, depending on the input settings. When the analytical panel has no associated physical element, the node creates a new one based on the analytical model.
+Ce nœud crée un élément physique de mur ou de sol à partir d'un panneau analytique, ou met à jour un élément physique existant qui est déjà connecté au panneau analytique. L'élément physique peut hériter de la géométrie, des paramètres et des ouvertures du panneau analytique, en fonction des paramètres d'entrée. Lorsque le panneau analytique n'a pas d'élément physique associé, le nœud en crée un nouveau basé sur le modèle analytique.
 
-In this example, an analytical roof deck panel from the ACO Supermarket model is selected. That analytical panel is connected to this node, and the input Boolean values demonstrate the default behavior for updating geometry, parameters, and including openings. The node then creates or updates the physical roof element from the analytical panel.
+Dans cet exemple, un panneau de tablier de toiture analytique du modèle Supermarché ACO est sélectionné. Ce panneau analytique est connecté à ce noeud, et les valeurs booléennes en entrée illustrent le comportement par défaut pour la mise à jour de la géométrie, des paramètres et l'inclusion des ouvertures. Le noeud crée ensuite, ou met à jour, l'élément de toiture physique à partir de ce panneau analytique.
 ___
 ## Exemple de fichier
 

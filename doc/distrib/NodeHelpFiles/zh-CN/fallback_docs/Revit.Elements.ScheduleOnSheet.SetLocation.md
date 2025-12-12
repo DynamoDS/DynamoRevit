@@ -1,7 +1,7 @@
 ## 详细
-This node resets the location of a schedule on a sheet.
+此节点可重置图纸上明细表的位置。
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+在此示例中，将明细表放置在图纸上，然后与新点一起输入到 SheduleOnSheet.SetLocation 节点。然后，该明细表将重新定位在同一张图纸上。最后一个节点获取明细表新位置。
 ___
 ## 示例文件
 

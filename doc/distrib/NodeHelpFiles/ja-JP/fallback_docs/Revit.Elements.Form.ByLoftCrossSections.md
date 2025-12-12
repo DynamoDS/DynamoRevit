@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+このノードは、曲線のリストと、出力フォームがソリッドかサーフェスかを定義するブール値からフォームを作成します。このノードは、マス、アダプティブ、パターン ベースのファミリと連携します。
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+この例では、複数の断面曲線が定義されて、Form.ByLoftCrossSections ノードに入力されます。次に、ノードでこれらの断面をロフトして連続した 3D フォームが生成されます。
 
 ___
 ## サンプル ファイル

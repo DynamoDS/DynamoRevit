@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a sketch plane based on the input of a plane.
+Dieser Block erstellt eine Skizzierebene basierend auf der Eingabe einer Ebene.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+In diesem Beispiel wird eine Ebene definiert und dann mit dem SketchPlane.ByPlane-Block verknüpft, der eine entsprechende Skizzierebene generiert.
 
 ___
 ## Beispieldatei

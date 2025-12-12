@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets the location of a schedule on a sheet.
+Dieser Block ruft die Position einer Bauteilliste auf einem Plan ab.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+In diesem Beispiel wird eine Bauteilliste an einer bestimmten Position auf einem Plan platziert, die dann in den Block ScheduleOnSheet.Location eingegeben wird, in dem die Position der Bauteilliste angezeigt wird.
 
 ___
 ## Beispieldatei

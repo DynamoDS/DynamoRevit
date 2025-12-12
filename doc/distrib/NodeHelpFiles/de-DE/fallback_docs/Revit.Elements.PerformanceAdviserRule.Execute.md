@@ -1,7 +1,7 @@
 ## Im Detail
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+Dieser Block führt eine bestimmte Leistungsberater-Regel für einen Satz von Revit-Elementen aus.
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+In diesem Beispiel überprüft die Leistungsberater-Regel, ob das Zuschneiden für die Ansicht deaktiviert ist. Die Ergebnisse werden an den Block FailureMessage.FailingElements übergeben, der die spezifischen Elemente im Modell ausgibt, für die diese Prüfung fehlgeschlagen ist. Dieser Arbeitsablauf erleichtert es den Benutzern, genau die Elemente, die für Probleme verantwortlich sind, zu verfolgen und zu beheben.
 
 ___
 ## Beispieldatei

@@ -1,7 +1,7 @@
 ## 详细
-This node retrieves all texture images associated with the rendering asset of a given AppearanceAssetElement in Revit. An Appearance Asset defines the visual properties of a material (such as color, reflectivity, bump, or transparency).
+此节点检索与 Revit 中给定 AppearanceAssetElement 的渲染资源关联的所有纹理图像。外观资源用于定义材质的视觉特性(例如颜色、反射率、凹凸或透明度)。
 
-In this example, the AppearanceAssetElement's are selected and used as the input to the AppearanceAssetElement.GetRenderingAssetTextureImages node.  The results are the image properties and image paths for the given appearance asset element.  Empty lists are displayed when the appearance asset element has no value.
+在此示例中，选择 AppearanceAssetElement 并将其用作 AppearanceAssetElement.GetRenderingAssetTextureImages 节点的输入。结果是给定外观资源元素的图像属性和图像路径。当外观资源元素没有值时，将显示空列表。
 
 ___
 ## 示例文件

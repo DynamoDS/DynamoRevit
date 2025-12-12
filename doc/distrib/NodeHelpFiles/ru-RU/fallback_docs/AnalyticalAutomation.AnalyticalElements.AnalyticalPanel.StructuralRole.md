@@ -1,7 +1,7 @@
 ## Подробности
-This node provides the structural role of an analytical panel.
+Этот узел предоставляет роль в конструкции для аналитической панели.
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+В этом примере в модели конструкции Snowdon выбирается элемент перекрытия и преобразуется в аналитическую панель. Узел выводит роль в конструкции, назначенную этой панели.
 ___
 ## Файл примера
 

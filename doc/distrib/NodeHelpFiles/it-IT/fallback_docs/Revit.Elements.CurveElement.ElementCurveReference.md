@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves the curve reference associated with a given Revit CurveElement, such as a model curve or detail line. The reference can then be used as input to other nodes that require a geometry reference—such as dimensioning, alignment, or divided path creation.
+Questo nodo recupera il riferimento alla curva associato ad un determinato CurveElement di Revit, ad esempio una curva del modello o una linea di dettaglio. Il riferimento può quindi essere utilizzato come input in altri nodi che richiedono un riferimento geometrico, ad esempio quotatura, allineamento o creazione di percorsi divisi.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.ElementCurveReference node.  the output is a geometric reference of the curve element that can be used in downstream operations.
+In questo esempio, viene creata una curva del modello utilizzando un punto iniziale e un punto finale, quindi inserita nel nodo CurveElement.ElementCurveReference. L'output è un riferimento geometrico dell'elemento curva che può essere utilizzato nelle operazioni a valle.
 ___
 ## File di esempio
 

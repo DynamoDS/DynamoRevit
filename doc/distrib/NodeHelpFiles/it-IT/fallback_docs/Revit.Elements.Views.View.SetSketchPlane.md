@@ -1,7 +1,7 @@
 ## In profondità
-This node sets the default sketch plane in a given view.
+Questo nodo imposta il piano di disegno di default in una determinata vista.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+In questo esempio, vengono recuperati tutti i piani di disegno dal progetto e poi filtrati fino al piano di disegno “Parking”. Questo piano di disegno “Parking” viene quindi utilizzato come input (SketchPlane) nel nodo View.SetSketchPlane insieme ad una vista (view). Gli ultimi due nodi mostrano il nome del piano di disegno originale insieme al nome del nuovo piano di disegno.
 
 ___
 ## File di esempio

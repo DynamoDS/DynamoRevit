@@ -1,7 +1,7 @@
 ## 詳細
-This node allows you to place the view label at a specific point on a sheet.
+このノードを使用すると、シート上の特定の点にビュー ラベルを配置することができます。
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+この例では、新しいシート「Dynamo Sheet」が作成され、ビュー「L1 Wall Base」が点「0,0,0」に配置されます。ビューが再配置され、Viewport.SetLabelOffset ノードへのビューポート入力で、ビュー ラベルを配置するために定義された点とともに使用されます。
 
 
 ___

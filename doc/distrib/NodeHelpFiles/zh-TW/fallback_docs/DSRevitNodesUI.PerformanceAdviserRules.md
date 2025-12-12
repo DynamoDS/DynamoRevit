@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+此節點會擷取「效能顧問」所有可用規則的清單。這些規則與 Revit 用於識別潛在的效能或塑型問題的內建檢查相同。
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+在此範例中，使用 PerformanceAdviserRules 節點從完整清單中提取規則「視圖裁剪已停用」，然後可將該規則連接到其他節點檢查其性質或行為。可協助使用者快速使用特定的效能規則。
 ___
 ## 範例檔案
 

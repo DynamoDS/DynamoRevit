@@ -1,7 +1,7 @@
 ## 详细
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+此节点从现有物理图元创建分析构件。节点可以继承单元的几何和几何参数、传递参数值，并选择性地建立或保持与原始图元的关联。
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+在此示例中，从 Snowdon Structural 模型中选择物理图元，并使用此节点将其转换为分析构件。
 ___
 ## 示例文件
 

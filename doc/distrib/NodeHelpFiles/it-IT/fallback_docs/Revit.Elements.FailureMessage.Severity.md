@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieve the severity level of a given FailureMessage object.  Severity values are "Warning", "Error" and "Critical."
+Questo nodo recupera il livello di gravità di un determinato oggetto FailureMessage. I valori di gravità sono "Warning", "Error" e "Critical".
 
-In this example, a Performance Adviser Rule is executed to check for the condition “View clipping is disabled”. The resulting failure messages are passed to the FailureMessage.Severity node, which reports the severity level of each issue.
+In questo esempio, viene eseguita una regola di Suggerimenti prestazioni per ricercare la condizione “View clipping is disabled”. I messaggi di errore risultanti vengono passati al nodo FailureMessage.Severity, che riporta il livello di gravità di ogni problema.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Этот узел получает все опорные объекты кривых из элемента. Элементам, не имеющим кривых, будут присвоены нулевые значения.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+В этом примере выбран элемент (ограждение), который используется в качестве входного значения для узла Elements.ElementCurveReferences. Выходные данные представляют собой привязку к кривой для этого элемента.
 
 ___
 ## Файл примера

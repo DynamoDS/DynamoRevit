@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the underlying geometric curve associated with a given Revit CurveElement.
+Dieser Block ruft die zugrunde liegende geometrische Kurve ab, die mit einem bestimmten Revit-CurveElement verknüpft ist.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.Curve node.  The output exposes that curve geometry so it can be used for analysis, modification, or as input to other Dynamo nodes.
+In diesem Beispiel wird eine Modellkurve mit einem Start- und einem Endpunkt erstellt und dann in den Block CurveElement.Curve eingegeben. Die Ausgabe zeigt die Kurvengeometrie an, sodass sie für Analysen, Änderungen oder als Eingabe für andere Dynamo-Blöcke verwendet werden kann.
 ___
 ## Beispieldatei
 

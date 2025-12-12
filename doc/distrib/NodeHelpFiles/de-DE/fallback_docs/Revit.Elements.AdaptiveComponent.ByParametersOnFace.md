@@ -1,9 +1,9 @@
 ## Im Detail
-This node places adaptive components by applying UV parameter values to a selected face, defining the placement locations for the adaptive family type.
+Dieser Block platziert adaptive Bauteile durch Anwenden von UV-Parameterwerten auf eine ausgewählte Fläche und definiert so die Platzierungspositionen für den adaptiven Familientyp.
 
-In this example, a surface is created within the mass family by extruding a curve (this is done manually), and that surface is selected as the face input. UV values are then provided to determine placement positions, and the Diagnostic Tripod – 1 Point.rfa family is used as the type. The AdaptiveComponent.ByParametersOnFace node outputs adaptive components positioned on the selected face.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+In diesem Beispiel wird eine Oberfläche innerhalb der Körperfamilie durch Extrudieren einer Kurve erstellt (manuell). Diese Oberfläche wird als Flächeneingabe ausgewählt. Anschließend werden UV-Werte zur Bestimmung der Platzierungspositionen bereitgestellt, und als Typ wird die Familie "Diagnostic Tripod - 1 Point.rfa" verwendet. Der Block AdaptiveComponent.ByParametersOnFace gibt adaptive Bauteile aus, die auf der ausgewählten Fläche positioniert sind. Beachten Sie, dass "Diagnostic Tripod - 1 Point.rfa" in die Körperfamilie geladen werden muss, bevor Sie dieses Diagramm ausführen können.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Damit diese Block-Hilfe-Beispieldatei ausgeführt werden kann, müssen Sie "Diagnostics Tripod - 1 Point.rfa" in die Revit-Datei laden. Die Familie wird hier gespeichert. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Beispieldatei
 

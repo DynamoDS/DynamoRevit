@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a sketch plane based on the input of a plane.
+Este nodo crea un plano de boceto basado en la entrada de un plano.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+En este ejemplo, se define un plano y, a continuación, se conecta al nodo SketchPlane.ByPlane, que genera el plano de boceto correspondiente.
 
 ___
 ## Archivo de ejemplo

@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Revit 가변 구성요소 배치",
+  "Revit Color": "Revit 색상",
+  "Revit Floors and Framing": "Revit 바닥 및 프레임",
+  "Revit Geometry Creation Curves": "Revit 형상 작성 곡선",
+  "Revit Geometry Creation Points": "Revit 형상 작성 점",
+  "Revit Geometry Creation Solids": "Revit 형상 작성 솔리드",
+  "Revit Geometry Creation Surfaces": "Revit 형상 작성 표면",
+  "Revit Import Solid": "Revit 솔리드 가져오기",
+  "Revit Place Families By Level Set Parameters": "Revit 레벨별 패밀리 배치 매개변수 설정",
+  "Revit Structural Framing": "Revit 구조 프레임"
 }

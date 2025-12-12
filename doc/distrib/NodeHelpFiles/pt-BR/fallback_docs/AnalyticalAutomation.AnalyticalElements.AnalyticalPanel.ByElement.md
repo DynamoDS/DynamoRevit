@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates an analytical panel from a selected model element.
+Esse nó cria um painel analítico com base em um elemento do modelo selecionado.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+Neste exemplo, um elemento de piso é selecionado no modelo estrutural Snowdon e fornecido como entrada para o nó. O nó pode atualizar a geometria e os parâmetros do painel com base no elemento de origem, opcionalmente adicionar ou manter uma associação com o elemento e incluir todas as aberturas encontradas no elemento original. A saída é o painel analítico resultante.
 ___
 ## Arquivo de exemplo
 

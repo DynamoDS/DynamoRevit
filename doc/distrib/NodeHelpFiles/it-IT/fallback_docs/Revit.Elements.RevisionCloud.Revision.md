@@ -1,7 +1,7 @@
 ## In profondità
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+Questo nodo estrae l'elemento di revisione collegato ad una nube di revisione specifica in Revit. Fornisce i dati di revisione associati a tale nube, consentendo agli utenti di controllare, tracciare o convalidare i dettagli di revisione a livello di programmazione all'interno del progetto.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+In questo esempio, viene creato un rettangolo con i dispositivi di scorrimento numerici per larghezza e lunghezza, quindi esploso in curve e invertito per ottenere un orientamento corretto. Queste curve, insieme alla vista scelta (L1_SD) e alla revisione selezionata (Seq. 2 – Not For Construction), vengono utilizzate per generare una nube di revisione tramite il nodo RevisionCloud.ByCurve. La nube di revisione risultante viene connessa al nodo RevisionCloud.Revision, che recupera e genera la revisione associata a tale nube. In questo modo gli utenti possono verificare quale revisione è collegata a ciascuna nube di revisione.
 ___
 ## File di esempio
 

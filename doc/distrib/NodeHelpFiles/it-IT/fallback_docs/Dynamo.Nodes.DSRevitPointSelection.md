@@ -1,7 +1,7 @@
 ## In profondità
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+Questo nodo consente di definire in modo molto specifico la parte di un elemento di Revit con cui si desidera lavorare. A differenza dei nodi che selezionano un intero elemento (come un muro o un pavimento), questo nodo consente di selezionare una faccia o un bordo specifico di tale elemento.
 
-In this example, we have selected an element nested inside a curtain wall.
+In questo esempio, è stato selezionato un elemento nidificato all'interno di una facciata continua.
 
 ___
 ## File di esempio

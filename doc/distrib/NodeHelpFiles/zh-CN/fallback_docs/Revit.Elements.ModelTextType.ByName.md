@@ -1,7 +1,7 @@
 ## 详细
-This node retrieve a specific Model Text Type from the current Revit document by its name.
+此节点按名称从当前 Revit 文档中检索特定的模型文字类型。
 
-In this example a string input "10" Trebuchet MS" is connected to the node, which fetches the corresponding ModelTextType from Revit. This ensures that the model text created in later steps uses the exact font style defined in the Revit project.
+在本示例中，字符串输入“10" Trebuchet MS“连接到节点，将从 Revit 提取相应的 ModelTextType。这样可以确保在后续步骤中创建的模型文字使用 Revit 项目中定义的精确字体样式。
 ___
 ## 示例文件
 

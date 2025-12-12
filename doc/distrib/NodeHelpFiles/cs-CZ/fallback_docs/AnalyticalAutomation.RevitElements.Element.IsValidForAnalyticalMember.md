@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node evaluates the selected Revit element to determine if it is suitable for use as an analytical member. If the element is not valid, the output includes an exception message explaining the reason.
+Tento uzel vyhodnotí vybraný prvek aplikace Revit a určí, zda je vhodný k použití jako analytický prut. Pokud prvek není platný, bude výstup obsahovat zprávu o výjimce s vysvětlením důvodu.
 
-In this example, an element is defined by its Element ID and provided to Element.IsValidForAnalyticalMember. The outputs include a Boolean result indicating the element’s validity and an exception message if applicable.
+V tomto příkladu je prvek definován pomocí ID prvku a je zadán vlastnosti Element.IsValidForAnalyticalMember. Výstup zahrnuje výsledek booleovské operace označující platnost prvku a případnou zprávu o výjimce.
 ___
 ## Vzorový soubor
 

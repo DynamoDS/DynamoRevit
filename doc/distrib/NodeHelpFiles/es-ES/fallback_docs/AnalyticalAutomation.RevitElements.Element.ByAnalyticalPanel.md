@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a physical wall or floor element from an analytical panel, or updates an existing physical element that is already connected to the analytical panel. The physical element can inherit geometry, parameters, and openings from the analytical panel, depending on the input settings. When the analytical panel has no associated physical element, the node creates a new one based on the analytical model.
+Este nodo crea un elemento físico de muro o suelo a partir de un panel analítico o actualiza un elemento físico existente que ya está conectado al panel analítico. El elemento físico puede heredar la geometría, los parámetros y los huecos del panel analítico, en función de la configuración de entrada. Cuando el panel analítico no tiene ningún elemento físico asociado, el nodo crea uno nuevo basado en el modelo analítico.
 
-In this example, an analytical roof deck panel from the ACO Supermarket model is selected. That analytical panel is connected to this node, and the input Boolean values demonstrate the default behavior for updating geometry, parameters, and including openings. The node then creates or updates the physical roof element from the analytical panel.
+En este ejemplo, se selecciona un panel de chapa de cubierta analítico del modelo ACO Supermarket. Ese panel analítico se conecta a este nodo y los valores booleanos de entrada muestran el comportamiento por defecto para actualizar la geometría y los parámetros, e incluir huecos. A continuación, el nodo crea o actualiza el elemento físico de cubierta desde el panel analítico.
 ___
 ## Archivo de ejemplo
 

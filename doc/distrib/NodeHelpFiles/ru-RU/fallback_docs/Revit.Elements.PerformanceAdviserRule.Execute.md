@@ -1,7 +1,7 @@
 ## Подробности
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+Этот узел запускает определенное правило Консультанта по производительности для набора элементов Revit.
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+В этом примере правило Консультанта по производительности проверяет, отключено ли условие «Подрезка вида отключена». Результаты передаются в узел FailureMessage.FailingElements, который выводит определенные элементы модели, не прошедшие проверку. Этот рабочий процесс упрощает отслеживание и исправление точных элементов, ответственных за проблемы.
 
 ___
 ## Файл примера

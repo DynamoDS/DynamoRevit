@@ -1,7 +1,7 @@
 ## 详细
-This node retrieves the underlying geometric curve associated with a given Revit CurveElement.
+此节点检索与给定 Revit CurveElement 关联的基础几何曲线。
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.Curve node.  The output exposes that curve geometry so it can be used for analysis, modification, or as input to other Dynamo nodes.
+在此示例中，使用起点和终点创建模型曲线，然后输入到 CurveElement.Curve 节点。输出显示该曲线几何图形，使其可用于分析、修改或作为其他 Dynamo 节点的输入。
 ___
 ## 示例文件
 

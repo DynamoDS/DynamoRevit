@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a grid based on a arc input.
+此節點會根據輸入的弧建立網格。
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+在此範例中，建立一點作為弧的中心點。使用這條弧作為 Grid.ByArc 的輸入並建立網格。
 
 
 ___

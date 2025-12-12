@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+Tento uzel načte referenční rovinu asociovanou s daným prvkem náčrtové roviny. To vám pomůže při identifikaci nebo opakovaném použití stejné referenční roviny k vytvoření nebo úpravám geometrie.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+V tomto příkladu je definována rovina a poté je připojena k uzlu SketchPlane.ByPlane, který vygeneruje odpovídající náčrtovou rovinu.  Tato náčrtová rovina se používá jako vstup pro uzel SketchPlane.ElementPlaneReference, kde lze výstupní text použít ke kótování, zarovnání, vazbám a dalším operacím, které vyžadují referenci aplikace Revit.
 
 ___
 ## Vzorový soubor

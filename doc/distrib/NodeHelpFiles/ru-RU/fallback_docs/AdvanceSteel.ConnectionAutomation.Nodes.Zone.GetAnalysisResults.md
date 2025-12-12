@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+Этот узел извлекает значение сил для заданного типа результатов расчета (например, Fx, Fy, Fz, Mx, My, Mz) либо из результатов расчета несущих конструкций, либо из аналитической модели Revit. Он позволяет оценить силы в каждой зоне соединения выбранного несущего элемента.
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+В этом примере выбрана колонна для отображения компонента силы Fz в каждой из связанных зон соединения на основе выбранного режима анализа модели.
 ___
 ## Файл примера
 
