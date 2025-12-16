@@ -1,3 +1,6 @@
+## 0.7.72
+* make splash screen modal
+
 ## 0.7.71
 * remove unnecessary dependency on NUnit.Engine to fix regression tests
 
