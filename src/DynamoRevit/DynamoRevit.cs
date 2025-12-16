@@ -310,7 +310,7 @@ namespace Dynamo.Applications
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true))
                 {
                     //var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
-                    var ssEventHandlerFN = new Action(() =>
+                    var splashScreenInitializerFN = new Action(() =>
                     {
                         try
                         {
@@ -357,7 +357,7 @@ namespace Dynamo.Applications
                     splashScreen.DynamicSplashScreenReady += () =>
                     {
                         // SplashScreenExternalEvent.Raise();
-                        ssEventHandlerFN();
+                        splashScreenInitializerFN();
                     };
                     splashScreen.Closed += OnSplashScreenClosed;
 
@@ -370,7 +370,7 @@ namespace Dynamo.Applications
 
                     // show the splashscreen.
                     //splashScreen.Show();
-                    splashScreen.ShowDialog(); // temporary solution: modal
+                    splashScreen.ShowDialog(); // TODO (REVIT-245847): Temporary solution - using modal splash screen as a workaround.
 
                     return Result.Succeeded;
                 }
@@ -712,7 +712,7 @@ namespace Dynamo.Applications
             //we requested with API access.
 
             //var appEventHandler = new DynamoExternalEventHandler(new Action(() =>
-            var appEventHandlerFN = new Action(() =>
+            var appInitializerFN = new Action(() =>
             {
                 UpdateLibraryLayoutSpec();
 
@@ -725,7 +725,7 @@ namespace Dynamo.Applications
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
             //dynamoView.Loaded += (o, e) => DynamoAppExternalEvent.Raise();
-            dynamoView.Loaded += (o, e) => appEventHandlerFN();
+            dynamoView.Loaded += (o, e) => appInitializerFN();
 
             return dynamoView;
         }
