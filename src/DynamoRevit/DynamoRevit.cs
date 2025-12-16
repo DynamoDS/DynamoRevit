@@ -219,6 +219,17 @@ namespace Dynamo.Applications
         private Stopwatch startupTimer;
         private static Dynamo.UI.Views.SplashScreen splashScreen;
 
+        internal string UserDataFolder
+        {
+            get
+            {
+                var userDataFolder = Path.Combine(Environment.GetFolderPath(
+                    Environment.SpecialFolder.ApplicationData),
+                    "Dynamo", "Dynamo Revit");
+                return userDataFolder;
+            }
+        }
+
         /// <summary>
         /// Get or Set the current RevitDynamoModel available in Revit context
         /// </summary>
@@ -340,6 +351,7 @@ namespace Dynamo.Applications
                                 RevitDynamoModel.ShutDown(false);
                                 RevitDynamoModel = null;
                             }
+                            Wpf.UI.HostStartup.Reset();
                         }
                     }));
 
@@ -350,7 +362,16 @@ namespace Dynamo.Applications
                     extCommandData = commandData;
                     UpdateSystemPathForProcess();
 
-                    splashScreen = new Dynamo.UI.Views.SplashScreen();
+                    // Build host info and user data folder early
+                    var hostAnalyticsInfo = getHostAnalyticsInfo();
+                    var context = new Wpf.UI.SplashScreenStartupContext(hostAnalyticsInfo, UserDataFolder);
+
+                    // Make it globally available to other Dynamo projects very early
+                    Wpf.UI.HostStartup.TryInitialize(context);
+
+                    // Show SplashScreen with context
+                    splashScreen = new Dynamo.UI.Views.SplashScreen(context, true);
+
                     /* When the splashscreen is ready, raise a request to revit to call
                     our callback within an api context. */
                     splashScreen.DynamicSplashScreenReady += () =>
@@ -572,6 +593,27 @@ namespace Dynamo.Applications
             }
         }
 
+        private static HostAnalyticsInfo getHostAnalyticsInfo()
+        {
+            // get Dynamo Revit Version
+            var dynRevitVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            var revitVersion = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId))?.GetName()?.Version;
+            int majorForDynamo;
+            if (!int.TryParse(extCommandData.Application.Application.VersionNumber, out majorForDynamo))
+            {
+                majorForDynamo = revitVersion.Major;
+            }
+            Version revitVersionForDynamo = new Version(majorForDynamo, revitVersion.Minor, revitVersion.Build, revitVersion.Revision);
+            HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo
+            {
+                HostName = DYNAMO_REVIT_HOST_NAME,
+                HostVersion = dynRevitVersion,
+                HostProductName = REVIT_HOST_NAME,
+                HostProductVersion = revitVersionForDynamo
+            };
+            return hostAnalyticsInfo;
+        }
+
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
             // Temporary fix to pre-load DLLs that were also referenced in Revit folder. 
@@ -581,24 +623,7 @@ namespace Dynamo.Applications
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
-            // get Dynamo Revit Version
-            var dynRevitVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            var revitVersion = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId))?.GetName()?.Version;
-
-            int majorForDynamo;
-            if (!int.TryParse(extCommandData.Application.Application.VersionNumber, out majorForDynamo))
-            {
-                majorForDynamo = revitVersion.Major;
-            }
-            Version revitVersionForDynamo = new Version(majorForDynamo, revitVersion.Minor, revitVersion.Build, revitVersion.Revision);
-
-            HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo
-            {
-                HostName = DYNAMO_REVIT_HOST_NAME,
-                HostVersion = dynRevitVersion,
-                HostProductName = REVIT_HOST_NAME,
-                HostProductVersion = revitVersionForDynamo
-            };
+            HostAnalyticsInfo hostAnalyticsInfo = getHostAnalyticsInfo();
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData),
@@ -1055,6 +1080,8 @@ namespace Dynamo.Applications
         {
             args.Handled = true;
 
+            Wpf.UI.HostStartup.Reset();
+
             // only handle a single crash per Dynamo sesh, this should be reset in the initial command
             if (handledCrash)
                 return;
@@ -1109,6 +1136,8 @@ namespace Dynamo.Applications
 
             // Once Dynamo is closed, we want to set the current UI culture back to the default thread culture.
             System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
+           
+            Wpf.UI.HostStartup.Reset();
         }
 
         /// <summary>
