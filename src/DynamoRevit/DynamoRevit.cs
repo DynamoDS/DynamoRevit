@@ -318,12 +318,12 @@ namespace Dynamo.Applications
 
                             if (Journaling.IsJournalReplaying())
                             {
-                                var closeSplashScreen = new DynamoExternalEventHandler(new Action(() =>
-                                {
-                                    splashScreen?.RequestLaunchDynamo(false);
-                                }));
-                                var closeSplashScreenEvt = ExternalEvent.Create(closeSplashScreen);
-                                closeSplashScreenEvt.Raise();
+                                //var closeSplashScreen = new DynamoExternalEventHandler(new Action(() =>
+                                //{
+                                splashScreen?.RequestLaunchDynamo(false);
+                                //}));
+                                //var closeSplashScreenEvt = ExternalEvent.Create(closeSplashScreen);
+                                //closeSplashScreenEvt.Raise();
                             }
                         }
                         catch (Exception ex)

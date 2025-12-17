@@ -1,3 +1,6 @@
+## 0.7.73
+* fix splash screen automatic start in test mode after made modal
+
 ## 0.7.72
 * make splash screen modal
 
