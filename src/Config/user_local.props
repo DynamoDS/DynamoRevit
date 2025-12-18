@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net10.0</REVITAPI>
-      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\Revit\dev1\revit\Debugx64</REVITAPI>
+      <!-- temporary path until aligned port to newer .NET 10 SDK build -->
+      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net10.0.0-preview.5.25277.114</REVITAPI>
+      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\Revit\Dev\revit\Debugx64</REVITAPI>
   </PropertyGroup>
 </Project>
