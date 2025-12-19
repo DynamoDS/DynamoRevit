@@ -1,7 +1,7 @@
 ## 详细
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+此节点将结构角色值指定给分析构件。该角色定义了分析构件在分析模型中的分类方式。
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+在此示例中，Snowdon Structural 模型中的图元转换为分析构件，并且此节点将角色“Girder”指定给该分析构件。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+Esse nó adiciona aberturas a um painel analítico usando superfícies definidas como a forma de cada abertura. É possível aplicar entradas existentes para atualizar a geometria, os parâmetros e as associações, conforme necessário.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+Neste exemplo, quatro pontos nas interseções A4–A5 e B4–B5 do eixo no modelo estrutural Snowdon definem a localização, e o nível da abertura (L2 TOS) define sua colocação vertical. As linhas conectam os pontos e criam uma superfície de deslocamento representando a abertura. Um piso no TOS L2 é usado para criar o painel analítico, e esse nó vincula a superfície de abertura ao painel, gerando a abertura analítica correspondente.
 ___
 ## Arquivo de exemplo
 

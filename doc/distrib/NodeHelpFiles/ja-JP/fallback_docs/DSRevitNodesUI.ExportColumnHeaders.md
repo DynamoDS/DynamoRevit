@@ -1,7 +1,7 @@
 ## 詳細
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+このノードは、集計表列のすべてのヘッダ オプション(OneRow、MultipleRows、None)を取得します。
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+この例では、columnHeaders (OneRow)が ScheduleView.Export ノードへの入力として使用され、一般的な書き出しオプションが生成されます。
 
 ___
 ## サンプル ファイル

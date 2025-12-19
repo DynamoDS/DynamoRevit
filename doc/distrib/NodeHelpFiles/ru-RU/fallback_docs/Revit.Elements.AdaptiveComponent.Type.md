@@ -1,9 +1,9 @@
 ## Подробности
-This node retrieves the family and family type of a selected adaptive component.
+Этот узел извлекает семейство и тип семейства выбранного адаптивного компонента.
 
-In this example, all placed adaptive components are then provided as input to the AdaptiveComponent.Type node. The output is the family and family type names.
+В этом примере все размещенные адаптивные компоненты затем предоставляются в качестве входных данных для узла AdaptiveComponent.Type. На выходе отображаются имена семейств и их типов.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Для запуска данного файла справки по узлу необходимо загрузить в файл Revit файл Diagnostics Tripod-1 point.rfa. Семейство хранится по следующему пути: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Файл примера
 

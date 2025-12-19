@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Tento uzel vytvoří konstrukční nosník v modelu aplikace Revit podél definované křivky. Nosník je definován křivkou, vybraným typem rámové konstrukce a asociovaným podlažím. Výstupem je vytvořený prvek konstrukčního nosníku.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+V tomto příkladu je čára umístěna na podlaží L2 TOS mezi osnovy A5 a A6 v konstrukčním modelu Snowdon. Tato čára je kdispozici jako vstupní křivka a vybraný typ rámové konstrukce a podlaží definují nosník. Výstupem je nově vytvořený prvek konstrukčního nosníku.
 ___
 ## Vzorový soubor
 

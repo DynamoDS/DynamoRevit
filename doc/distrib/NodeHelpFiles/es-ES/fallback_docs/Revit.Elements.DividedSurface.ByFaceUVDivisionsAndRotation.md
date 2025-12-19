@@ -1,13 +1,13 @@
 ## En detalle:
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions and an optional rotation angle.
-A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+Este nodo crea un nuevo elemento de superficie dividida en una cara seleccionada de un elemento de Revit y define su diseño mediante divisiones U y V especificadas y un ángulo de rotación opcional.
+Una superficie dividida es una rejilla con patrón aplicada a una cara que se utiliza normalmente para colocar paneles de muro cortina, componentes adaptativos o sistemas panelizados en la superficie de una forma.
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+Las divisiones U y V determinan el número de subdivisiones que hay en cada dirección de superficie, mientras que el parámetro de rotación ajusta la orientación de la rejilla en relación con el sistema de coordenadas U-V de la superficie.
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisionsAndRotation along with UDivs, VDivs and gridRotation, which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+En este ejemplo, se selecciona una cara y se utiliza como entrada para la superficie del nodo DividedSurface.ByFaceUVDivisionsAndRotation junto con UDivs, VDivs y gridRotation, que se controlan mediante controles deslizantes. Los últimos nodos exponen los valores de la superficie dividida. Al ejecutar este gráfico de ejemplo, deberá observar la advertencia de Revit y suprimir los elementos sugeridos para que las rejillas aparezcan en la superficie seleccionada.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Consulte el vínculo para obtener más información.
+https://help.autodesk.com/view/RVT/2025/ESP/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Archivo de ejemplo
 

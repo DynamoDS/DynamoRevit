@@ -1,7 +1,7 @@
 ## Im Detail
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Dieser Block sucht alle Verbindungsblöcke, die Permutationen von einander sind { [beam1, beam2], [beam2, beam1] }und behält nur den ersten Block { [beam1, beam2] }. Entfernt außerdem Nullen und leere Listen.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+In diesem Beispiel wurden drei Träger ausgewählt, die sich an einem einzigen Schnittpunkt treffen, um das Vorgabeverhalten der einzelnen Verbindungsblöcke zu veranschaulichen und zu zeigen, wie die Anzahl der möglichen Permutationen reduziert wird.
 ___
 ## Beispieldatei
 

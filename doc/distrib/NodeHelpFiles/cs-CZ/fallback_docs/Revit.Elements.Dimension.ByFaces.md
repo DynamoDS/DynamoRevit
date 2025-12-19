@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Tento uzel vytvoří kótu na základě výběru dvou rovinných ploch prvků modelu měřením vzdálenosti mezi těmito plochami.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+V tomto příkladu je pohled „L1“ z výkresu A101 použit jako vstup do uzlu Dimension.ByFaces společně s povrchy, čárou, příponou a předponou.  Vstup čáry umožňuje odsazení kóty od vybraných ploch.
 
 ___
 ## Vzorový soubor

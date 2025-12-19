@@ -1,7 +1,7 @@
 ## Em profundidade
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+Esse nó avalia o elemento fornecido e retorna um valor booleano indicando se o elemento tem uma localização definida, junto com as mensagens de exceção que explicam por que ele pode não ter.
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+Neste exemplo, o elemento é definido por sua ID de elemento usando o nó Element By Id e, em seguida, fornecido a Element.HasActualLocation. As saídas indicarão true se o elemento tiver uma localização real ou false com uma mensagem de exceção se não tiver.
 ___
 ## Arquivo de exemplo
 

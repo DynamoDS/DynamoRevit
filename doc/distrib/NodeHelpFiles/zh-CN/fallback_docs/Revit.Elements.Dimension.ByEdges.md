@@ -1,7 +1,7 @@
 ## 详细
-This node creates a dimension based on one or more edge references in a given view.
+此节点基于给定视图中的一个或多个边参照创建尺寸。
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+在此示例中，图纸 A101 中的视图“L1”与 referenceCurves、直线、后缀和前缀一起用作 Dimension.ByEdges 的输入。直线输入允许尺寸从选定面偏移。最后 2 个节点显示尺寸值及其前缀。
 
 ___
 ## 示例文件

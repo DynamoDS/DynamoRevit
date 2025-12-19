@@ -1,7 +1,7 @@
 ## 详细
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+此节点设置分析面板的结构角色。该节点将使用所选角色更新选定面板，而不更改其几何图形或其他参数。
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+在此示例中，从 Snowdon Structural 模型中的物理图元创建的分析面板被设置为具有楼板的结构角色。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Tento uzel získá všechny objekty odkazující na křivky z prvku.  Pro prvky, které nemají křivky, budou uváděny hodnoty null.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+V tomto příkladu je vybrán prvek (Zábradlí) a použije se jako vstup pro uzel Elements.ElementCurveReferences.  Výstupy jsou zakřivenou referencí daného prvku.
 
 ___
 ## Vzorový soubor

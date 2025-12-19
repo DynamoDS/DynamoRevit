@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Ce nœud crée une cote basée sur la sélection de deux faces planes des éléments du modèle, en mesurant la distance entre ces faces.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+Dans cet exemple, la vue "L1" de la feuille A101 est utilisée comme entrée dans Dimension.ByFaces avec des surfaces, une ligne, un suffixe et un préfixe.  L'entrée ligne permet de décaler la cote par rapport aux faces sélectionnées.
 
 ___
 ## Exemple de fichier

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+Tento uzel načte hodnotu síly pro určený typ výsledku analýzy (například Fx, Fy, Fz, Mx, My, Mz) buď z výsledků konstrukční analýzy, nebo z analytického modelu aplikace Revit. Vyhodnotí síly v každé zóně připojení vybraného konstrukčního prvku.
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+V tomto příkladu je vybrán sloupec, který zobrazuje složku síly Fz v každé z připojených zón připojení na základě zvoleného režimu analýzy modelu.
 ___
 ## Vzorový soubor
 

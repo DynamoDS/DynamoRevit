@@ -1,7 +1,7 @@
 ## En detalle:
-This node checks whether a given Performance Adviser rule is currently enabled in Revit.
+Este nodo comprueba si una determinada regla del asesor de rendimiento está activada actualmente en Revit.
 
-In this example the rule “View clipping is disabled” is connected to the PerformanceAdviserRule.Enabled node. The output is shown in the Watch node as true, confirming that the rule is enabled and ready for use in model checks.
+En este ejemplo, la regla "La delimitación de vista está desactivada" se conecta al nodo PerformanceAdviserRule.Enabled. La salida se muestra en el nodo Watch como verdadero (true), lo que confirma que la regla está activada y lista para su uso en las comprobaciones de modelo.
 
 
 ___

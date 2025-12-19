@@ -1,7 +1,7 @@
 ## Em profundidade
-This node gets the sheet a schedule is on.
+Esse nó obtém a folha na qual uma tabela está.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+Neste exemplo, uma tabela é colocada em uma folha em uma localização especificada. Em seguida, a tabela é inserida no nó ScheduleOnSheet.Sheet, onde o nome da folha é revelado (Nome = Cobertura). Finalmente, o nome é extraído em uma sequência de caracteres.
 
 ___
 ## Arquivo de exemplo

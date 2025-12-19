@@ -1,7 +1,7 @@
 ## Подробности
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+Этот узел содержит раскрывающийся список допустимых типов фильтров спецификаций (Equal, NotEqual, GreaterThan, LessThan, Contains,..). В результате будут отфильтрованы все двери, которые начинаются со слова «Внешние».
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+В этом примере выбран вид и показаны поля вида. Поле «Тип» изолировано и используется для создания фильтра спецификации, а также значения фильтра и типа фильтра спецификации BeginsWith. Затем этот фильтр применяется к выбранному виду спецификации WV_Wall Schedule.
 ___
 ## Файл примера
 

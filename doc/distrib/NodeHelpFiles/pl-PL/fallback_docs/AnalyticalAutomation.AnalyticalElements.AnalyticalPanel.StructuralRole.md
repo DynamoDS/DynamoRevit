@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node provides the structural role of an analytical panel.
+Ten węzeł zwraca rolę konstrukcyjną panelu analitycznego.
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+W tym przykładzie z modelu konstrukcyjnego Snowdon zostaje wybrany element stropu i zostaje on przekształcony w panel analityczny. Węzeł zwraca rolę konstrukcyjną przypisaną do tego panelu.
 ___
 ## Plik przykładowy
 

@@ -1,9 +1,9 @@
 ## 詳細
-This node places instances of an adaptive component by defining its adaptive points directly from a list of point coordinates and specifying the family type to be used.
+このノードは、点座標のリストからアダプティブ ポイントを直接定義し、使用するファミリ タイプを指定して、アダプティブ コンポーネントのインスタンスを配置します。
 
-In this example, a single point is provided to the AdaptiveComponent.ByPoints node along with the adaptive component "Diagnostic Tripod – 1 Point.rfa" for input familyType.  The output is an adaptive component instance placed at the 1,1,0 of the mass family.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+この例では、入力 familyType のアダプティブ コンポーネント「Diagnostic Tripod – 1 Point.rfa」とともに、1 つの点が AdaptiveComponent.ByPoints ノードに提供されます。出力は、マス ファミリの 1,1,0 に配置されたアダプティブ コンポーネントのインスタンスです。このグラフを実行する前に、「Diagnostic Tripod – 1 Point.rfa」をマス ファミリにロードする必要があります。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+このノードのヘルプ サンプル ファイルを実行するには、Revit ファイルに「Diagnostics Tripod-1 point.rfa」をロードする必要があります。ファミリはここ(C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data)に保存されています。
 ___
 ## サンプル ファイル
 

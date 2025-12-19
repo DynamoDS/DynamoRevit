@@ -1,7 +1,7 @@
 ## 詳細
-This node controls how a Revit schedule is exported.
+このノードは、Revit 集計表の書き出し方法をコントロールします。
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+この例では、columnHeaders (OneRow)、fieldDelimiter (空白)、headersFootersBlanks (ブール値)、textQualifier (引用符)、title (ブール値)を入力として使用して、一貫性のある集計表書き出しオプションを作成します。この出力は、ScheduleView.Export ノードで使用することができます。
 
 ___
 ## サンプル ファイル

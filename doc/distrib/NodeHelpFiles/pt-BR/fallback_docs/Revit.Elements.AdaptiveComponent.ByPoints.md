@@ -1,9 +1,9 @@
 ## Em profundidade
-This node places instances of an adaptive component by defining its adaptive points directly from a list of point coordinates and specifying the family type to be used.
+Esse nó coloca instâncias de um componente adaptativo definindo seus pontos adaptativos diretamente em uma lista de coordenadas de ponto e especificando o tipo de família a ser usado.
 
-In this example, a single point is provided to the AdaptiveComponent.ByPoints node along with the adaptive component "Diagnostic Tripod – 1 Point.rfa" for input familyType.  The output is an adaptive component instance placed at the 1,1,0 of the mass family.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+Neste exemplo, um único ponto é fornecido ao nó AdaptiveComponent.ByPoints junto com o componente adaptativo “Diagnostic Tripod-1point.rfa” para familyType de entrada. A saída é uma instância de componente adaptativo colocada em 1,1,0 da família de massa. Observe que o “Diagnostic Tripod-1point.rfa” precisa ser carregado na família de massa antes de executar esse gráfico.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Para que esse arquivo de exemplo de ajuda do nó seja executado, é necessário carregar “Diagnostics Tripod-1 point.rfa” no arquivo do Revit. A família é armazenada aqui. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Arquivo de exemplo
 

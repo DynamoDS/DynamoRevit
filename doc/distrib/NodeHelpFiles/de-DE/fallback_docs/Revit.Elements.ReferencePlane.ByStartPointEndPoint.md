@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a new Reference Plane in the model by defining its start and end points.
+Dieser Block erstellt eine neue Referenzebene im Modell, indem die Start- und Endpunkte definiert werden.
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+In diesem Beispiel werden zwei Punkte mit Point.ByCoordinates unter Verwendung numerischer Eingaben generiert. Diese Punkte werden dann in ReferencePlane.ByStartPointEndPoint eingegeben, wodurch eine benutzerdefinierte Referenzebene direkt zwischen den beiden Koordinaten erstellt wird.
 ___
 ## Beispieldatei
 

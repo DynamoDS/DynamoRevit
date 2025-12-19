@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Umieszczanie komponentów adaptacyjnych programu Revit",
+  "Revit Color": "Kolor Revit",
+  "Revit Floors and Framing": "Stropy i ramy programu Revit",
+  "Revit Geometry Creation Curves": "Tworzenie geometrii programu Revit — krzywe",
+  "Revit Geometry Creation Points": "Tworzenie geometrii programu Revit — punkty",
+  "Revit Geometry Creation Solids": "Tworzenie geometrii programu Revit — bryły",
+  "Revit Geometry Creation Surfaces": "Tworzenie geometrii programu Revit — powierzchnie",
+  "Revit Import Solid": "Revit — importowanie bryły",
+  "Revit Place Families By Level Set Parameters": "Revit — umieszczanie rodzin według parametrów ustawionych dla poziomu",
+  "Revit Structural Framing": "Ramy konstrukcyjne programu Revit"
 }

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node sets the curve of an existing detail curve.
+Esse nó define a curva de uma curva de detalhe existente.
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+Neste exemplo, são criadas duas linhas, e uma é usada para criar uma curva de detalhe junto com uma vista (Tipo de partição – CMU).  Essa detailCurve é, em seguida, usada como uma entrada para “detailCurve” de DetailCurve.SetCurve, junto com a segunda linha como uma entrada para “curva”. A saída lê nulo, mas a curva de detalhe foi alterada para a nova posição.
 
 ___
 ## Arquivo de exemplo

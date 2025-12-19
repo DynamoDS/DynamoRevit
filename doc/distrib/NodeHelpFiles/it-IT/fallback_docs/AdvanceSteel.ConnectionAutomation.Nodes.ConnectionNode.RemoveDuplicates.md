@@ -1,7 +1,7 @@
 ## In profondità
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Questo nodo trova tutti i nodi di connessione che sono permutazioni reciproche { [beam1, beam2], [beam2, beam1] }, mantiene solo il primo nodo { [beam1, beam2] } e rimuove elementi nulli e vuoti.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+In questo esempio, vengono selezionate tre travi che si incontrano in corrispondenza di una singola intersezione per mostrare il comportamento di default di ciascun nodo di connessione e come viene ridotto il numero di permutazioni possibili.
 ___
 ## File di esempio
 

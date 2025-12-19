@@ -1,7 +1,7 @@
 ## Подробности
-This node creates an analytical member from a curve.
+Этот узел создает аналитический элемент из кривой.
 
-In this example, two points are defined by extracting the locations of the grid intersections at A4 and A5 in the Snowdon Structural model. A level, L2 TOS, is used to set the vertical position of both points. A line is created by connecting these points and provided as input to this node. The output is the analytical member representing the defined curve.
+В этом примере две точки определяются путем извлечения расположений пересечений сетки в A4 и A5 в модели конструкции Snowdon. Уровень, L2 TOS, используется для задания вертикального положения обеих точек. Линия создается путем соединения этих точек и предоставляется в качестве входных данных для этого узла. На выходе получается аналитический элемент, представляющий заданную кривую.
 ___
 ## Файл примера
 

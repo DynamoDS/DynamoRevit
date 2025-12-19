@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+Tento uzel vytvoří tvar ze seznamu křivek a booleovské hodnoty definující, zda je výstupní tvar těleso nebo povrch.  Tento uzel pracuje s rodinami založenými na objemech, adaptivními rodinami a rodinami založenými na vzorech.
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+V tomto příkladu je definováno více křivek průřezu, které je vloženo do uzlu Form.ByLoftCrossSections. Uzel pak vygeneruje spojitý 3D tvar šablonováním procházejícím těmito průřezy.
 
 ___
 ## Vzorový soubor

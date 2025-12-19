@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a grid based on a arc input.
+Ten węzeł tworzy siatkę na podstawie łuku wejściowego (arc).
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+W tym przykładzie jest tworzony punkt, który ma zostać użyty jako punkt środkowy łuku. Ten łuk jest używany jako dane wejściowe węzła Grid.ByArc i utworzona zostaje siatka.
 
 
 ___

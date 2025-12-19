@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Этот узел создает фильтр спецификации путем определения поля, типа фильтра и значения. Этот фильтр затем можно использовать в спецификации.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+В этом примере выбирается вид (WV_Wall Scheudle), отображаются поля спецификации, выбирается Type и используется в качестве входного поля в узле ScheduleFilter.ByFieldTypeAndValue вместе с типом фильтра BeginsWIth и значением Exterior. Этот тип фильтра затем используется для изменения содержимого, отображаемого в виде спецификации WV_Wall Scheudle. Этот фильтр выводит только те стены, тип которых начинается со слова Exterior.
 
 ___
 ## Файл примера

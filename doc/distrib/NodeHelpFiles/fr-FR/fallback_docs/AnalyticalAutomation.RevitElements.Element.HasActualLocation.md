@@ -1,7 +1,7 @@
 ## Description approfondie
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+Ce nœud évalue l'élément fourni et renvoie une valeur booléenne indiquant si l'élément a un emplacement défini, ainsi que des messages d'exception expliquant pourquoi ce n'est pas le cas.
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+Dans cet exemple, l'élément est défini par son ID d'élément à l'aide du nœud Element By ID, puis fourni à Element.HasActualLocation. Les sorties indiquent true si l'élément a un emplacement réel, ou false avec un message d'exception si ce n'est pas le cas.
 ___
 ## Exemple de fichier
 

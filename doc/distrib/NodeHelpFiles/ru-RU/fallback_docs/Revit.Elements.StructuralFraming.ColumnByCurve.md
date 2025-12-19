@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Этот узел создает несущую колонну на основе кривой, уровня и типа семейства колонн. На выходе получается новый созданный элемент несущей колонны в проекте.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+В этом примере линия строится на пересечении линий сетки A4 между уровнями L1, 35 Low и L3 в модели конструкции Snowdon. Узел использует эту кривую вместе с выбранным уровнем и типом колонны для создания несущей колонны.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+Dieser Block erstellt einen analytisches Element (Stab) aus einem vorhandenen physischen Element. Der Block kann die Geometrie und die geometrischen Parameter des Elements übernehmen, Parameterwerte übertragen und optional eine Verknüpfung mit dem ursprünglichen Element herstellen oder beibehalten.
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+In diesem Beispiel wird ein physisches Element aus dem Snowdon-Tragwerksmodell ausgewählt und mithilfe dieses Blocks in ein analytisches Element konvertiert.
 ___
 ## Beispieldatei
 

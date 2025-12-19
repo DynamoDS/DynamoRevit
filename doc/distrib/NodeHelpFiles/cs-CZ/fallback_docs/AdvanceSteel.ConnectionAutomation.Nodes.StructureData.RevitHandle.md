@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Tento uzel vrací index aplikace Revit přidružený k přípojům připojeným k prvku konstrukčních dat.
 
-In this example, a column has been selected.
+V tomto příkladu byl vybrán sloup.
 ___
 ## Vzorový soubor
 

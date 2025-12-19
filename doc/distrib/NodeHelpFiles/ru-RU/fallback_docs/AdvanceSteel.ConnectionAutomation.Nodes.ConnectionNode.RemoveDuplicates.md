@@ -1,7 +1,7 @@
 ## Подробности
-This node finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.
+Этот узел находит все узлы соединений, которые представляют собой различные комбинации { [beam1, beam2], [beam2, beam1] }, сохраняет только первый узел { [beam1, beam2] } и удаляет нулевые и пустые элементы.
 
-In this example, three beams that meet at a single intersection are selected to show the default behavior of each connection node and how the number of possible permutations is reduced.
+В этом примере три балки, пересекающиеся в одном пересечении, выбраны для демонстрации поведения по умолчанию каждого узла соединения и уменьшения количества возможных перестановок.
 ___
 ## Файл примера
 

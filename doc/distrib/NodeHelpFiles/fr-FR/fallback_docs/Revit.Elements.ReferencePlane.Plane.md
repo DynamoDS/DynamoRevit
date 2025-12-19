@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the underlying geometric plane from a Reference Plane element.
+Ce noeud extrait le plan géométrique sous-jacent d'un élément Plan de référence.
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+Dans ce diagramme, deux points sont définis avec des coordonnées et connectés au nœud ReferencePlane.ByStartPointEndPoint pour créer un plan de référence. Le plan de référence créé est ensuite transmis au noeud ReferencePlane.Plane, qui génère son plan géométrique, puis à un noeud d'observation 3D.
 ___
 ## Exemple de fichier
 

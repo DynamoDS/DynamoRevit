@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+Dieser Block ruft basierend auf einem bestimmten Indexwert eine bestimmte Ansicht von einer Ansichtsmarkierung ab. Eine Ansichtsmarkierung kann bis zu vier Ansichten (eine für jede Richtung) hosten. Dieser Block ermöglicht das Extrahieren einer dieser verknüpften Ansichten zur weiteren Verwendung oder Änderung (0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+In diesem Beispiel werden alle Ansichtsmarkierungen ausgewählt und zusammen mit allen Indexoptionen (0,1,2,3) für die Eingabe von elevationMarker verwendet. Die Ausgabe zeigt alle möglichen Ansichtsrichtungen und Null an, wenn keine Ansicht vorhanden ist. Der letzte Block zeigt die Gesamtzahl der mit einer bestimmten Elementmarkierung verknüpften Ansichten an.
 ___
 ## Beispieldatei
 

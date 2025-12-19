@@ -1,7 +1,7 @@
 ## Description approfondie
-This node gets the sheet a schedule is on.
+Ce nœud récupère la feuille sur laquelle se trouve une planification.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+Dans cet exemple, une nomenclature est placée sur une feuille à un emplacement précis. La nomenclature est ensuite entrée dans le noeud ScheduleOnSheet.Sheet, où le nom de la feuille est révélé (Nom = Couverture). Enfin, le nom est extrait dans une chaîne.
 
 ___
 ## Exemple de fichier

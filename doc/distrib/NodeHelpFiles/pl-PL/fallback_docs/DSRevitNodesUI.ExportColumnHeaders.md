@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Ten węzeł pobiera wszystkie opcje nagłówków kolumn zestawienia (OneRow, MultipleRows i None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+W tym przykładzie element columnHeaders (OneRow) jest używany jako dane wejściowe węzła ScheduleView.Export w celu wygenerowania typowej opcji eksportu.
 
 ___
 ## Plik przykładowy

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the connection type when given connection name and file path. This functions as a filter from the list of connections provided in the Revit model associated to the file path.
+Tento uzel vrací typ přípoje, pokud je dán název přípoje a cesta k souboru. Funguje jako filtr ze seznamu přípojů v modelu aplikace Revit asociovaných s cestou k souboru.
 
-In this example, we have provided the file path to a revit model and connection name of base plate. In return, the response is the connection type for the base plate.
+V tomto příkladu jsme zadali cestu k souboru modelu aplikace Revit a název přípoje patní desky. Získanou odezvou je typ přípoje patní desky.
 ___
 ## Vzorový soubor
 

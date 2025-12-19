@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a dimension based on one or more edge references in a given view.
+Ten węzeł tworzy wymiar na podstawie co najmniej jednego odniesienia krawędzi w danym widoku.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+W tym przykładzie widok „L1” z arkusza A101 jest używany jako dane wejściowe węzła Dimension.ByEdges wraz z pozycją referenceCurves, linią, przyrostkiem i przedrostkiem. Pozycja wejściowa linii umożliwia odsunięcie wymiaru od wybranych powierzchni. Ostatnie dwa węzły pokazują wartości wymiarów i ich przedrostki.
 
 ___
 ## Plik przykładowy

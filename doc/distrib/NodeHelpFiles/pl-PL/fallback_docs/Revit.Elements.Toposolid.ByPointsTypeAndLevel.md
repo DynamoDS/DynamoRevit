@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a Topography by using points a toposolidType along with a level.
+Ten węzeł tworzy model terenu przy użyciu punktów (points), elementu ToposolidType i poziomu (level).
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+W tym przykładzie zostaje utworzony prostokąt z punktami w równych odstępach długości cięciwy, który jest używany jako pozycja danych wejściowych points dla węzła Toposolid.ByPointsTypeAndLevel wraz z prostokątem, elementem ToposolidType i poziomem.
 ___
 ## Plik przykładowy
 

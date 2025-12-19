@@ -1,7 +1,7 @@
 ## 深入資訊
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+此節點會使用數值長度值和單位類型識別碼，將輸入值轉換為作用中 Revit 專案的長度單位。輸出是一個表示轉換結果的倍精度值。
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+在此範例中，數字滑棒提供長度值，選取單位 (例如，公尺) 取得其 Unit.TypeId 字串。兩者都連接至 UnitsUtilities.ConvertToCurrentProjectLengthUnit 節點，該節點會根據專案的單位設定傳回轉換後的長度值。
 ___
 ## 範例檔案
 

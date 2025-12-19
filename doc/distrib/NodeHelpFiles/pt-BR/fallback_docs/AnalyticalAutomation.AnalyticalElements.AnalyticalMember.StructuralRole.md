@@ -1,7 +1,7 @@
 ## Em profundidade
-This node outputs the structural role assigned to an analytical member.
+Esse nó gera a função estrutural atribuída a um membro analítico.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+Neste exemplo, uma viga do modelo estrutural Snowdon é convertida em um membro analítico, e esse nó retorna sua função estrutural atual.
 ___
 ## Arquivo de exemplo
 

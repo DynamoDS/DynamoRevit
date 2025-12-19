@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a grid line based on a start point and end point.
+Ce nœud crée un quadrillage basé sur un point de départ et un point d'arrivée.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+Dans cet exemple, 2 points sont générés et utilisés en tant qu'entrées de Grid.ByStartPointEndPoint.    Une grille créée et nommée "Dynamo".
 
 ___
 ## Exemple de fichier

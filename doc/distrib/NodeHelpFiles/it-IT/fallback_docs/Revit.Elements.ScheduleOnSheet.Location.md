@@ -1,7 +1,7 @@
 ## In profondità
-This node gets the location of a schedule on a sheet.
+Questo nodo ottiene la posizione di un abaco su una tavola.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+In questo esempio, viene posizionato un abaco su una tavola in una posizione specificata e poi utilizzato come input nel nodo ScheduleOnSheet.Location dove viene visualizzata la posizione dell'abaco.
 
 ___
 ## File di esempio

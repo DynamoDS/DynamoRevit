@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node sets the default sketch plane in a given view.
+Tento uzel nastavuje výchozí náčrtovou rovinu v daném pohledu.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+V tomto příkladu jsou všechny náčrtové roviny získány z projektu a filtrovány dolů do náčrtové roviny „Parkování“.  Tato náčrtová rovina „Parkování“ se poté použije jako vstup (SketchPlane) pro uzel View.SetSketchPlane společně s pohledem (view).  Poslední dva uzly zobrazují název původní náčrtové roviny vedle názvu nové náčrtové roviny.
 
 ___
 ## Vzorový soubor

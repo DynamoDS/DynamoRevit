@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the underlying geometric plane from a Reference Plane element.
+Tento uzel extrahuje základní geometrickou rovinu z prvku referenční roviny.
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+V tomto grafu jsou dva body definovány souřadnicemi a připojeny k uzlu ReferencePlane.ByStartPointEndPoint, čímž se vytvoří referenční rovina. Vytvořená referenční rovina je poté předána do uzlu ReferencePlane.Plane, který vygeneruje její geometrickou rovinu, a poté do uzlu 3D Watch.
 ___
 ## Vzorový soubor
 

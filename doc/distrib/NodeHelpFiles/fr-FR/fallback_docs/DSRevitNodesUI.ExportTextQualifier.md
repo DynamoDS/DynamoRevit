@@ -1,7 +1,7 @@
 ## Description approfondie
-This node provides a drop-down list to choose how text fields should be wrapped or qualified when exporting data to a text-based format (often CSV-style exports)..  These values will define the character that will surround text values in an exported schedule.  (Example; DoubleQuote, The quote character - " - is used to qualify text.  None, No text qualifier.  Quote, The quote character - ' - is used to qualify text).
+Ce nœud fournit une liste déroulante permettant de choisir la manière dont les champs de texte doivent être renvoyés à la ligne ou qualifiés lors de l'exportation de données vers un format textuel (souvent des exportations de type CSV).  Ces valeurs définiront le caractère qui entourera les valeurs de texte dans une planification exportée.  (Exemple; DoubleQuote, le caractère de guillemet " est utilisé pour qualifier le texte.  Aucun, pas de qualificatif de texte.  Citation, le caractère d'apostrophe ' est utilisé pour qualifier le texte).
 
-In this example Export Text Qualifier (Quote) is used as an input to the ScheduleView.Export node to generate a typical export option.
+Dans cet exemple, le qualificateur de texte d'exportation (citation) est utilisé comme entrée pour le nœud ScheduleView.Export afin de générer une option d'exportation standard.
 
 ___
 ## Exemple de fichier

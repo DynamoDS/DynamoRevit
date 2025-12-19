@@ -1,7 +1,7 @@
 ## Подробности
-This node returns all elements within a Revit Link Instance that are hosted on or associated with a specified Level.
+Этот узел возвращает все элементы в экземпляре связи Revit, размещенные на указанном уровне или связанные с ним.
 
-In this example all Revit links are selected and input into LinkInstance.AllElementsAtLevel along with a level.  The output exposes all the Revit linked elements on or related to level L3.  The last 2 nodes give the link transform and inverse transform.
+В этом примере выбраны все связанные файлы Revit и переданы в качестве входных данных в узел LinkInstance.AllElementsAtLevel вместе с уровнем. На выходе отображаются все связанные элементы Revit на уровне L3 или связанные с этим уровнем. Последние два узла содержат преобразование связи и обратное преобразование.
 
 ___
 ## Файл примера

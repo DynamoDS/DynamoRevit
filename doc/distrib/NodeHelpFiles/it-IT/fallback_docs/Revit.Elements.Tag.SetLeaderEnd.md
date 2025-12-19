@@ -1,7 +1,7 @@
 ## In profondità
-This node sets the location of the end point in a “free-end” tag.
+"Questo nodo imposta la posizione del punto finale in un'etichetta “a estremità libera”.
 
-In this example, a tag is selected, and the original points are extracted,  The Y value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderEnd along with the original tag selected.  The output is the new location of the tags’ end point.  See view floor plan L1.
+In questo esempio, viene selezionata un'etichetta e vengono estratti i punti originali. Il valore Y viene modificato e vengono definiti i nuovi punti XYZ che sono poi utilizzati come input location nel nodo Tag.SetLeaderEnd insieme all'input originale tag selezionato. L'output è la nuova posizione del punto finale delle etichette. Vedere la vista della pianta del pavimento L1.
 
 
 ___

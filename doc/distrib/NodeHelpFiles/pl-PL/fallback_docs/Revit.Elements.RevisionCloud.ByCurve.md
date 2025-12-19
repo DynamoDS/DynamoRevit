@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+Ten węzeł tworzy chmurkę rewizji w określonym widoku. Dane wejściowe to widok, lista krzywych, „zarys chmurki” i zdefiniowana rewizja.
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+W tym przykładzie dwa suwaki Number Slider definiują szerokość i długość prostokąta, który jest następnie dzielony na krzywe. Te krzywe zostają odwrócone, aby zachować prawidłową orientację, a następnie połączone z węzłem RevisionCloud.ByCurve. Wykres pobiera również jako dane wejściowe aktywny widok (First Floor Plan) i wybraną rewizję (Seq. 2 – Not For Construction). W połączeniu powoduje to automatyczne wygenerowanie chmurki rewizji w wybranym widoku na podstawie zdefiniowanego kształtu.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+Este nodo obtiene el identificador único (RuleId) de una regla del asesor de rendimiento.
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+En este ejemplo, la regla seleccionada "El proyecto contiene familias y tipos que no se utilizan" se conecta a PerformanceAdviserRule.RuleId, que genera un identificador único. A continuación, ese ID se convierte en una cadena.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+Ten węzeł pobiera określony widok rzędnej ze znacznika rzędnej na podstawie podanej wartości indeksu. Znacznik rzędnej może zawierać maksymalnie cztery rzędne (po jednej dla każdego kierunku). Ten węzeł umożliwia wyodrębnienie jednego ze skojarzonych widoków rzędnej na potrzeby dalszego użycia lub modyfikacji (0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+W tym przykładzie wybrano wszystkie znaczniki rzędnej i użyto ich jako danych wejściowych elevationMarker wraz ze wszystkimi opcjami indeksu 0, 1, 2, 3. Wynik pokazuje wszystkie możliwe kierunki rzędnych i wartość null, jeśli nie istnieje żadna rzędna. Ostatni węzeł wyświetla całkowitą liczbę rzędnych skojarzonych z danym znacznikiem elementu.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Ten węzeł tworzy słup konstrukcyjny na podstawie krzywej, poziomu i typu rodziny słupów. Wynikiem jest nowo utworzony element słupa konstrukcyjnego w projekcie.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+W tym przykładzie rysowana jest linia na przecięciu siatki A4 między poziomami L1 35 Low i L3 w modelu konstrukcyjnym Snowdon. Węzeł używa tej krzywej, wraz z wybranym poziomem i typem słupa, do utworzenia słupa konstrukcyjnego.
 ___
 ## Plik przykładowy
 

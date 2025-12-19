@@ -1,7 +1,7 @@
 ## En detalle:
-This node outputs the structural role assigned to an analytical member.
+Este nodo genera la función estructural asignada a una barra analítica.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+En este ejemplo, una viga del modelo estructural Snowdon se convierte en una barra analítica y este nodo devuelve su función estructural actual.
 ___
 ## Archivo de ejemplo
 

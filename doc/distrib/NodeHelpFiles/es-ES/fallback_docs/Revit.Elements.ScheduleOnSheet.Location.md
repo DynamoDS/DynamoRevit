@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets the location of a schedule on a sheet.
+Este nodo obtiene la ubicación de una tabla de planificación en un plano.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+En este ejemplo, se coloca una tabla de planificación en la ubicación especificada de un plano, que a continuación se introduce en el nodo ScheduleOnSheet.Location, donde se muestra la ubicación de la tabla de planificación.
 
 ___
 ## Archivo de ejemplo

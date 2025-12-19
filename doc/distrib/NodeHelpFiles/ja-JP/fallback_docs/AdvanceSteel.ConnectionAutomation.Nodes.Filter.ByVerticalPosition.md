@@ -1,7 +1,7 @@
 ## 詳細
-This node filters input elements based on their vertical placement within the model. It allows you to choose whether to evaluate an element’s Top or Bottom Z-coordinate (height) for comparison or logical filtering. Its typically used as part of a filtering system, often in conjunction with a ConnectionNode, to isolate elements above or below certain elevations. It is useful in workflows that involve spatial analysis, such as separating building elements by level or zone.
+このノードは、モデル内の垂直方向の配置に基づいて入力要素をフィルタします。使用すると、比較または論理フィルタするために、要素の上部または下部の Z 座標(高さ)を評価するかどうかを選択することができます。これは通常、フィルタリング システムの一部として使用され、多くの場合、ConnectionNode と組み合わせて使用され、特定の高さより上または下の要素を分離します。これは、レベルまたはゾーンごとに建物要素を分離するなど、空間解析を伴うワークフローで役立ちます。
 
-In this example, we are filtering all the selected structure data items by their "Top" z-coordinate position (height). This can be used to further determine if the position is lower than a level, floor, or ceiling.
+この例では、選択されたすべての構造データ項目を、その「上部」の Z 座標位置(高さ)でフィルタします。これは、位置がレベル、床、または天井よりも低いかどうかをさらに判断するために使用できます。
 ___
 ## サンプル ファイル
 

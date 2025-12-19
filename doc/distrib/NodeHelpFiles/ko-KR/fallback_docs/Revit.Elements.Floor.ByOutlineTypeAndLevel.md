@@ -1,7 +1,7 @@
 ## 상세
-This node creates a floor using curves, floor types and level.
+이 노드는 곡선, 바닥 유형 및 레벨을 사용하여 바닥을 생성합니다.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+이 예에서는 숫자 슬라이더를 사용하여 직사각형을 생성하고 지정된 바닥 유형 및 레벨과 함께 Floor.ByOutlineTypeAndLevel에 대한 입력으로 사용합니다.
 
 ___
 ## 예제 파일

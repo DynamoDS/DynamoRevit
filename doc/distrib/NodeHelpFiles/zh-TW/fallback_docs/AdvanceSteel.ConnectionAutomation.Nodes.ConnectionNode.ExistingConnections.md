@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns the existing connections of the structure data element/s selected.
+此節點會傳回所選結構資料元素的既有接頭。
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+在此範例中，選取了有三個接頭: 底板、力矩連接和螺栓連接的柱。
 ___
 ## 範例檔案
 

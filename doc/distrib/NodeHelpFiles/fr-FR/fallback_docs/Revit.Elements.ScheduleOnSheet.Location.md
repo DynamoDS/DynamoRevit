@@ -1,7 +1,7 @@
 ## Description approfondie
-This node gets the location of a schedule on a sheet.
+Ce nœud obtient l'emplacement d'une planification sur une feuille.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+Dans cet exemple, une nomenclature est placée sur une feuille à un emplacement spécifié, qui est ensuite saisi dans le noeud ScheduleOnSheet.Location où l'emplacement de la planification est affiché.
 
 ___
 ## Exemple de fichier

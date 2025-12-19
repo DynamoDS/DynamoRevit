@@ -1,7 +1,7 @@
 ## Description approfondie
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Ce noeud récupère tous les objets références de courbe d'un élément.  Des valeurs nulles seront données pour les éléments qui n'ont pas de courbes.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+Dans cet exemple, un élément (garde-corps) est sélectionné et utilisé comme entrée dans Elements.ElementCurveReferences.  Les sorties sont la référence incurvée de cet élément.
 
 ___
 ## Exemple de fichier

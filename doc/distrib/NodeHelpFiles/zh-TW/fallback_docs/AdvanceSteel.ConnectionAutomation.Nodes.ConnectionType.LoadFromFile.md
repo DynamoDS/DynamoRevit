@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns a list of available connection types that can be loaded from an external Revit (.rvt) file.
+此節點會傳回可從外部 Revit (.rvt) 檔案載入的可用接頭類型清單。
 
-In this example, we return a list of connections that are available in the Revit model associated to an external Revit file from the provided file path.  Note that the connection types loaded should not already exist in the model or an error will be thrown.
+在此範例中，我們會傳回 Revit 模型中與所提供檔案路徑中的外部 Revit 檔案相關聯的可用接頭清單。請注意，載入的接頭類型不得預先存在於模型中，否則會出現錯誤。
 ___
 ## 範例檔案
 

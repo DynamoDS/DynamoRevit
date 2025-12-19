@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node moves an element to a new location given a new point.
+Ten węzeł przesuwa element do nowego położenia na podstawie nowego punktu.
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+W tym przykładzie zostaje wybrany element i zostaje on przekazany do węzła Element.SetLocation. Oryginalne położenie elementów zostanie pokazane i użyte do przesunięcia wzdłuż płaszczyzn x i y, co jest sterowane przez węzeł Number Slider. Dane wyjściowe przekształcania (translation) są używane jako dane wejściowe geometrii (geometry) węzła Element.SetLocation. Zostanie wyświetlona wartość null, ale element jest przesuwany.
 
 ___
 ## Plik przykładowy

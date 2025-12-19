@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node casts a ray into a linked Revit model from a specified origin and direction, then traces its successive bounces off linked elements. Each bounce represents a point where the ray intersects geometry in the linked model, up to a defined maximum number of reflections.
+Ten węzeł rzuca promień na połączony model programu Revit z określonego początku i kierunku, a następnie śledzi jego kolejne odbicia od połączonych elementów. Każde odbicie reprezentuje punkt, w którym promień przecina geometrię w modelu połączonym, aż do zdefiniowanej maksymalnej liczby odbić.
 
-In this example, a linked element is selected and the location of that element is used as the origin input to LinkElement.ByRayBounce along with a direction, maxBounces and a view.  The outputs are points and linked elements.
+W tym przykładzie wybieramy połączony element, a następnie używamy położenia tego elementu jako danych wejściowych origin dla węzła LinkElement.ByRayBounce wraz z danymi wejściowymi direction, maxBounces i view. Danymi wyjściowymi są punkty i elementy połączone.
 ___
 ## Plik przykładowy
 

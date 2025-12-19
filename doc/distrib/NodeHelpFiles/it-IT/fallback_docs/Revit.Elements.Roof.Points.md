@@ -1,7 +1,7 @@
 ## In profondità
-This node gets the sketch points of a selected roof.
+Questo nodo ottiene i punti del disegno del tetto selezionato.
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+In questo esempio, vengono selezionati tutti i tetti che sono poi utilizzati come input in Roof.Points. L'output corrisponde a ciascun punto del disegno del tetto selezionato.
 ___
 ## File di esempio
 

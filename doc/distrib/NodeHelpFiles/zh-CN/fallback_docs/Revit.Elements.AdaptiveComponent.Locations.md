@@ -1,9 +1,9 @@
 ## 详细
-This node retrieves the locations of a given adaptive component.
+此节点检索给定自适应构件的位置。
 
-In this example a adaptive component in placed and all types are selected then used as adaptiveComponent input for the AdaptiveComponent.Locations.  The output is the position of the adaptive component placed.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+在此示例中，放置了一个自适应构件并选择了所有类型，然后将其用作 AdaptiveComponent.Locations 的 adaptiveComponent 输入。输出是所放置自适应构件的位置。请注意，在运行此图形之前，需要将“Diagnostic Tripod – 1 Point.rfa”载入体量族中。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+要运行此节点帮助示例文件，需要将“Diagnostics Tripod-1 point.rfa”载入到 Revit 文件中。该族存储在此处。C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## 示例文件
 

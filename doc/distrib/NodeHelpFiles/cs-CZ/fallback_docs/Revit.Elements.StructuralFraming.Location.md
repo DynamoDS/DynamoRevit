@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+Tento uzel extrahuje geometrii křivky z umístění prvku rámové konstrukce. Výstup poskytuje informace o počátečním a koncovém bodu oblouku, směrovém vektoru a délce.
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+V tomto příkladu je vybrán nosník v konstrukčním modelu Snowdon. Uzel generuje výstup dat křivky, která definují umístění nosníku v projektu.
 ___
 ## Vzorový soubor
 

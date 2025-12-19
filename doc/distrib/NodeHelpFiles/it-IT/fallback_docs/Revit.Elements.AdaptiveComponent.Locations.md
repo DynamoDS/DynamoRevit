@@ -1,9 +1,9 @@
 ## In profondità
-This node retrieves the locations of a given adaptive component.
+Questo nodo recupera le posizioni di un determinato componente adattivo.
 
-In this example a adaptive component in placed and all types are selected then used as adaptiveComponent input for the AdaptiveComponent.Locations.  The output is the position of the adaptive component placed.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+In questo esempio, viene posizionato un componente adattivo e vengono selezionati tutti i tipi, che sono poi utilizzati come input adaptiveComponent per AdaptiveComponent.Locations. L'output è il punto in cui è stato posizionato il componente adattivo. Tenere presente che "Diagnostic Tripod – 1 Point.rfa" deve essere caricato nella famiglia di masse prima di eseguire questo grafico.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Per eseguire questo file di esempio della Guida del nodo, è necessario caricare Diagnostics Tripod-1 point.rfa nel file di Revit. La famiglia viene memorizzata qui in C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## File di esempio
 

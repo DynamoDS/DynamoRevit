@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieve the display name of a Performance Adviser rule.
+このノードは、パフォーマンス アドバイザ規則の表示名を取得します。
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+このグラフでは、特定のパフォーマンス アドバイザ規則が選択されて PerformanceAdviserRule.Name に渡され、「プロジェクトには、未使用のファミリとタイプが含まれています」という規則の表示名が出力されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Im Detail
-The Revision.Issued node in Dynamo is used to check whether a revision in Revit is marked as issued. It returns a true or false value (Boolean), helping teams quickly verify the status of revisions without opening the Revit revision settings.
+Der Block Revision.Issued in Dynamo wird verwendet, um zu prüfen, ob eine Änderung in Revit als ausgegeben markiert ist. Er gibt den Wert True oder False (boolescher Wert) zurück, sodass Teams den Status von Änderungen schnell überprüfen können, ohne die Revit-Änderungseinstellungen öffnen zu müssen.
 
-In this graph, the Select Revision node is used to choose a revision from the project. The Revision.Issued node then checks if the selected revision is issued, and the result is displayed in the Watch node as either true or false. This makes it easy to confirm the issue status of a revision directly through Dynamo.
+In diesem Diagramm wird der Block Select Revision verwendet, um eine Änderung aus dem Projekt auszuwählen. Der Revision.Issued-Block prüft dann, ob die ausgewählte Änderung ausgegeben wurde, und das Ergebnis wird im Watch-Block als True oder False angezeigt. Dadurch können Sie den Ausgabestatus einer Änderung auf einfache Weise direkt über Dynamo bestätigen.
 
 ___
 ## Beispieldatei

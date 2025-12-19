@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+Questo nodo recupera ToposolidType da un progetto dato un input string. Il tipo deve esistere nel progetto o verrà specificato un valore null.
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+In questo esempio, viene utilizzato "Toposolid 1" come input in ToposolidType.ByName e l'output è ToposolidType. Questo output viene utilizzato per generare un solido topografico.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+Этот узел создает размер на основе выбора двух плоских граней элементов модели и измеряет расстояние между ними.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+В этом примере вид L1 с листа A101 используется в качестве входных данных для Dimension.ByFaces вместе с поверхностями, линией, суффиксом и префиксом. Входные значения линии позволяют смещать размер от выбранных граней.
 
 ___
 ## Файл примера

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node tags Revit elements given a view, element, offset, horizontalAligment, verticalAlignment, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Ten węzeł oznacza elementy programu Revit na podstawie danych wejściowych view, element, offset, horizontalAligment, verticalAlignment, horizontal (jeśli ta pozycja orientacji w poziomie ma wartość negatywną, oznaczenie zostanie zorientowane na podstawie orientacji elementu) i addLeader.
 
-In this example a door is selected in the “Studio Live Work Core B” view and are used as inputs to Tag.ByelementAndOffset.  The location of that door is extracted and used as the vector start point.  The same point is modified using a slider changing the x and y points and used as the vector end point.  This vector is used as our input for offset along with true values in the horizontal and addLeader inputs.  The horizontalAlignment is defined by the Selection Horizontal Text Alignment node drop down values (Left, Center, Right) and the Selection Vertical Text Alignment node drop down values (Bottom, Middle, Top).
+W tym przykładzie w widoku „Studio Live Work Core B” wybierane są drzwi i są one używane jako dane wejściowe węzła Tag.ByelementAndOffset. Położenie tych drzwi jest wyodrębniane i używane jako punkt początkowy wektora. Ten sam punkt jest modyfikowany przy użyciu suwaka zmieniającego punkty x i y, a następnie jest używany jako punkt końcowy wektora. Ten wektor służy jako dane wejściowe dla odsunięcia wraz z wartościami true (prawda) dla danych wejściowych horizontal i addLeader. Parametr horizontalAlignment jest definiowany przez wartości listy rozwijanej węzła Selection Horizontal Text Alignment (Left, Center, Right) i wartości listy rozwijanej węzła Selection Vertical Text Alignment (Bottom, Middle, Top).
 
 ___
 ## Plik przykładowy

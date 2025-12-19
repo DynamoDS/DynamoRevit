@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Esse nó cria uma viga estrutural no modelo do Revit ao longo de uma curva definida. A viga é definida pela curva, o tipo de estrutura selecionado e o nível associado. A saída é o elemento de viga estrutural criado.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+Neste exemplo, uma linha é colocada no Nível L2 TOS entre os eixos A5 e A6 no modelo estrutural Snowdon. Essa linha é fornecida como a entrada de curva, e o tipo de estrutura e nível selecionados definem a viga. A saída é o elemento de viga estrutural recém-criado.
 ___
 ## Arquivo de exemplo
 

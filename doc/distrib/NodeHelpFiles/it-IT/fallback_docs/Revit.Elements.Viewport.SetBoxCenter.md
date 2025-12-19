@@ -1,7 +1,7 @@
 ## In profondità
-This node moves the center point of a given viewport to a new location on the sheet.
+Questo nodo sposta il punto centrale di una data finestra in una nuova posizione sulla tavola.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+In questo esempio, viene creata una nuova tavola "Dynamo Sheet" e viene posizionata la vista "L1 Wall Base" nel punto "0,0,0". Questa vista viene utilizzata nell'input viewport per il nodo Viewport.SetBoxCenter insieme ad un nuovo punto. L'output è una vista riposizionata.
 ___
 ## File di esempio
 

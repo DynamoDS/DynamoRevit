@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+Dieser Block ruft den Kraftwert für einen bestimmten Analyseergebnistyp (z. B. Fx, Fy, Fz, Mx, My, Mz) entweder aus den Ergebnissen der Tragwerksbemessung oder aus dem Revit-Berechnungsmodell ab. Der Block wertet die Kräfte in jeder Verbindungszone des ausgewählten Tragwerkselements aus.
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+In diesem Beispiel wird eine Stütze ausgewählt, um die Fz-Kraftkomponente in jeder der verknüpften Verbindungszonen basierend auf dem ausgewählten Modellanalysemodus anzuzeigen.
 ___
 ## Beispieldatei
 

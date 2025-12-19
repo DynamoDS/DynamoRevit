@@ -1,7 +1,7 @@
 ## In profondità
-This node performs a ray bounce analysis within the Revit model. Starting from a given origin point and traveling along a specified direction vector, it traces the path of the ray as it intersects elements in the model. When the ray hits a surface, it can continue bouncing off that surface, depending on the number of bounces allowed, simulating light, visibility, or path reflection behavior.
+Questo nodo esegue un'analisi dei rimbalzi dei raggi all'interno del modello di Revit. Partendo da un punto di origine specificato e viaggiando lungo un vettore di direzione specificato, traccia il percorso del raggio mentre interseca gli elementi nel modello. Quando il raggio colpisce una superficie, può continuare a rimbalzare su di essa, a seconda del numero di rimbalzi consentiti, simulando il comportamento della luce, della visibilità o del riflesso del percorso.
 
-In this example, an element is selected and its' location is used for input origin to node RayBounce.ByOriginDirection, along with a direction, maxBounces and, a view.
+In questo esempio, viene selezionato un elemento e la sua posizione viene utilizzata per l'input origin nel nodo RayBounce.ByOriginDirection, insieme a direction, maxBounces e view.
 ___
 ## File di esempio
 

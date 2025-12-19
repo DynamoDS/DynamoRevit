@@ -1,7 +1,7 @@
 ## 深入資訊
-The Revision.Issued node in Dynamo is used to check whether a revision in Revit is marked as issued. It returns a true or false value (Boolean), helping teams quickly verify the status of revisions without opening the Revit revision settings.
+使用 Dynamo 中的 Revision.Issued 節點檢查 Revit 中的修訂是否標記為已發佈，傳回 true 或 false 值 (布林值)，可協助團隊快速確認修訂狀態，無須開啟 Revit 修訂設定。
 
-In this graph, the Select Revision node is used to choose a revision from the project. The Revision.Issued node then checks if the selected revision is issued, and the result is displayed in the Watch node as either true or false. This makes it easy to confirm the issue status of a revision directly through Dynamo.
+在此圖表中，使用 Select Revision 節點選擇專案中的某個修訂，然後 Revision.Issued 節點會檢查選取的修訂是否已發佈，並在 Watch 節點中以 true 或 false 顯示結果。您可以很輕鬆地直接透過 Dynamo 確認修訂的發佈狀態。
 
 ___
 ## 範例檔案

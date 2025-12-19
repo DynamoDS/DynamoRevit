@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Размещение адаптивных компонентов Revit",
+  "Revit Color": "Цвет Revit",
+  "Revit Floors and Framing": "Перекрытия и каркасы Revit",
+  "Revit Geometry Creation Curves": "Создание геометрии Revit: кривые",
+  "Revit Geometry Creation Points": "Создание геометрии Revit: точки",
+  "Revit Geometry Creation Solids": "Создание геометрии Revit: тела",
+  "Revit Geometry Creation Surfaces": "Создание геометрии Revit: поверхности",
+  "Revit Import Solid": "Импорт тела в Revit",
+  "Revit Place Families By Level Set Parameters": "Задание параметров размещения семейств Revit по уровню",
+  "Revit Structural Framing": "Несущий каркас Revit"
 }

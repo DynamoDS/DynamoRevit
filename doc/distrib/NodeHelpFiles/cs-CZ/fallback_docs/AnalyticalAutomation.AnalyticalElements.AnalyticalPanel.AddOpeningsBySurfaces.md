@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+Tento uzel přidá do analytické desky otvory pomocí definovaných povrchů jako tvaru každého otvoru. Podle potřeby lze použít existující vstupy k aktualizaci geometrie, parametrů a asociací.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+V tomto příkladu čtyři body v průsečících osnovy A4–A5 a B4–B5 v konstrukčním modelu Snowdon definují umístění otvoru a podlaží (TOS L2) nastavuje jeho vertikální umístění. Čáry spojují body a vytvářejí odsazený povrch představující otvor. Podlaha na L2 TOS se použije k vytvoření analytické desky a tento uzel připojí povrch otvoru k desce, čímž vznikne odpovídající analytický otvor.
 ___
 ## Vzorový soubor
 

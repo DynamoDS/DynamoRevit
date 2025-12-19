@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a room based on points, a level, a room name and a room number.
+Tento uzel vytvoří místnost na základě bodů, podlaží, názvu místnosti a čísla místnosti.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+V tomto příkladu jsou body odvozeny od rodin uvnitř obestavěného prostoru (který není definován jako místnost).  Tyto body se používají jako vstup „umístění“ spolu s daným podlažím, názvem místnosti a číslem místnosti.  Uzel po uzlu Room.ByLocation extrahuje parametry názvu a čísla místnosti, které byly vytvořeny, aby zobrazily úspěšné spuštění uzlu.
 
 ___
 ## Vzorový soubor

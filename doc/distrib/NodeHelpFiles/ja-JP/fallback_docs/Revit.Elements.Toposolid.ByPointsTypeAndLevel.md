@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a Topography by using points a toposolidType along with a level.
+このノードは、点 toposolidType をレベルとともに使用して地盤面を作成します。
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+この例では、コードの長さが等しい点を持つ長方形が作成され、Toposolid.ByPointsTypeAndLevel ノードの点への入力として、長方形、ToposolidType、レベルとともに使用されます。
 ___
 ## サンプル ファイル
 

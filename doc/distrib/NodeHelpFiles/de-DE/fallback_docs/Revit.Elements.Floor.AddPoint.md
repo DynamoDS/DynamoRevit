@@ -1,8 +1,8 @@
 ## Im Detail
 
-This node adds a point to a given floor.
+Dieser Block fügt einen Punkt zu einer bestimmten Geschossdecke hinzu.
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+In diesem Beispiel wird ein Zahlen-Schieberegler verwendet, um ein Rechteck zu generieren, das dann zusammen mit einem bestimmten Geschossdeckentyp und einer bestimmten Ebene als Eingabe für Floor.ByOutlineTypeAndLevel verwendet wird. Verwenden Sie diese Geschossdecke zusammen mit einem neuen Punkt als Eingaben für Floor.AddPoint.
 
 
 ___

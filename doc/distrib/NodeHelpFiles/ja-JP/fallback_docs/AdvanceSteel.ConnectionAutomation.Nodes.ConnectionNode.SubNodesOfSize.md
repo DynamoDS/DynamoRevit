@@ -1,7 +1,7 @@
 ## 詳細
-This nodes generates new connection nodes with exactly the given number of zones.
+このノードは、指定された数のゾーンを持つ新しい接合ノードを生成します。
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+この例では、3 つ以上の接合ゾーンを持つ要素のみが出力に含まれます。結果の各サブリストは、元の要素内の異なるグループ化または構造的配置を表します。
 ___
 ## サンプル ファイル
 

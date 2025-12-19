@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a room based on points, a level, a room name and a room number.
+此節點會根據點、樓層、房間名稱和房間編號建立房間。
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+在此範例中，從某個範圍 (未定義為房間) 內的族群衍生出點。使用這些點作為「location」輸入，同時提供給定樓層、房間名稱和房間編號。Room.ByLocation 之後的節點會擷取建立的房間名稱和房間編號參數，顯示節點已成功執行。
 
 ___
 ## 範例檔案

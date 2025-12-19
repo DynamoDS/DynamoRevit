@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Этот узел создает несущую балку в модели Revit вдоль заданной кривой. Балка определяется кривой, выбранным типом каркаса и соответствующим уровнем. На выходе получается созданный элемент несущей балки.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+В этом примере линия размещается на уровне L2 TOS между линиями сетки A5 и A6 в модели конструкции Snowdon. Эта линия используется в качестве входных данных для кривой, а выбранный тип каркаса и уровень определяют балку. На выходе получается новый созданный элемент несущей балки.
 ___
 ## Файл примера
 

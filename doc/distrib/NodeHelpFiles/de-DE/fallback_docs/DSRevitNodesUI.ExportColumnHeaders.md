@@ -1,7 +1,7 @@
 ## Im Detail
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Dieser Block ruft alle Optionen für die Überschrift der Bauteillistenspalte ab (OneRow, MultipleRows und None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+In diesem Beispiel wird columnHeaders (OneRow) als Eingabe für den ScheduleView.Export-Block verwendet, um eine typische Exportoption zu generieren.
 
 ___
 ## Beispieldatei

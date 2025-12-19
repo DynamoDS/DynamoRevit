@@ -1,7 +1,7 @@
 ## En detalle:
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+Este nodo toma una etiqueta y cambia su ubicación de encabezamiento. Esto nos permite automatizar un comportamiento de colocación coherente para que las etiquetas estén directamente encima del elemento que etiquetan.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+En este ejemplo, se selecciona una puerta en la vista "Studio Live Work Core B". La ubicación de esa puerta se extrae y, a continuación, se utiliza como entrada original en Tag.ByElementAndLocation junto con los valores booleanos de horizontal y addLeader. La ubicación original se modifica para que la ubicación de la etiqueta no se superponga directamente sobre el elemento mediante el nodo Tag.SetHeadLocation.
 
 ___
 ## Archivo de ejemplo

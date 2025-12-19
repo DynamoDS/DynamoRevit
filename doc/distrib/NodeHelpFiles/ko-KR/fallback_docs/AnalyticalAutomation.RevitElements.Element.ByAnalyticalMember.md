@@ -1,7 +1,7 @@
 ## 상세
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+이 노드는 해석 부재에서 물리적 구조 요소를 작성하거나 해석 부재에 이미 연결된 기존의 물리적 요소를 업데이트합니다. 노드는 입력 설정에 따라 해석 부재를 기반으로 물리적 요소의 형상 또는 매개변수를 업데이트할 수 있습니다. 해석 부재가 물리적 요소와 연관되어 있지 않으면 해석 부재의 정보를 사용하여 물리적 요소가 작성됩니다.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+이 예에서는 ACO Supermarket 프로젝트의 해석 부재가 구조 기둥에서 선택됩니다. 해당 해석 부재는 이 노드에 연결되며, 부울 입력은 형상 및 매개변수를 업데이트하는 기본 설정을 표시하는 데 사용됩니다. 노드는 해석 모델을 기반으로 해당하는 물리적 기둥을 생성합니다.
 ___
 ## 예제 파일
 

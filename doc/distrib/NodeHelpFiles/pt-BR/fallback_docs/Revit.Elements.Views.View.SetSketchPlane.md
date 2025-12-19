@@ -1,7 +1,7 @@
 ## Em profundidade
-This node sets the default sketch plane in a given view.
+Esse nó define o plano de esboço padrão em uma determinada vista.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+Neste exemplo, todos os planos de esboço são recuperados do projeto e filtrados para o plano de esboço “Estacionamento”. Em seguida, esse plano de esboço “Estacionamento‘ é usado como uma entrada (SketchPlane) para o nó View.SetSketchPlane junto com uma vista (vista). Os últimos dois nós mostram o nome do plano de esboço original junto com o nome do novo plano de esboço.
 
 ___
 ## Arquivo de exemplo

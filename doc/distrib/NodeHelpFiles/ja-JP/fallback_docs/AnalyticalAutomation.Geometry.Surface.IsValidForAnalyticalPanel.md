@@ -1,7 +1,7 @@
 ## 詳細
-This node evaluates a given surface to determine if it is valid for use in defining an analytical panel. A valid surface is typically planar, continuous, and suitable for conversion into an analytical representation within Revit’s analytical model environment.
+このノードは、指定されたサーフェスを評価して、解析用パネルの定義での使用に対して有効かどうかを判断します。有効なサーフェスは通常、平面で連続しており、Revit の解析モデル環境内の解析表現への変換に適しています。
 
-In this example, the faces of a slab element from the project are collected, and the top face is provided to the node as input. The node returns a Boolean result indicating whether the selected surface meets the requirements for creating an analytical panel, along with an optional message describing any issues encountered during validation.
+この例では、プロジェクトからスラブ要素の面が収集され、上面が入力としてノードに提供されます。ノードは、選択されたサーフェスが解析用パネルの作成要件を満たしているかどうかを示すブール値の結果と、検証中に発生した問題を説明するオプションのメッセージを返します。
 ___
 ## サンプル ファイル
 

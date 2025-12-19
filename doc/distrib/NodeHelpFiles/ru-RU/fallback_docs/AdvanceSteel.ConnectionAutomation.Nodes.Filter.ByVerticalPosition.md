@@ -1,7 +1,7 @@
 ## Подробности
-This node filters input elements based on their vertical placement within the model. It allows you to choose whether to evaluate an element’s Top or Bottom Z-coordinate (height) for comparison or logical filtering. Its typically used as part of a filtering system, often in conjunction with a ConnectionNode, to isolate elements above or below certain elevations. It is useful in workflows that involve spatial analysis, such as separating building elements by level or zone.
+Этот узел фильтрует входные элементы на основе их вертикального размещения в модели. Он позволяет выбрать, какую координату (высоту) использовать для сравнения или логической фильтрации значения Z-координаты по верхнему или нижнему краю элемента. Обычно используется в составе системы фильтрации, часто в сочетании с узлом соединения, для изоляции элементов выше или ниже определенных отметок. Это удобно в рабочих процессах, включающих пространственный анализ, например, при разделении элементов здания по уровням или зонам.
 
-In this example, we are filtering all the selected structure data items by their "Top" z-coordinate position (height). This can be used to further determine if the position is lower than a level, floor, or ceiling.
+В данном примере выполняется фильтрация всех выбранных элементов данных конструкции по их положению (высоте) по значению Z-координаты по верхнему краю элемента. Его можно использовать для дальнейшего определения того, является ли положение ниже уровня, пола или потолка.
 ___
 ## Файл примера
 

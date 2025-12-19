@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the location of a schedule on a sheet.
+Tento uzel získá umístění výkazu na výkresu.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+V tomto příkladu je výkaz umístěn na výkres do určeného umístění, které je poté vloženo do uzlu ScheduleOnSheet.Location, kde je zobrazeno umístění výkazu.
 
 ___
 ## Vzorový soubor

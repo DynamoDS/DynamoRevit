@@ -1,8 +1,8 @@
 ## Em profundidade
-This node extracts the actual Revit element reference of a selected reference plane. This is useful when you need to use that plane as a hosting reference for geometry or dimensions inside Revit.
+Esse nó extrai a referência real do elemento do Revit de um plano de referência selecionado. Isso é útil quando você precisa usar esse plano como uma referência de hospedagem para a geometria ou dimensões dentro do Revit.
 
 Exemplo:
-In this graph, two points are defined using coordinates, and a reference plane is created between them with ReferencePlane.ByStartPointEndPoint. That reference plane is then connected to ReferencePlane.ElementPlaneReference, which outputs the plane’s Revit-native reference, making it ready to be used for hosting or alignment tasks.
+Neste gráfico, são definidos dois pontos usando coordenadas e é criado um plano de referência entre eles com ReferencePlane.ByStartPointEndPoint. Em seguida, esse plano de referência é conectado ao ReferencePlane.ElementPlaneReference, que gera a referência nativa do Revit do plano, tornando-o pronto para ser usado nas tarefas de hospedagem ou alinhamento.
 ___
 ## Arquivo de exemplo
 

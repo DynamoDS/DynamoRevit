@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a floor using curves, floor types and level.
+このノードは、曲線、床タイプ、レベルを使用して床を作成します。
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+この例では、数値スライダが長方形の生成に使用され、指定した床タイプとレベルとともに Floor.ByOutlineTypeAndLevel への入力として使用されます。
 
 ___
 ## サンプル ファイル

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node returns the surfaces of analytical openings.
+Ce noeud renvoie les surfaces des ouvertures analytiques.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+Dans cet exemple, un sol du modèle structurel de Snowdon est utilisé pour créer un panneau analytique. Les ouvertures du volet sont sélectionnées et ce noeud génère les surfaces de ces ouvertures.
 ___
 ## Exemple de fichier
 

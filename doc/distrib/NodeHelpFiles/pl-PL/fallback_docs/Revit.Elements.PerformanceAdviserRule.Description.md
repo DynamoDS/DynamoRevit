@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node extracts the descriptive text of a Performance Adviser rule.
+Ten węzeł wyodrębnia tekst opisowy reguły doradcy wydajności.
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+W tym przykładzie wybrana reguła „View clipping is disabled” (Przycinanie widoku jest wyłączone) jest przekazywana do węzła PerformanceAdviserRule.Description. Następnie w węźle Watch jest wyświetlany opis, który zawiera cel i skutki reguły.
 ___
 ## Plik przykładowy
 

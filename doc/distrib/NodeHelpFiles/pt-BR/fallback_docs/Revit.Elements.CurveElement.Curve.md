@@ -1,7 +1,7 @@
 ## Em profundidade
-This node retrieves the underlying geometric curve associated with a given Revit CurveElement.
+Esse nó recupera a curva geométrica subjacente associada a um determinado CurveElement do Revit.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.Curve node.  The output exposes that curve geometry so it can be used for analysis, modification, or as input to other Dynamo nodes.
+Neste exemplo, é criada uma curva de modelo usando um ponto inicial e um ponto final e, em seguida, inserida no nó CurveElement.Curve. A saída expõe essa geometria de curva para que ela possa ser usada para análise, modificação ou como entrada para outros nós do Dynamo.
 ___
 ## Arquivo de exemplo
 

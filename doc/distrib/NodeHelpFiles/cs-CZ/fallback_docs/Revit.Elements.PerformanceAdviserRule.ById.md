@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieve a specific Performance Adviser rule from Revit by its unique Rule ID.
+Tento uzel načte konkrétní pravidlo nástroje Poradce pro výkon z aplikace Revit podle jeho jedinečného ID pravidla.
 
-In this example, the rule “Project contains unused families and types” is selected and its RuleId is extracted. That ID is converted to a string and then passed back into PerformanceAdviserRule.ById, which re-identifies and retrieves the same rule for further use or automation.
+V tomto příkladu je vybráno pravidlo „Projekt obsahuje nepoužívané rodiny a typy“ a extrahuje se jeho ID pravidla. Toto ID se převede na řetězec a pak se předá zpět do uzlu PerformanceAdviserRule.ById, který znovu identifikuje a načte stejné pravidlo pro další použití nebo automatizaci.
 ___
 ## Vzorový soubor
 

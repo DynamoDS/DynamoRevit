@@ -1,7 +1,7 @@
 ## Description approfondie
-This node allows you to place the view label at a specific point on a sheet.
+Ce nœud vous permet de placer l'étiquette de vue à un point précis d'une feuille.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+Dans cet exemple, une nouvelle feuille est créée "Dynamo Sheet" et la vue "L1 Wall Base" est placée au point "0,0,0".  La vue est repositionnée et utilisée dans l'entrée de la fenêtre pour noeud Viewport.SetLabelOffset avec un point défini pour localiser l'étiquette de la vue.
 
 
 ___

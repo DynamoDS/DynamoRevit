@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+このノードは、定義された曲線に沿って Revit モデルに構造梁を作成します。梁は、曲線、選択されたフレーム タイプ、および関連付けられたレベルで定義されます。出力は、作成された構造梁要素です。
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+この例では、線分が Snowdon 構造モデルの通芯 A5 と A6 の間のレベル L2 TOS に配置されています。この線分は、曲線入力として指定され、選択したフレーム タイプとレベルで梁が定義されます。出力は、新しく作成された構造梁要素です。
 ___
 ## サンプル ファイル
 

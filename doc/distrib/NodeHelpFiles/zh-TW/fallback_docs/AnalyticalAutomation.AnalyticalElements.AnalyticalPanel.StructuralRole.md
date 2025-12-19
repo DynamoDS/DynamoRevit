@@ -1,7 +1,7 @@
 ## 深入資訊
-This node provides the structural role of an analytical panel.
+此節點提供分析板的結構角色。
 
-In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+在此範例中，從 Snowdon 結構模型中選取樓板元素並轉換為分析板。節點會輸出為該分析板指定的結構角色。
 ___
 ## 範例檔案
 

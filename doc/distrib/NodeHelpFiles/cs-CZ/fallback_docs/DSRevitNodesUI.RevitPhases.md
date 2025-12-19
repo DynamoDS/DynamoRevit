@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Tento uzel umožňuje vybrat konkrétní fázi z modelu pomocí rozevírací nabídky.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+V tomto příkladu je vybrána stěna a pomocí uzlu Vybrat fázi se změní její přiřazení fáze. Konečný uzel potvrdí změnu zobrazením aktualizovaného názvu fáze „Existující“.
 ___
 ## Vzorový soubor
 

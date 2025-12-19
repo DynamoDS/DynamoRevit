@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node identifies the unit type used for length measurements in the active Revit project and outputs its unit type identifier as a string value.
+Ten węzeł identyfikuje typ jednostki używanej do pomiaru długości w aktywnym projekcie programu Revit i zwraca jego identyfikator typu jednostki w postaci wartości ciągu.
 
-In this example, the UnitsUtilities.GetCurrentProjectLengthUnit node is placed in the graph with a Watch node connected to its output. The Watch node displays the current project length unit as a string (for example, Feet).
+W tym przykładzie na wykresie jest umieszczany węzeł UnitsUtilities.GetCurrentProjectLengthUnit z węzłem Watch połączonym z jego wyjściem. Węzeł Watch wyświetla bieżącą jednostkę długości projektu w postaci ciągu (na przykład stopy: Feet).
 ___
 ## Plik przykładowy
 

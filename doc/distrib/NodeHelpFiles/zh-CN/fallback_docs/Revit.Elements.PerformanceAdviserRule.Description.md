@@ -1,7 +1,7 @@
 ## 详细
-This node extracts the descriptive text of a Performance Adviser rule.
+此节点提取 Performance Adviser 规则的描述文本。
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+在此示例中，选定的规则“视图剪裁已禁用”将传递到 PerformanceAdviserRule.Description 节点。然后，描述将显示在 Watch 节点中，以显示规则的用途和效果。
 ___
 ## 示例文件
 

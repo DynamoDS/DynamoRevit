@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the lines (curves) used to generate the boundary of an area.
+Ten węzeł pobiera linie (curves, czyli krzywe) używane do generowania obwiedni obszaru.
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+W tym przykładzie pobierane są wszystkie obszary z projektu. Zostają wyodrębnione i wyświetlone nazwa elementu (obszaru) i Area.Boundries.
 
 ___
 ## Plik przykładowy

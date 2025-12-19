@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a grid line based on a start point and end point.
+Dieser Block erstellt eine Rasterlinie basierend auf einem Start- und einem Endpunkt.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+In diesem Beispiel werden zwei Punkte generiert und als Eingaben für Grid.ByStartPointEndPoint verwendet. Ein erstelltes Raster mit dem Namen “Dynamo”.
 
 ___
 ## Beispieldatei

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This nodes generates new connection nodes with exactly the given number of zones.
+Tyto uzly generují nové uzly přípojů s přesně daným počtem zón.
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+V tomto příkladu jsou do výstupu zahrnuty pouze prvky se třemi nebo více zónami připojení. Každý výsledný dílčí seznam představuje jiné seskupení nebo konstrukční uspořádání v rámci původního prvku.
 ___
 ## Vzorový soubor
 

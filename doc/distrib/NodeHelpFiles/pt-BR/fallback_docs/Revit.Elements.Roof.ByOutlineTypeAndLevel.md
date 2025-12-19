@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a roof given a outline (closed curve), roof type, and level.
+Esse nó cria um telhado com base em um contorno (curva fechada), um tipo de telhado e um nível.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+Neste exemplo, é criado um retângulo e usado como entrada de contorno no nó RoofByOutlineTypeAndLevel junto com um tipo e nível de telhado. O último nó define o deslocamento base do valor do nível como 10.
 
 ___
 ## Arquivo de exemplo

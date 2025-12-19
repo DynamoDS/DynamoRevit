@@ -1,7 +1,7 @@
 ## 상세
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+이 노드는 숫자 길이 값과 단위 유형 식별자를 사용하여 입력 값을 활성 Revit 프로젝트의 길이 단위로 변환합니다. 출력은 변환된 결과를 나타내는 double 값입니다.
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+이 예에서는 숫자 슬라이더가 길이 값을 제공하고 단위(예: 미터)를 선택하여 Unit.TypeId 문자열을 가져옵니다. 둘 다 UnitsUtilities.ConvertToCurrentProjectLengthUnit 노드에 연결되어 프로젝트의 단위 설정을 기준으로 변환된 길이 값을 반환합니다.
 ___
 ## 예제 파일
 

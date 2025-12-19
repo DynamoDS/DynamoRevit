@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the Zone Type for a given Advance Steel Zone element.  In Advance Steel’s Connection Automation framework, zones define distinct regions of a steel member (such as the start, body, or end) where connection features can be applied.  The Zone Type identifies which of these regions a particular zone represents, essential when automating joint placement, cutbacks, or stiffener locations.
+此節點會擷取給定 Advance Steel 區域元素的區域類型。在 Advance Steel 的「連接自動化」架構中，區域定義可在鋼構件中套用接頭功能的不同部位 (例如起點、主體或終點)。「區域類型」可識別出特定區域表示哪一個部位，這在自動放置接合、削減或加勁構件位置時不可或缺。
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to Zone.ZoneType node where the output defines the region of the steel member (start, body, or end).
+在此範例中，選取數個元素、擷取結構資料、顯示接頭節點並用來識別套用到該接頭節點的所有區域。這些區域是 Zone.ZoneType 節點的輸入，輸出定義鋼構件的部位 (起點、主體或終點)。
 ___
 ## 範例檔案
 

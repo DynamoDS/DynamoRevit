@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a floor using curves, floor types and level.
+Questo nodo crea un pavimento utilizzando curve, tipi di pavimento e livello.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+In questo esempio, viene utilizzato un dispositivo di scorrimento numerico per generare un rettangolo e poi utilizzato come input in Floor.ByOutlineTypeAndLevel insieme ad un determinato tipo di pavimento e un determinato livello.
 
 ___
 ## File di esempio

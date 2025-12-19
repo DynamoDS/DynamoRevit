@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+Dieser Block ruft die Referenzebene ab, die mit einem bestimmten Skizzierebenenelement verknüpft ist. Dies erleichtert die Identifizierung oder Wiederverwendung derselben Referenzebene zum Erstellen oder Ändern von Geometrie.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+In diesem Beispiel wird eine Ebene definiert und dann mit dem SketchPlane.ByPlane-Block verknüpft, der eine entsprechende Skizzierebene generiert. Diese Skizzierebene wird als Eingabe für SketchPlane.ElementPlaneReference verwendet, wobei die Ausgabe dann für Bemaßungen, Ausrichtungen, Abhängigkeiten oder andere Vorgänge verwendet werden kann, die eine Revit-Referenz erfordern.
 
 ___
 ## Beispieldatei

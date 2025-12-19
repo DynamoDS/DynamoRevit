@@ -1,7 +1,7 @@
 ## 深入資訊
-This node controls how a Revit schedule is exported.
+此節點控制如何匯出 Revit 明細表。
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+在此範例中，使用 columnHeaders (OneRow)、fieldDelimiter (blank)、headersFootersBlanks (Boolean)、textQualifier (Quote)、title (Boolean) 作為輸入，建立一致的明細表匯出選項。ScheduleView.Export 節點可使用此輸出。
 
 ___
 ## 範例檔案

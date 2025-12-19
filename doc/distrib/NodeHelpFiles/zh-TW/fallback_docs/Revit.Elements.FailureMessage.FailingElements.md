@@ -1,7 +1,7 @@
 ## 深入資訊
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+此節點會從給定的 FailureMessage 物件擷取觸發失敗的元素。
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+在此範例中，效能顧問規則會檢查「視圖裁剪是否已停用」。將結果傳入 FailureMessage.FailingElements 節點，輸出模型中未通過此檢查的特定元素。
 ___
 ## 範例檔案
 

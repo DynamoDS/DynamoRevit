@@ -1,7 +1,7 @@
 ## Подробности
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+Этот узел создает аналитический элемент на основе существующего элемента физической модели. Узел может наследовать геометрию и геометрические параметры элемента, переносить значения параметров и при необходимости устанавливать или поддерживать связь с исходным элементом.
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+В этом примере элемент физической модели выбирается из модели конструкции Snowdon и преобразуется в аналитический элемент с помощью этого узла.
 ___
 ## Файл примера
 

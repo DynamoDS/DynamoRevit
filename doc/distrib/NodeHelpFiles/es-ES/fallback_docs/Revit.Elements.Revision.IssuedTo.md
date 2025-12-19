@@ -1,7 +1,7 @@
 ## En detalle:
-The Revision.IssuedTo node in Dynamo is used to read the “Issued To” information from a revision in Revit. This helps teams track who the revision was issued to.
+El nodo Revision.IssuedTo de Dynamo se utiliza para leer la información de "Emitida a" de una revisión de Revit. Esto ayuda a los equipos a realizar un seguimiento de las personas a las que se ha emitido la revisión.
 
-In this graph, the Select Revision node is used to pick a specific revision from the project. The Revision.IssuedTo node then extracts the “Issued To” field, and the result is displayed in the Watch node.
+En este gráfico, el nodo Select Revision se utiliza para seleccionar una revisión específica del proyecto. A continuación, el nodo Revision.IssuedTo extrae el campo "Emitida a" y el resultado se muestra en el nodo Watch.
 
 ___
 ## Archivo de ejemplo

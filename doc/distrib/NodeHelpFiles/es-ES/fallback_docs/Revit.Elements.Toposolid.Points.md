@@ -1,4 +1,4 @@
-## En detalle
+## En detalle:
 "Toposolid.Points" devuelve los puntos con forma editada del sólido topográfico especificado, si está disponible.
 
 En el ejemplo siguiente, se devuelven todos los puntos del primer sólido topográfico encontrado en el vínculo de Revit seleccionado.

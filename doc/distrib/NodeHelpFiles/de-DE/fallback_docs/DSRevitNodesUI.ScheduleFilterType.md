@@ -1,7 +1,7 @@
 ## Im Detail
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+Dieser Block verfügt über eine Dropdown-Liste der zulässigen Bauteillisten-Filtertypen (Gleich, Ungleich, Größer als, Kleiner als, Enthält...). Die Ergebnisse filtern alle Türen, die mit "Exterior" beginnen.
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+In diesem Beispiel wird eine Ansicht ausgewählt, und die Ansichtsfelder werden angezeigt. Das Feld "Typ" wird isoliert und verwendet, um einen Bauteillistenfilter zusammen mit einem Filterwert und dem Bauteillisten-Filtertyp "Beginnt mit" zu erstellen. Dieser Filter wird dann auf die ausgewählte Bauteillistenansicht "WV_Wall Schedule" angewendet.
 ___
 ## Beispieldatei
 

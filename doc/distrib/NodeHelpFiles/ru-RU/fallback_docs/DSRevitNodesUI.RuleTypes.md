@@ -1,7 +1,7 @@
 ## Подробности
-This node provides a list of available Rule Types that can be used when creating or defining filter rules.  For example, whether it equals, contains, is greater than, or begins with a specific value.
+Этот узел предоставляет список доступных типов правил, которые можно использовать при создании или определении правил фильтрации. Например: равно, содержит, больше или начинается с конкретного значения.
 
-In this example, a wall type is identified and the “Fire Rating” parameter is selected to create a filter rule with the value “2HR” and the Select Rule Type set to “Equals.” This FilterRule is then applied to the “L1 Wall Base” view as a view filter.
+В этом примере определяется тип стены и выбирается параметр «Огнестойкость», чтобы создать правило фильтра со значением 2HR и задать для параметра «Выбрать тип правила» значение «Равно». Затем это правило FilterRule применяется к виду L1 Wall Base в качестве фильтра вида.
 ___
 ## Файл примера
 

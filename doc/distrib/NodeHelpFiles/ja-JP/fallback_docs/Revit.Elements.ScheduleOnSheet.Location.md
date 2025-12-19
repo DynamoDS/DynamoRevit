@@ -1,7 +1,7 @@
 ## 詳細
-This node gets the location of a schedule on a sheet.
+このノードは、シート上の集計表の位置を取得します。
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+この例では、集計表がシートの指定した位置に配置され、次に、ScheduleOnSheet.Location ノードに入力されて、集計表の位置が表示されます。
 
 ___
 ## サンプル ファイル

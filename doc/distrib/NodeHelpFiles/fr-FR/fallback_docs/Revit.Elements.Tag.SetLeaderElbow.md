@@ -1,7 +1,7 @@
 ## Description approfondie
-This node sets the location of the elbow point in a “free-end” tag.
+Ce noeud définit l'emplacement du point de coude dans une balise "free-end".
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+Dans cet exemple, une étiquette est sélectionnée et les points d’origine sont extraits.  La valeur X est modifiée et les nouveaux points XYZ sont définis et utilisés en entrée pour l'emplacement du nœud Tag.SetLeaderElbow avec la balise d'origine sélectionnée.  La sortie est le nouvel emplacement du coude des étiquettes.  Voir la vue du plan d'étage L1.
 
 ___
 ## Exemple de fichier

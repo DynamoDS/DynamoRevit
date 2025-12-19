@@ -1,10 +1,10 @@
 ## 詳細
-This node returns the rotation angle (in degrees) applied to a given Divided Surface in Revit. The rotation defines how the grid pattern on the surface is oriented relative to the surface’s natural U and V directions.
+このノードは、Revit の指定された分割されたサーフェスに適用される回転角(角度)を返します。回転では、サーフェス上の通芯パターンを、サーフェスの自然な U 方向と V 方向に対してどのように方向付けるかを定義します。
 
-In this example, a face is selected and used to create a divided surface.  This divided surface output is used as the input for the DividedSurface.Rotation node.  The output is the rotation factor applied to divided surface (in degrees).  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+この例では、面を選択して、分割されたサーフェスの作成に使用します。この分割されたサーフェスの出力が、DividedSurface.Rotation ノードの入力として使用されます。出力は、分割されたサーフェスに適用される回転係数(角度)です。最後のノードで、分割されたサーフェスの値が公開されます。このサンプル グラフを実行する場合は、Revit の警告を確認し、提案された要素を削除して、選択したサーフェスに通芯が表示されるようにする必要があります。
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+詳細については、リンクを参照してください。
+https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 
 ___
 ## サンプル ファイル

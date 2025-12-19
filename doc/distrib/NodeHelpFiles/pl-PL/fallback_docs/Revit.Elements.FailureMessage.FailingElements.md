@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+Ten węzeł wyodrębnia elementy, które wyzwoliły błąd z danego obiektu FailureMessage.
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+W tym przykładzie reguła doradcy wydajności sprawdza, czy „przycinanie widoku jest wyłączone”. Wyniki są przekazywane do węzła FailureMessage.FailingElements zwracającego określone elementy w modelu, dla których wynik tego sprawdzenia był niepomyślny.
 ___
 ## Plik przykładowy
 

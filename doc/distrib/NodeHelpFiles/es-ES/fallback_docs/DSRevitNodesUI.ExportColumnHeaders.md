@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Este nodo obtiene todas las opciones de encabezado de pilar de la tabla de planificación (OneRow, MultipleRows y None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+En este ejemplo, columnHeaders (OneRow), se utiliza como entrada para el nodo ScheduleView.Export a fin de generar una opción de exportación típica.
 
 ___
 ## Archivo de ejemplo

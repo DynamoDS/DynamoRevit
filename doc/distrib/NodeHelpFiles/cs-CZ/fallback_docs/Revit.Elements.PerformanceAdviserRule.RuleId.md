@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+Tento uzel získá jedinečný identifikátor (RuleId) pravidla nástroje Poradce pro výkon.
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+V tomto příkladu je vybrané pravidlo „Projekt obsahuje nepoužívané rodiny a typy“ připojeno k uzlu PerformanceAdviserRule.RuleId, který vygeneruje svůj jedinečný identifikátor. Toto ID je pak převedeno na řetězec.
 ___
 ## Vzorový soubor
 

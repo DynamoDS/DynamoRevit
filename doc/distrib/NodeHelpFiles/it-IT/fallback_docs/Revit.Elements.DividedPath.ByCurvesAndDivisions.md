@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a Divided Path element in a massing family by dividing curves into a specified number of equal segments.
+Questo nodo crea un elemento DividedPath in una famiglia di volumetrie dividendo le curve in un numero specificato di segmenti uguali.
 
-In this example, 2 model curves are created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurvesAndDivisions node. An integer value defines the number of equal divisions along the curves. The final node displays the resulting division points along the curves.
+In questo esempio, vengono create 2 curve del modello da un punto iniziale e un punto finale specificati, quindi utilizzate come input curve per il nodo DividedPath.ByCurvesAndDivisions. Un valore integer definisce il numero di divisioni uguali lungo le curve. Il nodo finale visualizza i punti di divisione risultanti lungo le curve.
 ___
 ## File di esempio
 

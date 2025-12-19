@@ -1,7 +1,7 @@
 ## Подробности
-This node evaluates the provided element and returns a Boolean indicating if the element has a defined location, along with any exception messages explaining why it might not.
+Этот узел оценивает предоставленный элемент и возвращает логическое значение, указывающее, имеет ли элемент определенное расположение, а также сообщения об исключениях, объясняющие, почему это может не происходить.
 
-In this example, the element is defined by its Element ID using the Element By Id node and then provided to Element.HasActualLocation. The outputs indicate true if the element has an actual location, or false with an exception message if it does not.
+В этом примере элемент определяется по идентификатору с помощью узла Element By Id, а затем передается в узел Element.HasActualLocation. В выходных данных указывается значение True, если элемент имеет реальное расположение, или False с сообщением об исключении, если это не так.
 ___
 ## Файл примера
 

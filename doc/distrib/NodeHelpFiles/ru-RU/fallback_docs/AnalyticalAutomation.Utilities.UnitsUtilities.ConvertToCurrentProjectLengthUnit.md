@@ -1,7 +1,7 @@
 ## Подробности
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+Этот узел принимает числовое значение длины и идентификатор типа единиц, преобразуя входное значение в единицы длины активного проекта Revit. На выходе выводится значение с двойной точностью, представляющее преобразованный результат.
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+В этом примере числовой регулятор предоставляет значение длины и выбирается единица измерения (например, метры) для получения строки Unit.TypeId. Оба узла связаны с узлом UnitsUtilities.ConvertToCurrentProjectLengthUnit, который возвращает значение длины, преобразованное на основе настроек единиц проекта.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## 详细
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+此节点根据轮廓(闭合曲线)、天花板类型和标高创建天花板。
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+在此示例中，将创建一个矩形，并将其与天花板类型和标高一起用作节点 Ceiling.ByOutlineTypeAndLevel 的输入轮廓。
 
 ___
 ## 示例文件

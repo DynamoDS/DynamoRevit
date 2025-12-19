@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node extracts the curve of an analytical member.
+Ten węzeł wyodrębnia krzywą liniowego elementu analitycznego.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+W tym przykładzie zostaje wybrana belka z modelu konstrukcyjnego Snowdon. Węzeł generuje krzywą zdefiniowaną przez liniowy element analityczny.
 ___
 ## Plik przykładowy
 

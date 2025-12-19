@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a roof given a outline (closed curve), roof type, and level.
+Ce noeud crée un toit en fonction d'un contour (courbe fermée), d'un type de toit et d'un niveau.
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+Dans cet exemple, un rectangle est créé et utilisé comme entrée de contour dans le nœud RoofByOutlineTypeAndLevel avec un type de toit et un niveau.  Le dernier noeud définit le décalage de base de la valeur de niveau sur 10.
 
 ___
 ## Exemple de fichier

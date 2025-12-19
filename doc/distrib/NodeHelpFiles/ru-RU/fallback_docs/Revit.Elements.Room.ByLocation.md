@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a room based on points, a level, a room name and a room number.
+Этот узел создает помещение на основе точек, уровня, имени и номера помещения.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+В этом примере точки извлекаются из семейств внутри замкнутого контура (не определенного как помещение). Эти точки используются в качестве входных данных «расположения» вместе с заданным уровнем, именем и номером помещения. Узел после узла Room.ByLocation извлекает параметры имени и номера помещения, которые были созданы для демонстрации успешного выполнения узла.
 
 ___
 ## Файл примера

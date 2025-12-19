@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a grid based on a line input.
+Ten węzeł tworzy siatkę na podstawie linii wejściowej (line).
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+W tym przykładzie zostaje utworzony punkt, który następnie jest używany jako wartość wejściowa startPoint węzła Line.ByStartPointDirectLength wraz z kierunkiem (direction) i długością (length). Wynikiem jest siatka.
 ___
 ## Plik przykładowy
 

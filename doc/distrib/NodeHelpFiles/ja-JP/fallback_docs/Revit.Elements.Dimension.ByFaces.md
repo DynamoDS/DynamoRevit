@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+このノードは、モデル要素の 2 つの平面の選択に基づいて寸法を作成し、これらの面の間の距離を計測します。
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+この例では、シート A101 のビュー「L1」が、Dimension.ByFaces への入力として、サーフェス、線分、接尾辞、接頭辞とともに使用されます。線分入力を使用すると、選択した面から寸法をオフセットすることができます。
 
 ___
 ## サンプル ファイル

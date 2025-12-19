@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Ten węzeł tworzy belkę konstrukcyjną w modelu programu Revit wzdłuż zdefiniowanej krzywej. Belka jest definiowana przez krzywą, wybrany typ ramy i skojarzony poziom. Wynikiem jest utworzony element belki konstrukcyjnej.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+W tym przykładzie zostaje umieszczona linia na poziomie L2 TOS pomiędzy pozycjami A5 i A6 w modelu konstrukcyjnym Snowdon. Ta linia jest przekazywana jako pozycja danych wejściowych curve, a wybrany typ ramy i poziom definiują belkę. Wynikiem jest nowo utworzony element belki konstrukcyjnej.
 ___
 ## Plik przykładowy
 

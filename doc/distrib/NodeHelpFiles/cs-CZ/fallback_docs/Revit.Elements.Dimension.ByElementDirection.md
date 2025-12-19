@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Tento uzel vytvoří kótu podle prvku, směru (vektoru) a daného pohledu.  Dalšími vstupy mohou být čára, přípona a předpona.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+V tomto příkladu se pohled „L1“ z výkresu A101 použije jako vstup do uzlu Dimension.ByElementDirection společně s prvkem (stěna), směrem úsečky od stěny, příponou (Dynamo) a předponou (Dynamo).  Poslední dva uzly zobrazují hodnoty kót a jejich předponu.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## 상세
-This node extracts the curve of an analytical member.
+이 노드는 해석 부재의 곡선을 추출합니다.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+이 예에서는 Snowdon Structural 모델에서 빔을 선택합니다. 노드는 해석 부재에 의해 정의된 곡선을 출력합니다.
 ___
 ## 예제 파일
 

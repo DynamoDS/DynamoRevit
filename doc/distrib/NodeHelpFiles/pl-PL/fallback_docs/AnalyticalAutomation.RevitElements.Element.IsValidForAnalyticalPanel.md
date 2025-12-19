@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node evaluates the selected element to determine if it is suitable for generating an analytical panel. The optional checkOpenings input specifies whether openings within the element should be included in the validity check. When set to true, openings are considered as part of the evaluation.
+Ten węzeł ocenia wybrany element, aby określić, czy jest odpowiedni do wygenerowania panelu analitycznego. Opcjonalna wartość wejściowa checkOpenings określa, czy otwory w elemencie powinny być uwzględniane podczas sprawdzania poprawności. Gdy jest ustawiona wartość true (prawda), otwory są uwzględniane w ocenie.
 
-In this example, the element is defined by its Element ID using the Element.ById node and provided to Element.IsValidForAnalyticalPanel. The outputs include a Boolean indicating if the element is valid and an exception message describing any issues preventing its use.
+W tym przykładzie element jest definiowany przez identyfikator elementu przy użyciu węzła Element.ById i przekazywany do węzła Element.IsValidForAnalyticalPanel. Dane wyjściowe zawierają wartość logiczną (Boolean) wskazującą, czy element jest prawidłowy, oraz komunikat o wyjątku opisujący wszelkie problemy uniemożliwiające jego użycie.
 ___
 ## Plik przykładowy
 

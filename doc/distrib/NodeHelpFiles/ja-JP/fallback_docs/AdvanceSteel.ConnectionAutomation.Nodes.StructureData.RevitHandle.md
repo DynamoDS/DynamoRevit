@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the Revit handle associated with the connections linked to the structure data element.
+このノードは、構造データ要素にリンクされた接合に関連付けられている Revit ハンドルを返します。
 
-In this example, a column has been selected.
+この例では、柱が選択されています。
 ___
 ## サンプル ファイル
 

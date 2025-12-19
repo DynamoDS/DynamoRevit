@@ -1,9 +1,9 @@
 ## 详细
 
 
-This node adds a schedule to a sheet at a specified point.
+此节点将明细表添加到图纸的指定点处。
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+在此示例中，数字滑块用于创建点，并用于输入节点“位置”到节点 ScheduleOnSheet.BySheetScheduleLocation 以及明细表视图和图纸。输出是明细表及其在图纸上的位置和图纸名称。
 
 
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+このノードは、要素からすべての曲線参照オブジェクトを取得します。曲線を持たない要素には null 値が指定されます。
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+この例では、要素(手摺)が選択され、Elements.ElementCurveReferences への入力として使用されます。出力は、その要素の曲線参照です。
 
 ___
 ## サンプル ファイル

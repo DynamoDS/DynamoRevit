@@ -1,7 +1,7 @@
 ## 深入資訊
-This node evaluates a given surface to determine if it is valid for use in defining an analytical panel. A valid surface is typically planar, continuous, and suitable for conversion into an analytical representation within Revit’s analytical model environment.
+此節點會演算給定的曲面，判定是否可用於定義分析板。有效的曲面通常是平面且連續，適合轉換為 Revit 分析模型環境中的分析表現法。
 
-In this example, the faces of a slab element from the project are collected, and the top face is provided to the node as input. The node returns a Boolean result indicating whether the selected surface meets the requirements for creating an analytical panel, along with an optional message describing any issues encountered during validation.
+此範例收集專案中某個基板元素的各個面，提供頂面作為節點輸入。節點會傳回布林結果，指出選取的曲面是否符合建立分析板的需求，同時傳回選擇性訊息，描述驗證期間遇到的任何問題。
 ___
 ## 範例檔案
 

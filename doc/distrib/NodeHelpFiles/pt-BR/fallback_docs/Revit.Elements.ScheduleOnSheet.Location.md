@@ -1,7 +1,7 @@
 ## Em profundidade
-This node gets the location of a schedule on a sheet.
+Esse nó obtém a localização de uma tabela em uma folha.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+Neste exemplo, uma tabela é colocada em uma folha em uma localização especificada, que é inserida no nó ScheduleOnSheet.Location, onde a localização da tabela é exibida.
 
 ___
 ## Arquivo de exemplo

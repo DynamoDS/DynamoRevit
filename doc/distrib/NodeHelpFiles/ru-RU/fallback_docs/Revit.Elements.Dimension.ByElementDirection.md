@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Этот узел создает размер на основе элемента, направления (вектора) и заданного вида. Другими входными параметрами могут быть линия, суффикс и префикс.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+В этом примере вид L1 с листа A101 используется в качестве входных данных для Dimension.ByElementDirection вместе с элементом (стеной), направлением линии, исходящей от стены, суффиксом (Dynamo) и префиксом (Dynamo). Последние два узла содержат значения размеров и их префиксы.
 
 ___
 ## Файл примера

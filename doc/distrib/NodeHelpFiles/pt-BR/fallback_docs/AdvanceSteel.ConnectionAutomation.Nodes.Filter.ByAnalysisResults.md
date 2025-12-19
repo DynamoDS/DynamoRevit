@@ -1,7 +1,7 @@
 ## Em profundidade
-This node filters a list of ConnectionNodes by checking whether the force value at a specified index falls within a defined range. The force data comes from either structural analysis results or the Revit analytical model, and is filtered by the selected result type (e.g., Fx, Fy, Fz, Mx, My, Mz).
+Esse nó filtra uma lista de ConnectionNodes verificando se o valor da força em um índice especificado está dentro de um intervalo definido. Os dados de força vêm dos resultados da análise estrutural ou do modelo analítico do Revit e são filtrados pelo tipo de resultado selecionado (por exemplo, Fx, Fy, Fz, Mx, My, Mz).
 
-In this example, a set of column elements is selected and evaluated based on the Fz force component, using the chosen analysis result and load case. Only those elements whose Fz value falls within the specified force range are returned as accepted connections.
+Neste exemplo, um conjunto de elementos de coluna é selecionado e avaliado com base no componente de força Fz, usando o resultado da análise escolhido e o caso de carga. Somente os elementos cujo valor Fz está dentro do intervalo de força especificado são retornados como conexões aceitas.
 ___
 ## Arquivo de exemplo
 

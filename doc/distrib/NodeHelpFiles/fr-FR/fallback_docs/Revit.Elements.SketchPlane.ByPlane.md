@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a sketch plane based on the input of a plane.
+Ce noeud crée un plan d'esquisse basé sur l'entrée d'un plan.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+Dans cet exemple, un plan est défini puis connecté au nœud SketchPlane.ByPlane, qui génère un plan d'esquisse correspondant.
 
 ___
 ## Exemple de fichier

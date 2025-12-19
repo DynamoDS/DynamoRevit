@@ -1,7 +1,7 @@
 ## Description approfondie
-The Revision.SetIssuedTo node is used to set or update the “Issued To” value of a revision in Revit. It helps automate the process of recording the recipient of a revision, ensuring accuracy and consistency in project documentation without manual entry in Revit.
+Le nœud Revision.SetIssuedTo permet de définir ou de mettre à jour la valeur "Issued To" d'une révision dans Revit. Il permet d'automatiser le processus d'enregistrement du destinataire d'une révision, en garantissant ainsi l'exactitude et la cohérence de la documentation du projet sans saisie manuelle dans Revit.
 
-In this graph, the Select Revision node is used to choose the required revision, while a string input (e.g., XYZ) defines the recipient. The Revision.SetIssuedTo node then applies this value to the selected revision, updating the “Issued To” field directly in the Revit model.
+Dans ce graphique, le nœud Sélectionner la révision est utilisé pour choisir la révision requise, tandis qu'une entrée de chaîne (par exemple, XYZ) définit le destinataire. Le nœud Revision.SetIssuedTo applique ensuite cette valeur à la révision sélectionnée, en mettant à jour le champ "Issued To" directement dans le modèle Revit.
 ___
 ## Exemple de fichier
 

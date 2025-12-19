@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+此節點會擷取目前與給定立面標識相關聯的立面視圖數目。
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+在此範例中，選取所有立面標識作為 ElevationMarker.CurrentViewCount 的輸入。輸出會傳回一個整數值，表示與該立面標識相關聯的立面視圖總數。
 ___
 ## 範例檔案
 

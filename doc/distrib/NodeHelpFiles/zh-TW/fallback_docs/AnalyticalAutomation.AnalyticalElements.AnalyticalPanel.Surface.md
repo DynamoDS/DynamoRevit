@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns the surface of an analytical panel.
+此節點會傳回分析板的曲面。
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+在此範例中，選取 Snowdon 結構模型中的樓板並轉換為分析板。節點會輸出該分析板的對應曲面。
 ___
 ## 範例檔案
 

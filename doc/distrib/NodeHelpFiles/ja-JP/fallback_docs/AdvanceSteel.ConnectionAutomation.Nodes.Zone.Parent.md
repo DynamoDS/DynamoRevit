@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the parent zone or parent element of a given Zone.
+このノードは、指定されたゾーンの親ゾーンまたは親要素を取得します。
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+この例では、複数の要素が選択され、構造データが抽出されて、接合ノードが公開されその接合ノードに適用されるすべてのゾーンの識別に使用されています。これらのゾーンは、Zone.Parent ノードへの入力であり、出力で各親ゾーン入力の構造データが表示されます。最後のノードは、結果の断面タイプと位置を示します。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Este nodo crea una tornapunta estructural basada en una curva, un nivel y un tipo de familia de armazón. La salida es el nuevo elemento de tornapunta creado en el proyecto.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+En este ejemplo, se dibuja una línea desde el nivel L2 en el cruce de rejilla A4 hasta el nivel L3 en el cruce de rejilla A5. El nodo utiliza esta curva, junto con el nivel y el tipo de familia seleccionados, para crear una tornapunta en el modelo estructural de Snowdon.
 ___
 ## Archivo de ejemplo
 

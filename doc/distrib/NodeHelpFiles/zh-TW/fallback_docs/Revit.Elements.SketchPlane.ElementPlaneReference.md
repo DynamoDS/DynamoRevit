@@ -1,7 +1,7 @@
 ## 深入資訊
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+此節點會擷取與給定草圖平面元素相關聯的參考平面。這有助於識別或重複使用相同的參考平面來建立或修改幾何圖形。
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+在此範例中，定義平面，然後連接到 SketchPlane.ByPlane 節點，產生對應的草圖平面。使用此草圖平面作為 SketchPlane.ElementPlaneReference 的輸入，輸出可用來進行尺寸標註、對齊、約束或其他需要 Revit 參考的操作。
 
 ___
 ## 範例檔案

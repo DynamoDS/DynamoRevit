@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the inverse transformation matrix of a given Revit Link Element.  In Revit, linked models may be positioned with transformations (translation, rotation, scaling). This node allows you to get the inverse of that transformation,  effectively converting coordinates from the linked model’s space back into the host Revit model’s coordinate system.
+このノードは、指定された Revit リンク要素の逆変換行列を取得します。Revit では、リンク モデルを変換(移動、回転、スケール)を使用して配置することができます。このノードを使用すると、その変換を逆にすることができ、リンク モデルの空間からホスト Revit モデルの座標系に座標を効果的に変換して戻すことができます。
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkInverseTransform.  The output is the host Revit model’s coordinate system.
+この例では、レベル L3 でリンクされた Revit 要素がすべて選択され、LinkElement.LinkInverseTransform に入力されます。出力はホスト Revit モデルの座標系です。
 ___
 ## サンプル ファイル
 

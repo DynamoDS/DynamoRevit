@@ -1,7 +1,7 @@
 ## 详细
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+此节点提取构成云线批注的可见周边的曲线环(通常为圆弧和直线)。云线的每一段都表示为一个曲线对象(通常为圆弧)，对应于视图或图纸中修订标记的“编号”形状。
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+在此示例中，使用数字滑块创建一个矩形以定义其尺寸，然后将其分解为曲线并在方向上反转。这些曲线以及选定视图(场地平面)和修订(序列 2 - 不用于施工)用于通过 RevisionCloud.ByCurve 节点生成修订云线。然后，创建的修订云线连接到 RevisionCloud.Curves 节点，该节点将提取并显示该云线的定义曲线。这有助于用户验证修订云线的几何图形，并为重复使用或进一步自动化提供灵活性。
 ___
 ## 示例文件
 

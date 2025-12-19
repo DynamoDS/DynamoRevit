@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+Ce nœud crée un formulaire à partir d’une liste de courbes et d’une valeur booléenne définissant si le formulaire de sortie est solide ou une surface.  Ce noeud fonctionne avec les familles de volumes, adaptatives et basées sur des motifs.
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+Dans cet exemple, plusieurs courbes de section sont définies et introduites dans le nœud Form.ByLoftCrossSections. Le nœud génère ensuite une forme 3D continue en lissant ces sections.
 
 ___
 ## Exemple de fichier

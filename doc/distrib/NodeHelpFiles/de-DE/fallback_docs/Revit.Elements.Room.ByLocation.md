@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a room based on points, a level, a room name and a room number.
+Dieser Block erstellt einen Raum basierend auf Punkten, einer Ebene, einem Raumnamen und einer Raumnummer.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+In diesem Beispiel werden die Punkte aus den Familien innerhalb einer Umschließung (nicht als Raum definiert) abgeleitet. Diese Punkte werden zusammen mit einer bestimmten Ebene, einem Raumnamen und einer Raumnummer als Eingabe für die “Position” verwendet. Der Block nach Room.ByLocation extrahiert die Parameter für den Raumnamen und die Raumnummer, die erstellt wurden, um die erfolgreiche Ausführung des Blocks anzuzeigen.
 
 ___
 ## Beispieldatei

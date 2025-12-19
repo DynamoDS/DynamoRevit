@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Dieser Block erstellt einen Bauteillistenfilter, indem ein Feld, ein Filtertyp und ein Wert angegeben werden. Dieser Filter kann dann in einer Bauteilliste verwendet werden.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+In diesem Beispiel wird eine Ansicht (WV_Wall Schedule) ausgewählt, die Bauteillistenfelder werden angezeigt, “Type” wird ausgewählt und als Eingabefeld im Block ScheduleFilter.ByFieldTypeAndValue zusammen mit dem Filtertyp “BeginsWith” und dem Wert “Exterior” verwendet. Dieser Filtertyp wird dann verwendet, um die Anzeige in der Bauteillistenansicht WV_Wall Schedule zu ändern. Dieser Filter zeigt nur Wände an, deren Typ mit “Exterior” beginnt.
 
 ___
 ## Beispieldatei

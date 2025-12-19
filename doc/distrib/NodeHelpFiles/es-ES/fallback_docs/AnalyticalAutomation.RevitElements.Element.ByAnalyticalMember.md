@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a physical structural element from an analytical member or updates an existing physical element that is already connected to the analytical member. The node can update geometry or parameters of the physical element based on the analytical member, depending on the input settings. When the analytical member is not associated with any physical element, the physical element is created using the analytical member’s information.
+Este nodo crea un elemento estructural físico a partir de una barra analítica o actualiza un elemento físico existente que ya está conectado a la barra analítica. El nodo puede actualizar la geometría o los parámetros del elemento físico basándose en la barra analítica, en función de la configuración de entrada. Cuando la barra analítica no está asociada a ningún elemento físico, el elemento físico se crea con la información de la barra analítica.
 
-In this example, an analytical member from the ACO Supermarket project is selected from a structural column. That analytical member is connected to this node, and a Boolean input is used to show the default settings for updating geometry and parameters. The node produces the corresponding physical column based on the analytical model.
+En este ejemplo, se selecciona una barra analítica del proyecto ACO Supermarket en un pilar estructural. Esa barra analítica está conectada a este nodo y se utiliza una entrada booleana para mostrar la configuración por defecto empleada para actualizar la geometría y los parámetros. El nodo genera el pilar físico correspondiente en función del modelo analítico.
 ___
 ## Archivo de ejemplo
 

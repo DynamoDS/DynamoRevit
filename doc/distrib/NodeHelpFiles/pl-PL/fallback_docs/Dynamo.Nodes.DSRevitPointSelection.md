@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+Ten węzeł umożliwia dokładne określenie, z którą częścią elementu programu Revit chcesz pracować. W przeciwieństwie do węzłów, które wybierają cały element (na przykład ścianę lub strop), ten węzeł umożliwia wybranie określonej powierzchni lub krawędzi danego elementu.
 
-In this example, we have selected an element nested inside a curtain wall.
+W tym przykładzie wybraliśmy element zagnieżdżony w ścianie osłonowej.
 
 ___
 ## Plik przykładowy

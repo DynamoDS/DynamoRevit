@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a sketch plane based on the input of a plane.
+Этот узел создает плоскость эскиза на основе входных данных плоскости.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+В этом примере плоскость определяется и соединяется с узлом SketchPlane.ByPlane, который создает соответствующую плоскость эскиза.
 
 ___
 ## Файл примера

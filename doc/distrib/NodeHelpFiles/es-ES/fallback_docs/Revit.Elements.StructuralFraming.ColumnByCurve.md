@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Este nodo crea un pilar estructural basado en una curva, un nivel y un tipo de familia de pilares. La salida es el elemento de pilar estructural recién creado en el proyecto.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+En este ejemplo, se dibuja una línea en el cruce de rejilla A4 entre los niveles L1 35 Low y L3 en el modelo estructural de Snowdon. El nodo utiliza esta curva, junto con el nivel y el tipo de pilar seleccionados, para crear un pilar estructural.
 ___
 ## Archivo de ejemplo
 

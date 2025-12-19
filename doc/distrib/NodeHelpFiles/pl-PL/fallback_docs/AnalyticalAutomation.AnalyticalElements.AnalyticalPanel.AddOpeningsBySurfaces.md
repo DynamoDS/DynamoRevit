@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+Ten węzeł dodaje otwory do panelu analitycznego za pomocą zdefiniowanych powierzchni jako kształtów poszczególnych otworów. W razie potrzeby można zastosować istniejące dane wejściowe do aktualizowania geometrii, parametrów i skojarzeń.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+W tym przykładzie cztery punkty na przecięciach linii siatki A4–A5 i B4–B5 w modelu konstrukcyjnym Snowdon definiują położenie otworu, a poziom (TOS L2) ustawia jego położenie pionowe. Linie łączą punkty i tworzą odsuniętą powierzchnię reprezentującą otwór. Strop na poziomie L2 TOS używany jest do utworzenia panelu analitycznego, a węzeł ten łączy powierzchnię otworu z panelem, generując odpowiedni otwór analityczny.
 ___
 ## Plik przykładowy
 

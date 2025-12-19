@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets all the curve references objects from an element.  Null values will be given for elements that don’t have curves.
+Este nodo obtiene todos los objetos de referencia de curva de un elemento. Se proporcionarán valores nulos para los elementos que no tengan curvas.
 
-In this example an element (Railing) is selected and used as the input to Elements.ElementCurveReferences.  The outputs are the curved reference of that element.
+En este ejemplo, se selecciona un elemento (barandilla) y se utiliza como entrada para Elements.ElementCurveReferences. Las salidas son la referencia curva de ese elemento.
 
 ___
 ## Archivo de ejemplo

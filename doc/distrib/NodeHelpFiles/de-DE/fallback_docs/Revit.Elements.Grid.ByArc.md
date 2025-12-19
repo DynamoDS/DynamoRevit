@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a grid based on a arc input.
+Dieser Block erstellt ein Raster basierend auf einer Bogeneingabe.
 
-In this example a point is created as the center to be used as the center point of an arc.  This arc is used as the input to Grid.ByArc and a grid is created.
+In diesem Beispiel wird ein Punkt als Mittelpunkt erstellt, der als Mittelpunkt eines Bogens verwendet wird. Dieser Bogen wird als Eingabe für Grid.ByArc verwendet, und ein Raster wird erstellt.
 
 
 ___

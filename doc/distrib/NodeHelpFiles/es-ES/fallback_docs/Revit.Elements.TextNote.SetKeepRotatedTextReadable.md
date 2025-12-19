@@ -1,4 +1,4 @@
-## En detalle
+## En detalle:
 "TextNote.SetKeepRotatedTextReadable" establece el parámetro de ejemplar "Mantener legible" de la nota de texto especificada en el valor booleano especificado.
 
 Nota: La devolución de este nodo es de tipo void, lo que significa que el nodo confirma una acción en un elemento y devuelve un valor nulo.

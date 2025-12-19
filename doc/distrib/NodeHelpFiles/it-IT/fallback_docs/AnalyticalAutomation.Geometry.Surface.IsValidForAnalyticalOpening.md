@@ -1,7 +1,7 @@
 ## In profondità
-This node checks whether a surface is valid for creating an opening in an analytical panel.
+Questo nodo verifica se una superficie è valida per la creazione di un'apertura in un pannello analitico.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the intended opening location. The level L2 sets the vertical placement. Lines connect the points and are offset to form the surface representing the opening. A floor at L2 is used to create the analytical panel, and this node evaluates the surface for its validity as an opening in that panel.
+In questo esempio, quattro punti alle intersezioni di griglia A4-A5 e B4-B5 nel modello strutturale Snowdon definiscono la posizione dell'apertura desiderata. Il livello L2 imposta il posizionamento verticale. Le linee connettono i punti e vengono sottoposte a offset per formare la superficie che rappresenta l'apertura. Per creare il pannello analitico, viene utilizzato un pavimento in corrispondenza di L2 e questo nodo valuta la superficie per verificarne la validità come apertura in tale pannello.
 ___
 ## File di esempio
 

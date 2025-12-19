@@ -1,7 +1,7 @@
 ## 詳細
-This node sets the location of the elbow point in a “free-end” tag.
+このノードは、エルボ点の位置を[自由な端点]タグで設定します。
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+この例では、タグが選択され、元の点が抽出されます。X 値が修正され、新しい XYZ 点が定義されて、Tag.SetLeaderElbow ノードへの位置の入力として、選択した元のタグとともに使用されます。出力は、タグのエルボの新しい位置です。ビュー平面図 L1 を参照してください。
 
 ___
 ## サンプル ファイル

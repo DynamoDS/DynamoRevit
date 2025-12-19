@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a room based on points, a level, a room name and a room number.
+Ce nœud crée une pièce en fonction de points, d'un niveau, d'un nom de pièce et d'un numéro de pièce.
 
-In this example, points are derived from the families inside an enclosure (not defined as a room).  These points are used as the “location” input along with a given level, a room name and room number.  The node after the Room.ByLocation extracts the room name and room number parameters that were created to show the node successfully ran.
+Dans cet exemple, les points sont dérivés des familles à l'intérieur d'une enceinte (non définie comme une pièce).  Ces points sont utilisés comme entrée "emplacement" avec un niveau donné, un nom de pièce et un numéro de chambre.  Le noeud après Room.ByLocation extrait les paramètres de nom de salle et de numéro de salle qui ont été créés pour montrer que le noeud a bien fonctionné.
 
 ___
 ## Exemple de fichier

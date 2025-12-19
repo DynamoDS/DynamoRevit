@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a form from a list of curves and a Boolean value defining if the output form is solid or a surface.  This node works with massing, adaptive, and pattern-based family.
+Dieser Block erstellt eine Form aus einer Liste von Kurven und einem booleschen Wert, der definiert, ob die Ausgabeform ein Volumenkörper oder eine Oberfläche ist. Dieser Block funktioniert mit Körperfamilien, adaptiven Familien und musterbasierten Familien.
 
-In this example, multiple cross-section curves are defined and fed into the Form.ByLoftCrossSections node. The node then generates a continuous 3D form by lofting through these sections.
+In diesem Beispiel werden mehrere Querschnittskurven definiert und in den Form.ByLoftCrossSections-Block eingefügt. Der Block generiert dann eine durchgehende 3D-Form durch Erhebungen in diesen Abschnitten.
 
 ___
 ## Beispieldatei

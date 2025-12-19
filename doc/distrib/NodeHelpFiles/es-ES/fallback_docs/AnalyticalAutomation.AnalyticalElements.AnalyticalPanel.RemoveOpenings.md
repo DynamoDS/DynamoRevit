@@ -1,7 +1,7 @@
 ## En detalle:
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Este nodo elimina huecos de un panel analítico. El nodo actualiza el panel mediante la supresión de los huecos especificados sin que ello afecte a la geometría o la función estructural del panel.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+En este ejemplo, se crea un panel analítico a partir de un suelo del modelo estructural Snowdon. El primer hueco del panel se selecciona y se elimina mediante este nodo.
 ___
 ## Archivo de ejemplo
 

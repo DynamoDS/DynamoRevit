@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Questo nodo crea un controvento strutturale basato su una curva, un livello e un tipo di famiglia di telai. L'output è l'elemento controvento appena creato nel progetto.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+In questo esempio, viene disegnata una linea dal livello L2 all'intersezione della griglia A4 al livello L3 all'intersezione della griglia A5. Il nodo utilizza questa curva, insieme al livello e al tipo di famiglia selezionati, per creare un controvento nel modello strutturale Snowdon.
 ___
 ## File di esempio
 

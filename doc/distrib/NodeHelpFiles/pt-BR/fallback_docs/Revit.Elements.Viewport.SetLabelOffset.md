@@ -1,7 +1,7 @@
 ## Em profundidade
-This node allows you to place the view label at a specific point on a sheet.
+Esse nó permite colocar a legenda da vista em um ponto específico de uma folha.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+Neste exemplo, é criada uma nova folha "Dynamo Sheet” e a vista “L1 Wall Base” é colocada no ponto “0,0,0”. A vista é reposicionada e usada na entrada da viewport para o nó Viewport.SetLabelOffset junto com um ponto definido para localizar a legenda da vista.
 
 
 ___

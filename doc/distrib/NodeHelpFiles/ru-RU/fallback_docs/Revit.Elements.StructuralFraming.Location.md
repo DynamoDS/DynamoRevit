@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+Этот узел извлекает геометрию кривой из расположения элемента несущего каркаса. Выходные данные содержат такие данные, как начальная и конечная точки кривой, вектор направления и длина.
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+В этом примере в модели конструкции Snowdon выбрана балка. Узел выводит данные кривой, которые определяют расположение балки в проекте.
 ___
 ## Файл примера
 

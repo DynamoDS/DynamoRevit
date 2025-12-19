@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a physical wall or floor element from an analytical panel, or updates an existing physical element that is already connected to the analytical panel. The physical element can inherit geometry, parameters, and openings from the analytical panel, depending on the input settings. When the analytical panel has no associated physical element, the node creates a new one based on the analytical model.
+このノードは、解析用パネルから壁または床の物理要素を作成するか、解析用パネルに既に接合されている既存の物理要素を更新します。物理要素は、入力設定に応じて、解析用パネルからジオメトリ、パラメータ、開口部を継承することができます。解析用パネルに物理要素が関連付けられていない場合、ノードは解析モデルに基づいて新しい物理要素を作成します。
 
-In this example, an analytical roof deck panel from the ACO Supermarket model is selected. That analytical panel is connected to this node, and the input Boolean values demonstrate the default behavior for updating geometry, parameters, and including openings. The node then creates or updates the physical roof element from the analytical panel.
+この例では、ACO Supermarket モデルの解析用ルーフ デッキ パネルが選択されています。この解析用パネルはこのノードに接続され、入力ブール値は、ジオメトリ、パラメータ、含まれている開口部の更新に関する既定の動作を示します。次に、ノードで、解析用パネルから屋根の物理要素が作成、更新されます。
 ___
 ## サンプル ファイル
 

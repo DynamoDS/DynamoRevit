@@ -1,7 +1,7 @@
 ## 详细
-This node provides the openings within an analytical panel.
+此节点在分析面板中提供洞口。
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+在此示例中，选择 Snowdon Structural 模型中的楼板并将其转换为分析面板。该节点输出该面板中的洞口列表。
 ___
 ## 示例文件
 

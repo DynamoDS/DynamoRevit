@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+このノードは、指定されたインデックス値に基づいて、立面図マーカーから特定の立面図ビューを取得します。立面図マーカーは、最大 4 つの立面図(各方向に 1 つ)をホストすることができます。このノードを使用すると、関連付けられたこれらの立面図ビューの 1 つを抽出して、さらに使用したり修正(0,1,2,3)することができます。
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+この例では、すべての立面図マーカーが選択され、入力 elevationMarker で、すべてのインデックス オプション(0,1,2,3)とともに使用されます。出力で、使用可能なすべての立面図の方向が示されます。立面図が存在しない場合は null が示されます。最後のノードで、指定した要素マーカーに関連付けられている立面図の合計数が表示されます。
 ___
 ## サンプル ファイル
 

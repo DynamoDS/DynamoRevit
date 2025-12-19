@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates an analytical member from an existing physical element. The node can inherit the geometry and geometrical parameters of the element, carry over parameter values, and optionally establish or maintain an association with the original element.
+Ten węzeł tworzy liniowy element analityczny na podstawie istniejącego elementu fizycznego. Węzeł może dziedziczyć geometrię i parametry geometryczne elementu, przenosić wartości parametrów, a także opcjonalnie ustanawiać lub utrzymywać skojarzenie z elementem pierwotnym.
 
-In this example, a physical element is selected from the Snowdon Structural model and converted into an analytical member using this node.
+W tym przykładzie z modelu konstrukcyjnego Snowdon wybierany jest element fizyczny, który następnie zostaje przekształcony w liniowy element analityczny za pomocą tego węzła.
 ___
 ## Plik przykładowy
 

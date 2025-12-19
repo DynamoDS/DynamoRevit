@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a revision cloud in a specified view.  The inputs are view , list of curves "cloud outline," and a defined revision.
+此節點會在指定的視圖中建立修訂雲形。輸入包括視圖、「cloud outline」曲線清單和一個定義的修訂。
 
-In this example, two number sliders define the rectangle’s width and length, which is then exploded into curves. These curves are reversed to maintain correct orientation and then connected to the RevisionCloud.ByCurve node. The graph also takes the active view (First Floor Plan) and the chosen revision (Seq. 2 – Not For Construction) as inputs. Together, it automatically generates a revision cloud in the selected view based on the defined shape.
+在此範例中，兩個數字滑棒定義矩形的寬度和長度，然後分解為曲線。這些曲線會經過反轉以維持正確的方位，然後連接到 RevisionCloud.ByCurve 節點。圖表也會將作用中的視圖 (First Floor Plan) 和選擇的修訂 (Seq. 2 - Not For Construction) 作為輸入，根據定義的形狀一起在選取的視圖中自動產生修訂雲形。
 ___
 ## 範例檔案
 

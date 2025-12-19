@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the inverse transformation matrix of a given Revit Link Element.  In Revit, linked models may be positioned with transformations (translation, rotation, scaling). This node allows you to get the inverse of that transformation,  effectively converting coordinates from the linked model’s space back into the host Revit model’s coordinate system.
+Ten węzeł pobiera macierz odwrotnej transformacji danego elementu połączenia programu Revit. W programie Revit modele połączone mogą być pozycjonowane za pomocą transformacji (przekształcenia, obrotu, skalowania). Ten węzeł umożliwia uzyskanie odwrotności tej transformacji, dzięki czemu współrzędne z przestrzeni modelu połączonego są przekształcane z powrotem do układu współrzędnych nadrzędnego modelu programu Revit.
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkInverseTransform.  The output is the host Revit model’s coordinate system.
+W tym przykładzie zostają wybrane wszystkie elementy połączone programu Revit na poziomie L3 i zostają one przekazane do węzła LinkElement.LinkInverseTransform. Wynikiem jest układ współrzędnych nadrzędnego modelu programu Revit.
 ___
 ## Plik przykładowy
 

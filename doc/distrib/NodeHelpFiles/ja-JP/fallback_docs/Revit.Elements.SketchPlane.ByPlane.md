@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a sketch plane based on the input of a plane.
+このノードは、平面の入力に基づいてスケッチ平面を作成します。
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.
+この例では、平面が定義されて、次に、SketchPlane.ByPlane ノードに接続され、対応するスケッチ平面が生成されます。
 
 ___
 ## サンプル ファイル

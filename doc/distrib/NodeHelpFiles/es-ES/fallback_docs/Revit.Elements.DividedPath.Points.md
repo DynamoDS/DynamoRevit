@@ -1,7 +1,7 @@
 ## En detalle:
-This node returns the collection of points that make up the divisions along a given Divided Path element in Revit. Each point corresponds to a division location along the underlying curve or surface path created by the DividedPath element.
+Este nodo devuelve la colección de puntos que componen las divisiones a lo largo de un determinado elemento de camino dividido en Revit. Cada punto corresponde a una ubicación de división a lo largo de la curva subyacente o ruta de superficie creada por el elemento DividedPath.
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve along with a integer value defining the number of equal divisions along the curve. The final node DividedPath.Points displays the resulting division points along the curve.
+En este ejemplo, se crea una curva de modelo a partir de un punto inicial y un punto final especificados y, a continuación, se utiliza como curva de entrada junto con un valor entero que define el número de divisiones iguales a lo largo de la curva. El nodo final DividedPath.Points muestra los puntos de división resultantes a lo largo de la curva.
 ___
 ## Archivo de ejemplo
 

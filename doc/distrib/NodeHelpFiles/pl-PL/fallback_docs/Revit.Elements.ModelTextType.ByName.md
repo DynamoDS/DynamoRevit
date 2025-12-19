@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieve a specific Model Text Type from the current Revit document by its name.
+Ten węzeł pobiera określony typ tekstu modelu z bieżącego dokumentu programu Revit na podstawie jego nazwy.
 
-In this example a string input "10" Trebuchet MS" is connected to the node, which fetches the corresponding ModelTextType from Revit. This ensures that the model text created in later steps uses the exact font style defined in the Revit project.
+W tym przykładzie ciąg wejściowy „10" Trebuchet MS” jest połączony z węzłem, który pobiera odpowiedni typ ModelTextType z programu Revit. Dzięki temu w tekście modelu utworzonym na kolejnych etapach będzie używany dokładnie ten sam styl czcionki zdefiniowany w projekcie programu Revit.
 ___
 ## Plik przykładowy
 

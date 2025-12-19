@@ -1,7 +1,7 @@
 ## 詳細
-This node moves the center point of a given viewport to a new location on the sheet.
+このノードは、指定されたビューポートの中心点をシート上の新しい位置に移動します。
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+この例では、新しいシート「Dynamo Sheet」が作成され、ビュー「L1 Wall Base」が点「0,0,0」に配置されます。このビューは、Viewport.SetBoxCenter ノードのビューポート入力で、新しい点とともに使用されます。出力は再配置されたビューです。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node sets the curve of an existing detail curve.
+Tento uzel nastavuje křivku existující křivky detailu.
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+V tomto příkladu jsou vytvořeny dvě čáry a jedna je použita k vytvoření křivky detailu společně s pohledem (Typ dělení – CMU).  Tento prvek detailCurve se pak použije jako vstup pro „detailCurve“ pro uzel DetailCurve.SetCurve spolu s druhou čárou jako vstupem pro „curve“.  Výstup má hodnotu null, ale křivka detailu byla změněna na novou pozici.
 
 ___
 ## Vzorový soubor

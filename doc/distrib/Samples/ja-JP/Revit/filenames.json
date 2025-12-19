@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Revit のアダプティブ コンポーネントの配置",
+  "Revit Color": "Revit の色情報",
+  "Revit Floors and Framing": "Revit の床およびフレーム",
+  "Revit Geometry Creation Curves": "Revit のジオメトリ作成曲線",
+  "Revit Geometry Creation Points": "Revit のジオメトリ作成点",
+  "Revit Geometry Creation Solids": "Revit のジオメトリ作成ソリッド",
+  "Revit Geometry Creation Surfaces": "Revit のジオメトリ作成サーフェス",
+  "Revit Import Solid": "Revit でソリッドを読み込む",
+  "Revit Place Families By Level Set Parameters": "Revit でレベル セット パラメータごとにファミリを配置",
+  "Revit Structural Framing": "Revit の構造フレーム"
 }

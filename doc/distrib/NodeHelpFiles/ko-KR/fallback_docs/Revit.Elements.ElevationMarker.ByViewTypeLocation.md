@@ -1,7 +1,7 @@
 ## 상세
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+이 노드는 모델에서 뷰 유형 및 위치 점을 지정하여 활성 Revit 문서에 새 입면 표식기를 작성합니다.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+이 예에서는 원하는 위치에 고도를 배치하기 위해 점을 작성합니다. 이 점은 지정된 뷰 유형 패밀리 및 축척 비율과 함께 ElevationMarker.ByViewTypeLocation 노드에 대한 위치 입력으로 제공됩니다. 그리고 생성된 ElevationMarker를 사용하여 정의된 축척의 입면도를 생성합니다.
 ___
 ## 예제 파일
 

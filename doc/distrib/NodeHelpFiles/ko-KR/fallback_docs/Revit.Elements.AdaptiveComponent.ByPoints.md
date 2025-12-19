@@ -1,9 +1,9 @@
 ## 상세
-This node places instances of an adaptive component by defining its adaptive points directly from a list of point coordinates and specifying the family type to be used.
+이 노드는 점 좌표 리스트에서 직접 가변 점을 정의하고 사용할 패밀리 유형을 지정하여 가변 구성요소의 인스턴스를 배치합니다.
 
-In this example, a single point is provided to the AdaptiveComponent.ByPoints node along with the adaptive component "Diagnostic Tripod – 1 Point.rfa" for input familyType.  The output is an adaptive component instance placed at the 1,1,0 of the mass family.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+이 예에서는 입력 familyType에 대한 가변 구성요소 "Diagnostic Tripod – 1 Point.rfa"와 함께 AdaptiveComponent.ByPoints 노드에 단일 점이 제공됩니다. 출력은 매스 패밀리의 1,1,0에 배치된 가변 구성요소 인스턴스입니다. 이 그래프를 실행하기 전에 "Diagnostic Tripod – 1 Point.rfa"를 매스 패밀리에 로드해야 합니다.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+이 노드 도움말 예제 파일을 실행하려면 "Diagnostics Tripod-1 point.rfa"를 Revit 파일로 로드해야 합니다. 패밀리가 여기에 저장됩니다. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## 예제 파일
 

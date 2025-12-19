@@ -1,7 +1,7 @@
 ## In profondità
-This node returns the Revit curve reference associated with a given grid element.
+Questo nodo restituisce il riferimento alla curva di Revit associato ad un determinato elemento griglia.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+In questo esempio, vengono selezionati nel progetto tutti gli elementi griglia che sono poi utilizzati come input nel nodo GridElementCUrveReference. Questo nodo espone tale riferimento in modo che possa essere utilizzato in altre operazioni quali quotatura, posizionamento di elementi basato su percorso o analisi geometrica.
 ___
 ## File di esempio
 

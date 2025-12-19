@@ -1,10 +1,10 @@
 ## 详细
-This node returns the number of U divisions applied to a given Divided Surface in Revit.  The grid is defined in two directions—U and V—and the U divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “U” direction).  In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+此节点返回应用于 Revit 中给定分割表面的 U 分段数。栅格在 U 和 V 两个方向上定义，U 分段数确定沿一个轴(通常对应于曲面的参数化“U”方向)将曲面分割成多少个分段。在 Revit 概念体量环境或适应性构件族中，分割表面是应用到面(如墙、屋顶或形状面)的图案栅格。
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.UDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of U divisions applied to the divided surface.
+在此示例中，将选择面并用于生成分割表面。此分割曲面是 DividedSurface.UDivisions 的输入。最后的节点会显示分割表面的其他值。运行此示例图形时，您需要遵照 Revit 警告并删除建议的图元，以便轴网显示在选定表面上。应用于分割表面的 U 分段数。
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+有关更多信息，请参见链接。
+https://help.autodesk.com/view/RVT/2025/CHS/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## 示例文件
 

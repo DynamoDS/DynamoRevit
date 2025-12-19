@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a roof given a outline (closed curve), roof type, and level.
+このノードは、輪郭(閉じた曲線)、屋根のタイプ、およびレベルを指定して屋根を作成します。
 
-In this example, a rectangle is created and used as the outline input into node RoofByOutlineTypeAndLevel node along with a roof type and level.  The last node sets the base offset from level value to 10.
+この例では、長方形が作成され、RoofByOutlineTypeAndLevel ノードへの輪郭入力として、屋根タイプとレベルとともに使用されます。最後のノードでは、レベル値からの基準レベル オフセットが 10 に設定されます。
 
 ___
 ## サンプル ファイル

@@ -1,7 +1,7 @@
 ## Подробности
-This node sets the curve of an existing detail curve.
+Этот узел задает кривую существующей детальной кривой.
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+В этом примере созданы две линии, одна из которых используется для создания детальной кривой и вида (тип разделения — CMU). Затем этот узел detailCurve используется в качестве входного элемента detailCurve узла DetailCurve.SetCurve, а также второй отрезок в качестве входного параметра для curve. В выходных данных отображается нулевое значение, но детальная кривая изменена в соответствии с новым положением.
 
 ___
 ## Файл примера

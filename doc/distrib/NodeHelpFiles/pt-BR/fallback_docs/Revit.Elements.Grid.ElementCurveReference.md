@@ -1,7 +1,7 @@
 ## Em profundidade
-This node returns the Revit curve reference associated with a given grid element.
+Esse nó retorna a referência de curva do Revit associada a um determinado elemento de eixo.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+Neste exemplo, todos os elementos de eixo são selecionados no projeto e usados como uma entrada para o nó GridElementCUrveReference. Esse nó expõe aquela referência para que ela possa ser usada em outras operações, como dimensionamento, colocação de elementos com base no caminho ou análise geométrica.
 ___
 ## Arquivo de exemplo
 

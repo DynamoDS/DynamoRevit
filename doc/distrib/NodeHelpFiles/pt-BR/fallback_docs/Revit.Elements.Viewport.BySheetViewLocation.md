@@ -1,7 +1,7 @@
 ## Em profundidade
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+Esse nó coloca uma viewport em uma folha especificada colocando uma determinada vista em um ponto de localização definido.
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+Neste exemplo, é criada uma nova folha “Dynamo Sheet” e usada como entrada de folha para o nó Viewport.BySheetViewLocation junto com uma vista “Base da parede L1” e um ponto “0,0,0” na entrada de localização.
 ___
 ## Arquivo de exemplo
 

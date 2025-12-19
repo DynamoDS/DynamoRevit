@@ -1,7 +1,7 @@
 ## In profondità
-This node returns all elements within a Revit Link Instance that are hosted on or associated with a specified Level.
+Questo nodo restituisce tutti gli elementi all'interno di un'istanza di collegamento di Revit che sono ospitati o associati ad un livello specificato.
 
-In this example all Revit links are selected and input into LinkInstance.AllElementsAtLevel along with a level.  The output exposes all the Revit linked elements on or related to level L3.  The last 2 nodes give the link transform and inverse transform.
+In questo esempio, vengono selezionati tutti i collegamenti di Revit che sono poi utilizzati come input in LinkInstance.AllElementsAtLevel insieme a level. L'output espone tutti gli elementi collegati di Revit al livello L3 o correlati ad esso. Gli ultimi 2 nodi forniscono la trasformazione del collegamento e la trasformazione inversa.
 
 ___
 ## File di esempio

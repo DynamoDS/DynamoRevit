@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+Ce noeud extrait la géométrie de la courbe de l'emplacement d'un élément d'ossature. La sortie fournit des informations telles que les points de départ et d’arrivée de la courbe, le vecteur de direction et la longueur.
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+Dans cet exemple, une poutre est sélectionnée dans le modèle structurel de Snowdon. Le noeud génère les données de courbe qui définissent l'emplacement de la poutre dans le projet.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+Ce nœud vous permet e faire preuve d'une grande précision sur la partie d'un élément Revit avec laquelle vous souhaitez travailler. Contrairement aux noeuds qui sélectionnent un élément entier (comme un mur ou un sol), ce noeud vous permet de choisir une face ou une arête spécifique de cet élément.
 
-In this example, we have selected an element nested inside a curtain wall.
+Dans cet exemple, nous avons sélectionné un élément imbriqué à l'intérieur d'un mur-rideau.
 
 ___
 ## Exemple de fichier

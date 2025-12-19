@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+Этот узел извлекает контуры кривых (обычно это дуги и линии), составляющие видимый периметр пометочного облака. Каждый сегмент облака представлен в виде криволинейного объекта (обычно дуги), соответствующего форме «пузырька» марки внесения изменений на виде или листе.
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+В этом примере создается прямоугольник с помощью числовых регуляторов для определения размеров, а затем разбивается на кривые и разворачивается для ориентации. Эти кривые вместе с выбранным видом («План стройплощадки») и изменением («Последовательность 2 — не для строительства») используются для создания пометочного облака с помощью узла RevisionCloud.ByCurve. Созданное пометочное облако затем связывается с узлом RevisionCloud.Curves, который извлекает и отображает определяющие кривые этого облака. Это позволяет пользователям проверять геометрию пометочного облака и обеспечивает гибкость повторного использования или дальнейшей автоматизации.
 ___
 ## Файл примера
 

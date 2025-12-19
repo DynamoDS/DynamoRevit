@@ -1,7 +1,7 @@
 ## Подробности
-This node evaluates the selected element to determine if it is suitable for generating an analytical panel. The optional checkOpenings input specifies whether openings within the element should be included in the validity check. When set to true, openings are considered as part of the evaluation.
+Этот узел оценивает выбранный элемент и определяет, подходит ли он для создания аналитической панели. Дополнительный входной параметр checkOpenings определяет, следует ли включать проемы в элементе при проверке действительности. Если задано значение True, проемы рассматриваются как часть оценки.
 
-In this example, the element is defined by its Element ID using the Element.ById node and provided to Element.IsValidForAnalyticalPanel. The outputs include a Boolean indicating if the element is valid and an exception message describing any issues preventing its use.
+В этом примере элемент определяется по идентификатору с помощью узла Element.ById и передается в узел Element.IsValidForAnalyticalPanel. Выходные данные включают логическое значение, указывающее, является ли элемент допустимым, и сообщение об исключении с описанием любых проблем, препятствующих его использованию.
 ___
 ## Файл примера
 

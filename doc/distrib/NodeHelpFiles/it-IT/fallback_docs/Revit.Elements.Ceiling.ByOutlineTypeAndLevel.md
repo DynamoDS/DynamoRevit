@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Questo nodo crea un controsoffitto a partire da un contorno (curva chiusa), un tipo di controsoffitto e un livello.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+In questo esempio, viene creato un rettangolo che poi è utilizzato come input outline per il nodo Ceiling.ByOutlineTypeAndLevel insieme a ceilingType e level.
 
 ___
 ## File di esempio

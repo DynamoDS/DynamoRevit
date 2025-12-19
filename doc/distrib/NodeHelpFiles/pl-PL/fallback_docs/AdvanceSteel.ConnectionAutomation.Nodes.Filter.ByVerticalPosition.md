@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node filters input elements based on their vertical placement within the model. It allows you to choose whether to evaluate an element’s Top or Bottom Z-coordinate (height) for comparison or logical filtering. Its typically used as part of a filtering system, often in conjunction with a ConnectionNode, to isolate elements above or below certain elevations. It is useful in workflows that involve spatial analysis, such as separating building elements by level or zone.
+Ten węzeł filtruje elementy wejściowe na podstawie ich pionowego umieszczenia w modelu. Można wybrać, czy należy ocenić górną, czy dolną współrzędną Z (wysokość) elementu w celu porównania lub filtrowania logicznego. Jest on zazwyczaj używany jako część systemu filtrowania, często w połączeniu z węzłem ConnectionNode, aby odizolować elementy powyżej lub poniżej określonych rzędnych. Jest przydatny w procesach roboczych obejmujących analizę przestrzenną, takich jak rozdzielanie elementów budynku według poziomu lub strefy.
 
-In this example, we are filtering all the selected structure data items by their "Top" z-coordinate position (height). This can be used to further determine if the position is lower than a level, floor, or ceiling.
+W tym przykładzie filtrujemy wszystkie wybrane elementy danych konstrukcyjnych na podstawie ich położenia współrzędnej Z (wysokości) wartości „Góra” (Top). Może to posłużyć do dokładniejszego określenia, czy położenie znajduje się niżej niż poziom, strop lub sufit.
 ___
 ## Plik przykładowy
 

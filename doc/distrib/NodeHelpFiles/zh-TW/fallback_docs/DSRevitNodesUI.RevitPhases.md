@@ -1,7 +1,7 @@
 ## 深入資訊
-This node lets you choose a specific Phase from the model using a drop-down menu.
+此節點可讓您使用下拉式功能表，選擇模型中的特定階段。
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+在此範例中，選取牆，然後套用 Select Phase 節點修改指定的階段。最後一個節點顯示更新的階段名稱「Existing」確認變更。
 ___
 ## 範例檔案
 

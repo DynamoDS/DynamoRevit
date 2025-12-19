@@ -1,7 +1,7 @@
 ## Подробности
-The ReferencePlane.ByLine node in Dynamo creates a Revit reference plane by using a defined line as its base. This allows you to generate custom reference planes at specific positions and orientations.
+Узел ReferencePlane.ByLine в Dynamo создает опорную плоскость Revit, используя в качестве основы определенную линию. Это позволяет создавать пользовательские опорные плоскости в определенных положениях и ориентациях.
 
-In this example, two points are defined using Point.ByCoordinates with adjustable sliders. A Line.ByStartPointEndPoint is then created between these two points, and finally, the ReferencePlane.ByLine node generates a reference plane along that line.
+В этом примере две точки определяются с помощью узла Point.ByCoordinates с настраиваемыми регуляторами. Затем между этими двумя точками создается узел Line.ByStartPointEndPoint и, наконец, узел ReferencePlane.ByLine создает опорную плоскость вдоль этой линии.
 ___
 ## Файл примера
 

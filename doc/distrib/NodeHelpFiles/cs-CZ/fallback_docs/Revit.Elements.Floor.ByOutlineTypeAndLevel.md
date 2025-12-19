@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a floor using curves, floor types and level.
+Tento uzel vytvoří podlahu pomocí křivek, typů podlah a podlaží.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+V tomto příkladu je číselný posuvník použit k vygenerování obdélníku a použit jako vstup do uzlu Floor.ByOutlineTypeAndLevel spolu s daným typem podlahy a podlažím.
 
 ___
 ## Vzorový soubor

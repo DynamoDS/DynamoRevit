@@ -1,7 +1,7 @@
 ## Подробности
-This node outputs the structural role assigned to an analytical member.
+Этот узел выводит роль в конструкции, назначенную аналитическому элементу.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+В этом примере балка из модели конструкции Snowdon преобразуется в аналитический элемент, и этот узел возвращает ее текущую роль в конструкции.
 ___
 ## Файл примера
 

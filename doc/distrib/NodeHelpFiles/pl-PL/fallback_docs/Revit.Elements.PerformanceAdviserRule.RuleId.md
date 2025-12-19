@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+Ten węzeł pobiera unikatowy identyfikator (RuleId) reguły doradcy wydajności.
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+W tym przykładzie wybrana reguła „Project contains unused families and types” (Projekt zawiera nieużywane rodziny i typy) jest połączona z węzłem PerformanceAdviserRule.RuleId, który generuje jej unikatowy identyfikator. Ten identyfikator jest następnie przekształcany w ciąg.
 ___
 ## Plik przykładowy
 

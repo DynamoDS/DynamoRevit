@@ -1,7 +1,7 @@
 ## Description approfondie
-This node returns the connection name associated with connections linked to the structure data element.
+Ce noeud renvoie le nom de la connexion associée aux connexions liées à l'élément de données structure.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+Dans cet exemple, un poteau a été sélectionné avec trois connexions : une plaque de base, une connexion de moment et une connexion boulonnée.
 ___
 ## Exemple de fichier
 

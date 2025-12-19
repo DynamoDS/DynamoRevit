@@ -1,7 +1,7 @@
 ## Подробности
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+Этот узел позволяет уточнить, с какой частью элемента Revit вы хотите работать. В отличие от узлов, позволяющих выбрать весь элемент (например, стену или перекрытие), этот узел позволяет выбрать определенную грань или ребро этого элемента.
 
-In this example, we have selected an element nested inside a curtain wall.
+В данном примере выбран элемент, вложенный в витраж.
 
 ___
 ## Файл примера

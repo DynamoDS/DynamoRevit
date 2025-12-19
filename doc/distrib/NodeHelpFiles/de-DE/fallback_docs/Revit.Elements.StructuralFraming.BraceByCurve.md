@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Dieser Block erstellt eine Tragwerksstrebe basierend auf einer Kurve, einer Ebene und einem Tragwerksfamilientyp. Die Ausgabe ist das neu erstellte Strebenelement im Projekt.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+In diesem Beispiel wird eine Linie von Ebene L2 bei Rasterkreuzpunkt A4 nach Ebene L3 bei Rasterkreuzpunkt A5 gezeichnet. Der Block verwendet diese Kurve zusammen mit der ausgewählten Ebene und dem ausgewählten Familientyp, um eine Strebe im Snowdon-Tragwerksmodell zu erstellen.
 ___
 ## Beispieldatei
 

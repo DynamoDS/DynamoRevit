@@ -1,7 +1,7 @@
 ## 詳細
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+このノードは、Revit 要素のセットに対して特定のパフォーマンス アドバイザ規則を実行します。
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+この例では、パフォーマンス アドバイザ規則によって「ビュー クリップが無効」かどうかが確認されます。結果が FailureMessage.FailingElements ノードに渡され、このチェックに合格しなかったモデル内の特定の要素が出力されます。このワークフローにより、ユーザは問題の原因となっている要素を正確にトレースして修正しやすくなります。
 
 ___
 ## サンプル ファイル

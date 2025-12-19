@@ -1,7 +1,7 @@
 ## 詳細
-This node takes a numeric length value and a unit type identifier, converting the input value into the active Revit project’s length units. The output is a double value representing the converted result.
+このノードは、長さの数値と単位タイプ識別子を取得し、入力値をアクティブな Revit プロジェクトの長さの単位に変換します。出力は、変換結果を表す倍精度値です。
 
-In this example, a number slider provides a length value, and a unit (for example, Meters) is selected to obtain its Unit.TypeId string. Both are connected to the UnitsUtilities.ConvertToCurrentProjectLengthUnit node, which returns the converted length value based on the project’s unit settings.
+この例では、数値スライダで長さの値を指定し、単位(メートルなど)を選択してその Unit.TypeId 文字列を取得します。両方とも UnitsUtilities.ConvertToCurrentProjectLengthUnit ノードに接続され、ノードはプロジェクトの単位設定に基づいて変換した長さの値を返します。
 ___
 ## サンプル ファイル
 

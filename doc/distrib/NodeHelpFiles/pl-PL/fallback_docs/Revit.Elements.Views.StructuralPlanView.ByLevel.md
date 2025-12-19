@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates a view based off a level input.
+Ten węzeł tworzy widok na podstawie pozycji danych wejściowych level.
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+W tym przykładzie poziom (L2) jest używany jako dane wejściowe (level) węzła StructrualPlanView.ByLevel, którego wynikiem jest nowy widok. Ostatni węzeł pokazuje nazwę widoku (L2).
 
 ___
 ## Plik przykładowy

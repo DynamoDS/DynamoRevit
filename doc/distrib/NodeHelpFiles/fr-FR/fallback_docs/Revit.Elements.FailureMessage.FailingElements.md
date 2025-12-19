@@ -1,7 +1,7 @@
 ## Description approfondie
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+Ce nœud extrait les éléments qui ont déclenché une défaillance à partir d'un objet FailureMessage donné.
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+Dans cet exemple, la règle Performance Adviser vérifie si l'option "Découpage de la vue est désactivée". Les résultats sont transmis au nœud FailureMessage.FailingElements, qui génère les éléments spécifiques du modèle qui a échoué à cette vérification.
 ___
 ## Exemple de fichier
 

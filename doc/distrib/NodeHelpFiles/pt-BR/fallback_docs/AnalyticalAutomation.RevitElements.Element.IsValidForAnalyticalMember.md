@@ -1,7 +1,7 @@
 ## Em profundidade
-This node evaluates the selected Revit element to determine if it is suitable for use as an analytical member. If the element is not valid, the output includes an exception message explaining the reason.
+Esse nó avalia o elemento do Revit selecionado para determinar se ele é adequado para uso como um membro analítico. Se o elemento não for válido, a saída incluirá uma mensagem de exceção explicando o motivo.
 
-In this example, an element is defined by its Element ID and provided to Element.IsValidForAnalyticalMember. The outputs include a Boolean result indicating the element’s validity and an exception message if applicable.
+Neste exemplo, um elemento é definido por sua ID de elemento e fornecido ao Element.IsValidForAnalyticalMember. As saídas incluem um resultado booleano que indica a validade do elemento e uma mensagem de exceção, se aplicável.
 ___
 ## Arquivo de exemplo
 

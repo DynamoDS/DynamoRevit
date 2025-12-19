@@ -1,7 +1,7 @@
 ## 深入資訊
-This node sets the curve of an existing detail curve.
+此節點會設定既有詳圖曲線的曲線。
 
-In this example 2 lines are created, and one is used to create a detail curve along with a view (Partition Type – CMU).  This detailCurve is then used as an input to “detailCurve” for DetailCurve.SetCurve along with the second line as an input to “curve.”  The output reads null but the detail curve has been changed to the new position.
+此範例建立 2 條線，使用一條線建立詳圖曲線，同時提供視圖 (Partition Type – CMU)，然後使用此詳圖曲線作為 DetailCurve.SetCurve 的「detailCurve」的輸入，使用第二條線作為「curve」的輸入。輸出為空值，但詳圖曲線已變更為新位置。
 
 ___
 ## 範例檔案

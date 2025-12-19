@@ -1,7 +1,7 @@
 ## Подробности
-This node moves an element to a new location given a new point.
+Этот узел перемещает элемент в новое расположение по новой точке.
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+В этом примере элемент выбирается и вводится в узел Element.SetLocation. Отображается исходное положение элементов, которое используется для переноса вдоль плоскостей X и Y, для управления которыми применяется числовой регулятор. Результат преобразования используется в качестве входных данных геометрии для узла Element.SetLocation. Отображается нулевое значение, но элемент перемещается.
 
 ___
 ## Файл примера

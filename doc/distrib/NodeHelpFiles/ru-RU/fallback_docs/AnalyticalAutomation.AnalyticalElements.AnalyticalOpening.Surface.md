@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the surfaces of analytical openings.
+Этот узел возвращает поверхности аналитических проемов.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+В этом примере для создания аналитической панели используется перекрытие в модели конструкции Snowdon. На панели выбраны проемы, и этот узел выводит поверхности этих проемов.
 ___
 ## Файл примера
 

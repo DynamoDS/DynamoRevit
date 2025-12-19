@@ -1,9 +1,9 @@
 ## 详细
-This node retrieves the family and family type of a selected adaptive component.
+此节点检索选定的自适应构件的族和族类型。
 
-In this example, all placed adaptive components are then provided as input to the AdaptiveComponent.Type node. The output is the family and family type names.
+在此示例中，所有放置的自适应构件随后将作为 AdaptiveComponent.Type 节点的输入提供。输出是族和族类型名称。
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+要运行此节点帮助示例文件，需要将“Diagnostics Tripod-1 point.rfa”载入到 Revit 文件中。该族存储在此处。C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## 示例文件
 

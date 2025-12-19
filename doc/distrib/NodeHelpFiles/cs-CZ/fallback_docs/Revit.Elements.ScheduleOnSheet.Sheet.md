@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node gets the sheet a schedule is on.
+Tento uzel získá výkres, na kterém se výkaz nachází.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+V tomto příkladu je výkaz umístěn na výkres do určeného umístění. Výkaz je poté zadán do uzlu ScheduleOnSheet.Sheet, kde se zobrazí název výkresu (Název = Cover). Nakonec je název extrahován do řetězce.
 
 ___
 ## Vzorový soubor

@@ -1,12 +1,12 @@
 ## 詳細
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions.  A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+このノードは、Revit 要素の選択された面に新しい分割されたサーフェス要素を作成し、指定された U 分割と V 分割を使用してレイアウトを定義します。分割されたサーフェスは、面に適用されるパターン化された通芯で、通常、フォーム サーフェス全体にカーテン パネル、アダプティブ コンポーネント、またはパネル化されたシステムを配置するために使用されます。
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+U 分割と V 分割でサーフェスの各方向に作成するサブ区画の数を決定し、回転パラメータでサーフェスの U-V 座標系に対して通芯の方向を調整します。
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisions along with UDivs, VDivs which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+この例では、面が選択され、DividedSurface.ByFaceUVDivisions ノードのサーフェスへの入力として、スライダでコントロールされる UDivs、VDivs とともに使用されます。最後のノードは、分割されたサーフェスの値を公開します。このサンプル グラフを実行する場合は、Revit の警告を確認し、提案された要素を削除して、選択したサーフェスに通芯が表示されるようにする必要があります。
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+詳細については、リンクを参照してください。
+https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## サンプル ファイル
 

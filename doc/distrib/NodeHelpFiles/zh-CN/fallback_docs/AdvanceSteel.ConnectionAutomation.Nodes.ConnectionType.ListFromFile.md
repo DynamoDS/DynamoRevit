@@ -1,7 +1,7 @@
 ## 详细
-This node returns a list of available connection types that can be loaded.
+此节点返回可加载的可用连接类型的列表。
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+在此示例中，我们返回与给定文件路径关联的 Revit 模型中可用的连接列表。
 ___
 ## 示例文件
 

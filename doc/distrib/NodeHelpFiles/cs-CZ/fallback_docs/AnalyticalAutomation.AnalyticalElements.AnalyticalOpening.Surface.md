@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the surfaces of analytical openings.
+Tento uzel vrací povrchy analytických otvorů.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+V tomto příkladu je podlaží v modelu Snowdon Structural použito k vytvoření analytické desky. Otvory na desce jsou vybrány a výstupem tohoto uzlu jsou povrchy těchto otvorů.
 ___
 ## Vzorový soubor
 

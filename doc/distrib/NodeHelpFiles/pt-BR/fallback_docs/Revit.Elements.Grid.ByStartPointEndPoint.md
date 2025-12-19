@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a grid line based on a start point and end point.
+Esse nó cria uma linha de eixo com base em um ponto inicial e um ponto final.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+Neste exemplo, são gerados dois pontos e usados como entradas para Grid.ByStartPointEndPoint. É criado um eixo e denominado “Dynamo”.
 
 ___
 ## Arquivo de exemplo

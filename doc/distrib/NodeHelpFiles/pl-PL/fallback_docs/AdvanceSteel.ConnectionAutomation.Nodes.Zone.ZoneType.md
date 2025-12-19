@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the Zone Type for a given Advance Steel Zone element.  In Advance Steel’s Connection Automation framework, zones define distinct regions of a steel member (such as the start, body, or end) where connection features can be applied.  The Zone Type identifies which of these regions a particular zone represents, essential when automating joint placement, cutbacks, or stiffener locations.
+Ten węzeł pobiera typ strefy dla danego elementu strefy programu Advance Steel. W strukturze automatyzacji połączeń programu Advance Steel strefy definiują odrębne regiony elementu stalowego (takie jak początek, bryła lub koniec), w których można zastosować elementy połączenia. Typ strefy określa, który z tych regionów reprezentuje dana strefa, co jest niezbędne podczas automatyzacji umieszczania połączeń, cięć lub położenia żeber.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to Zone.ZoneType node where the output defines the region of the steel member (start, body, or end).
+W tym przykładzie wybrano kilka elementów, wyodrębniono dane konstrukcyjne, udostępniono węzeł połączenia i użyto go do zidentyfikowania wszystkich stref mających zastosowanie do tego węzła połączenia. Te strefy są danymi wejściowymi węzła Zone.ZoneType, którego dane wyjściowe definiują obszar elementu stalowego (początek, bryłę lub koniec).
 ___
 ## Plik przykładowy
 

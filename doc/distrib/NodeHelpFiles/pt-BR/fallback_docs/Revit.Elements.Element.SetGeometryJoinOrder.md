@@ -1,7 +1,7 @@
 ## Em profundidade
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+Esse nó altera a ordem de união entre dois elementos do Revit que já estão geometricamente unidos. Esse nó permite que o usuário determine qual geometria do elemento “corta” ou tem precedência sobre outra.
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+Neste exemplo, são selecionadas duas paredes unidas e usadas como entradas (cuttingElement e otherElement) para o nó Element.SetGeometryJoinOrder. A saída é a ordem de união atribuída.
 
 ___
 ## Arquivo de exemplo

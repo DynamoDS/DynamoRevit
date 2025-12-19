@@ -1,7 +1,7 @@
 ## 詳細
-This node gets the lines (curves) used to generate the boundary of an area.
+このノードは、エリアの境界の生成に使用される線分(曲線)を取得します。
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+この例では、プロジェクトのすべてのエリアが取得されます。要素(エリア)名と Area.Boundries が抽出され、表示されます。
 
 ___
 ## サンプル ファイル

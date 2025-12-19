@@ -1,7 +1,7 @@
 ## Подробности
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+Этот узел принимает марку и изменяет расположение ее заголовка. Это позволяет автоматизировать согласованное размещение марок таким образом, чтобы марки располагались непосредственно поверх элемента, для маркировки которого они используются.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+В данном примере выбрана дверь в виде Studio Live Work Core B. Расположение этой двери извлекается и используется в качестве исходного входного значения для узла Tag.ByElementAndLocation вместе с логическими значениями для horizontal и addLeader. Исходное расположение изменяется таким образом, чтобы расположение марки не накладывалось непосредственно на элемент с помощью узла Tag.SetHeadLocation.
 
 ___
 ## Файл примера

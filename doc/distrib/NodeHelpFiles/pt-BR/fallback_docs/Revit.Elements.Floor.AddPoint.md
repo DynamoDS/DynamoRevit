@@ -1,8 +1,8 @@
 ## Em profundidade
 
-This node adds a point to a given floor.
+Esse nó adiciona um ponto a um determinado piso.
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+Neste exemplo, é usado um controle deslizante de número para gerar um retângulo, que é usado como uma entrada para Floor.ByOutlineTypeAndLevel junto com um determinado tipo de piso e nível. Usamos esse piso junto com um novo ponto como entradas para Floor.AddPoint.
 
 
 ___

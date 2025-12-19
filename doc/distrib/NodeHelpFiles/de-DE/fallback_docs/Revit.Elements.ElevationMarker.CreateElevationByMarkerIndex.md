@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates an elevation view from an existing ElevationMarker by specifying the marker index. Each ElevationMarker in Revit can host up to four individual elevation views—one for each direction (North, South, East, and West). This node lets you generate one of those directional elevations by referencing the marker and the desired index number.
+Dieser Block erstellt eine Ansicht aus einem vorhandenen ElevationMarker-Element, indem der Markierungsindex angegeben wird. Jedes ElevationMarker-Element in Revit kann bis zu vier einzelne Ansichten hosten - eine für jede Richtung (Nord, Süd, Ost und West). Mit diesem Block können Sie eine dieser Richtungsansichten erstellen, indem Sie die Markierung und die gewünschte Indexnummer referenzieren.
 
-In this example, a Elevation Marker is created and used as input elevationMarker to node ElevationMarker.CreateElevationByMarkerIndex along with a view and index (0,1,2,3).
+In diesem Beispiel wird eine Ansichtsmarkierung erstellt und als Eingabe-elevationMarker für den ElevationMarker.CreateElevationByMarkerIndex-Block zusammen mit einer Ansicht und einem Index (0,1,2,3) verwendet.
 
 ___
 ## Beispieldatei

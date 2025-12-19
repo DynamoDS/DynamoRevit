@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets the sheet a schedule is on.
+Este nodo obtiene el plano en el que se encuentra una tabla de planificación.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+En este ejemplo, se coloca una tabla de planificación en la ubicación especificada de un plano. A continuación, la tabla de planificación se introduce en el nodo ScheduleOnSheet.Sheet, donde se muestra el nombre del plano (Name = Cover). Por último, el nombre se extrae en una cadena.
 
 ___
 ## Archivo de ejemplo
