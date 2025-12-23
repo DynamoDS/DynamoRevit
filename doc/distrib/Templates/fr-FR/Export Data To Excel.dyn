@@ -208,8 +208,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 355.75,
-        "Y": 249.25
+        "X": 299.79483228085985,
+        "Y": 168.4258688501307
       },
       {
         "Id": "3bd4fe2e6876454da3e83a01462c85c7",
@@ -244,8 +244,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 330.19444444444446,
-        "Top": 199.0277777777778,
+        "Left": 274.2392767253043,
+        "Top": 118.20364662790848,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
