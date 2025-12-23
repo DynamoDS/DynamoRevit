@@ -1,3 +1,7 @@
+## 0.7.74
+* some scripts and help files translations
+* move 3 templates for German only from internal together with other templates
+
 ## 0.7.73
 * fix splash screen automatic start in test mode after made modal
 
