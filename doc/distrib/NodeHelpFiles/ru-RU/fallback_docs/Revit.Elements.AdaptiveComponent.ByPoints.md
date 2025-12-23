@@ -1,9 +1,9 @@
 ## Подробности
-This node places instances of an adaptive component by defining its adaptive points directly from a list of point coordinates and specifying the family type to be used.
+Этот узел размещает экземпляры адаптивного компонента путем определения его адаптивных точек непосредственно из списка координат точек и указания типоразмера семейства, который будет использоваться.
 
-In this example, a single point is provided to the AdaptiveComponent.ByPoints node along with the adaptive component "Diagnostic Tripod – 1 Point.rfa" for input familyType.  The output is an adaptive component instance placed at the 1,1,0 of the mass family.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+В этом примере узлу AdaptiveComponent.ByPoints предоставляется одна точка вместе с адаптивным компонентом Diagnostic Tripod – 1 Point.rfa для входного значения familyType. На выходе получается экземпляр адаптивного компонента, размещенный в точке 1,1,0 семейства формообразующих элементов. Обратите внимание, что перед запуском этого графика в семейство формообразующих элементов необходимо загрузить файл Diagnostic Tripod – 1 Point.rfa.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Для запуска данного файла справки по узлу необходимо загрузить в файл Revit файл Diagnostics Tripod-1 point.rfa. Семейство хранится по следующему пути: C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Файл примера
 

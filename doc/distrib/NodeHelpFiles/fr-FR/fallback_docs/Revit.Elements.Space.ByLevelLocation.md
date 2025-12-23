@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a new Revit Space element at a specified Level and location point.
+Ce nœud crée un élément Revit Space à un niveau et à un emplacement spécifiés.
 
-In this example, a modeled element has been selected and the location is used as the input to the Space.ByLevelLocation node along with a level, a name and number.
+Dans cet exemple, un élément modélisé a été sélectionné et l'emplacement est utilisé en tant qu'entrée pour le nœud Space.ByLevelLocation avec un niveau, un nom et un numéro.
 ___
 ## Exemple de fichier
 

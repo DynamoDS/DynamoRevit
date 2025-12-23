@@ -1,7 +1,7 @@
 ## Description approfondie
-This node sets the default sketch plane in a given view.
+Ce noeud définit le plan d'esquisse par défaut dans une vue donnée.
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+Dans cet exemple, tous les plans d'esquisse sont extraits du projet et filtrés vers le plan d'esquisse "Parking".  Ce plan d'esquisse "Parking" est ensuite utilisé comme entrée (SketchPlane) pour noeud View.SetSketchPlane avec une vue (vue).  Les deux derniers noeuds affichent le nom du plan d'esquisse d'origine à côté du nouveau nom du plan d'esquisse.
 
 ___
 ## Exemple de fichier

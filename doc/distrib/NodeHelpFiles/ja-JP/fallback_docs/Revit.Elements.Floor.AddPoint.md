@@ -1,8 +1,8 @@
 ## 詳細
 
-This node adds a point to a given floor.
+このノードは、指定された床に点を追加します。
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+この例では、数値スライダを使用して長方形を生成します。次に、この長方形を、Floor.ByOutlineTypeAndLevel への入力として、指定した床タイプとレベルとともに使用します。この床と新しい点を Floor.AddPoint への入力として使用します。
 
 
 ___

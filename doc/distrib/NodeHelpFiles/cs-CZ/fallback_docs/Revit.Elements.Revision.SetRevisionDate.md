@@ -1,7 +1,7 @@
 ## Podrobnosti
-The Revision.SetRevisionDate node is used to update or assign a date to a specific revision in Revit. It allows users to automate the process of setting revision dates.
+Uzel Revision.SetRevisionDate slouží k aktualizaci nebo přiřazení data ke konkrétní revizi v aplikaci Revit. Umožňuje uživatelům automatizovat nastavení dat revizí.
 
-In this graph, the Select Revision node is used to choose a revision from the project, and an input string (e.g., 08/31/2025) is provided as the new date. The Revision.SetRevisionDate node then applies this value to the selected revision.
+V tomto grafu se pomocí uzlu Select Revision vybere revize z projektu a vstupní řetězec (například 31.​ 8. 2025) je zadán jako nové datum. Uzel Revision.SetRevisionDate pak použije tuto hodnotu na vybranou revizi.
 
 ___
 ## Vzorový soubor

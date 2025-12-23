@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates an analytical panel from a selected model element.
+Ten węzeł tworzy panel analityczny na podstawie wybranego elementu modelu.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+W tym przykładzie z modelu konstrukcyjnego Snowdon zostaje wybrany element stropu i zostaje on przekazany jako dane wejściowe do węzła. Węzeł może aktualizować geometrię i parametry panelu na podstawie elementu źródłowego, opcjonalnie dodawać lub zachowywać skojarzenie z elementem oraz dołączać wszelkie otwory znalezione w oryginalnym elemencie. Dane wyjściowe to wynikowy panel analityczny.
 ___
 ## Plik przykładowy
 

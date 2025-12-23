@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Ten węzeł umożliwia wybranie określonego etapu z modelu za pomocą menu rozwijanego.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+W tym przykładzie zostaje wybrana ściana i węzeł Select Phase jest stosowany w celu zmodyfikowania jej przypisania etapu. Końcowy węzeł potwierdza zmianę, wyświetlając zaktualizowaną nazwę etapu „Existing”.
 ___
 ## Plik przykładowy
 

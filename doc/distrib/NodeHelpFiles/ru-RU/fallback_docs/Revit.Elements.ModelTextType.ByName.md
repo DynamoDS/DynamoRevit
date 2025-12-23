@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieve a specific Model Text Type from the current Revit document by its name.
+Этот узел извлекает определенный тип текста модели из текущего документа Revit по его имени.
 
-In this example a string input "10" Trebuchet MS" is connected to the node, which fetches the corresponding ModelTextType from Revit. This ensures that the model text created in later steps uses the exact font style defined in the Revit project.
+В этом примере строковые входные данные «"10" Trebuchet MS» соединены с узлом, который извлекает соответствующий объект ModelTextType из Revit. Это гарантирует, что в тексте модели, созданном на последующих шагах, будет использоваться именно тот стиль шрифта, который определен в проекте Revit.
 ___
 ## Файл примера
 

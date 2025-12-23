@@ -1,7 +1,7 @@
 ## Description approfondie
-This node provides a list of available Rule Types that can be used when creating or defining filter rules.  For example, whether it equals, contains, is greater than, or begins with a specific value.
+Ce nœud fournit une liste des types de règles disponibles qui peuvent être utilisés lors de la création ou de la définition de règles de filtrage.  Par exemple, s'il est égal à, contient, est supérieur à ou commence par une valeur spécifique.
 
-In this example, a wall type is identified and the “Fire Rating” parameter is selected to create a filter rule with the value “2HR” and the Select Rule Type set to “Equals.” This FilterRule is then applied to the “L1 Wall Base” view as a view filter.
+Dans cet exemple, un type de mur est identifié et le paramètre "Résistance au feu" est sélectionné pour créer une règle de filtrage avec la valeur "2HR" et le type de règle Sélectionner défini sur "Égal à". Cette règle de filtre est ensuite appliquée à la vue "L1 Wall Base" en tant que filtre de vue.
 ___
 ## Exemple de fichier
 

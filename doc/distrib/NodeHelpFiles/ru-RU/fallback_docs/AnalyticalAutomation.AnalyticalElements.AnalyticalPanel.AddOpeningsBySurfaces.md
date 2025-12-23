@@ -1,7 +1,7 @@
 ## Подробности
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+Этот узел добавляет проемы в аналитическую панель с использованием заданных поверхностей в качестве формы каждого проема. При необходимости можно применять существующие входные данные для обновления геометрии, параметров и связей.
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+В этом примере положение проема определяется четырьмя точками на пересечениях линий сетки A4–A5 и B4–B5 в модели конструкции Snowdon, а вертикальным расположением проема — уровень (L2 TOS). Линии соединяют точки и образуют смещенную поверхность, представляющую проем. Перекрытие на уровне L2 TOS используется для создания аналитической панели, а этот узел связывает поверхность проема с панелью, формируя соответствующий аналитический проем.
 ___
 ## Файл примера
 

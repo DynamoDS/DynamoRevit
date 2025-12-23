@@ -1,8 +1,8 @@
 ## Description approfondie
 
-This node adds a point to a given floor.
+Ce noeud ajoute un point à un étage donné.
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+Dans cet exemple, un curseur numérique est utilisé pour générer un rectangle qui est ensuite utilisé en entrée pour Floor.ByOutlineTypeAndLevel avec un type d'étage et un niveau donnés.  Nous utilisons cet étage ainsi qu'un nouveau point en tant qu'entrées pour Floor.AddPoint.
 
 
 ___

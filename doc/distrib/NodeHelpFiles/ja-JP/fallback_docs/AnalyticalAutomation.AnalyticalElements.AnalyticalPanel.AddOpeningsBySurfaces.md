@@ -1,7 +1,7 @@
 ## 詳細
-This node adds openings to an analytical panel using defined surfaces as the shape of each opening. Existing inputs for updating geometry, parameters, and associations can be applied as needed.
+このノードは、各開口部の形状として定義されたサーフェスを使用して、解析用パネルに開口部を追加します。ジオメトリ、パラメータ、および関連付けを更新するための既存の入力を、必要に応じて適用することができます。
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the opening’s location and level (L2 TOS) sets its vertical placement. Lines connect the points and create an offset surface representing the opening. A floor at L2 TOS is used to create the analytical panel, and this node links the opening surface to the panel, generating the corresponding analytical opening.
+この例では、Snowdon 構造モデルの通芯交点 A4–A5 および B4–B5 にある 4 点で開口部の位置を定義し、レベル(L2 TOS)によって垂直方向の位置が設定されています。線分で点を接続し、開口部を表すオフセット サーフェスを作成します。L2 TOS の床は解析用パネルを作成するために使用され、このノードは開口部サーフェスをパネルにリンクし、対応する解析用開口部を生成します。
 ___
 ## サンプル ファイル
 

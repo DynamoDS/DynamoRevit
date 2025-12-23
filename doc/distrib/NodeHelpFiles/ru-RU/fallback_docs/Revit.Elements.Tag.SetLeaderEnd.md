@@ -1,7 +1,7 @@
 ## Подробности
-This node sets the location of the end point in a “free-end” tag.
+Этот узел задает расположение конечной точки в марке «со свободным концом».
 
-In this example, a tag is selected, and the original points are extracted,  The Y value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderEnd along with the original tag selected.  The output is the new location of the tags’ end point.  See view floor plan L1.
+В этом примере выбирается марка и извлекаются исходные точки, значение Y изменяется, а новые точки XYZ определяются и используются в качестве входных данных для размещения узла Tag.SetLeaderEnd вместе с исходной выбранной маркой. Результатом является новое расположение конечных точек марок. См. вид в плане этажа L1.
 
 
 ___

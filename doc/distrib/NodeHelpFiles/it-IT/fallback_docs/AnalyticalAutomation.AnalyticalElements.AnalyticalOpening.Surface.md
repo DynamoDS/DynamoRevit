@@ -1,7 +1,7 @@
 ## In profondità
-This node returns the surfaces of analytical openings.
+Questo nodo restituisce le superfici delle aperture analitiche.
 
-In this example, a floor in the Snowdon Structural model is used to create an analytical panel. The openings in the panel are selected, and this node outputs the surfaces of those openings.
+In questo esempio, viene utilizzato un pavimento del modello strutturale Snowdon per creare un pannello analitico. Vengono selezionate le aperture nel pannello e questo nodo genera le superfici di tali aperture.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a physical wall or floor element from an analytical panel, or updates an existing physical element that is already connected to the analytical panel. The physical element can inherit geometry, parameters, and openings from the analytical panel, depending on the input settings. When the analytical panel has no associated physical element, the node creates a new one based on the analytical model.
+Этот узел создает физический элемент стены или перекрытия на основе аналитической панели или обновляет существующий элемент физической модели, который уже подключен к аналитической панели. Элемент физической модели может наследовать геометрию, параметры и проемы из аналитической панели в зависимости от входных параметров. Если с аналитической панелью не связан элемент физической модели, узел создает новый элемент на основе аналитической модели.
 
-In this example, an analytical roof deck panel from the ACO Supermarket model is selected. That analytical panel is connected to this node, and the input Boolean values demonstrate the default behavior for updating geometry, parameters, and including openings. The node then creates or updates the physical roof element from the analytical panel.
+В этом примере выбрана аналитическая панель настила крыши из модели супермаркета ACO. Аналитическая панель соединена с этим узлом, а входные логические значения демонстрируют поведение по умолчанию для обновления геометрии, параметров и включения проемов. Затем узел создает или обновляет элемент физической модели крыши из аналитической панели.
 ___
 ## Файл примера
 

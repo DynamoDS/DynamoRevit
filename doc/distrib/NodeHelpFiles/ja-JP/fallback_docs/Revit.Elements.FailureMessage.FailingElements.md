@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+このノードは、指定された FailureMessage オブジェクトからエラーをトリガした要素を抽出します。
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+この例では、パフォーマンス アドバイザ規則によって「ビュー クリップが無効」かどうかが確認されます。結果は FailureMessage.FailingElements ノードに渡され、このチェックに失敗したモデル内の特定の要素が出力されます。
 ___
 ## サンプル ファイル
 

@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Umístění adaptivních komponent aplikace Revit",
+  "Revit Color": "Barva aplikace Revit",
+  "Revit Floors and Framing": "Podlahy a rámové konstrukce aplikace Revit",
+  "Revit Geometry Creation Curves": "Křivky tvorby geometrie aplikace Revit",
+  "Revit Geometry Creation Points": "Body tvorby geometrie aplikace Revit",
+  "Revit Geometry Creation Solids": "Tělesa tvorby geometrie aplikace Revit",
+  "Revit Geometry Creation Surfaces": "Povrchy tvorby geometrie aplikace Revit",
+  "Revit Import Solid": "Import těles do aplikace Revit",
+  "Revit Place Families By Level Set Parameters": "Umístění rodin podle parametrů sady podlaží v aplikaci Revit",
+  "Revit Structural Framing": "Rámové konstrukce aplikace Revit"
 }

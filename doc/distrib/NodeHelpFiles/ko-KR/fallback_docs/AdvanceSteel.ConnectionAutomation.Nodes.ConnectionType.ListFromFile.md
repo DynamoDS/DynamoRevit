@@ -1,7 +1,7 @@
 ## 상세
-This node returns a list of available connection types that can be loaded.
+이 노드는 로드할 수 있는 사용 가능한 연결 유형 리스트를 반환합니다.
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+이 예에서는 지정된 파일 경로와 연관된 Revit 모델에서 사용할 수 있는 연결 리스트를 반환합니다.
 ___
 ## 예제 파일
 

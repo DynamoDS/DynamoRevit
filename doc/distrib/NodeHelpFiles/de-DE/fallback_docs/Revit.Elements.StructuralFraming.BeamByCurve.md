@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+Dieser Block erstellt einen Träger im Revit-Modell entlang einer definierten Kurve. Der Träger wird durch die Kurve, den ausgewählten Tragwerkstyp und die zugehörige Ebene definiert. Die Ausgabe ist das erstellte Trägerelement.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+In diesem Beispiel wird eine Linie auf Ebene L2 TOS zwischen den Rastern A5 und A6 im Snowdon-Tragwerksmodell platziert. Diese Linie wird als Kurveneingabe bereitgestellt, und der ausgewählte Tragwerkstyp sowie die ausgewählte Ebene definieren den Träger. Die Ausgabe ist das neu erstellte Trägerelement.
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-This node casts a ray into a linked Revit model from a specified origin and direction, then traces its successive bounces off linked elements. Each bounce represents a point where the ray intersects geometry in the linked model, up to a defined maximum number of reflections.
+此節點會將光線從指定的原點和方向投射到連結的 Revit 模型中，然後追蹤從連結元素上連續反彈的情況。每次反彈都表示光線與連結模型中幾何圖形相交的一個點，最多達到定義的最大反射次數。
 
-In this example, a linked element is selected and the location of that element is used as the origin input to LinkElement.ByRayBounce along with a direction, maxBounces and a view.  The outputs are points and linked elements.
+在此範例中，選取連結的元素，並使用該元素的位置作為 LinkElement.ByRayBounce 的原點輸入，同時提供方向、maxBounces 和視圖。輸出是點和連結的元素。
 ___
 ## 範例檔案
 

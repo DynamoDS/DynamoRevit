@@ -1,10 +1,10 @@
 ## 深入資訊
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+此節點提供一個下拉式清單，定義在 Revit 專案中如何管理修訂編號 — 整體 (根據專案) 或個別圖紙 (根據圖紙)。
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."
+在此範例中，使用 Select Revision Numbering 節點和「PerProject」值建立新修訂。
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+如需修訂的更多資訊，請參閱連結。
+https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## 範例檔案

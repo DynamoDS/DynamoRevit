@@ -1,7 +1,7 @@
 ## Im Detail
-This node allows you to select a specific Revision element from the active Revit document.
+Über diesen Block können Sie ein bestimmtes Änderungselement aus dem aktiven Revit-Dokument auswählen.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+In diesem Beispiel wird der Block Select Revision verwendet, indem über das Dropdown-Menü eine Änderung aus dem aktuellen Dokument ausgewählt wird. Die letzten beiden Blöcke zeigen einige Änderungseigenschaften an.
 ___
 ## Beispieldatei
 

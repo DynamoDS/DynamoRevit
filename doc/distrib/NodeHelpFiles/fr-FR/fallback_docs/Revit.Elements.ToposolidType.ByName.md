@@ -1,7 +1,7 @@
 ## Description approfondie
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+Ce noeud récupère ce ToposolidType à partir d'un projet à partir d'une entrée de chaîne.  Le type doit exister dans le projet, sinon une valeur null sera donnée.
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+Dans cet exemple, "Toposolid 1" est utilisé en tant qu'entrée pour ToposolidType.ByName et la sortie est ToposolidType.  Cette sortie est utilisée pour générer un topoSolid.
 ___
 ## Exemple de fichier
 

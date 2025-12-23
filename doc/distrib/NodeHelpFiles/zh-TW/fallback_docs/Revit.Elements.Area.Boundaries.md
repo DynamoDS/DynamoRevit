@@ -1,7 +1,7 @@
 ## 深入資訊
-This node gets the lines (curves) used to generate the boundary of an area.
+此節點會取得用來產生區域邊界的直線 (曲線)。
 
-In this example all areas from the project are retrieved.  The element (area) name and Area.Boundries are extracted and displayed.
+在此範例中，擷取專案中的所有區域。擷取元素 (area) 名稱和 Area.Boundries 並顯示。
 
 ___
 ## 範例檔案

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a structural column based on a curve, a level, and a column family type. The output is the newly created structural column element in the project.
+Tento uzel vytvoří konstrukční sloup na základě typu křivky, podlaží a rodiny sloupů. Výstupem je nově vytvořený prvek konstrukčního sloupu v projektu.
 
-In this example, a line is drawn at grid crossing A4 between levels L1 35 Low and L3 in the Snowdon structural model.. The node uses this curve, along with the selected level and column type, to create a structural column.
+V tomto příkladu je nakreslena čára křížení osnovy A4 mezi podlažími L1 35 Low a L3 v konstrukčním modelu Snowdon. Uzel používá tuto křivku spolu s vybraným podlažím a typem sloupu k vytvoření konstrukčního sloupu.
 ___
 ## Vzorový soubor
 

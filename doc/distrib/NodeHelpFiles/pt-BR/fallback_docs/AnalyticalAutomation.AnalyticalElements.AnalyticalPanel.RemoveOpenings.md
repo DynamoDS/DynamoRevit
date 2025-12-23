@@ -1,7 +1,7 @@
 ## Em profundidade
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Esse nó remove as aberturas de um painel analítico. O nó atualiza o painel excluindo as aberturas especificadas sem afetar a geometria do painel ou a função estrutural.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+Neste exemplo, é criado um painel analítico com base em um piso no modelo estrutural Snowdon. A primeira abertura no painel é selecionada e removida usando esse nó.
 ___
 ## Arquivo de exemplo
 

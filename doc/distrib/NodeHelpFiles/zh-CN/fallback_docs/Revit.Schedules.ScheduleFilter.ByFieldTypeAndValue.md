@@ -1,7 +1,7 @@
 ## 详细
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+此节点通过标识字段、过滤器类型和值来创建明细表过滤器。然后可以在明细表中使用此过滤器。
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+在此示例中，选择了视图 (WV_Wall Scheudle)、显示了明细表字段、选择了“类型”并用作节点 ScheduleFilter.ByFieldTypeAndValue 中字段的输入，以及过滤器类型“BeginsWIth”和值“外部”。然后，使用此过滤器类型更改明细表视图 WV_Wall Scheudle 中显示的内容。该过滤器只显示类型以“外部”开头的墙。
 
 ___
 ## 示例文件

@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a grid based on a line input.
+Dieser Block erstellt ein Raster basierend auf einer Linieneingabe.
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+In diesem Beispiel wird ein Punkt erstellt und als startPoint-Eingabe für den Block Line.ByStartPointDirectLength zusammen mit einer Richtung und Länge verwendet. Die Ausgabe ist ein Raster.
 ___
 ## Beispieldatei
 

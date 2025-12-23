@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node converts an analytical member or analytical panel into an analytical element.
+Ten węzeł przekształca liniowy element analityczny lub panel analityczny w element analityczny.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+W tym przykładzie liniowy element analityczny jest wybierany i przekazywany do węzła. Dane wyjściowe to element analityczny odpowiadający danym wejściowym, co ujawnia różnicę między liniowym elementem analitycznym a elementem analitycznym, mimo że ich właściwości są podobne.
 ___
 ## Plik przykładowy
 

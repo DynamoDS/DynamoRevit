@@ -1,4 +1,4 @@
-## En detalle
+## En detalle:
 "Material.StructuralParameters" devuelve todos los parámetros estructurales del material especificado.
 
 En el siguiente ejemplo, se devuelven los parámetros estructurales del aluminio.

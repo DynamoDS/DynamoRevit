@@ -1,7 +1,7 @@
 ## 深入資訊
-This node returns a list of available connection types that can be loaded.
+此節點會傳回可載入的可用接頭類型清單。
 
-In this example, we return a list of connections that are available in the Revit model associated to the given file path.
+在此範例中，我們會傳回 Revit 模型中與給定檔案路徑相關聯的可用接頭清單。
 ___
 ## 範例檔案
 

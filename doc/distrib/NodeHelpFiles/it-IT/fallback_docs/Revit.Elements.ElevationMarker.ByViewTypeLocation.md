@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Questo nodo crea un nuovo contrassegno di prospetto nel documento di Revit attivo specificando il tipo di vista e un punto di posizione nel modello.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+In questo esempio, viene creato un punto nella posizione desiderata in cui verrà posizionato il prospetto. Questo punto viene fornito come input location nel nodo ElevationMarker.ByViewTypeLocation, insieme alla famiglia dei tipi di vista e al fattore di scala specificati. Il nodo ElevationMarker risultante viene quindi utilizzato per generare le viste di prospetto nella scala definita.
 ___
 ## File di esempio
 

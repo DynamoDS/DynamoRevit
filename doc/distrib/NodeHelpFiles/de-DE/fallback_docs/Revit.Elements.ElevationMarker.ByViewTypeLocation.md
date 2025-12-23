@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a new Elevation Marker in the active Revit document by specifying the View Type and a location point in the model.
+Dieser Block erstellt eine neue Ansichtsmarkierung im aktiven Revit-Dokument, indem der Ansichtstyp und ein Positionspunkt im Modell angegeben werden.
 
-In this example, a point is created at the desired location where the elevation will be placed. This point is provided as the location input to the ElevationMarker.ByViewTypeLocation node, along with a specified view type family and scale factor. The resulting ElevationMarker is then used to generate the elevation views at the defined scale.
+In diesem Beispiel wird ein Punkt an der gewünschten Position erstellt, an dem die Ansicht platziert wird. Dieser Punkt wird als Positionseingabe für den ElevationMarker.ByViewTypeLocation-Block zusammen mit einer angegebenen Ansichtstypfamilie und einem Skalierungsfaktor bereitgestellt. Der resultierende ElevationMarker-Wert wird dann verwendet, um die Ansichten im definierten Maßstab zu generieren.
 ___
 ## Beispieldatei
 

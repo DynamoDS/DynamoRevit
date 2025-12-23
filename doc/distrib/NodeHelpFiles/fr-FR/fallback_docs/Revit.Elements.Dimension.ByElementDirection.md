@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+Ce noeud crée une cote en fonction d'un élément, d'une direction (vecteur) et d'une vue donnée.  Les autres entrées peuvent être des lignes, des suffixes et des préfixes.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+Dans cet exemple, la vue "L1" de la feuille A101 est utilisée comme entrée dans Dimension.ByElementDirection avec un élément (mur), une direction de ligne à partir du mur, un suffixe (Dynamo) et un préfixe (Dynamo).  Les 2 derniers noeuds affichent les valeurs des dimensions et leur préfixe.
 
 ___
 ## Exemple de fichier

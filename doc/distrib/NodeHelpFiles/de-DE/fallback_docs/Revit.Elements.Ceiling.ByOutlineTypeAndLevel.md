@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Dieser Block erstellt eine Decke anhand eines Umrisses (geschlossene Kurve), eines Deckentyps und einer Ebene.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+In diesem Beispiel wird ein Rechteck erstellt und als Eingabeumriss für den Block Ceiling.ByOutlineTypeAndLevel zusammen mit einem Deckentyp und einer Ebene verwendet.
 
 ___
 ## Beispieldatei

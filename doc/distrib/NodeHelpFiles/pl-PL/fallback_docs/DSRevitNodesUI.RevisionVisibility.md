@@ -1,10 +1,10 @@
 ## Informacje szczegółowe
-This node allows you to select the Revision Visibility setting for a revision (here are the available options "CloudsAndTagVisible", "Tag Visible" and "Hidden"). The visibility determines where the selected revision will appear ( example, whether it displays in clouds, tags, sheets, or is hidden).
+Ten węzeł umożliwia wybranie ustawienia widoczności rewizji dla rewizji (tutaj dostępne są opcje „CloudsAndTagVisible”, „Tag Visible” i „Hidden”). Widoczność określa, gdzie pojawi się wybrana rewizja (na przykład: czy jest wyświetlana w chmurkach, w oznaczeniach, na arkuszach, czy jest ukryta).
 
-In this example, a new revision is created using the Select Revision Visibility node, value "TagVisible."
+W tym przykładzie jest tworzona nowa rewizja przy użyciu węzła Select Revision Visibility i wartości „TagVisible”.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Aby uzyskać więcej informacji na temat rewizji, skorzystaj z łącza.
+https://help.autodesk.com/view/RVT/2025/PLK/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## Plik przykładowy

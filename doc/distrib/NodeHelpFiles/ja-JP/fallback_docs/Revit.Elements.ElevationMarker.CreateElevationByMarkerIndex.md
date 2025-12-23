@@ -1,7 +1,7 @@
 ## 詳細
-This node creates an elevation view from an existing ElevationMarker by specifying the marker index. Each ElevationMarker in Revit can host up to four individual elevation views—one for each direction (North, South, East, and West). This node lets you generate one of those directional elevations by referencing the marker and the desired index number.
+このノードは、マーカー インデックスを指定して、既存の ElevationMarker から立面図ビューを作成します。Revit の各 ElevationMarker は、方向(北、南、東、西)ごとに 1 つずつ、最大 4 つの個別の立面図ビューをホストすることができます。このノードを使用すると、マーカーと目的のインデックス番号を参照して、これらの方向の立面図の 1 つを生成することができます。
 
-In this example, a Elevation Marker is created and used as input elevationMarker to node ElevationMarker.CreateElevationByMarkerIndex along with a view and index (0,1,2,3).
+この例では、立面図マーカーが作成され、ElevationMarker.CreateElevationByMarkerIndex ノードに対する入力 elevationMarker として、ビューとインデックス(0,1,2,3)とともに使用されます。
 
 ___
 ## サンプル ファイル

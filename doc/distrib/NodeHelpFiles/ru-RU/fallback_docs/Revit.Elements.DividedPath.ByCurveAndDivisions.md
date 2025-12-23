@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a Divided Path element in a massing family by dividing a given curve into a specified number of equal segments.
+Этот узел создает элемент разделенной траектории в семействе формообразующих элементов путем деления заданной кривой на заданное количество равных сегментов.
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve for the DividedPath.ByCurveAndDivisions node. An integer value defines the number of equal divisions along the curve. The final node displays the resulting division points along the curve.
+В этом примере кривая модели создается на основе заданных начальной и конечной точек, которые затем используются в качестве входной кривой для узла DividedPath.ByCurveAndDivisions. Целое значение определяет число равных делений вдоль кривой. Конечный узел отображает полученные точки разделения вдоль кривой.
 ___
 ## Файл примера
 

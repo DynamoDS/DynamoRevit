@@ -1,7 +1,7 @@
 ## Im Detail
-This node tags Revit elements given a view, element, location, horizontal (if no, the tag will orientate based off the element) and addLeader as inputs.
+Dieser Block beschriftet Revit-Elemente anhand einer Ansicht, eines Elements, einer Position, der horizontal-Angabe (wenn nein, wird die Beschriftung basierend auf dem Element ausgerichtet) und von addLeader als Eingaben.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+In diesem Beispiel wird eine Tür in der Ansicht “Studio Live Work Core B” ausgewählt. Die Position dieser Tür wird extrahiert und dann zusammen mit den booleschen Werten für die horizontal-Angabe und addLeader als ursprüngliche Eingabe für Tag.ByElementAndLocation verwendet. Die ursprüngliche Position wird so geändert, dass die Beschriftungsposition nicht direkt über dem Element liegt, indem der Tag.SetHeadLocation-Block verwendet wird.
 
 ___
 ## Beispieldatei

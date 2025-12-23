@@ -1,7 +1,7 @@
 ## Em profundidade
-This node evaluates a given surface to determine if it is valid for use in defining an analytical panel. A valid surface is typically planar, continuous, and suitable for conversion into an analytical representation within Revit’s analytical model environment.
+Esse nó avalia uma determinada superfície para determinar se ela é válida para uso na definição de um painel analítico. Uma superfície válida é normalmente plana, contínua e adequada para ser convertida em uma representação analítica no ambiente do modelo analítico do Revit.
 
-In this example, the faces of a slab element from the project are collected, and the top face is provided to the node as input. The node returns a Boolean result indicating whether the selected surface meets the requirements for creating an analytical panel, along with an optional message describing any issues encountered during validation.
+Neste exemplo, as faces de um elemento de laje do projeto são coletadas e a face superior é fornecida ao nó como entrada. O nó retorna um resultado booleano que indica se a superfície selecionada atende aos requisitos para a criação de um painel analítico, juntamente com uma mensagem opcional que descreve todos os problemas encontrados durante a validação.
 ___
 ## Arquivo de exemplo
 

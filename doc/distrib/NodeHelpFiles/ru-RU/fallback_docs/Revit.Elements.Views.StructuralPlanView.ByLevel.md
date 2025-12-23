@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a view based off a level input.
+Этот узел создает вид на основе входных данных уровня.
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+В этом примере уровень (L2) используется в качестве входного элемента (уровня) для узла StructrualPlanView.ByLevel, а на выходе получается новый вид. В последнем узле отображается имя вида (L2).
 
 ___
 ## Файл примера

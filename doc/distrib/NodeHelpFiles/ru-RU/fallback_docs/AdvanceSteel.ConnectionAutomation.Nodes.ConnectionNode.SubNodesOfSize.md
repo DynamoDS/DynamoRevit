@@ -1,7 +1,7 @@
 ## Подробности
-This nodes generates new connection nodes with exactly the given number of zones.
+Этот узел создает новые узлы соединений с точно заданным количеством зон.
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+В этом примере в выходные данные включаются только элементы с тремя или более зонами соединения. Каждый полученный вложенный список представляет собой различную группировку или структурное расположение в исходном элементе.
 ___
 ## Файл примера
 

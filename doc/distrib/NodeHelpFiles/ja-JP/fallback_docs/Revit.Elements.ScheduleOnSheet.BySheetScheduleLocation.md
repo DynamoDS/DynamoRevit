@@ -1,9 +1,9 @@
 ## 詳細
 
 
-This node adds a schedule to a sheet at a specified point.
+このノードは、指定された点にあるシートに集計表を追加します。
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+この例では、数値スライダを使用して点を作成し、ScheduleOnSheet.BySheetScheduleLocation ノードへの入力「位置」として、集計表ビューとシートとともにに使用します。出力は、集計表、シート上のその位置、およびシート名です。
 
 
 

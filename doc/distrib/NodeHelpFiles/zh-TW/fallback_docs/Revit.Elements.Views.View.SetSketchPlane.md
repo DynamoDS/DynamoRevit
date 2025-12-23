@@ -1,7 +1,7 @@
 ## 深入資訊
-This node sets the default sketch plane in a given view.
+此節點會設定給定視圖中的預設草圖平面。
 
-In this example all sketch planes are retrieved from the project and filtered down to the “Parking” sketch plane.  This “Parking” sketch plane is then used as an input (SketchPlane) to node View.SetSketchPlane along with a view (view).  The last two nodes show the original sketch plane name along side the new sketch plane name.
+在此範例中，擷取專案中的所有草圖平面，並篩選出「Parking」草圖平面，然後使用此「Parking」草圖平面作為 View.SetSketchPlane 節點的輸入 (SketchPlane)，同時提供視圖 (view)。最後兩個節點顯示原始草圖平面名稱，以及新的草圖平面名稱。
 
 ___
 ## 範例檔案

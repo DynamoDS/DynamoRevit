@@ -1,7 +1,7 @@
 ## Description approfondie
-This node resets the location of a schedule on a sheet.
+Ce nœud réinitialise l'emplacement d'une planification sur une feuille.
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+Dans cet exemple, une nomenclature est placée sur une feuille, puis entrée dans le nœud SheduleOnSheet.SetLocation, avec un nouveau point.  La planification est ensuite repositionnée sur cette même feuille.  Le dernier nœud obtient la nouvelle position de la planification.
 ___
 ## Exemple de fichier
 

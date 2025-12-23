@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the ScheduleFieldId associated with a given ScheduleFilter.  Each schedule filter in Revit is linked to a specific field (for example, Level, Family and Type, Area). This node exposes that connection by returning the field identifier used by the filter.
+このノードは、指定された ScheduleFilter に関連付けられている ScheduleFieldId を取得します。Revit の各集計表フィルタは、特定のフィールド(レベル、ファミリ、タイプ、エリアなど)にリンクされます。このノードは、フィルタで使用されるフィールド識別子を返して、その接続を公開します。
 
-In this example, a schedule filter is created and used as the input to ScheduleFilter.FileId.
+この例では、集計表フィルタが作成され、ScheduleFilter.FileId への入力として使用されます。
 ___
 ## サンプル ファイル
 

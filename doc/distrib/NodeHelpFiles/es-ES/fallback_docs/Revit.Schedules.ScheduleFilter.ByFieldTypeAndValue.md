@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a schedule filter by identifying a field, a filter type and a value.  This filter can then be used in a schedule.
+Este nodo crea un filtro de tabla de planificación mediante la identificación de un campo, un tipo de filtro y un valor. Este filtro se puede utilizar en una tabla de planificación.
 
-In this example, a view (WV_Wall Scheudle) is selected, the schedule fields are exposed, “Type” is selected and used as the input to field in node ScheduleFilter.ByFieldTypeAndValue along with the filter type “BeginsWIth” and a value “Exterior”.  This filter type is then used to change what is displayed in schedule view WV_Wall Scheudle.  This filter only shows walls where the type begins with “Exterior.”
+En este ejemplo, se selecciona una vista (WV_Wall Scheudle), se exponen los campos de la tabla de planificación, y se selecciona "Type" y se utiliza como campo de entrada en el nodo ScheduleFilter.ByFieldTypeAndValue, junto con el tipo de filtro "BeginsWIth" y el valor "Exterior". Este tipo de filtro se utiliza para cambiar lo que se muestra en la vista de tabla de planificación WV_Wall Scheudle. Este filtro solo muestra los muros cuyo tipo comienza con "Exterior".
 
 ___
 ## Archivo de ejemplo

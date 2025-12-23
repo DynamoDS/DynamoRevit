@@ -1,7 +1,7 @@
 ## In profondità
-This node resets the location of a schedule on a sheet.
+Questo nodo reimposta la posizione di un abaco su una tavola.
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+In questo esempio, viene posizionato un abaco su una tavola che è poi utilizzato come input nel nodo SheduleOnSheet.SetLocation insieme ad un nuovo punto. L'abaco viene quindi riposizionato sulla stessa tavola. L'ultimo nodo ottiene la nuova posizione degli abachi.
 ___
 ## File di esempio
 

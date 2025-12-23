@@ -1,7 +1,7 @@
 ## Description approfondie
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Ce noeud définit le rôle structurel d’un panneau analytique. Le noeud met à jour le groupe de fonctions sélectionné avec le rôle choisi sans modifier sa géométrie ni d'autres paramètres.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+Dans cet exemple, un panneau analytique créé à partir d'un élément physique du modèle structurel Snowdon a pour rôle structurel d'étage.
 ___
 ## Exemple de fichier
 

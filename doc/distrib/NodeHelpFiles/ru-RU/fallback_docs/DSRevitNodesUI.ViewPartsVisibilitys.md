@@ -1,10 +1,10 @@
 ## Подробности
-This dropdown node provides a list of Revit “View Parts Visibility” options that control whether Parts (elements created by the Parts command, such as subdivided walls, floors, etc.) are visible, hidden, or shown instead of their original elements in a given Revit view.
+Этот узел содержит раскрывающийся список параметров Revit «Видимость деталей на виде», которые определяют, будут ли детали (элементы, созданные с помощью команды «Детали», такие как разделенные стены, перекрытия и т. д.) видимыми, скрытыми или отображаемыми вместо их исходных элементов на данном виде Revit.
 
-In this example, a view is selected (3D View) and used as a input (view) to node View.SetPartsVisibility along with any of the default value from node View Parts Visibilities. The last 2 nodes show the view parts visibility setting at it original setting and its revised setting.
+В этом примере вид (3D View) выбран и используется в качестве входных данных (view) для узла View.SetPartsVisibility вместе со значением по умолчанию из узла View Parts Visibilities. В последних двух узлах отображаются исходные и измененные параметры видимости деталей на виде.
 
-For Additional information see link below.
-https://help.autodesk.com/view/RVT/2019/ENU/?guid=GUID-37A4B924-AB44-486F-AD27-02F414DE4683
+Дополнительные сведения см. по ссылке ниже.
+https://help.autodesk.com/view/RVT/2019/RUS/?guid=GUID-37A4B924-AB44-486F-AD27-02F414DE4683
 ___
 ## Файл примера
 

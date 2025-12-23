@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a grid based on a line input.
+Questo nodo crea una griglia basata su un input line.
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+In questo esempio, viene creato un punto che è poi utilizzato come input startPoint per il nodo Line.ByStartPointDirectLength insieme a una direzione e una lunghezza. L'output è una griglia.
 ___
 ## File di esempio
 

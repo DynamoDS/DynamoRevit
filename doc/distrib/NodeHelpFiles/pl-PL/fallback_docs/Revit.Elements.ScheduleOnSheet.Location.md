@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node gets the location of a schedule on a sheet.
+Ten węzeł pobiera położenie zestawienia na arkuszu.
 
-In this example a schedule is placed on a sheet at a specified location which is then input into ScheduleOnSheet.Location node where the schedule location is displayed.
+W tym przykładzie na arkuszu w określonym położeniu umieszczane jest zestawienie, a następnie jest ono wprowadzane do węzła ScheduleOnSheet.Location, w którym jest wyświetlane położenie tego zestawienia.
 
 ___
 ## Plik przykładowy

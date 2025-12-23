@@ -1,7 +1,7 @@
 ## 详细
-This node has a drop down list of allowable schedule filter types (Equal, NotEqual, GreaterThan,LessThan, Contains,..).   The results will filter all doors that begin with "Exterior"
+此节点具有允许的明细表过滤器类型(等于、不等于、大于、小于、包含...)的下拉列表。结果将过滤所有以“外部”开头的门
 
-In this example a view is selected and the view fields are exposed.  The "Type" field is isolated and used to create a schedule filter along with a filter value and a schedule filter type "BeginsWith."  This filter is then applied to the selected schedule view "WV_Wall Schedule."
+在此示例中，将选择一个视图，并且视图字段已呈现。“类型”字段是隔离的，用于创建明细表过滤器以及过滤器值和明细表过滤器类型“BeginsWith”。然后，此过滤器将应用于选定的明细表视图“WV_Wall 明细表”。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Esse nó define a função estrutural de um painel analítico. O nó atualiza o painel selecionado com a função escolhida sem alterar sua geometria ou outros parâmetros.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+Neste exemplo, um painel analítico criado com base em um elemento físico no modelo estrutural Snowdon é definido para ter a função estrutural de piso.
 ___
 ## Arquivo de exemplo
 

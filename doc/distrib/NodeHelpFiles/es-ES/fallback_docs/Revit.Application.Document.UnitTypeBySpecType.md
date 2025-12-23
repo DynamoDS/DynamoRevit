@@ -1,7 +1,7 @@
 ## En detalle:
-This node gets the unit being used in a project for any given Spec Type.
+Este nodo obtiene la unidad que se utiliza en un proyecto para cualquier tipo de especificación determinado.
 
-In this example, Spec Types values (Area and Cost per Area) are input into a list.  This list is used in the Document.UnitTypeBySpecType node as the input for specType along with the current document as the document input.  The results show the project specific spec type unit values for the current project.
+En este ejemplo, los valores de tipos de especificación (Área y Coste por área) se introducen en una lista. Esta lista se utiliza en el nodo Document.UnitTypeBySpecType como entrada para specType junto con el documento actual como entrada de documento. Los resultados muestran los valores de unidad de tipo de especificación propios del proyecto actual.
 
 ___
 ## Archivo de ejemplo

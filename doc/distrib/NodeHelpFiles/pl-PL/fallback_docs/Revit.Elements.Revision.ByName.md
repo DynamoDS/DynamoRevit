@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-The Revision.ByName node in Dynamo is used to create or access a revision within a Revit project by specifying its name. This node provides control over several revision parameters, including revision date, description, issued status, issued by, issued to, visibility, and numbering type. By leveraging this node, users can automate the revision process in Revit.
+Węzeł Revision.ByName w dodatku Dynamo służy do tworzenia rewizji w projekcie programu Revit lub do uzyskiwania do nich dostępu przez określenie ich nazw. Ten węzeł umożliwia sterowanie kilkoma parametrami rewizji, takimi jak data wersji, opis, status wydania, autor wydania, odbiorca wydania, widoczność i typ numerowania. Wykorzystując ten węzeł, użytkownicy mogą zautomatyzować przetwarzanie rewizji w programie Revit.
 
-The provided Dynamo graph demonstrates the automation of revision creation by connecting project-specific inputs to the Revision.ByName node. Key details such as revision set name, date, description, consultant, client, visibility option, and numbering type are supplied as inputs. Once executed, the node generates or updates the revision in Revit based on these parameters. This workflow minimizes manual data entry, enforces standardization, and streamlines revision management across project sheets.
+Udostępniony wykres dodatku Dynamo demonstruje automatyzację tworzenia rewizji przez połączenie pozycji specyficznych dla projektu danych wejściowych z węzłem Revision.ByName. Kluczowe szczegóły, takie jak nazwa zestawu rewizji, jej data, opis, konsultant, klient, opcja widoczności i typ numerowania, są przekazywane jako dane wejściowe. Po zakończeniu węzeł generuje lub aktualizuje rewizję w programie Revit na podstawie tych parametrów. Ten proces roboczy minimalizuje konieczność ręcznego wprowadzania danych, wymusza standaryzację i usprawnia zarządzanie rewizjami w arkuszach projektu.
 
 ___
 ## Plik przykładowy

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node sets the location of the elbow point in a “free-end” tag.
+Tento uzel nastaví umístění bodu ohybu ve štítku „volného konce“.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+V tomto příkladu je vybrán popisek a původní body jsou extrahovány.  Hodnota X je upravena a jsou definovány nové body XYZ, které se použijí jako vstup pro umístění uzlu Tag.SetLeaderElbow společně s původně vybraným popiskem.  Výstupem je nové umístění ohybu popisků.  Viz půdorys podlaží pohledu L1.
 
 ___
 ## Vzorový soubor

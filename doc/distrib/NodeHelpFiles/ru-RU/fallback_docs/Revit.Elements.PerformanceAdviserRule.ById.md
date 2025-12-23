@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieve a specific Performance Adviser rule from Revit by its unique Rule ID.
+Этот узел извлекает из Revit конкретное правило Консультанта по производительности по его уникальному идентификатору.
 
-In this example, the rule “Project contains unused families and types” is selected and its RuleId is extracted. That ID is converted to a string and then passed back into PerformanceAdviserRule.ById, which re-identifies and retrieves the same rule for further use or automation.
+В этом примере выбирается правило «Проект содержит неиспользуемые семейства и типоразмеры» и извлекается его объект RuleId. Этот идентификатор преобразуется в строку, а затем передается обратно в узел PerformanceAdviserRule.ById, который повторно идентифицирует и извлекает то же правило для дальнейшего использования или автоматизации.
 ___
 ## Файл примера
 

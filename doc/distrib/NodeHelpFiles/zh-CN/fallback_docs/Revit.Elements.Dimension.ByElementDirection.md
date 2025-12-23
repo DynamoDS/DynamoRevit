@@ -1,7 +1,7 @@
 ## 详细
-This node creates a dimension based on an element, direction (vector) and a given view.  Other inputs can be line, suffix and prefix.
+此节点基于图元、方向(矢量)和给定视图创建尺寸。其他输入可以是直线、后缀和前缀。
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByElementDirection along with an element (wall), a line direction from the wall, a suffix (Dynamo), and a prefix (Dynamo).  The last 2 nodes show the dimensions values and their prefix.
+在此示例中，图纸 A101 中的视图“L1”与图元(墙)、自墙的线方向、后缀(Dynamo)和前缀(Dynamo)一起用作 Dimension.ByElementDirection 的输入。最后 2 个节点显示尺寸值及其前缀。
 
 ___
 ## 示例文件

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+Ce nœud place une fenêtre sur une feuille spécifiée en plaçant une vue donnée à un point d'emplacement défini.
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+Dans cet exemple, une nouvelle feuille est créée "Dynamo Sheet" et utilisée comme entrée de feuille pour le nœud Viewport.BySheetViewLocation, avec une vue "L1 Wall Base" et un point "0,0,0" dans l'entrée d'emplacement.
 ___
 ## Exemple de fichier
 

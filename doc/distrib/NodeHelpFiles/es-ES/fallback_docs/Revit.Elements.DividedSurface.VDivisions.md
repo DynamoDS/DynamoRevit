@@ -1,10 +1,10 @@
 ## En detalle:
-This node returns the number of V divisions applied to a given Divided Surface in Revit. The grid is defined in two directions—U and V—and the V divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “V” direction). In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+Este nodo devuelve el número de divisiones en V aplicadas a una superficie dividida de Revit determinada. La rejilla se define en dos direcciones, U y V, y las divisiones en V determinan en cuántos segmentos se divide la superficie a lo largo de un eje (normalmente corresponde a la dirección paramétrica "V" de la superficie). En el entorno de masas conceptuales o familias de componentes adaptativos de Revit, una superficie dividida es una rejilla con patrón que se aplica a una cara (por ejemplo, un muro, una cubierta o una cara de forma).
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.VDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of V divisions applied to the divided surface.
+En este ejemplo, se selecciona una cara y se utiliza para generar una superficie dividida. Esta superficie dividida es la entrada de DividedSurface.VDivisions. Los últimos nodos exponen los demás valores de la superficie dividida. Al ejecutar este gráfico de ejemplo, deberá observar la advertencia de Revit y suprimir los elementos sugeridos para que las rejillas aparezcan en la superficie seleccionada. El número de divisiones en V aplicadas a la superficie dividida.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Consulte el vínculo para obtener más información.
+https://help.autodesk.com/view/RVT/2025/ESP/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Archivo de ejemplo
 

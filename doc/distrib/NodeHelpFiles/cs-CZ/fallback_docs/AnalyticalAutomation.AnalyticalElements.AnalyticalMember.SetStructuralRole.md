@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Tento uzel přiřadí analytickému prutu hodnotu konstrukční role. Role definuje, jak je analytický prut v analytickém modelu zařazen do kategorií.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+V tomto příkladu je prvek v konstrukčním modelu Snowdon převeden na analytický prut a tento uzel přiřadí tomuto analytickému prutu roli Nosník.
 ___
 ## Vzorový soubor
 

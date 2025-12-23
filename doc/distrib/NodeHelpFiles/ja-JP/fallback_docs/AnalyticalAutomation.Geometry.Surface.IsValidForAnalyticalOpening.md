@@ -1,7 +1,7 @@
 ## 詳細
-This node checks whether a surface is valid for creating an opening in an analytical panel.
+このノードは、サーフェスが解析用パネルの開口部の作成に有効かどうかをチェックします。
 
-In this example, four points at grid intersections A4–A5 and B4–B5 in the Snowdon Structural model define the intended opening location. The level L2 sets the vertical placement. Lines connect the points and are offset to form the surface representing the opening. A floor at L2 is used to create the analytical panel, and this node evaluates the surface for its validity as an opening in that panel.
+この例では、Snowdon 構造モデルの通芯交点 A4–A5 と B4–B5 の 4 点で、目的の開口部の位置が定義されます。レベル L2 で垂直方向の位置が設定されます。線分が点を接続し、開口部を表すサーフェスを形成するようにオフセットされます。L2 の床が解析用パネルの作成に使用され、このノードは、そのパネルの開口部として有効かどうかサーフェスを評価します。
 ___
 ## サンプル ファイル
 

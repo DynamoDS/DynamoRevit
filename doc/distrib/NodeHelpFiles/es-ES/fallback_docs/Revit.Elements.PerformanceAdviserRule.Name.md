@@ -1,7 +1,7 @@
 ## En detalle:
-This node retrieve the display name of a Performance Adviser rule.
+Este nodo recupera el nombre para mostrar de una regla del asesor de rendimiento.
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+En este gráfico, se selecciona una regla específica del asesor de rendimiento y se transfiere a PerformanceAdviserRule.Name, que da como resultado el nombre para mostrar de la regla "El proyecto contiene familias y tipos que no se utilizan".
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates an analytical member from a curve.
+Tento uzel vytvoří analytický prut z křivky.
 
-In this example, two points are defined by extracting the locations of the grid intersections at A4 and A5 in the Snowdon Structural model. A level, L2 TOS, is used to set the vertical position of both points. A line is created by connecting these points and provided as input to this node. The output is the analytical member representing the defined curve.
+V tomto příkladu jsou dva body definovány extrahováním umístění průsečíků osnovy A4 a A5 v modelu Snowdon Structure. Podlaží L2 TOS se používá k nastavení vertikální pozice obou bodů. Spojením těchto bodů se vytvoří úsečka, která se zadá jako vstup pro tento uzel. Výstupem je analytický prut představující definovanou křivku.
 ___
 ## Vzorový soubor
 

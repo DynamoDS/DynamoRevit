@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a grid line based on a start point and end point.
+Este nodo crea una línea de rejilla basada en un punto inicial y un punto final.
 
-In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+En este ejemplo, se generan dos puntos y se utilizan como entradas para Grid.ByStartPointEndPoint. Se crea una rejilla denominada "Dynamo".
 
 ___
 ## Archivo de ejemplo

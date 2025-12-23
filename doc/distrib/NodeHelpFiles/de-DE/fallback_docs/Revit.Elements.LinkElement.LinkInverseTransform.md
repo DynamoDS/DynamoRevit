@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the inverse transformation matrix of a given Revit Link Element.  In Revit, linked models may be positioned with transformations (translation, rotation, scaling). This node allows you to get the inverse of that transformation,  effectively converting coordinates from the linked model’s space back into the host Revit model’s coordinate system.
+Dieser Block ruft die umgekehrte Transformationsmatrix eines bestimmten Revit-Verknüpfungselements ab. In Revit können verknüpfte Modelle mit Transformationen (Verschiebung, Drehung, Skalierung) positioniert werden. Dieser Block ermöglicht es Ihnen, die Umkehrung dieser Transformation zu erhalten, indem Sie effektiv Koordinaten aus dem Raum des verknüpften Modells zurück in das Koordinatensystem des Revit-Grundmodells konvertieren.
 
-In this example, all Revit linked elements at level L3 are selected and input into LinkElement.LinkInverseTransform.  The output is the host Revit model’s coordinate system.
+In diesem Beispiel werden alle verknüpften Revit-Elemente auf Ebene L3 ausgewählt und in LinkElement.LinkInverseTransform eingegeben. Die Ausgabe ist das Koordinatensystem des Revit-Grundmodells.
 ___
 ## Beispieldatei
 

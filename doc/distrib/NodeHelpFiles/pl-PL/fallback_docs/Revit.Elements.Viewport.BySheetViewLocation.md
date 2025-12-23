@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+Ten węzeł umieszcza rzutnię na określonym arkuszu przez umieszczenie danego widoku w określonym punkcie położenia.
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+W tym przykładzie tworzony jest nowy arkusz „Dynamo Sheet” i jest on używany jako pozycja danych wejściowych sheet dla węzła Viewport.BySheetViewLocation wraz z widokiem „L1 Wall Base” i punktem „0,0,0” przekazanym do pozycji danych wejściowych location.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates a ceiling given an outline (closed Curve), ceiling type, and level.
+Ce noeud crée un plafond en fonction d'un contour (courbe fermée), d'un type de plafond et d'un niveau.
 
-In this example a rectangle is created and used as the input outline to node Ceiling.ByOutlineTypeAndLevel along with a ceiling type and level.
+Dans cet exemple, un rectangle est créé et utilisé comme contour d'entrée pour le nœud Ceiling.ByOutlineTypeAndLevel, ainsi qu'un type et un niveau de plafond.
 
 ___
 ## Exemple de fichier

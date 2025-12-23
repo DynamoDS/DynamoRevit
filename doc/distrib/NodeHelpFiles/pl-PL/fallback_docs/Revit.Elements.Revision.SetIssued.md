@@ -1,6 +1,6 @@
 ## Informacje szczegółowe
-The Revision.SetIssued node in Dynamo allows you to control whether a selected revision in Revit is marked as issued or not issued. It takes a revision element and a boolean input (True/False), giving users direct control over the revision status without manually editing it in Revit.
-In this graph, the Select Revision node is used to pick a specific revision (e.g., "Seq. 1 – Schematic Design"). The Boolean node provides a True/False value, which is then connected to the Revision.SetIssued node to update the revision’s issued status automatically.
+Węzeł Revision.SetIssued w dodatku Dynamo umożliwia określenie, czy wybrana rewizja w programie Revit jest oznaczona jako wydana, czy jako niewydana. Pobiera on element rewizji i wejściową wartość logiczną (True/False, czyli prawda/fałsz), co zapewnia użytkownikom bezpośrednią kontrolę nad stanem rewizji bez konieczności ręcznego edytowania jej w programie Revit.
+Na tym wykresie węzeł Select Revision służy do wybierania określonej rewizji (np. „Seq. 1 – Schematic Design”). Węzeł Boolean udostępnia wartość True/False (Prawda/Fałsz), która jest następnie połączona z węzłem Revision.SetIssued w celu automatycznej aktualizacji stanu wydania rewizji.
 
 ___
 ## Plik przykładowy

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This nodes generates new connection nodes with exactly the given number of zones.
+Ten węzeł generuje nowe węzły połączeń z dokładnie podaną liczbą stref.
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+W tym przykładzie w danych wyjściowych uwzględniono tylko elementy z co najmniej trzema strefami połączenia. Każda wynikowa lista podrzędna reprezentuje inne grupowanie lub uporządkowanie strukturalne w oryginalnym elemencie.
 ___
 ## Plik przykładowy
 

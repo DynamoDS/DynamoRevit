@@ -1,7 +1,7 @@
 ## Im Detail
-This node filters input elements based on their vertical placement within the model. It allows you to choose whether to evaluate an element’s Top or Bottom Z-coordinate (height) for comparison or logical filtering. Its typically used as part of a filtering system, often in conjunction with a ConnectionNode, to isolate elements above or below certain elevations. It is useful in workflows that involve spatial analysis, such as separating building elements by level or zone.
+Dieser Block filtert Eingabeelemente basierend auf ihrer vertikalen Platzierung im Modell. Sie können auswählen, ob die obere oder untere Z-Koordinate (Höhe) eines Elements für den Vergleich oder die logische Filterung ausgewertet werden soll. Diese Funktion wird in der Regel als Teil eines Filtersystems verwendet, häufig in Verbindung mit einem ConnectionNode, um Elemente oberhalb oder unterhalb bestimmter Höhen zu isolieren. Dies ist nützlich bei Arbeitsabläufen, die räumliche Analysen beinhalten, z. B. beim Trennen von Gebäudeelementen nach Ebene oder Zone.
 
-In this example, we are filtering all the selected structure data items by their "Top" z-coordinate position (height). This can be used to further determine if the position is lower than a level, floor, or ceiling.
+In diesem Beispiel filtern wir alle ausgewählten Tragwerksdatenelemente nach ihrer oberen Z-Koordinatenposition (Höhe). Dies kann verwendet werden, um genauer zu bestimmen, ob die Position niedriger als eine Ebene, eine Geschossdecke oder eine Decke ist.
 ___
 ## Beispieldatei
 

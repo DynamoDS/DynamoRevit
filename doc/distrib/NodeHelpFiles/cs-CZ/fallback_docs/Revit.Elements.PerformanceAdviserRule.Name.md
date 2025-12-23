@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieve the display name of a Performance Adviser rule.
+Tento uzel načte zobrazovaný název pravidla nástroje Poradce pro výkon.
 
-In this graph, a specific Performance Adviser Rule is selected and passed into PerformanceAdviserRule.Name, which outputs the rule’s display name "Project contains unused families and types”.
+V tomto grafu je vybráno konkrétní pravidlo nástroje Poradce pro výkon a je předáno do PerformanceAdviserRule.Name, jehož výstupem je zobrazovaný název pravidla „Projekt obsahuje nepoužívané rodiny a typy“.
 ___
 ## Vzorový soubor
 

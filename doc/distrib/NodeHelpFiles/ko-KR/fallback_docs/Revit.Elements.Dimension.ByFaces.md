@@ -1,7 +1,7 @@
 ## 상세
-This node creates a dimension based on selecting two planar faces of model elements, measuring the distance between those faces.
+이 노드는 모델 요소의 두 평면형 면을 선택하고 해당 면 사이의 거리를 측정하여 치수를 작성합니다.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByFaces along with surfaces, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.
+이 예에서는 시트 A101의 뷰 "L1"이 표면, 선, 접미어 및 접두어와 함께 Dimension.ByFaces에 대한 입력으로 사용됩니다. 선 입력을 사용하면 선택한 면으로부터 치수를 간격띄우기할 수 있습니다.
 
 ___
 ## 예제 파일

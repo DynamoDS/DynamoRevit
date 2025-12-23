@@ -1,7 +1,7 @@
 ## 深入資訊
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+此節點可讓您非常明確指出要使用 Revit 元素的哪個部分。與選取整個元素 (例如一面牆或一個樓板) 的節點不同，此節點可讓您點選該元素的特定一面或一邊。
 
-In this example, we have selected an element nested inside a curtain wall.
+在此範例中，我們選取巢狀在帷幕牆內的元素。
 
 ___
 ## 範例檔案

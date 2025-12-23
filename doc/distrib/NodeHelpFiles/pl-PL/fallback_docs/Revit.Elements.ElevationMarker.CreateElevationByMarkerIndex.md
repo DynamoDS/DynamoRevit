@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node creates an elevation view from an existing ElevationMarker by specifying the marker index. Each ElevationMarker in Revit can host up to four individual elevation views—one for each direction (North, South, East, and West). This node lets you generate one of those directional elevations by referencing the marker and the desired index number.
+Ten węzeł tworzy widok rzędnej z istniejącego obiektu ElevationMarker przez określenie indeksu znacznika. Każdy obiekt ElevationMarker w programie Revit może zawierać maksymalnie cztery osobne widoki rzędnej — po jednym dla każdego kierunku (północ, południe, wschód i zachód). Ten węzeł umożliwia wygenerowanie jednej z tych rzędnych kierunkowych przez odniesienie do znacznika i żądanego numeru indeksu.
 
-In this example, a Elevation Marker is created and used as input elevationMarker to node ElevationMarker.CreateElevationByMarkerIndex along with a view and index (0,1,2,3).
+W tym przykładzie tworzony jest znacznik rzędnej (Elevation Marker), który jest używany jako dane wejściowe elevationMarker węzła ElevationMarker.CreateElevationByMarkerIndex wraz z widokiem i indeksem (0,1,2,3).
 
 ___
 ## Plik przykładowy

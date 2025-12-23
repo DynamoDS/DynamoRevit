@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates an analytical member from a curve.
+此節點從曲線建立分析構件。
 
-In this example, two points are defined by extracting the locations of the grid intersections at A4 and A5 in the Snowdon Structural model. A level, L2 TOS, is used to set the vertical position of both points. A line is created by connecting these points and provided as input to this node. The output is the analytical member representing the defined curve.
+在此範例中，透過擷取 Snowdon 結構模型中 A4 和 A5 處的網格交點位置來定義兩個點。使用 L2 TOS 樓層設定兩點的垂直位置。連接這些點建立一條線，作為此節點的輸入。輸出是表示所定義曲線的分析構件。
 ___
 ## 範例檔案
 

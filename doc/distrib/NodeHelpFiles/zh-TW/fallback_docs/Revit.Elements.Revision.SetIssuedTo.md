@@ -1,7 +1,7 @@
 ## 深入資訊
-The Revision.SetIssuedTo node is used to set or update the “Issued To” value of a revision in Revit. It helps automate the process of recording the recipient of a revision, ensuring accuracy and consistency in project documentation without manual entry in Revit.
+使用 Revision.SetIssuedTo 節點設定或更新 Revit 中某個修訂的「發佈至」值，協助自動執行記錄修訂接收者的程序，確保專案文件的準確性和一致性，無須在 Revit 中手動輸入。
 
-In this graph, the Select Revision node is used to choose the required revision, while a string input (e.g., XYZ) defines the recipient. The Revision.SetIssuedTo node then applies this value to the selected revision, updating the “Issued To” field directly in the Revit model.
+在此圖表中，使用 Select Revision 節點選擇所需的修訂，字串輸入 (例如 XYZ) 定義接收者。然後 Revision.SetIssuedTo 節點會將此值套用到選取的修訂，直接更新 Revit 模型中的「發佈至」欄位。
 ___
 ## 範例檔案
 

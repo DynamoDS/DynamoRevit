@@ -1,7 +1,7 @@
 ## 詳細
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+このノードは、構造解析結果または Revit 解析モデルから、指定された解析結果タイプ(Fx、Fy、Fz、Mx、My、Mz など)の荷重値を取得します。選択された構造要素の各接合ゾーンにおける荷重を評価します。
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+この例では、柱が選択され、選択したモデル解析モードに基づいて、リンクされた各接合ゾーンの Fz 荷重コンポーネントが表示されています。
 ___
 ## サンプル ファイル
 

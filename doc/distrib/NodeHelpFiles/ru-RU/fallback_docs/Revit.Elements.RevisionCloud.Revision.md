@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+Этот узел извлекает элемент изменения, связанный с определенным пометочным облаком в Revit. Он предоставляет данные об изменениях, связанных с этим облаком, позволяя пользователям программно проверять, отслеживать или подтверждать сведения об изменениях в рамках проекта.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+В этом примере создается прямоугольник с числовыми регуляторами ширины и длины, а затем разбивается на кривые и разворачивается для правильной ориентации. Эти кривые вместе с выбранным видом (L1_SD) и выбранным изменением («Последовательность 2 — не для строительства») используются для создания пометочного облака с помощью узла RevisionCloud.ByCurve. Полученное пометочное облако связывается с узлом RevisionCloud.Revision, который извлекает и выводит связанное с этим облаком изменение. Это гарантирует, что пользователи могут подтвердить, какое изменение связано с каждым пометочным облаком.
 ___
 ## Файл примера
 

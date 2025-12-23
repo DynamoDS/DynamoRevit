@@ -1,7 +1,7 @@
 ## Im Detail
-This node changes the join order between two Revit elements that are already geometrically joined.  This node lets the user determine which element’s geometry “cuts” or takes precedence over the other.
+Dieser Block ändert die Verbindungsreihenfolge zwischen zwei Revit-Elementen, die bereits geometrisch verbunden sind. Über diesen Block kann der Benutzer bestimmen, welche Elementgeometrie Vorrang vor der anderen hat.
 
-In this example two joined walls are selected and used as inputs (cuttingElement and otherElement) to the Element.SetGeometryJoinOrder node.  The output is the assigned join order.
+In diesem Beispiel werden zwei verbundene Wände ausgewählt und als Eingaben (cuttingElement und otherElement) für den Element.SetGeometryJoinOrder-Block verwendet. Die Ausgabe ist die zugewiesene Verbindungsreihenfolge.
 
 ___
 ## Beispieldatei

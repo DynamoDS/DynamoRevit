@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates topography by using a set of curves or outlines along with a toposolidType and level as inputs.
+此節點會使用一組曲線或輪廓，以及 toposolidType 和 level 作為輸入來建立地形。
 
-In this example a rectangle is created and used as an input to Toposolid.ByOutlineTypeAndLevel.  A ToposolidType is chosen and used as input toposolidType and then a level is selected and used as the level input.  The output is a Toposolid.
+在此範例中，建立一個矩形作為 Toposolid.ByOutlineTypeAndLevel 的輸入。選擇一個地形實體類型作為 toposolidType 輸入，然後選取一個樓層作為 level 輸入。輸出是地形實體。
 ___
 ## 範例檔案
 

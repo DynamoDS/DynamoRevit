@@ -1,10 +1,10 @@
 ## Im Detail
-This node returns the rotation angle (in degrees) applied to a given Divided Surface in Revit. The rotation defines how the grid pattern on the surface is oriented relative to the surface’s natural U and V directions.
+Dieser Block gibt den Drehungswinkel (in Grad) zurück, der auf eine bestimmte geteilte Oberfläche in Revit angewendet wird. Die Drehung definiert, wie das Rastermuster auf der Oberfläche relativ zu den natürlichen U- und V-Richtungen der Oberfläche ausgerichtet ist.
 
-In this example, a face is selected and used to create a divided surface.  This divided surface output is used as the input for the DividedSurface.Rotation node.  The output is the rotation factor applied to divided surface (in degrees).  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+In diesem Beispiel wird eine Fläche ausgewählt und zum Erstellen einer geteilten Oberfläche verwendet. Die Ausgabe dieser geteilten Oberfläche wird als Eingabe für den DividedSurface.Rotation-Block verwendet. Die Ausgabe ist der Rotationsfaktor, der auf die geteilte Oberfläche angewendet wird (in Grad). Die letzten Blöcke zeigen die Werte der geteilten Oberfläche an. Beim Ausführen dieses Beispieldiagramms müssen Sie die Revit-Warnmeldung beachten und die vorgeschlagenen Elemente löschen, damit die Raster auf der ausgewählten Oberfläche angezeigt werden.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Weitere Informationen finden Sie unter dem Link.
+https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 
 ___
 ## Beispieldatei

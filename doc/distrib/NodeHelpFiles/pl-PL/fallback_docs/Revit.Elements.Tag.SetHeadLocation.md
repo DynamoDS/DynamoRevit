@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node takes a tag and changes its head location.  This gives us the ability to automate a consistent placement behavior so that tags are directly on top of the element they are tagging.
+Ten węzeł pobiera oznaczenie i zmienia położenie jego nagłówka. Pozwala to zautomatyzować spójne zachowanie umieszczania, tak aby oznaczenia znajdowały się bezpośrednio na elemencie, który jest oznaczany.
 
-In this example a door is selected in the “Studio Live Work Core B” view.  The location of that door is extracted then used as the original input to Tag.ByElementAndLocation along with Boolean values for horizontal and addLeader.  The original location is modified so that the tag location does not overlay directly on top of the element using the Tag.SetHeadLocation node.
+W tym przykładzie w widoku „Studio Live Work Core B” wybierane są drzwi. Lokalizacja tych drzwi jest wyodrębniana, a następnie używana jako pozycja danych wejściowych original węzła Tag.ByElementAndLocation wraz z wartościami logicznymi (Boolean) parametrów horizontal i addLeader. Pierwotne położenie (original) jest modyfikowane w taki sposób, aby położenie oznaczenia nie nakładało się bezpośrednio na element, za pomocą węzła Tag.SetHeadLocation.
 
 ___
 ## Plik przykładowy

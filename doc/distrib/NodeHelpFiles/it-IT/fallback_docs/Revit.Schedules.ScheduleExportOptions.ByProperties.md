@@ -1,7 +1,7 @@
 ## In profondità
-This node controls how a Revit schedule is exported.
+Questo nodo controlla la modalità di esportazione di un abaco di Revit.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+In questo esempio, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) vengono utilizzati come input per creare un'opzione di esportazione dell'abaco coerente. Questo output può essere utilizzato dal nodo ScheduleView.Export.
 
 ___
 ## File di esempio

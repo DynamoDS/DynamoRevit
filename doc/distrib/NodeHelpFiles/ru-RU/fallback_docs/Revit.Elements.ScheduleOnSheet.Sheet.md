@@ -1,7 +1,7 @@
 ## Подробности
-This node gets the sheet a schedule is on.
+Этот узел получает лист, на котором находится спецификация.
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+В этом примере спецификация размещается на листе в указанном месте. Затем спецификация вводится в узел ScheduleOnSheet.Sheet, где отображается имя листа (Name = Cover). Наконец, имя извлекается в строку.
 
 ___
 ## Файл примера

@@ -1,10 +1,10 @@
 ## Podrobnosti
-This node returns the rotation angle (in degrees) applied to a given Divided Surface in Revit. The rotation defines how the grid pattern on the surface is oriented relative to the surface’s natural U and V directions.
+Tento uzel vrací úhel otočení (ve stupních) použitý pro daný rozdělený povrch v aplikaci Revit. Otočení definuje, jak je vzor osnovy na povrchu orientován vzhledem k přirozeným směrům U a V povrchu.
 
-In this example, a face is selected and used to create a divided surface.  This divided surface output is used as the input for the DividedSurface.Rotation node.  The output is the rotation factor applied to divided surface (in degrees).  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+V tomto příkladu je vybrána plocha a použita kvytvoření rozděleného povrchu.  Tento výstup rozděleného povrchu se použije jako vstup pro uzel DividedSurface.Rotation.  Výstupem je faktor otočení použitý na rozdělený povrch (ve stupních).  Poslední uzly odhalují hodnoty rozděleného povrchu.  Při spuštění tohoto vzorového grafu bude nutné sledovat upozornění aplikace Revit a odstranit navrhované prvky, aby se osnovy zobrazily na vybraném povrchu.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Další informace naleznete v tomto odkazu.
+https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 
 ___
 ## Vzorový soubor

@@ -1,9 +1,9 @@
 ## Description approfondie
 
 
-This node adds a schedule to a sheet at a specified point.
+Ce noeud ajoute une nomenclature à une feuille à un point précis.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+Dans cet exemple, les curseurs numériques sont utilisés pour créer un point et pour l'entrée "emplacement" vers le nœud ScheduleOnSheet.BySheetScheduleLocation, ainsi qu'une vue et une feuille de nomenclature.  La sortie est la planification et son emplacement sur la feuille, ainsi que le nom de la feuille.
 
 
 

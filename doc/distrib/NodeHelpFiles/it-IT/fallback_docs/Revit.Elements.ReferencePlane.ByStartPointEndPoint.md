@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a new Reference Plane in the model by defining its start and end points.
+Questo nodo crea un nuovo piano di riferimento nel modello definendone il punto iniziale e il punto finale.
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+In questo esempio, vengono generati due punti con Point.ByCoordinates utilizzando input numerici. Questi punti vengono quindi inseriti in ReferencePlane.ByStartPointEndPoint, che crea un piano di riferimento personalizzato direttamente tra le due coordinate.
 ___
 ## File di esempio
 

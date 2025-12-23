@@ -1,7 +1,7 @@
 ## Description approfondie
-This node provides the openings within an analytical panel.
+Ce noeud fournit les ouvertures au sein d'un panneau analytique.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+Dans cet exemple, un étage du modèle structurel Snowdon est sélectionné et converti en panneau analytique. Le noeud affiche une liste d'ouvertures dans ce panneau.
 ___
 ## Exemple de fichier
 

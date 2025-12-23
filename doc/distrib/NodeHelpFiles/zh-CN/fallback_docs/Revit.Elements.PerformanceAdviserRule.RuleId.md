@@ -1,7 +1,7 @@
 ## 详细
-This node gets the unique identifier (RuleId) of a Performance Adviser rule.
+此节点获取 Performance Adviser 规则的唯一标识符(RuleId)。
 
-In this example the selected rule “Project contains unused families and types” is connected to PerformanceAdviserRule.RuleId, which generates its unique identifier. That ID is then converted to a string.
+在此示例中，选定的规则“项目包含未使用的族和类型”连接到 PerformanceAdviserRule.RuleId，由后者生成其唯一标识符。然后将该 ID 转换为字符串。
 ___
 ## 示例文件
 

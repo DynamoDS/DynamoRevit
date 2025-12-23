@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the existing connections of the structure data element/s selected.
+このノードは、選択された構造データ要素の既存の接合を返します。
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and s bolted connection.
+この例では、ベース プレート、モーメント接合、ボルト接合の 3 つの接合を持つ柱が選択されています。
 ___
 ## サンプル ファイル
 

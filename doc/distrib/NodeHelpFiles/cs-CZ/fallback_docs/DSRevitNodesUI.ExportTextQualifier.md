@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node provides a drop-down list to choose how text fields should be wrapped or qualified when exporting data to a text-based format (often CSV-style exports)..  These values will define the character that will surround text values in an exported schedule.  (Example; DoubleQuote, The quote character - " - is used to qualify text.  None, No text qualifier.  Quote, The quote character - ' - is used to qualify text).
+Tento uzel poskytuje rozevírací seznam, ve kterém lze vybrat, jak mají být textová pole zalomena nebo kvalifikována při exportu dat do textového formátu (často exporty ve stylu CSV).  Tyto hodnoty budou definovat znak, který obklopuje textové hodnoty v exportovaném výkazu.  (Příklad; DoubleQuote, Znak uvozovky – " - se používá ke kvalifikaci textu.  Žádný, žádný upřesnění textu.  quote, Znak uvozovky – ' - se používá ke kvalifikaci textu).
 
-In this example Export Text Qualifier (Quote) is used as an input to the ScheduleView.Export node to generate a typical export option.
+V tomto příkladu se jako vstup do uzlu ScheduleView.Export použije kvalifikátor exportu (citace) k vygenerování typické možnosti exportu.
 
 ___
 ## Vzorový soubor

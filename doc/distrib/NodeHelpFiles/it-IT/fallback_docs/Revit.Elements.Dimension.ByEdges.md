@@ -1,7 +1,7 @@
 ## In profondità
-This node creates a dimension based on one or more edge references in a given view.
+Questo nodo crea una quota basata su uno o più riferimenti dei bordi in una determinata vista.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+In questo esempio, la vista “L1” della tavola A101 viene utilizzata come input in Dimension.ByEdges insieme a referenceCurves, una linea, un suffisso e un prefisso. L'input line consente di eseguire l'offset della quota dalle facce selezionate. Gli ultimi 2 nodi mostrano i valori delle quote e il relativo prefisso.
 
 ___
 ## File di esempio

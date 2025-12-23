@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+このノードは、Revit の特定の改訂雲マークにリンクされた改訂要素を抽出します。雲マークに関連付けられた改訂データが提供されるため、ユーザはプロジェクト内でプログラムによって改訂の詳細を確認、追跡、検証することができます。
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+この例では、数値スライダを使用して長方形を作成して幅と長さを決め、次に、曲線に展開して、適切な方向になるように反転します。これらの曲線は、選択したビュー(L1_SD)と選択した改訂(Seq. 2 – Not For Construction)とともに、RevisionCloud.ByCurve ノードで改訂雲マークの生成に使用されます。作成された改訂雲マークは RevisionCloud.Revision ノードに接続され、その雲マークに関連付けられた改訂が取得されて出力されます。これにより、ユーザは各改訂雲マークに関連付けられている改訂を確認することができます。
 ___
 ## サンプル ファイル
 

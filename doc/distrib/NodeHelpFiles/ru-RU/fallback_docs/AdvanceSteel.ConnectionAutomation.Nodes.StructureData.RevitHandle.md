@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the Revit handle associated with the connections linked to the structure data element.
+Этот узел возвращает ручку Revit, связанную с соединениями, которые связаны с элементом данных конструкции.
 
-In this example, a column has been selected.
+В данном примере выбрана колонна.
 ___
 ## Файл примера
 

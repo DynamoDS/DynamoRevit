@@ -1,9 +1,9 @@
 ## En detalle:
 
 
-This node adds a schedule to a sheet at a specified point.
+Este nodo añade una tabla de planificación a un plano en un punto especificado.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+En este ejemplo, se utilizan controles deslizantes numéricos para crear un punto y se utilizan para la entrada de "ubicación" del nodo ScheduleOnSheet.BySheetScheduleLocation junto con una vista de tabla de planificación y un plano. La salida es la tabla de planificación y su ubicación en el plano, y el nombre del plano.
 
 
 

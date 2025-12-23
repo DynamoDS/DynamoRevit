@@ -1,7 +1,7 @@
 ## Description approfondie
-This node controls how a Revit schedule is exported.
+Ce nœud contrôle la façon dont une planification Revit est exportée.
 
-In this example, columnHeaders (OneRow), fieldDelimiter (blank), headersFootersBlanks (Boolean), textQualifier (Quote), title (Boolean) are used as inputs to create a consistent schedule export option.  This output can be used by the ScheduleView.Export node.
+Dans cet exemple, columnHeaders (OneRow), fieldDelimiter (vide), headersFootersBlanks (booléen), textQualifier (citation) et title (booléen) sont utilisés comme entrées pour créer une option d'exportation de planification cohérente.  Cette sortie peut être utilisée par le nœud ScheduleView.Export.
 
 ___
 ## Exemple de fichier

@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a Topography by using points a toposolidType along with a level.
+Этот узел создает топографию, используя точки, toposolidType и уровень.
 
-In this example a rectangle is created with point at equal cord length and used as an input to points in the Toposolid.ByPointsTypeAndLevel node along with the rectangle a ToposolidType and a level.
+В этом примере создается прямоугольник с точкой равной длины шнура, он используется в качестве входных данных для точек в узле Toposolid.ByPointsTypeAndLevel вместе с прямоугольником, ToposolidType и уровнем.
 ___
 ## Файл примера
 

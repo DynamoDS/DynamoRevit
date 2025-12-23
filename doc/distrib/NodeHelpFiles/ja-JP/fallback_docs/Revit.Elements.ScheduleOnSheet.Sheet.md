@@ -1,7 +1,7 @@
 ## 詳細
-This node gets the sheet a schedule is on.
+このノードは、集計表が存在するシートを取得します。
 
-In this example, a schedule is placed on a sheet at a specified location. The schedule is then input into the ScheduleOnSheet.Sheet node, where the sheet name is revealed (Name = Cover). Finally, the name is extracted into a string.
+この例では、集計表がシート上の指定した位置に配置されます。次に、集計表は ScheduleOnSheet.Sheet ノードに入力され、シート名が表示されます(名前 = Cover)。最後に、名前が文字列に抽出されます。
 
 ___
 ## サンプル ファイル

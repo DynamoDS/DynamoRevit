@@ -1,10 +1,10 @@
 ## Подробности
-This node returns the rotation angle (in degrees) applied to a given Divided Surface in Revit. The rotation defines how the grid pattern on the surface is oriented relative to the surface’s natural U and V directions.
+Этот узел возвращает угол поворота (в градусах), примененный к заданной разделенной поверхности в Revit. Угол поворота определяет ориентацию образца сетки на поверхности относительно естественных направлений U и V.
 
-In this example, a face is selected and used to create a divided surface.  This divided surface output is used as the input for the DividedSurface.Rotation node.  The output is the rotation factor applied to divided surface (in degrees).  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+В этом примере грань выбрана и используется для создания разделенной поверхности. Выходные данные разделенной поверхности используются в качестве входных данных для узла DividedSurface.Rotation. На выходе получается коэффициент поворота, применяемый к разделенной поверхности (в градусах). В последних узлах отображаются значения разделенной поверхности. При запуске этого примера графика необходимо просмотреть предупреждение Revit и удалить предлагаемые элементы, чтобы сетки появились на выбранной поверхности.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Дополнительные сведения см. по ссылке.
+https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 
 ___
 ## Файл примера

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node moves an element to a new location given a new point.
+Tento uzel přesune prvek do nového umístění na základě nového bodu.
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+V tomto příkladu je vybrán prvek a vstup je zadán v uzlu Element.SetLocation.  Zobrazí se původní pozice prvků, která se použije k posunutí podél roviny X a Y, která je řízena posuvníkem.  Výstup posunu se používá jako vstup geometrie pro uzel Element.SetLocation.  Zobrazí se hodnota null, ale prvek se přesouvá.
 
 ___
 ## Vzorový soubor

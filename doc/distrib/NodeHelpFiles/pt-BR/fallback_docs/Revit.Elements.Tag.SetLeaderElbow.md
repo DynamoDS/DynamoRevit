@@ -1,7 +1,7 @@
 ## Em profundidade
-This node sets the location of the elbow point in a “free-end” tag.
+Esse nó define a localização do ponto do cotovelo em um identificador de “extremidade livre”.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+Neste exemplo, é selecionado um identificador e os pontos originais são extraídos. O valor X é modificado e os novos pontos XYZ são definidos e usados como uma entrada para a localização do nó Tag.SetLeaderElbow junto com o identificador original selecionado. A saída é a nova localização do cotovelo dos identificadores. Consulte a vista da planta de piso L1.
 
 ___
 ## Arquivo de exemplo

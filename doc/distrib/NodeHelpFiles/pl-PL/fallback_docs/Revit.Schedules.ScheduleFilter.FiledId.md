@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the ScheduleFieldId associated with a given ScheduleFilter.  Each schedule filter in Revit is linked to a specific field (for example, Level, Family and Type, Area). This node exposes that connection by returning the field identifier used by the filter.
+Ten węzeł pobiera identyfikator ScheduleFieldId skojarzony z danym filtrem ScheduleFilter. Każdy filtr zestawienia w programie Revit jest powiązany z określonym polem (na przykład Level, Family and Type, Area). Ten węzeł ujawnia to połączenie, zwracając identyfikator pola używany przez filtr.
 
-In this example, a schedule filter is created and used as the input to ScheduleFilter.FileId.
+W tym przykładzie zostaje utworzony filtr zestawienia i jest on używany jako pozycja danych wejściowych węzła ScheduleFilter.FileId.
 ___
 ## Plik przykładowy
 

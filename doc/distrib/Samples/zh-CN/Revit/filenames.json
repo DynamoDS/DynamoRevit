@@ -1,12 +1,12 @@
 {
-  "Revit Adaptive Component Placement": "Revit Adaptive Component Placement",
-  "Revit Color": "Revit Color",
-  "Revit Floors and Framing": "Revit Floors and Framing",
-  "Revit Geometry Creation Curves": "Revit Geometry Creation Curves",
-  "Revit Geometry Creation Points": "Revit Geometry Creation Points",
-  "Revit Geometry Creation Solids": "Revit Geometry Creation Solids",
-  "Revit Geometry Creation Surfaces": "Revit Geometry Creation Surfaces",
-  "Revit Import Solid": "Revit Import Solid",
-  "Revit Place Families By Level Set Parameters": "Revit Place Families By Level Set Parameters",
-  "Revit Structural Framing": "Revit Structural Framing"
+  "Revit Adaptive Component Placement": "Revit 自适应构件放置",
+  "Revit Color": "Revit 颜色",
+  "Revit Floors and Framing": "Revit 楼板和框架",
+  "Revit Geometry Creation Curves": "Revit 几何图形创建曲线",
+  "Revit Geometry Creation Points": "Revit 几何图形创建点",
+  "Revit Geometry Creation Solids": "Revit 几何图形创建实体",
+  "Revit Geometry Creation Surfaces": "Revit 几何图形创建表面",
+  "Revit Import Solid": "Revit 导入实体",
+  "Revit Place Families By Level Set Parameters": "Revit 按标高集参数放置族",
+  "Revit Structural Framing": "Revit 结构框架"
 }

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node creates an analytical panel from a selected model element.
+Ce noeud crée un panneau analytique à partir d'un élément de modèle sélectionné.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+Dans cet exemple, un élément de plancher est sélectionné dans le modèle structurel Snowdon et fourni en entrée au nœud. Le nœud peut mettre à jour la géométrie et les paramètres du panneau en fonction de l'élément source, éventuellement ajouter ou maintenir une association avec l'élément, et inclure toutes les ouvertures trouvées dans l'élément d'origine. La sortie est le panneau analytique résultant.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 상세
-The Revision.IssuedTo node in Dynamo is used to read the “Issued To” information from a revision in Revit. This helps teams track who the revision was issued to.
+Dynamo의 Revision.IssuedTo 노드는 Revit의 수정기호에서 "발행 위치" 정보를 읽는 데 사용됩니다. 이를 통해 팀은 수정기호가 발행된 사용자를 추적할 수 있습니다.
 
-In this graph, the Select Revision node is used to pick a specific revision from the project. The Revision.IssuedTo node then extracts the “Issued To” field, and the result is displayed in the Watch node.
+이 그래프에서 수정기호 선택 노드는 프로젝트에서 특정 수정기호를 선택하는 데 사용됩니다. 그런 다음 Revision.IssuedTo 노드에서 "발행 위치" 필드를 추출하고 결과가 Watch 노드에 표시됩니다.
 
 ___
 ## 예제 파일

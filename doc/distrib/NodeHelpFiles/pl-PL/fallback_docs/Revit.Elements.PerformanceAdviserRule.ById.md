@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieve a specific Performance Adviser rule from Revit by its unique Rule ID.
+Ten węzeł pobiera określoną regułę doradcy wydajności z programu Revit na podstawie jej unikatowego identyfikatora reguły.
 
-In this example, the rule “Project contains unused families and types” is selected and its RuleId is extracted. That ID is converted to a string and then passed back into PerformanceAdviserRule.ById, which re-identifies and retrieves the same rule for further use or automation.
+W tym przykładzie wybrano regułę „Project contains unused families and types” (Projekt zawiera nieużywane rodziny i typy) i wyodrębniono jej identyfikator reguły (RuleId). Ten identyfikator jest konwertowany na ciąg, a następnie przekazywany z powrotem do elementu PerformanceAdviserRule.ById, który ponownie identyfikuje i pobiera tę samą regułę na potrzeby dalszego użycia lub automatyzacji.
 ___
 ## Plik przykładowy
 

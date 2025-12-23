@@ -1,9 +1,9 @@
 ## Im Detail
 
 
-This node adds a schedule to a sheet at a specified point.
+Dieser Block fügt eine Bauteilliste an einem bestimmten Punkt zu einem Plan hinzu.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+In diesem Beispiel werden Zahlen-Schieberegler für die Punkterstellung und als Eingabe-“Position” für den Block ScheduleOnSheet.BySheetScheduleLocation zusammen mit einer Bauteillistenansicht und einem Plan verwendet. Die Ausgabe sind die Bauteilliste und ihre Position auf dem Plan sowie der Planname.
 
 
 

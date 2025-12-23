@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+Этот узел извлекает этот тип ToposolidType из проекта по заданному строковому вводу. Тип должен существовать в проекте, иначе будет задано нулевое значение.
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+В этом примере в качестве входного элемента ToposolidType.ByName используется ToposolidType, а на выходе — ToposolidType. Эти выходные данные используются для создания топотела.
 ___
 ## Файл примера
 

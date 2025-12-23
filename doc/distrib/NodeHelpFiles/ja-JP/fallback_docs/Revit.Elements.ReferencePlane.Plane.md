@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the underlying geometric plane from a Reference Plane element.
+このノードは、基礎となるジオメトリ平面を参照面要素から抽出します。
 
-In this graph, two points are defined with coordinates and connected to the ReferencePlane.ByStartPointEndPoint node to create a reference plane. The created reference plane is then passed into the ReferencePlane.Plane node, which outputs its geometric plane, then to a 3D watch node.
+このグラフでは、2 つの点を座標で定義し、ReferencePlane.ByStartPointEndPoint ノードに接続して参照面を作成します。作成された参照面は ReferencePlane.Plane ノードに渡され、ジオメトリ平面が出力され、次に 3D watch ノードに渡されます。
 ___
 ## サンプル ファイル
 

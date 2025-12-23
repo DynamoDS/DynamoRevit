@@ -1,7 +1,7 @@
 ## In profondità
-This node sets the location of the elbow point in a “free-end” tag.
+Questo nodo imposta la posizione del punto a gomito in un'etichetta “a estremità libera”.
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+In questo esempio, viene selezionata un'etichetta e vengono estratti i punti originali. Il valore X viene modificato e vengono definiti i nuovi punti XYZ che sono poi utilizzati come input location nel nodo Tag.SetLeaderElbow insieme all'input originale tag selezionato. L'output è la nuova posizione del gomito delle etichette. Vedere la vista della pianta del pavimento L1.
 
 ___
 ## File di esempio

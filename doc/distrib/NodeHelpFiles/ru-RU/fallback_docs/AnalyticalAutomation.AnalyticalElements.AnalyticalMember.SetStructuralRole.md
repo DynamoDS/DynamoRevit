@@ -1,7 +1,7 @@
 ## Подробности
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Этот узел назначает аналитическому элементу роль в конструкции. Роль определяет, как аналитический элемент классифицируется в аналитической модели.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+В этом примере элемент в модели конструкции Snowdon преобразуется в аналитический элемент, и этот узел назначает этому аналитическому элементу роль «Балка».
 ___
 ## Файл примера
 

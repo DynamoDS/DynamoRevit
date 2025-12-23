@@ -1,7 +1,7 @@
 ## En detalle:
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Este nodo recupera el número de vistas de alzado asociadas actualmente con un marcador de alzado determinado.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+En este ejemplo, se seleccionan todos los marcadores de alzado y se utilizan como entrada para ElevationMarker.CurrentViewCount. La salida devuelve un valor entero que representa el número total de vistas de alzado asociadas con ese marcador de alzado.
 ___
 ## Archivo de ejemplo
 

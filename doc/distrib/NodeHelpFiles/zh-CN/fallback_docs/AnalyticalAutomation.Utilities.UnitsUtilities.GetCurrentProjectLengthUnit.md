@@ -1,7 +1,7 @@
 ## 详细
-This node identifies the unit type used for length measurements in the active Revit project and outputs its unit type identifier as a string value.
+此节点标识用于活动 Revit 项目中长度测量的单位类型，并将其单位类型标识符输出为字符串值。
 
-In this example, the UnitsUtilities.GetCurrentProjectLengthUnit node is placed in the graph with a Watch node connected to its output. The Watch node displays the current project length unit as a string (for example, Feet).
+在此示例中，UnitsUtilities.GetCurrentProjectLengthUnit 节点放置在图形中，其中 Watch 节点连接到其输出。Watch 节点将当前项目长度单位显示为字符串(例如，英尺)。
 ___
 ## 示例文件
 

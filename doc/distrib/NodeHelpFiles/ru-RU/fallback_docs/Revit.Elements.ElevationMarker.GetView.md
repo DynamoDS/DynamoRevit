@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+Этот узел извлекает определенный вид фасада из маркера фасада на основе заданного значения индекса. Маркер фасада может содержать до четырех фасадов (по одному для каждого направления). Этот узел позволяет извлечь один из связанных видов фасада для дальнейшего использования или изменения (0,1,2,3).
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+В этом примере выбраны все маркеры фасада, которые используются для ввода значения elevationMarker вместе со всеми вариантами индексов: 0,1,2,3. В выходных данных отображаются все возможные направления фасадов и нулевое значение, если фасады отсутствуют. Последний узел отображает общее количество фасадов, связанных с данным маркером элемента.
 ___
 ## Файл примера
 

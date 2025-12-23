@@ -1,7 +1,7 @@
 ## In profondità
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+Questo nodo associa un elemento analitico ad un elemento del modello fisico in modo che facciano riferimento l'uno all'altro. Se esiste già un'associazione, può sostituirla quando consentito dalle impostazioni del nodo.
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+In questo esempio, due punti alle intersezioni di griglia A4 e A5 nel modello strutturale Snowdon definiscono la posizione. Un livello (L2 TOS) stabilisce il posizionamento verticale e una linea tra questi punti forma il membro analitico. Viene quindi selezionata una trave fisica nella stessa posizione e questo nodo collega l'elemento analitico a tale trave.
 ___
 ## File di esempio
 

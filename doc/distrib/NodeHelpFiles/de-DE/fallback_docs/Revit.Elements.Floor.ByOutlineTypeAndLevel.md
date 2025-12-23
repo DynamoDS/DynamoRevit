@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a floor using curves, floor types and level.
+Dieser Block erstellt eine Geschossdecke mithilfe von Kurven, Geschossdeckentypen und Ebenen.
 
-In this example a number slider is used to generate a rectangle and used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.
+In diesem Beispiel wird ein Zahlen-Schieberegler verwendet, um ein Rechteck zu generieren und als Eingabe für Floor.ByOutlineTypeAndLevel zusammen mit einem bestimmten Geschossdeckentyp und einer bestimmten Ebene zu verwenden.
 
 ___
 ## Beispieldatei

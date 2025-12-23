@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+Tento uzel umístí výřez na určený výkres tak, že umístí daný pohled do definovaného bodu umístění.
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+V tomto příkladu se vytvoří nový list s názvem „Výkres Dynamo“, který se použije jako vstup výkresu do uzlu Viewport.BySheetViewLocation společně s pohledem „L1 Wall Base“ a bodem „0,0,0“ ve vstupu umístění.
 ___
 ## Vzorový soubor
 

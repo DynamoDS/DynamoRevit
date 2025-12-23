@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the underlying geometric curve associated with a given Revit CurveElement.
+Этот узел извлекает базовую геометрическую кривую, связанную с данным элементом Revit CurveElement.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.Curve node.  The output exposes that curve geometry so it can be used for analysis, modification, or as input to other Dynamo nodes.
+В этом примере кривая модели создается с помощью начальной и конечной точек, которые затем вводятся в узел CurveElement.Curve. На выходе геометрия кривой становится доступной для анализа, изменения или в качестве входных данных для других узлов Dynamo.
 ___
 ## Файл примера
 

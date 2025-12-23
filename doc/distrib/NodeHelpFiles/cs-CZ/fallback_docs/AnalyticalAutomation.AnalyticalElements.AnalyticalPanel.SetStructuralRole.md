@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node sets the structural role of an analytical panel. The node updates the selected panel with the chosen role without altering its geometry or other parameters.
+Tento uzel nastavuje konstrukční roli analytické desky. Uzel aktualizuje vybranou desku vybranou funkcí beze změny její geometrie nebo jiných parametrů.
 
-In this example, an analytical panel created from a physical element in the Snowdon Structural model is set to have the structural role of Floor.
+V tomto příkladu je analytická deska vytvořená z fyzického prvku v konstrukčním modelu Snowdon nastavena tak, aby měla konstrukční roli Podlaha.
 ___
 ## Vzorový soubor
 

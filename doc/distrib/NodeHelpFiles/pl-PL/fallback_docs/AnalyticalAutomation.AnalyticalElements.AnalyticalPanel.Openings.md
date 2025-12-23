@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node provides the openings within an analytical panel.
+Ten węzeł zwraca otwory w panelu analitycznym.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+W tym przykładzie w modelu konstrukcyjnym Snowdon zostaje wybrany strop i zostaje on przekształcony w panel analityczny. Węzeł zwraca listę otworów w tym panelu.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the connection name associated with connections linked to the structure data element.
+Tento uzel vrací název přípoje asociovaný s přípoji připojenými k prvku konstrukčních dat.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+V tomto příkladu byl vybrán sloup se třemi připojeními: patní deskou, momentovým připojením a šroubovým spojem.
 ___
 ## Vzorový soubor
 

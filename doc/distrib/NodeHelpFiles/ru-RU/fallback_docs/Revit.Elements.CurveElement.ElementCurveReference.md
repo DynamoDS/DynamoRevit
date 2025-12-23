@@ -1,7 +1,7 @@
 ## Подробности
-This node retrieves the curve reference associated with a given Revit CurveElement, such as a model curve or detail line. The reference can then be used as input to other nodes that require a geometry reference—such as dimensioning, alignment, or divided path creation.
+Этот узел извлекает ссылку на кривую, связанную с заданным элементом Revit CurveElement, например кривую модели или линию детализации. Затем ссылку можно использовать в качестве входных данных для других узлов, которым требуется ссылка на геометрию, например для нанесения размеров, выравнивания или создания разделенной траектории.
 
-In this example, a model curve is created using a start point and end point, then input into CurveElement.ElementCurveReference node.  the output is a geometric reference of the curve element that can be used in downstream operations.
+В этом примере кривая модели создается с помощью начальной и конечной точек, которые затем вводятся в узел CurveElement.ElementCurveReference. На выходе получается геометрическая ссылка на элемент кривой, которую можно использовать в последующих операциях.
 ___
 ## Файл примера
 

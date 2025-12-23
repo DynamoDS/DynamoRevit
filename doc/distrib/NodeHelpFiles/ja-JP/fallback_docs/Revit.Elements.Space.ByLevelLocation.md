@@ -1,7 +1,7 @@
 ## 詳細
-This node creates a new Revit Space element at a specified Level and location point.
+このノードは、指定されたレベルと位置点に新しい Revit スペース要素を作成します。
 
-In this example, a modeled element has been selected and the location is used as the input to the Space.ByLevelLocation node along with a level, a name and number.
+この例では、モデル化された要素が選択されていて、位置が Space.ByLevelLocation ノードへの入力として、レベル、名前、番号とともに使用されます。
 ___
 ## サンプル ファイル
 

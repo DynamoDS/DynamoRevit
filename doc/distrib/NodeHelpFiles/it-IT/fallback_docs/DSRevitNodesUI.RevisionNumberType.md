@@ -1,10 +1,10 @@
 ## In profondità
-This node allows you to select a Revision Number Type from the available options in a Revit project. It is typically used to define how revisions are numbered or lettered within a revision sequence (example are numeric, alphanumeric, or none).
+Questo nodo consente di selezionare un tipo di numero di revisione tra le opzioni disponibili in un progetto di Revit. Viene in genere utilizzato per definire il modo in cui le revisioni vengono numerate o contrassegnate con lettere all'interno di una sequenza di revisioni (ad esempio, Numeric, Alphanumeric o None).
 
-In this example, a new revision is created using the Select Revision Number Type node, value "Alphanumeric."
+In questo esempio, viene creata una nuova revisione utilizzando il nodo Select Revision Number Type, valore "Alphanumeric".
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Per ulteriori informazioni sulle revisioni, vedere il collegamento.
+https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 ___
 ## File di esempio
 

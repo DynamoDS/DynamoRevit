@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the curve geometry from the location of a structural framing element. The output provides information such as the start and end points of the curve, the direction vector, and the length.
+このノードは、構造フレーム要素の位置から曲線ジオメトリを抽出します。出力は、曲線の始点と終点、方向ベクトル、長さなどの情報を提供します。
 
-In this example, a beam is selected in the Snowdon structural model. The node outputs the curve data that defines the beam’s location in the project.
+この例では、Snowdon 構造モデルで梁が選択されます。ノードで、プロジェクト内の梁の位置を定義する曲線データが出力されます。
 ___
 ## サンプル ファイル
 

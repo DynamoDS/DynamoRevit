@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node returns the connection type associated with the connections linked to the structure data element.
+Tento uzel vrací typ přípoje přidružený k přípojům připojeným k prvku konstrukčních dat.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+V tomto příkladu byl vybrán sloup se třemi připojeními: patní deskou, momentovým připojením a šroubovým spojem.
 ___
 ## Vzorový soubor
 

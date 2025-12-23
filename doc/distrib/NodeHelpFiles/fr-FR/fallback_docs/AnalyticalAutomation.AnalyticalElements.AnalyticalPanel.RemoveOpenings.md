@@ -1,7 +1,7 @@
 ## Description approfondie
-This node removes openings from an analytical panel. The node updates the panel by deleting the specified openings without affecting the panel’s geometry or structural role.
+Ce noeud supprime les ouvertures d'un panneau analytique. Le noeud met à jour le volet en supprimant les ouvertures spécifiées sans affecter la géométrie ou le rôle structurel du panneau.
 
-In this example, an analytical panel is created from a floor in the Snowdon Structural model. The first opening in the panel is selected and removed using this node.
+Dans cet exemple, un panneau analytique est créé à partir d'un étage dans le modèle structurel de Snowdon. La première ouverture du volet est sélectionnée et supprimée à l'aide de ce nœud.
 ___
 ## Exemple de fichier
 

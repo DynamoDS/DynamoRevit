@@ -1,9 +1,9 @@
 ## Description approfondie
-This node returns the rotation angle (in degrees) applied to a given Divided Surface in Revit. The rotation defines how the grid pattern on the surface is oriented relative to the surface’s natural U and V directions.
+Ce noeud renvoie l'angle de rotation (en degrés) appliqué à une surface divisée donnée dans Revit. La rotation définit la façon dont le motif de grille sur la surface est orienté par rapport aux directions U et V naturelles de la surface.
 
-In this example, a face is selected and used to create a divided surface.  This divided surface output is used as the input for the DividedSurface.Rotation node.  The output is the rotation factor applied to divided surface (in degrees).  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+Dans cet exemple, une face est sélectionnée et utilisée pour créer une surface divisée.  Cette sortie de surface divisée est utilisée comme entrée pour le nœud DividedSurface.Rotation.  La sortie est le facteur de rotation appliqué à la surface divisée (en degrés).  Les derniers noeuds exposent les valeurs de la surface divisée.  Lors de l'exécution de cet exemple de graphique, vous devrez respecter l'avertissement Revit et supprimer les éléments suggérés afin que les grilles apparaissent sur la surface sélectionnée.
 
-See link for addition information.
+Voir le lien pour obtenir plus d'informations.
 https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 
 ___

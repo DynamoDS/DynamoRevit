@@ -1,10 +1,10 @@
 ## Im Detail
-This node returns the number of V divisions applied to a given Divided Surface in Revit. The grid is defined in two directions—U and V—and the V divisions determine how many segments the surface is divided into along one axis (typically corresponding to the surface’s parametric “V” direction). In the Revit conceptual massing environment or adaptive component families, a Divided Surface is a patterned grid applied to a face (such as a wall, roof, or form face).
+Dieser Block gibt die Anzahl der V-Unterteilungen zurück, die auf eine bestimmte geteilte Oberfläche in Revit angewendet werden. Das Raster ist in zwei Richtungen definiert - U und V -, und die V-Unterteilungen bestimmen, in wie viele Segmente die Oberfläche entlang einer Achse unterteilt wird (in der Regel entsprechend der parametrischen V-Richtung der Oberfläche). In der Revit-Umgebung für Entwurfskörper oder in adaptiven Bauteilfamilien ist eine geteilte Oberfläche ein gemustertes Raster, das auf eine Fläche (z. B. eine Wand, ein Dach oder eine Formfläche) angewendet wird.
 
-In this example, a face is selected and used to generate a divided surface.  This divided surface is the input for DividedSurface.VDivisions.  The last nodes expose the other values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.  The number of V divisions applied to the divided surface.
+In diesem Beispiel wird eine Fläche ausgewählt und zum Erstellen einer geteilten Oberfläche verwendet. Diese geteilte Oberfläche ist die Eingabe für DividedSurface.VDivisions. Die letzten Blöcke zeigen die anderen Werte der geteilten Oberfläche an. Beim Ausführen dieses Beispieldiagramms müssen Sie die Revit-Warnmeldung beachten und die vorgeschlagenen Elemente löschen, damit die Raster auf der ausgewählten Oberfläche angezeigt werden. Die Anzahl der V-Unterteilungen, die auf die geteilte Oberfläche angewendet werden.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Weitere Informationen finden Sie unter dem Link.
+https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Beispieldatei
 

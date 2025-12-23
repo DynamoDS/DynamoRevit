@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node allows you to select a specific Revision element from the active Revit document.
+Ten węzeł umożliwia wybranie określonego elementu rewizji z aktywnego dokumentu programu Revit.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+W tym przykładzie używany jest węzeł Select Revision przez wybranie rewizji z bieżącego dokumentu z menu rozwijanego. Ostatnie 2 węzły pokazują niektóre właściwości rewizji.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates an analytical panel from a selected model element.
+Tento uzel vytvoří analytickou desku z vybraného prvku modelu.
 
-In this example, a floor element is selected from the Snowdon Structural model and provided as input to the node. The node can update the panel’s geometry and parameters based on the source element, optionally add or maintain an association with the element, and include any openings found in the original element. The output is the resulting analytical panel.
+V tomto příkladu je vybrán prvek podlahy z konstrukčního modelu Snowdon a zadán jako vstup do uzlu. Uzel může aktualizovat geometrii a parametry desky podle zdrojového prvku, volitelně přidat nebo zachovat asociaci s prvkem a zahrnout všechny otvory nalezené v původním prvku. Výstupem je výsledná analytická deska.
 ___
 ## Vzorový soubor
 

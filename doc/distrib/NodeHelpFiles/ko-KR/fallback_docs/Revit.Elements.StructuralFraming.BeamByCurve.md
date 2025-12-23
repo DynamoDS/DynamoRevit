@@ -1,7 +1,7 @@
 ## 상세
-This node creates a structural beam in the Revit model along a defined curve. The beam is defined by the curve, the selected framing type, and the associated level. The output is the created structural beam element.
+이 노드는 Revit 모델에서 정의된 곡선을 따라 구조 빔을 작성합니다. 빔은 곡선, 선택한 프레임 유형 및 연관된 레벨로 정의됩니다. 출력은 작성된 구조 빔 요소입니다.
 
-In this example, a line is placed on Level L2 TOS between grid A5 and A6 in the Snowdon structural model. This line is provided as the curve input, and the selected framing type and level define the beam. The output is the newly created structural beam element.
+이 예에서는 Snowdon Structural 모델에서 그리드 A5와 A6 사이의 Level L2 TOS에 선이 배치됩니다. 이 선은 곡선 입력으로 제공되며 선택한 프레임 유형 및 레벨이 빔을 정의합니다. 출력은 새로 작성된 구조 빔 요소입니다.
 ___
 ## 예제 파일
 

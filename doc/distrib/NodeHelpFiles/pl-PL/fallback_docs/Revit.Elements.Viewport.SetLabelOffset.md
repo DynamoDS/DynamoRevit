@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node allows you to place the view label at a specific point on a sheet.
+Ten węzeł umożliwia umieszczenie etykiety widoku w określonym punkcie na arkuszu.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+W tym przykładzie tworzony jest nowy arkusz „Dynamo Sheet”, a w punkcie „0,0,0” jest umieszczany widok „L1 Wall Base”. Widok zostaje przeniesiony i przekazany do pozycji danych wejściowych viewport węzła Viewport.SetLabelOffset wraz ze zdefiniowanym punktem do zlokalizowania etykiety widoku.
 
 
 ___

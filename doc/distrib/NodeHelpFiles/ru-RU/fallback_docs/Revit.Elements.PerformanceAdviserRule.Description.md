@@ -1,7 +1,7 @@
 ## Подробности
-This node extracts the descriptive text of a Performance Adviser rule.
+Этот узел извлекает текст описания правила Консультанта по производительности.
 
-This example, the selected rule “View clipping is disabled” is passed into the PerformanceAdviserRule.Description node. The description is then displayed in the Watch node, showing the rule’s purpose and effect.
+В этом примере выбранное правило «Подрезка вида отключена» передается в узел PerformanceAdviserRule.Description. Затем в узле Watch отображается описание, показывающее назначение и действие правила.
 ___
 ## Файл примера
 

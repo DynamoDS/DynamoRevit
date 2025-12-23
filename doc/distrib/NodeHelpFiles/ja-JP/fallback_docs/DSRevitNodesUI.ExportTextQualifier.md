@@ -1,7 +1,7 @@
 ## 詳細
-This node provides a drop-down list to choose how text fields should be wrapped or qualified when exporting data to a text-based format (often CSV-style exports)..  These values will define the character that will surround text values in an exported schedule.  (Example; DoubleQuote, The quote character - " - is used to qualify text.  None, No text qualifier.  Quote, The quote character - ' - is used to qualify text).
+このノードは、データをテキストベースの形式に書き出すときに(多くの場合、CSV スタイルの書き出しで)、文字フィールドをどのようにラップするか、または区切るかを選択するドロップダウン リストを提供します。これらの値で、書き出された集計表でテキスト値を囲む文字を定義します。(たとえば、DoubleQuote の場合、引用文字 - " - が区切り文字に使用されます。None の場合、区切り文字なし。Quote の場合、引用文字 - ' - が区切り文字に使用されます)。
 
-In this example Export Text Qualifier (Quote) is used as an input to the ScheduleView.Export node to generate a typical export option.
+この例では、Export Text Qualifier (引用符)が ScheduleView.Export ノードへの入力として使用され、一般的な書き出しオプションを生成します。
 
 ___
 ## サンプル ファイル

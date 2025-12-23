@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the elements that triggered a failure from a given FailureMessage object.
+Tento uzel extrahuje prvky, které vyvolaly selhání z daného objektu FailureMessage.
 
-In this example, the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check.
+V tomto příkladu pravidlo Poradce pro výkon kontroluje, zda je oříznutí pohledu zakázáno. Výsledky jsou předány do uzlu FailureMessage.FailedElements, který vygeneruje výstup konkrétních prvků v modelu, které neprošly touto kontrolou.
 ___
 ## Vzorový soubor
 

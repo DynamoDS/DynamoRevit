@@ -1,7 +1,7 @@
 ## 상세
-This node retrieves the parent zone or parent element of a given Zone.
+이 노드는 지정된 구역의 상위 구역 또는 상위 요소를 검색합니다.
 
-In this example, several elements are selected, the structural data is extracted, the connection node are exposed and used to identify all the zones that apply to that connection node.  These zones are the input to the Zone.Parent node where the output displays the the structural data of each parent zone input.  The last nodes show the section type and location of the results.
+이 예에서는 여러 요소를 선택하고, 구조 데이터를 추출하고, 연결 노드를 노출하고, 해당 연결 노드에 적용되는 모든 구역을 식별하는 데 사용합니다. 이러한 구역은 Zone.Parent 노드에 대한 입력으로, 출력에는 각 상위 구역 입력의 구조 데이터가 표시됩니다. 마지막 노드에는 단면 유형과 결과 위치가 표시됩니다.
 ___
 ## 예제 파일
 

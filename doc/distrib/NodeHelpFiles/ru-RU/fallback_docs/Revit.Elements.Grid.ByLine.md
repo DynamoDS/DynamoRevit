@@ -1,7 +1,7 @@
 ## Подробности
-This node creates a grid based on a line input.
+Этот узел создает сетку на основе входных данных линии.
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+В этом примере создается точка, которая используется в качестве входного параметра startPoint для узла Line.ByStartPointDirectLength вместе с направлением и длиной. На выходе получается сетка.
 ___
 ## Файл примера
 

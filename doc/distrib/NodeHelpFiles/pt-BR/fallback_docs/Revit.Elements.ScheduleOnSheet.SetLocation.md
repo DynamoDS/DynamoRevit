@@ -1,7 +1,7 @@
 ## Em profundidade
-This node resets the location of a schedule on a sheet.
+Esse nó redefine a localização de uma tabela em uma folha.
 
-In this example a schedule is placed on a sheet then input into SheduleOnSheet.SetLocation node along with a new point.  The schedule is then repositioned on that same sheet.  The last node gets the schedules new position.
+Neste exemplo, uma tabela é colocada em uma folha e inserida no nó SheduleOnSheet.SetLocation junto com um novo ponto. Em seguida, a tabela é reposicionada na mesma folha. O último nó obtém a nova posição das tabelas.
 ___
 ## Arquivo de exemplo
 

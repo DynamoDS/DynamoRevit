@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Ten węzeł przypisuje wartość roli konstrukcyjnej do liniowego elementu analitycznego. Rola definiuje sposób kategoryzacji liniowego elementu analitycznego w modelu analitycznym.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+W tym przykładzie element w modelu konstrukcyjnym Snowdon jest przekształcany w liniowy element analityczny, a ten węzeł przypisuje rolę dźwigara do tego liniowego elementu analitycznego.
 ___
 ## Plik przykładowy
 

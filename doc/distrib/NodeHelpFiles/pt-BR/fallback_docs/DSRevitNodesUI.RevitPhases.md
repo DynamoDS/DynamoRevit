@@ -1,7 +1,7 @@
 ## Em profundidade
-This node lets you choose a specific Phase from the model using a drop-down menu.
+Esse nó permite escolher uma fase específica no modelo usando um menu suspenso.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+Neste exemplo, uma parede é selecionada e o nó Selecionar fase é aplicado para modificar sua atribuição de fase. O nó final confirma a alteração exibindo o nome atualizado da fase, “Existente”.
 ___
 ## Arquivo de exemplo
 

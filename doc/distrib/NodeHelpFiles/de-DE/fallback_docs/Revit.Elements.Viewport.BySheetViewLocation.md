@@ -1,7 +1,7 @@
 ## Im Detail
-This node places a viewport on a specified sheet by placing a given view at a defined location point.
+Dieser Block platziert ein Ansichtsfenster auf einem angegebenen Plan, indem eine bestimmte Ansicht an einem definierten Positionspunkt platziert wird.
 
-In this example, a new sheet is create "Dynamo Sheet" and used as the sheet input to Viewport.BySheetViewLocation node along with a view "L1 Wall Base" and a point "0,0,0" in the location input.
+In diesem Beispiel wird ein neuer Plan "Dynamo Sheet" erstellt und als Planeingabe für den Viewport.BySheetViewLocation-Block verwendet, zusammen mit einer Ansicht "L1 Wall Base" und einem Punkt 0,0,0 in der Positionseingabe.
 ___
 ## Beispieldatei
 

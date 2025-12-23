@@ -1,7 +1,7 @@
 ## En detalle:
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Este nodo asigna un valor de función estructural a una barra analítica. La función define cómo se clasifica la barra analítica en el modelo analítico.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+En este ejemplo, un elemento del modelo estructural Snowdon se convierte en una barra analítica y este nodo asigna la función "Jácena" a esa barra analítica.
 ___
 ## Archivo de ejemplo
 

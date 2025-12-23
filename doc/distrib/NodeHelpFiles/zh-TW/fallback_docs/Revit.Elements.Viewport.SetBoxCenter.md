@@ -1,7 +1,7 @@
 ## 深入資訊
-This node moves the center point of a given viewport to a new location on the sheet.
+此節點會將給定視埠的中心點移至圖紙上的新位置。
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0."  This view is used in the viewport input for node Viewport.SetBoxCenter along with a new point.  The output is a repositioned view.
+在此範例中，建立「Dynamo Sheet」新圖紙，在點「0,0,0」放置「L1 Wall Base」視圖。使用此視圖作為 Viewport.SetBoxCenter 節點的視埠輸入，同時提供新的一點。輸出是一個重新定位的視圖。
 ___
 ## 範例檔案
 

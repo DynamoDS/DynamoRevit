@@ -1,7 +1,7 @@
 ## In profondità
-This nodes generates new connection nodes with exactly the given number of zones.
+Questo nodo genera nuovi nodi di connessione con un numero di zone specificato esattamente.
 
-In this example, only elements with three or more connection zones are included in the output. Each resulting sublist represents a different grouping or structural arrangement within the original element.
+In questo esempio, vengono inclusi nell'output solo gli elementi con tre o più zone di connessione. Ogni sottoelenco risultante rappresenta un raggruppamento o una disposizione strutturale differente all'interno dell'elemento originale.
 ___
 ## File di esempio
 

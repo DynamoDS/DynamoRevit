@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node provides the openings within an analytical panel.
+Tento uzel poskytuje otvory v analytické desce.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+V tomto příkladu je vybrána podlaha v konstrukčním modelu Snowdon a převedena na analytickou desku. Výstupem uzlu je seznam otvorů na dané desce.
 ___
 ## Vzorový soubor
 

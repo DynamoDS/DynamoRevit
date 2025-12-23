@@ -1,7 +1,7 @@
 ## 詳細
-This node extracts the curve loops (typically arcs and lines) that make up the visible perimeter of a Revision Cloud. Each segment of the cloud is represented as a curve object (usually an Arc) corresponding to the “bubbled” shape of the revision mark in a view or sheet.
+このノードは、改訂雲マークの表示周長を構成する曲線ループ(通常は円弧と線分)を抽出します。雲マークの各セグメントは、ビューまたはシート内の改訂マークの「泡のような」形状に対応する曲線オブジェクト(通常は円弧)として表現されます。
 
-In this example, a rectangle is created using number sliders to define its dimensions, which is then exploded into curves and reversed for orientation. These curves, along with a selected view (Site Plan) and revision (Seq. 2 – Not For Construction), are used to generate a revision cloud with the RevisionCloud.ByCurve node. The created revision cloud is then connected to the RevisionCloud.Curves node, which extracts and displays the defining curves of that cloud. This helps users verify the geometry of the revision cloud and provides flexibility for reuse or further automation.
+この例では、数値スライダを使用して長方形を作成して寸法を定義し、次に、曲線に展開して、方向を反転します。これらの曲線は、選択したビュー(外構平面)と改訂(Seq. 2 – Not For Construction)とともに、RevisionCloud.ByCurve ノードで改訂雲マークの生成に使用されます。次に、作成された改訂雲マークは RevisionCloud.Curves ノードに接続され、この雲マークの定義曲線が抽出されて表示されます。これにより、ユーザは改訂雲マークのジオメトリを確認することができ、再利用やさらなる自動化を柔軟に行うことができます。
 ___
 ## サンプル ファイル
 

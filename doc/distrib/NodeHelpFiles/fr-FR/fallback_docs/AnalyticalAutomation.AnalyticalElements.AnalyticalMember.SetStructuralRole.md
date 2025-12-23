@@ -1,7 +1,7 @@
 ## Description approfondie
-This node assigns a structural role value to an analytical member. The role defines how the analytical member is categorized in the analytical model.
+Ce noeud affecte une valeur de rôle structurel à un membre analytique. Le rôle définit la façon dont le membre analytique est catégorisé dans le modèle analytique.
 
-In this example, an element in the Snowdon Structural model is converted to an analytical member, and this node assigns the role Girder to that analytical member.
+Dans cet exemple, un élément du modèle structurel Snowdon est converti en élément analytique, et ce nœud affecte le rôle Poutre à cet élément analytique.
 ___
 ## Exemple de fichier
 

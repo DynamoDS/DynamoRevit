@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a structural brace based on a curve, a level, and a framing family type. The output is the newly created brace element in the project.
+Tento uzel vytvoří konstrukční vzpěru na základě typu rodiny rámové konstrukce a křivky. Výstupem je nově vytvořený prvek vzpěry v projektu.
 
-In this example, a line is drawn from level L2 at grid crossing A4 to level L3 at grid crossing A5. The node uses this curve, along with the selected level and family type, to create a brace in the Snowdon structural model.
+V tomto příkladu je nakreslena čára z podlaží L2 v křížení A4 do podlaží L3 v křížení osnovy A5. Uzel používá tuto křivku spolu s vybraným podlažím a typem rodiny k vytvoření vzpěry v konstrukčním modelu Snowdon.
 ___
 ## Vzorový soubor
 

@@ -1,8 +1,8 @@
 ## Подробности
-This node extracts the actual Revit element reference of a selected reference plane. This is useful when you need to use that plane as a hosting reference for geometry or dimensions inside Revit.
+Этот узел извлекает фактическую ссылку на элемент Revit для выбранной опорной плоскости. Это удобно, если требуется использовать эту плоскость в качестве опорной геометрии или размеров в Revit.
 
 Пример:
-In this graph, two points are defined using coordinates, and a reference plane is created between them with ReferencePlane.ByStartPointEndPoint. That reference plane is then connected to ReferencePlane.ElementPlaneReference, which outputs the plane’s Revit-native reference, making it ready to be used for hosting or alignment tasks.
+На этом графике две точки определяются с помощью координат, а между ними с помощью узла ReferencePlane.ByStartPointEndPoint создается опорная плоскость. Затем эта опорная плоскость соединяется с узлом ReferencePlane.ElementPlaneReference, который выводит исходную ссылку плоскости в Revit, подготавливая ее к использованию в качестве основы или задач выравнивания.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+Dieser Block verknüpft ein analytisches Element mit einem physischen Modellelement, sodass sie aufeinander verweisen. Wenn bereits eine Verknüpfung vorhanden ist, kann sie ersetzt werden, wenn dies gemäß den Blockeinstellungen zulässig ist.
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+In diesem Beispiel wird die Position durch zwei Punkte an den Rasterschnittpunkten A4 und A5 im Snowdon-Tragwerksmodell definiert. Eine Ebene (L2 TOS) legt die vertikale Platzierung fest, und eine Linie zwischen diesen Punkten bildet das analytische Element. Anschließend wird ein physischer Träger an derselben Position ausgewählt, und dieser Block verknüpft das analytische Element mit diesem Träger.
 ___
 ## Beispieldatei
 

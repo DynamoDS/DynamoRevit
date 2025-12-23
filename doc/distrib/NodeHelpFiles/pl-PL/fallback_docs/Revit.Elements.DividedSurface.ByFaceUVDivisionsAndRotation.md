@@ -1,13 +1,13 @@
 ## Informacje szczegółowe
-This node creates a new Divided Surface element on a selected face of a Revit element and defines its layout using specified U and V divisions and an optional rotation angle.
-A Divided Surface is a patterned grid applied to a face, commonly used to position curtain panels, adaptive components, or panelized systems across a form surface.
+Ten węzeł tworzy nowy element podzielonej powierzchni na wybranej powierzchni elementu programu Revit i definiuje jego układ przy użyciu określonych podziałów U i V oraz opcjonalnego kąta obrotu.
+Podzielona powierzchnia to siatka ze wzorem zastosowana do powierzchni, powszechnie używana do umieszczania paneli kurtynowych, komponentów adaptacyjnych lub systemów panelowanych na powierzchni formy.
 
-The U divisions and V divisions determine how many subdivisions occur in each surface direction, while the rotation parameter adjusts the grid orientation relative to the surface’s U-V coordinate system.
+Podziały U i V określają liczbę podpodziałów występujących w każdym kierunku powierzchni. Natomiast parametr obrotu umożliwia dostosowanie orientacji siatki względem układu współrzędnych U-V powierzchni.
 
-In this example, a face is selected and used as an input to surface for node DividedSurface.ByFaceUVDivisionsAndRotation along with UDivs, VDivs and gridRotation, which are controlled by sliders.  The last nodes expose the values of the divided surface.  When running this example graph, you will need to observe the Revit warning and delete the suggested elements so that the grids will appear on the surface selected.
+W tym przykładzie zostaje wybrana powierzchnia i zostaje ona użyta jako dane wejściowe surface dla węzła DividedSurface.ByFaceUVDivisionsAndRotation wraz z pozycjami UDivs i VDivs i gridRotation, które są sterowane za pomocą suwaków. Ostatnie węzły wyświetlają wartości podzielonej powierzchni. Podczas uruchamiania tego wykresu przykładowego należy zwrócić uwagę na ostrzeżenie programu Revit i usunąć sugerowane elementy, tak aby siatki pojawiły się na wybranej powierzchni.
 
-See link for addition information.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
+Skorzystaj z łącza, aby uzyskać dodatkowe informacje.
+https://help.autodesk.com/view/RVT/2025/PLK/?guid=GUID-81D9C500-F9CE-462A-AEB7-AA3AEC0C940D
 ___
 ## Plik przykładowy
 

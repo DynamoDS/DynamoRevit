@@ -1,9 +1,9 @@
 ## Em profundidade
 
 
-This node adds a schedule to a sheet at a specified point.
+Esse nó adiciona uma tabela a uma folha em um ponto especificado.
 
-In this example number sliders are used to create a point and used for the input “location” to node ScheduleOnSheet.BySheetScheduleLocation along with a schedule view and sheet.  The output is the schedule and its location on the sheet and the sheet name.
+Neste exemplo, os controles deslizantes de número são usados para criar um ponto e usados para a entrada “localização” para o nó ScheduleOnSheet.BySheetScheduleLocation junto com uma vista de tabela e uma folha. A saída é a tabela e sua localização na folha e o nome da folha.
 
 
 

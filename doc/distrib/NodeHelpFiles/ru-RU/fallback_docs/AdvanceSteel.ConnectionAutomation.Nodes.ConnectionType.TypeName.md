@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the connection type name associated with the connections linked to the structure data element.
+Этот узел возвращает имя типа соединения, связанного с соединениями, которые связаны с элементом данных конструкции.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+В этом примере выбрана колонна с тремя соединениями: опорной плитой, соединением с изгибной нагрузкой и болтовым соединением.
 ___
 ## Файл примера
 

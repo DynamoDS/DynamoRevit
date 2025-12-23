@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+Ten węzeł uruchamia określoną regułę doradcy wydajności dla zestawu elementów programu Revit.
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+W tym przykładzie reguła doradcy wydajności sprawdza, czy „przycinanie widoku jest wyłączone”. Wyniki są przekazywane do węzła FailureMessage.FailingElements zwracającego określone elementy w modelu, dla których wynik tego sprawdzenia był niepomyślny. Ten proces roboczy ułatwia użytkownikom śledzenie i naprawianie elementów odpowiedzialnych za problemy.
 
 ___
 ## Plik przykładowy

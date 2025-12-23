@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates an analytical member from a curve.
+Este nodo crea una barra analítica a partir de una curva.
 
-In this example, two points are defined by extracting the locations of the grid intersections at A4 and A5 in the Snowdon Structural model. A level, L2 TOS, is used to set the vertical position of both points. A line is created by connecting these points and provided as input to this node. The output is the analytical member representing the defined curve.
+En este ejemplo, se definen dos puntos extrayendo las ubicaciones de las intersecciones de rejilla en A4 y A5 en el modelo estructural de Snowdon. Se utiliza un nivel, L2 TOS, para definir la posición vertical de ambos puntos. Se crea una línea conectando estos puntos y se proporciona como entrada a este nodo. La salida es la barra analítica que representa la curva definida.
 ___
 ## Archivo de ejemplo
 

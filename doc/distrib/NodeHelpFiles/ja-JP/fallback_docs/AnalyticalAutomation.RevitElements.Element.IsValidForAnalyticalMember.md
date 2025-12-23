@@ -1,7 +1,7 @@
 ## 詳細
-This node evaluates the selected Revit element to determine if it is suitable for use as an analytical member. If the element is not valid, the output includes an exception message explaining the reason.
+このノードは、選択された Revit 要素を評価して、解析用部材としての使用に適しているかどうかを判断します。要素が有効でない場合は、理由を説明する例外メッセージが出力に含まれます。
 
-In this example, an element is defined by its Element ID and provided to Element.IsValidForAnalyticalMember. The outputs include a Boolean result indicating the element’s validity and an exception message if applicable.
+この例では、要素はその要素 ID で定義され、Element.IsValidForAnalyticalMember に提供されます。出力には、要素の有効性を示すブール値の結果と、該当する場合は例外メッセージが含まれます。
 ___
 ## サンプル ファイル
 

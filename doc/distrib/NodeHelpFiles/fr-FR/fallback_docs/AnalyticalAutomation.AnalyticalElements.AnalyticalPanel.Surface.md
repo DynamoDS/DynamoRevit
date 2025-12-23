@@ -1,7 +1,7 @@
 ## Description approfondie
-This node returns the surface of an analytical panel.
+Ce noeud renvoie la surface d'un panneau analytique.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs the corresponding surface of that panel.
+Dans cet exemple, un étage du modèle structurel Snowdon est sélectionné et converti en panneau analytique. Le noeud affiche la surface correspondante de ce panneau.
 ___
 ## Exemple de fichier
 

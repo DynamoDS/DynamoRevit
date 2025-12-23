@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node creates a new Reference Plane in the model by defining its start and end points.
+Tento uzel vytvoří novou referenční rovinu v modelu definováním jejího počátečního a koncového bodu.
 
-In this example two points are generated with Point.ByCoordinates using numeric inputs. These points are then fed into ReferencePlane.ByStartPointEndPoint, which creates a custom reference plane directly between the two coordinates.
+V tomto příkladu jsou pomocí uzlu Point.ByCoordinates vygenerovány dva body pomocí číselných vstupů. Tyto body jsou poté vloženy do uzlu ReferencePlane.ByStartPointEndPoint, který vytvoří vlastní referenční rovinu přímo mezi dvěma souřadnicemi.
 ___
 ## Vzorový soubor
 

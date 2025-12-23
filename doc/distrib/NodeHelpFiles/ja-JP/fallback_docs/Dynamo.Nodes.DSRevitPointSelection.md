@@ -1,7 +1,7 @@
 ## 詳細
-This node allows you to be very specific about what part of a Revit element you want to work with. Unlike nodes that select an entire element (like a wall or a floor), this node lets you pick a specific face or edge of that element.
+このノードを使用すると、Revit 要素のどの部分で作業するかを非常に具体的に指定することができます。要素全体(壁や床など)を選択するノードとは異なり、このノードでは要素の特定の面やエッジを選択することができます。
 
-In this example, we have selected an element nested inside a curtain wall.
+この例では、カーテン ウォールの内側にネストされた要素を選択しています。
 
 ___
 ## サンプル ファイル

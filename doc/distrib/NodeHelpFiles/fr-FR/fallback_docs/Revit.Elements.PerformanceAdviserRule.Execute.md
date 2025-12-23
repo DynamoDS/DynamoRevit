@@ -1,7 +1,7 @@
 ## Description approfondie
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+Ce nœud exécute une règle Performance Adviser spécifique sur un ensemble d'éléments Revit.
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+Dans cet exemple, la règle Performance Adviser vérifie si l'option "Découpage de la vue est désactivée". Les résultats sont transmis au nœud FailureMessage.FailingElements, qui génère les éléments spécifiques du modèle qui a échoué à cette vérification. Ce processus permet aux utilisateurs de retracer et de corriger plus facilement les éléments exacts responsables des problèmes.
 
 ___
 ## Exemple de fichier

@@ -1,7 +1,7 @@
 ## Em profundidade
-This node creates a dimension based on one or more edge references in a given view.
+Esse nó cria uma cota com base em uma ou mais referências de aresta em uma determinada vista.
 
-In this example, view “L1” from sheet A101 is used as an input into Dimension.ByEdges along with referenceCurves, a line, suffix and a prefix.  The line input allows the dimension to be offset from the selected faces.  The last 2 nodes show the dimensions values and their prefix.
+Neste exemplo, a vista “L1” da folha A101 é usada como uma entrada em Dimension.ByEdges junto com referenceCurves, uma linha, um sufixo e um prefixo. A entrada de linha permite que a cota seja deslocada das faces selecionadas. Os últimos dois nós mostram os valores das cotas e seus prefixos.
 
 ___
 ## Arquivo de exemplo

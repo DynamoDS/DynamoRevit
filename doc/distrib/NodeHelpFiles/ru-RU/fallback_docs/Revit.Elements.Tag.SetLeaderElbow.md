@@ -1,7 +1,7 @@
 ## Подробности
-This node sets the location of the elbow point in a “free-end” tag.
+Этот узел задает расположение точки отвода в марке «со свободным концом».
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+В этом примере выбирается марка и извлекаются исходные точки. Значение X изменяется, а новые точки XYZ определяются и используются в качестве входных данных для размещения узла Tag.SetLeaderElbow вместе с исходным выбранным идентификатором. Результатом является новое расположение отвода марок. См. вид в плане этажа L1.
 
 ___
 ## Файл примера

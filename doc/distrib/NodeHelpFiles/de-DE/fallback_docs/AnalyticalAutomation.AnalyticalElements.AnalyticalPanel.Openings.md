@@ -1,7 +1,7 @@
 ## Im Detail
-This node provides the openings within an analytical panel.
+Dieser Block stellt die Öffnungen in einer analytischen Schale bereit.
 
-In this example, a floor in the Snowdon Structural model is selected and converted to an analytical panel. The node outputs a list of openings in that panel.
+In diesem Beispiel wird eine Geschossdecke im Snowdon-Tragwerksmodell ausgewählt und in eine analytische Schale konvertiert. Der Block gibt eine Liste der Öffnungen in dieser Schale aus.
 ___
 ## Beispieldatei
 

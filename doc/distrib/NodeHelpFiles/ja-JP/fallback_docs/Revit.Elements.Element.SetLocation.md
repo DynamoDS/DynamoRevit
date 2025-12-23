@@ -1,7 +1,7 @@
 ## 詳細
-This node moves an element to a new location given a new point.
+このノードは、新しい点を指定して要素を新しい位置に移動します。
 
-In this example, an element is selected and input in the Element.SetLocation node.  The elements’ original position is shown and used to translate along the x and y plane, which is controlled by the number slider.  The translation output is used as the geometry input for Element.SetLocation.  A null value will be displayed but the element is moving.
+この例では、要素が選択され、Element.SetLocation ノードに入力されます。要素の元の位置が表示され、数値スライダでコントロールされる x 平面と y 平面に沿った移動に使用されます。移動の出力は、Element.SetLocation のジオメトリ入力として使用されます。null 値が表示されますが、要素は移動します。
 
 ___
 ## サンプル ファイル

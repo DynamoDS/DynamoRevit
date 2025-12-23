@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node associates an analytical element with a physical model element so they reference each other. If an association already exists, it can replace it when allowed by the node settings.
+Tento uzel přiřadí analytický prvek k prvku fyzického modelu, takže na sebe vzájemně odkazují. Pokud již přidružení existuje, může je nahradit, pokud to umožňuje nastavení uzlu.
 
-In this example, two points at grid intersections A4 and A5 in the Snowdon structural model define the location. A level (L2 TOS) establishes the vertical placement, and a line between these points forms the analytical member. A physical beam in the same location is then selected, and this node links the analytical element to that beam.
+V tomto příkladu dva body na průsečících osnovy A4 a A5 v konstrukčním modelu Snowdon definují umístění. Podlaží (L2 TOS) určuje vertikální umístění a čára mezi těmito body tvoří analytický prut. Poté se vybere fyzický nosník ve stejném umístění a tento uzel připojí analytický prvek k danému nosníku.
 ___
 ## Vzorový soubor
 

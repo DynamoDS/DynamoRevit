@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates an analytical member from a curve.
+Dieser Block erstellt ein analytisches Element aus einer Kurve.
 
-In this example, two points are defined by extracting the locations of the grid intersections at A4 and A5 in the Snowdon Structural model. A level, L2 TOS, is used to set the vertical position of both points. A line is created by connecting these points and provided as input to this node. The output is the analytical member representing the defined curve.
+In diesem Beispiel werden zwei Punkte definiert, indem die Positionen der Rasterschnittpunkte bei A4 und A5 im Snowdon-Tragwerksmodell extrahiert werden. Eine Ebene, L2 TOS, wird verwendet, um die vertikale Position beider Punkte festzulegen. Eine Linie wird erstellt, indem diese Punkte verbunden und als Eingabe für diesen Block bereitgestellt werden. Die Ausgabe ist das analytische Element, das die definierte Kurve darstellt.
 ___
 ## Beispieldatei
 

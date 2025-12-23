@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node extracts the curve of an analytical member.
+Tento uzel extrahuje křivku analytického prutu.
 
-In this example, a beam is selected from the Snowdon Structural model. The node outputs the curve defined by the analytical member.
+V tomto příkladu je vybrán nosník v konstrukčním modelu Snowdon. Výstupem uzlu je křivka definovaná analytickým prutem.
 ___
 ## Vzorový soubor
 

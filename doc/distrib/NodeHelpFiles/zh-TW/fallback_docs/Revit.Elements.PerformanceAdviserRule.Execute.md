@@ -1,7 +1,7 @@
 ## 深入資訊
-This node runs a specific Performance Adviser rule against a set of Revit elements.
+此節點會對一組 Revit 元素執行特定的效能顧問規則。
 
-In this example the Performance Adviser Rule checks if “View clipping is disabled”. The results are passed into the FailureMessage.FailingElements node, which outputs the specific elements in the model that failed this check. This workflow makes it easier for users to trace and fix the exact elements responsible for issues.
+在此範例中，效能顧問規則會檢查「視圖裁剪是否已停用」。將結果傳入 FailureMessage.FailingElements 節點，輸出模型中未通過此檢查的特定元素。此工作流程能讓使用者更容易找出導致問題的確切元素並加以修正。
 
 ___
 ## 範例檔案

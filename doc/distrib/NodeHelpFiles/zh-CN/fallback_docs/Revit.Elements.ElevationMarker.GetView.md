@@ -1,7 +1,7 @@
 ## 详细
-This node retrieves a specific Elevation View from an Elevation Marker based on a given index value.  An elevation marker can host up to four elevations (one for each direction). This node allows you to extract one of those associated elevation views for further use or modification (0,1,2,3).
+此节点根据给定索引值从立面标记检索特定的立面视图。立面标记最多可以包含四个立面(每个方向一个立面)。此节点可以提取其中一个关联的立面视图以供将来使用或修改(0,1,2,3)。
 
-In this example, all elevation markers are selected and used for input elevationMarker along with all the index options 0,1,2,3.  The output shows all possible elevation direction and a null if no elevation exists.  The last node displays the total number of elevations associated with a given element marker.
+在此示例中，将选择所有立面标记并将其用于输入 elevationMarker 以及所有索引选项 0、1、2、3。输出显示所有可能的立面方向，如果不存在立面，则为空。最后一个节点显示与给定图元标记关联的立面总数。
 ___
 ## 示例文件
 

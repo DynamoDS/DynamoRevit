@@ -1,7 +1,7 @@
 ## Im Detail
-This node returns the Revit curve reference associated with a given grid element.
+Dieser Block gibt die Revit-Kurvenreferenz zurück, die mit einem bestimmten Rasterelement verknüpft ist.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+In diesem Beispiel werden alle Rasterelemente im Projekt ausgewählt und als Eingabe für den Block GridElementCUrveReference verwendet. Dieser Block zeigt diese Referenz an, sodass sie für andere Vorgänge wie Bemaßungen, pfadbasierte Elementplatzierung oder geometrische Analyse verwendet werden kann.
 ___
 ## Beispieldatei
 

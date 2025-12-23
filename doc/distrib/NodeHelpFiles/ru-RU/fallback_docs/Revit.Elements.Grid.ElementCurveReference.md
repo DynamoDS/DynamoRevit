@@ -1,7 +1,7 @@
 ## Подробности
-This node returns the Revit curve reference associated with a given grid element.
+Этот узел возвращает привязку к кривой Revit, связанную с заданным элементом сетки.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+В этом примере все элементы сетки в проекте выбраны и используются в качестве входных данных для узла GridElementCUrveReference. Этот узел отображает эту привязку, чтобы ее можно было использовать в других операциях, таких как нанесение размеров, размещение элементов на основе траектории или геометрический анализ.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## En detalle:
-This node sets the location of the elbow point in a “free-end” tag.
+Este nodo establece la ubicación del punto del codo en una etiqueta de "extremo libre".
 
-In this example, a tag is selected, and the original points are extracted.  The X value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderElbow along with the original tag selected.  The output is the new location of the tags' elbow.  See view floor plan L1.
+En este ejemplo, se selecciona una etiqueta y se extraen los puntos originales. El valor X se modifica y los nuevos puntos XYZ se definen y utilizan como entrada para la ubicación del nodo Tag.SetLeaderElbow junto con la etiqueta original seleccionada. La salida es la nueva ubicación del codo de las etiquetas. Consulte la vista del plano de planta L1.
 
 ___
 ## Archivo de ejemplo

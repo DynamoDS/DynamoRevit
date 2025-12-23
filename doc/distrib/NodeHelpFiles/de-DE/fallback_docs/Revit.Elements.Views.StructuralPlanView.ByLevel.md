@@ -1,7 +1,7 @@
 ## Im Detail
-This node creates a view based off a level input.
+Dieser Block erstellt eine Ansicht basierend auf einer Ebeneneingabe.
 
-In this example, a level (L2) is used as an input (level) to the StructrualPlanView.ByLevel node and the output is a new view.  The last node shows the view name (L2).
+In diesem Beispiel wird eine Ebene (L2) als Eingabe (Ebene) für den Block StructrualPlanView.ByLevel verwendet, und die Ausgabe ist eine neue Ansicht. Der letzte Block zeigt den Ansichtsnamen (L2) an.
 
 ___
 ## Beispieldatei

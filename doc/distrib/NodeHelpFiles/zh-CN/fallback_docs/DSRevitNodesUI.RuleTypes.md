@@ -1,7 +1,7 @@
 ## 详细
-This node provides a list of available Rule Types that can be used when creating or defining filter rules.  For example, whether it equals, contains, is greater than, or begins with a specific value.
+此节点提供创建或定义过滤器规则时可以使用的可用规则类型列表。例如，它是否等于、包含、大于或以特定值开头。
 
-In this example, a wall type is identified and the “Fire Rating” parameter is selected to create a filter rule with the value “2HR” and the Select Rule Type set to “Equals.” This FilterRule is then applied to the “L1 Wall Base” view as a view filter.
+在此示例中，标识了墙类型并选择了“防火等级”参数，以创建值为“2HR”且“选择规则类型”设置为“等于”的过滤规则。然后，此 FilterRule 将作为视图过滤器应用于“L1 Wall Base”视图。
 ___
 ## 示例文件
 

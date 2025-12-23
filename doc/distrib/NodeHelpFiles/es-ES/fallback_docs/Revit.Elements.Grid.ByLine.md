@@ -1,7 +1,7 @@
 ## En detalle:
-This node creates a grid based on a line input.
+Este nodo crea una rejilla basada en una entrada de línea.
 
-In this example a point is created and used as the startPoint input to node Line.ByStartPointDirectLength along with a direction and length.  The output is a grid.
+En este ejemplo, se crea un punto y se utiliza como entrada startPoint para el nodo Line.ByStartPointDirectLength junto con una dirección y una longitud. La salida es una rejilla.
 ___
 ## Archivo de ejemplo
 

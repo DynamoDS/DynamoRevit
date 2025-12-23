@@ -1,9 +1,9 @@
 ## Description approfondie
-This node places adaptive components by applying UV parameter values to a selected face, defining the placement locations for the adaptive family type.
+Ce noeud place des composants adaptatifs en appliquant des valeurs de paramètres UV à une face sélectionnée, définissant ainsi les emplacements de placement pour le type de famille adaptative.
 
-In this example, a surface is created within the mass family by extruding a curve (this is done manually), and that surface is selected as the face input. UV values are then provided to determine placement positions, and the Diagnostic Tripod – 1 Point.rfa family is used as the type. The AdaptiveComponent.ByParametersOnFace node outputs adaptive components positioned on the selected face.  Note that the "Diagnostic Tripod – 1 Point.rfa" needs to be loaded into your mass family before running this graph.
+Dans cet exemple, une surface est créée dans la famille de volumes en extrudant une courbe (ce qui est fait manuellement) et cette surface est sélectionnée comme entrée de face. Les valeurs UV sont ensuite fournies pour déterminer les positions de placement, et la famille Trépied de diagnostic – 1 Point.rfa est utilisée comme type. Le nœud AdaptiveComponent.ByParametersOnFace génère des composants adaptatifs positionnés sur la face sélectionnée.  Notez que le « Trépied de diagnostic – 1 Point.rfa » doit être chargé dans votre famille de volumes avant d’exécuter ce graphique.
 
-For this node help example file to run, you need to load "Diagnostics Tripod-1 point.rfa" into the Revit file. The family is stored here. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
+Pour exécuter ce fichier d'exemple d'aide sur le nœud, vous devez charger "Diagnostics Tripod-1 point.rfa" dans le fichier Revit. La famille est stockée ici. C:\ProgramData\Autodesk\RVT 2027\Dynamo\Samples\Data
 ___
 ## Exemple de fichier
 

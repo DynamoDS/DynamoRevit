@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the number of elevation views currently associated with a given Elevation Marker.
+Dieser Block ruft die Anzahl der Ansichten ab, die momentan mit einer bestimmten Ansichtsmarkierung verknüpft sind.
 
-In this example, all elevation markers are selected and used as the input to ElevationMarker.CurrentViewCount.  The output returns an integer value representing the total number of elevation views associated with that elevation marker.
+In diesem Beispiel werden alle Ansichtsmarkierungen ausgewählt und als Eingabe für ElevationMarker.CurrentViewCount verwendet. Die Ausgabe gibt einen ganzzahligen Wert zurück, der die Gesamtzahl der Ansichten darstellt, die mit dieser Ansichtsmarkierung verknüpft sind.
 ___
 ## Beispieldatei
 

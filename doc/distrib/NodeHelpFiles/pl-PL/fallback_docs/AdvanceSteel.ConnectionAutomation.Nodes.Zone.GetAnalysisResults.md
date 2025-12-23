@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-This node retrieves the force value for a specified analysis result type (e.g., Fx, Fy, Fz, Mx, My, Mz) from either the structural analysis results or the Revit analytical model. It evaluates the forces at each connection zone of the selected structural element.
+Ten węzeł pobiera wartość siły dla określonego typu wyniku analizy (np. Fx, Fy, Fz, Mx, My, Mz) z wyników analizy konstrukcji lub z modelu analitycznego programu Revit. Obliczane są siły w każdej strefie połączenia wybranego elementu konstrukcyjnego.
 
-In this example, a column is selected to display the Fz force component at each of its linked connection zones, based on the chosen model analysis mode.
+W tym przykładzie wybrano słup, dla którego zostanie wyświetlony komponent siły Fz w każdej z połączonych stref połączenia, na podstawie wybranego trybu analizy modelu.
 ___
 ## Plik przykładowy
 

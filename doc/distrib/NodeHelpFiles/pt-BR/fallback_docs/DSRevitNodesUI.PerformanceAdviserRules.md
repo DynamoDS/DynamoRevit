@@ -1,7 +1,7 @@
 ## Em profundidade
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+Esse nó recupera a lista de todas as regras disponíveis do Consultor de desempenho. Essas regras são as mesmas verificações integradas que o Revit usa para identificar possíveis problemas de desempenho ou modelagem.
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+Neste exemplo, o nó PerformanceAdviserRules é usado para extrair uma regra “O corte de vista está desativado” da lista completa, que pode ser conectada a outros nós para verificar suas propriedades ou comportamento. Isso ajuda os usuários a trabalhar rapidamente com regras de desempenho específicas.
 ___
 ## Arquivo de exemplo
 

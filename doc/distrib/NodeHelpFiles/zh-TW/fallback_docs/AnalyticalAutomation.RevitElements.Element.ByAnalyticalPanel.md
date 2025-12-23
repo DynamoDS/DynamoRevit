@@ -1,7 +1,7 @@
 ## 深入資訊
-This node creates a physical wall or floor element from an analytical panel, or updates an existing physical element that is already connected to the analytical panel. The physical element can inherit geometry, parameters, and openings from the analytical panel, depending on the input settings. When the analytical panel has no associated physical element, the node creates a new one based on the analytical model.
+此節點會從分析板建立實體牆或實體樓板元素，或更新已連接到分析板的既有實體元素。實體元素可以繼承分析板的幾何圖形、參數和開口 (取決於輸入設定)。如果分析板沒有關聯的實體元素，節點會根據分析模型建立新的實體元素。
 
-In this example, an analytical roof deck panel from the ACO Supermarket model is selected. That analytical panel is connected to this node, and the input Boolean values demonstrate the default behavior for updating geometry, parameters, and including openings. The node then creates or updates the physical roof element from the analytical panel.
+在此範例中，選取 ACO 超市模型中的屋頂平台分析板。將該分析板連接到此節點，輸入布林值會示範預設行為來更新幾何圖形、參數以及納入開口。然後，節點會建立或更新分析板的實體屋頂元素。
 ___
 ## 範例檔案
 

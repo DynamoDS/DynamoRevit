@@ -1,7 +1,7 @@
 ## Im Detail
-This node allows you to place the view label at a specific point on a sheet.
+Mit diesem Block können Sie die Ansichtsbeschriftung an einem bestimmten Punkt auf einem Plan platzieren.
 
-In this example, a new sheet is create "Dynamo Sheet" and view "L1 Wall Base" is placed at point "0,0,0.  The view is repositioned and used in the viewport input to node Viewport.SetLabelOffset along with a defined point to locate the view label.
+In diesem Beispiel wird ein neuer Plan "Dynamo Sheet" erstellt, und die Ansicht "L1 Wall Base" wird am Punkt "0,0,0" platziert. Die Ansicht wird neu positioniert und in der Ansichtsfenstereingabe für den Block Viewport.SetLabelOffset zusammen mit einem definierten Punkt verwendet, um die Ansichtsbeschriftung zu positionieren.
 
 
 ___

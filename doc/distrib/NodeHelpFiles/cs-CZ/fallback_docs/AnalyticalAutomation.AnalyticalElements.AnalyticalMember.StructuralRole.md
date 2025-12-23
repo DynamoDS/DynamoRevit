@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node outputs the structural role assigned to an analytical member.
+Výstupem tohoto uzlu je konstrukční role přiřazená analytickému prutu.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+V tomto příkladu je nosník z modelu Snowdon Structural převeden na analytický prut a tento uzel vrací jeho aktuální konstrukční roli.
 ___
 ## Vzorový soubor
 

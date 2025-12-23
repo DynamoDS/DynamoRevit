@@ -1,7 +1,7 @@
 ## Im Detail
-This node retrieves the ScheduleFieldId associated with a given ScheduleFilter.  Each schedule filter in Revit is linked to a specific field (for example, Level, Family and Type, Area). This node exposes that connection by returning the field identifier used by the filter.
+Dieser Block ruft die ScheduleFieldId ab, die mit einem bestimmten ScheduleFilter verknüpft ist. Jeder Bauteillistenfilter in Revit ist mit einem bestimmten Feld verknüpft (z. B. Ebene, Familie und Typ, Fläche). Dieser Block zeigt diese Verknüpfung an, indem er die vom Filter verwendete Feldkennung zurückgibt.
 
-In this example, a schedule filter is created and used as the input to ScheduleFilter.FileId.
+In diesem Beispiel wird ein Bauteillistenfilter erstellt und als Eingabe für ScheduleFilter.FileId verwendet.
 ___
 ## Beispieldatei
 

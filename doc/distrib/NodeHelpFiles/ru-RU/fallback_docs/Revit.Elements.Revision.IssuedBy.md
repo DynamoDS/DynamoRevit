@@ -1,7 +1,7 @@
 ## Подробности
-The Revision.IssuedBy node in Dynamo is used to read the “Issued By” information from a revision in Revit. It helps teams quickly identify who created or issued a revision, making documentation more transparent and easier to track.
+Узел Revision.IssuedBy в Dynamo используется для считывания информации «Кем выдано» из изменения в Revit. Это позволяет группам быстро определять, кто создал или выпустил изменение, что делает документацию более прозрачной и упрощает ее отслеживание.
 
-In this graph, the Select Revision node is used to choose a revision from the project. The Revision.IssuedBy node extracts the “Issued By” value, and the Watch node displays the result. This setup allows users to review revision ownership without opening Revit’s revision manager manually.
+На этом графике узел Select Revision используется для выбора изменения из проекта. Узел Revision.IssuedBy извлекает значение «Кем выдано», а узел Watch отображает результат. Эта настройка позволяет пользователям просматривать право владения изменениями, не открывая Диспетчер изменений Revit вручную.
 
 ___
 ## Файл примера

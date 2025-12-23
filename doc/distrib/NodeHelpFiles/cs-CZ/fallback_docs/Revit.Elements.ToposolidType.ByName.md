@@ -1,7 +1,7 @@
 ## Podrobnosti
-This node retrieves that ToposolidType from a project given a string input.  The type must exist in the project or a null will be given.
+Tento uzel načte daný objekt ToposolidType z projektu na základě řetězcového vstupu.  Typ musí v projektu existovat, jinak bude dána hodnota null.
 
-In this example "Toposolid 1" is being used as an input to ToposolidType.ByName and the output is the ToposolidType.  This output is used to generate a topoSolid.
+V tomto příkladu se jako vstup pro uzel ToposolidType.ByName použije „Terénní útvar 1“ a výstupem je objekt ToposolidType.  Tento výstup se použije k vygenerování terénního útvaru.
 ___
 ## Vzorový soubor
 

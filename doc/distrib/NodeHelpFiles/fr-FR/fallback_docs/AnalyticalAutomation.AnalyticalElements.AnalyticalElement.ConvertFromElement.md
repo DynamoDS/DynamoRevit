@@ -1,7 +1,7 @@
 ## Description approfondie
-This node converts an analytical member or analytical panel into an analytical element.
+Ce noeud convertit un membre analytique ou un panneau analytique en élément analytique.
 
-In this example, an analytical member is selected and fed into the node. The output is an analytical element that corresponds to the input, revealing the distinction between an analytical member and an analytical element even though their properties appear similar.
+Dans cet exemple, un membre analytique est sélectionné et introduit dans le nœud. La sortie est un élément analytique qui correspond à l'entrée, révélant la distinction entre un élément analytique et un élément analytique, même si leurs propriétés semblent similaires.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 詳細
-This node returns the collection of points that make up the divisions along a given Divided Path element in Revit. Each point corresponds to a division location along the underlying curve or surface path created by the DividedPath element.
+このノードは、Revit の指定された分割されたパス要素に沿って分割を構成する点のコレクションを返します。各点は、DividedPath 要素によって作成された基礎となる曲線またはサーフェス パスに沿った分割位置に対応します。
 
-In this example, a model curve is created from a specified start point and end point, then used as the input curve along with a integer value defining the number of equal divisions along the curve. The final node DividedPath.Points displays the resulting division points along the curve.
+この例では、指定した始点と終点からモデル曲線が作成され、次に、入力曲線として、曲線に沿った等間隔の分割数を定義する整数値とともに使用されます。最後の DividedPath.Points ノードで、曲線に沿って作成された分割点が表示されます。
 ___
 ## サンプル ファイル
 

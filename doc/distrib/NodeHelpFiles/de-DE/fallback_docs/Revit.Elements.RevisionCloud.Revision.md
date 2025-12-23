@@ -1,7 +1,7 @@
 ## Im Detail
-This node extracts the revision element linked to a specific revision cloud in Revit. It provides the revision data associated with that cloud, allowing users to check, track, or validate revision details programmatically within their project.
+Dieser Block extrahiert das mit einer bestimmten Änderungswolke in Revit verknüpfte Änderungselement. Er stellt die mit dieser Cloud verknüpften Änderungsdaten bereit, sodass Benutzer Änderungsdetails programmgesteuert innerhalb ihres Projekts prüfen, verfolgen oder validieren können.
 
-In this example a rectangle is created with number sliders for width and length, then exploded into curves and reversed for proper orientation. These curves, along with a chosen view (L1_SD) and a selected revision (Seq. 2 – Not For Construction), are used to generate a revision cloud via the RevisionCloud.ByCurve node. The resulting revision cloud is connected to the RevisionCloud.Revision node, which retrieves and outputs the revision associated with that cloud. This ensures that users can confirm which revision is tied to each revision cloud.
+In diesem Beispiel wird ein Rechteck mit Zahlen-Schiebereglern für Breite und Länge erstellt, dann in Kurven aufgelöst und umgekehrt, um die richtige Ausrichtung zu erzielen. Diese Kurven werden zusammen mit einer ausgewählten Ansicht (L1_SD) und einer ausgewählten Änderung (Seq. 2 - Not For Construction) verwendet, um über den Block RevisionCloud.ByCurve eine Änderungswolke zu generieren. Die resultierende Änderungswolke ist mit dem Block RevisionCloud.Revision verknüpft, der die mit dieser Wolke verknüpfte Änderung abruft und ausgibt. Dadurch wird sichergestellt, dass Benutzer bestätigen können, welche Änderung mit welcher Änderungswolke verknüpft ist.
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## In profondità
-This node retrieves the reference plane associated with a given sketch plane element. This helps in identifying or reusing the same reference plane for creating or modifying geometry.
+Questo nodo recupera il piano di riferimento associato ad un determinato elemento piano di disegno. Ciò consente di identificare o riutilizzare lo stesso piano di riferimento per creare o modificare la geometria.
 
-In this example, a plane is defined then connected to the SketchPlane.ByPlane node, which generates a corresponding sketch plane.  This sketch plane is used as an input to SketchPlane.ElementPlaneReference where the out can then be used for dimensioning, alignment, constraints, or other operations that require a Revit reference.
+In questo esempio, viene definito un piano che è poi connesso al nodo SketchPlane.ByPlane, che genera un piano di disegno corrispondente. Questo piano di disegno viene utilizzato come input in SketchPlane.ElementPlaneReference dove l'output può essere utilizzato per quotatura, allineamento, vincoli o altre operazioni che richiedono un riferimento di Revit.
 
 ___
 ## File di esempio

@@ -1,7 +1,7 @@
 ## Description approfondie
-This node outputs the structural role assigned to an analytical member.
+Ce noeud affiche le rôle structurel attribué à un élément analytique.
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+Dans cet exemple, une poutre du modèle structurel Snowdon est convertie en élément analytique, et ce nœud renvoie son rôle structurel actuel.
 ___
 ## Exemple de fichier
 

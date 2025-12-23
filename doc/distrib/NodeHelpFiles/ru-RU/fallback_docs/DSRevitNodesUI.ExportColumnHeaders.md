@@ -1,7 +1,7 @@
 ## Подробности
-This node gets all schedule column header options (OneRow, MultipleRows and None).
+Этот узел получает все варианты заголовков столбцов спецификации (OneRow, MultipleRows и None).
 
-In this example, columnHeaders (OneRow), is used as an input  to the ScheduleView.Export node to generate a typical export option.
+В этом примере столбец columnHeaders (OneRow) используется в качестве входного параметра для узла ScheduleView.Export для создания стандартного параметра экспорта.
 
 ___
 ## Файл примера

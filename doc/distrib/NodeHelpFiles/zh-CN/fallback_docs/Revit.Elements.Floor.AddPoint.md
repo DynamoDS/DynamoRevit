@@ -1,8 +1,8 @@
 ## 详细
 
-This node adds a point to a given floor.
+此节点向给定楼层添加一个点。
 
-In this example a number slider is used to generate a rectangle which is then used as an input to Floor.ByOutlineTypeAndLevel along with a given floor type and level.  We use this floor along with a new point as inputs to Floor.AddPoint.
+在此示例中，使用一个“数字”滑块生成一个矩形，然后该矩形与给定的楼板类型和标高一起用作“Floor.ByOutlineTypeAndLevel”的输入。我们将此楼层与一个新点一起用作“Floor.AddPoint”的输入。
 
 
 ___

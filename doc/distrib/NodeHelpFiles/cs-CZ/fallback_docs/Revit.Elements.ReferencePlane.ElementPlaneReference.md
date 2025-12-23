@@ -1,8 +1,8 @@
 ## Podrobnosti
-This node extracts the actual Revit element reference of a selected reference plane. This is useful when you need to use that plane as a hosting reference for geometry or dimensions inside Revit.
+Tento uzel extrahuje skutečnou referenci na prvek aplikace Revit vybrané referenční roviny. To je užitečné, pokud potřebujete danou rovinu použít jako referenci hostitele pro geometrii nebo kóty v aplikaci Revit.
 
 Příklad:
-In this graph, two points are defined using coordinates, and a reference plane is created between them with ReferencePlane.ByStartPointEndPoint. That reference plane is then connected to ReferencePlane.ElementPlaneReference, which outputs the plane’s Revit-native reference, making it ready to be used for hosting or alignment tasks.
+V tomto grafu jsou dva body definovány pomocí souřadnic a mezi nimi je pomocí metody ReferencePlane.ByStartPointEndPoint vytvořena referenční rovina. Tato referenční rovina je poté připojena k uzlu ReferencePlane.ElementPlaneReference, který je výstupem nativní reference roviny pro aplikaci Revit, čímž se připraví k použití pro úlohy hostování nebo zarovnání.
 ___
 ## Vzorový soubor
 

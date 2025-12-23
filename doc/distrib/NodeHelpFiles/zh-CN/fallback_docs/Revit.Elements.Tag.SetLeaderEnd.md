@@ -1,7 +1,7 @@
 ## 详细
-This node sets the location of the end point in a “free-end” tag.
+此节点在“free-end”标记中设置端点的位置。
 
-In this example, a tag is selected, and the original points are extracted,  The Y value is modified and the new XYZ points are defined and used as an input for location to node Tag.SetLeaderEnd along with the original tag selected.  The output is the new location of the tags’ end point.  See view floor plan L1.
+在此示例中，选择标记、提取原始点、修改 Y 值、定义新的 XYZ 点，并将其用作节点 Tag.SetLeaderEnd 位置的输入以及选择的原始标记。输出是标记终点的新位置。请参见“视图楼层平面 L1”。
 
 
 ___

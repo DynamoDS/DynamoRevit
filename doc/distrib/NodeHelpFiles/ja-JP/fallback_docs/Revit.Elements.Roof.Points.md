@@ -1,7 +1,7 @@
 ## 詳細
-This node gets the sketch points of a selected roof.
+このノードは、選択された屋根のスケッチ点を取得します。
 
-In this example all roofs are selected and used as the input to Roof.Points.  The output is each point of the select roof sketch.
+この例では、すべての屋根が選択され、Roof.Points への入力として使用されます。出力は、選択された屋根スケッチの各点です。
 ___
 ## サンプル ファイル
 

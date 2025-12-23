@@ -1,7 +1,7 @@
 ## 詳細
-This node outputs the structural role assigned to an analytical member.
+このノードは、解析用部材に割り当てられた構造の役割を出力します。
 
-In this example, a beam from the Snowdon Structural model is converted to an analytical member, and this node returns its current structural role.
+この例では、Snowdon 構造モデルの梁が解析用部材に変換され、このノードがその解析用部材の現在の構造の役割を返します。
 ___
 ## サンプル ファイル
 

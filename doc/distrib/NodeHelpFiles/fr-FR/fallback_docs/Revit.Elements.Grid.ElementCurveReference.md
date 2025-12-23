@@ -1,7 +1,7 @@
 ## Description approfondie
-This node returns the Revit curve reference associated with a given grid element.
+Ce noeud renvoie la référence de courbe Revit associée à un élément de grille donné.
 
-In this example all grid elements are selected in the project and used as an input to GridElementCUrveReference node.  This node exposes that reference so it can be used in other operations such as dimensioning, path-based element placement, or geometric analysis.
+Dans cet exemple, tous les éléments de grille sont sélectionnés dans le projet et utilisés en tant qu'entrée pour le nœud GridElementCUrveReference.  Ce noeud expose cette référence afin qu'elle puisse être utilisée dans d'autres opérations telles que la cotation, le placement d'éléments basé sur le chemin ou l'analyse géométrique.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Im Detail
-This node returns the connection type associated with the connections linked to the structure data element.
+Dieser Block gibt den Verbindungstyp zurück, der den Verbindungen zugeordnet ist, die mit dem Tragwerksdatenelement verknüpft sind.
 
-In this example, a column has been selected with three connections: a base plate, a moment connection, and a bolted connection.
+In diesem Beispiel wurde eine Stütze mit drei Verbindungen ausgewählt: einer Fußplatte, einem biegesteifen Trägerstoß (geschweißt) und einer Schraubverbindung.
 ___
 ## Beispieldatei
 
