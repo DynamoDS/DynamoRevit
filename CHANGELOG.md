@@ -1,3 +1,6 @@
+## 0.7.75
+* rearrange some overlapping nodes in templates
+
 ## 0.7.74
 * some scripts and help files translations
 * move 3 templates for German only from internal together with other templates
