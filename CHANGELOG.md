@@ -1,3 +1,6 @@
+## 0.7.76
+* Update Dynamo Core to 4.0.1.3703
+
 ## 0.7.75
 * rearrange some overlapping nodes in templates
 

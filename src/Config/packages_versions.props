@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <!-- 3rd party package versions -->
-        <DYNAMOCORE_VERSION>4.0.0.3277</DYNAMOCORE_VERSION>
+        <DYNAMOCORE_VERSION>4.0.1.3703</DYNAMOCORE_VERSION>
 
         <DYNAMOWPFUI_VERSION Condition="'$(DYNAMOWPFUI_VERSION)' == ''">$(DYNAMOCORE_VERSION)</DYNAMOWPFUI_VERSION>
         <DYNAMOCORENODES_VERSION Condition="'$(DYNAMOCORENODES_VERSION)' == ''">$(DYNAMOCORE_VERSION)</DYNAMOCORENODES_VERSION>
