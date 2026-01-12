@@ -70,5 +70,7 @@ limitations under the License.
       <Private>False</Private>
     </ProjectReference>
     <PackageReference Include="DynamoVisualProgramming.Tests" Version="$(DYNAMOTESTS_VERSION)" ExcludeAssets="runtime" />
+    <PackageReference Include="NUnit" Version="$(NUnit_VERSION)" />
+    <PackageReference Include="NUnit3TestAdapter" Version="$(NUnit3TestAdapter_VERSION)" />
   </ItemGroup>
 </Project>
