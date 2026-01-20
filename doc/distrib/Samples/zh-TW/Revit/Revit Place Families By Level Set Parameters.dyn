@@ -183,7 +183,7 @@
         {
           "Id": "7620f27cdf81435db1649df3e71c79ff",
           "Name": "level",
-          "Description": "要裝載族群實體的樓層。\n\nLevel",
+          "Description": "要承載族群實體的樓層。\n\nLevel",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
