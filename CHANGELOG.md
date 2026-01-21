@@ -1,3 +1,6 @@
+## 0.8.2
+* Update Dynamo Core to 4.0.2.3852
+
 ## 0.8.1
 * code split to Revit 2028, update version
 
