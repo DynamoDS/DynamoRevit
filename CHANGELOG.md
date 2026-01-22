@@ -1,3 +1,6 @@
+## 0.7.77
+* Update Dynamo Core to 4.0.2.3852
+
 ## 0.7.76
 * Update Dynamo Core to 4.0.1.3703
 
