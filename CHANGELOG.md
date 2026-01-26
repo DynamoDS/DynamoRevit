@@ -1,3 +1,6 @@
+## 0.8.3
+* DynamoRevit sample families content resave
+
 ## 0.8.2
 * Update Dynamo Core to 4.0.2.3852
 
