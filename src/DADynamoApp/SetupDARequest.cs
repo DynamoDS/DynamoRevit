@@ -5,7 +5,7 @@ namespace DADynamoApp
     /// <summary>
     /// Configuration details for a cloud model.
     /// </summary>
-    internal class CloudModelConfig
+    internal class OpenCloudModelLocation
     {
         /// <summary>
         /// Represents the region where the cloud model is hosted.
@@ -57,19 +57,16 @@ namespace DADynamoApp
         //
         // Summary:
         // Save the revit document to the default result.rvt file.
-        [JsonProperty(nameof(SaveRevitFile), Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
-        public bool SaveRevitFile { get; set; } = false;
+        [JsonProperty(nameof(GenerateOutputModel), Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
+        public bool GenerateOutputModel { get; set; } = false;
 
         /// <summary>
-        /// The location to save the current DA work model.
+        /// Gets or sets the name of the Revit model file.
         /// </summary>
-        [JsonProperty(nameof(SaveCloudModelLocation), Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
+        public string LocalFileName { get; set; } = string.Empty;
+
+        public OpenCloudModelLocation? OpenCloudModelLocation { get; set; } = null;
+
         public SaveCloudModelLocation? SaveCloudModelLocation { get; set; } = null;
-
-        /// <summary>
-        /// Gets or sets the configuration for the cloud model.
-        /// </summary>
-        [JsonProperty(nameof(CloudModel), Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public CloudModelConfig? CloudModel { get; set; } = null;
     }
 }

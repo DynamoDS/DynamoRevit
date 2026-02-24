@@ -1,21 +1,27 @@
-﻿using Autodesk.Revit.ApplicationServices;
+﻿using Autodesk.DataManagement;
+using Autodesk.DataManagement.Model;
+using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using DesignAutomationFramework;
+using DSCPython;
+using Dynamo.Applications;
+using Dynamo.Migration;
 using Dynamo.Models;
+using Dynamo.PythonServices;
+using Dynamo.Scheduler;
 using DynamoPlayer;
-using RevitServices.Persistence;
+using Greg.AuthProviders;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ProtoCore.DesignScriptParser;
 using RevitServices.Elements;
+using RevitServices.Persistence;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Loader;
-using System.Diagnostics;
-using Dynamo.Applications;
-using Dynamo.Scheduler;
-using static Dynamo.Models.DynamoModel;
 using System.Text.RegularExpressions;
-using Greg.AuthProviders;
-using Dynamo.PythonServices;
-using DSCPython;
-using Newtonsoft.Json;
+using System.Windows.Controls;
+using static Dynamo.Models.DynamoModel;
 
 namespace DADynamoApp
 {
@@ -25,7 +31,6 @@ namespace DADynamoApp
     {
         private DynamoModel model;
         internal static DynamoPlayerLoggerConfiguration logConfig = new DynamoPlayerLoggerConfiguration() { DynamoLogLevel = Dynamo.Logging.LogLevel.Console, LogLevel = DynamoPlayer.LogLevel.Information };
-        private AssemblyLoadContext loadContext = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()) ?? AssemblyLoadContext.Default;
         private string DynamoPath;
         private string DynamoRevitPath;
         private ControlledApplication controlledApplication;
@@ -120,9 +125,90 @@ namespace DADynamoApp
             return r.Replace(app.VersionName, "");
         }
 
+        /// <summary>
+        /// Extracts the 'token' value from the work item JSON content.
+        /// This is robust to casing differences and supports BoundArguments as an object.
+        /// Returns null if token cannot be found.
+        /// </summary>
+        private string? ExtractTokenFromWorkItem(string workItemContent)
+        {
+            if (string.IsNullOrWhiteSpace(workItemContent)) return null;
+
+            try
+            {
+                var job = JObject.Parse(workItemContent);
+
+                // Find BoundArguments (case-insensitive)
+                JToken? boundToken = null;
+                if (!job.TryGetValue("BoundArguments", out boundToken))
+                {
+                    foreach (var prop in job.Properties())
+                    {
+                        if (string.Equals(prop.Name, "BoundArguments", StringComparison.OrdinalIgnoreCase))
+                        {
+                            boundToken = prop.Value;
+                            break;
+                        }
+                    }
+                }
+
+                if (boundToken == null) return null;
+
+                // If it's an object, try direct lookup
+                if (boundToken.Type == JTokenType.Object)
+                {
+                    var boundObj = (JObject)boundToken;
+
+                    // try exact key 'token' then case-insensitive
+                    if (boundObj.TryGetValue("adsk3LeggedToken", out var tokVal))
+                    {
+                        return tokVal.Type == JTokenType.String ? tokVal.Value<string>() : tokVal.ToString();
+                    }
+
+                    foreach (var prop in boundObj.Properties())
+                    {
+                        if (string.Equals(prop.Name, "adsk3LeggedToken", StringComparison.OrdinalIgnoreCase))
+                        {
+                            return prop.Value.Type == JTokenType.String ? prop.Value.Value<string>() : prop.Value.ToString();
+                        }
+                    }
+                }
+
+                // Fallback: convert to dictionary and search case-insensitively
+                var boundDict = boundToken.ToObject<Dictionary<string, JToken>>();
+                if (boundDict != null)
+                {
+                    foreach (var kv in boundDict)
+                    {
+                        if (string.Equals(kv.Key, "adsk3LeggedToken", StringComparison.OrdinalIgnoreCase))
+                        {
+                            return kv.Value.Type == JTokenType.String ? kv.Value.Value<string>() : kv.Value.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ExtractTokenFromWorkItem failed: {ex.Message}");
+            }
+
+            return null;
+        }
+
         public void HandleDesignAutomationReadyEvent(object sender, DesignAutomationReadyEventArgs e)
         {
             Console.WriteLine("<<!>> DA event raised.");
+
+            var workItemId = Environment.ExpandEnvironmentVariables("%DAS_WORKITEM_ID%");
+
+            Console.WriteLine($"<<!>> WorkItemId is '{workItemId}'");
+
+            var workItemFileName = $"{workItemId}_job.das";
+            Console.WriteLine($"Looking for WorkItem file at '{workItemFileName}', exists: {File.Exists(workItemFileName)}");
+            var workItemContent = File.ReadAllText(workItemFileName);
+           
+            var token = ExtractTokenFromWorkItem(workItemContent);
+            Console.WriteLine($"<<!>> Token is '{token}'");
 
             // Local Change
             //WorkItemFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -149,13 +235,29 @@ namespace DADynamoApp
             }
 
             Document? doc = null;
-            var cModel = setupReq?.CloudModel;
+            var cModel = setupReq?.OpenCloudModelLocation;
             if (cModel != null)
             {
                 try
                 {
+                    Console.WriteLine($"Opening cloud model with Region: {cModel.Region}, Project: {cModel.ProjectGuid}, Model: {cModel.ModelGuid}");
+
                     var cloudModelPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cModel.Region, cModel.ProjectGuid, cModel.ModelGuid);
+                    Console.WriteLine(doc == null ? $"Cloud model path is {JsonConvert.SerializeObject(cloudModelPath)}" : "doc is not null before opening cloud model");
                     doc = app?.OpenDocumentFile(cloudModelPath, new OpenOptions());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (setupReq?.LocalFileName != null)
+            {
+                try
+                {
+                    var localModelPath = Path.Combine(WorkItemFolder, setupReq.LocalFileName);
+                    Console.WriteLine($"Opening local model at {localModelPath}");
+                    doc = app?.OpenDocumentFile(localModelPath);
                 }
                 catch (Exception ex)
                 {
@@ -240,7 +342,7 @@ namespace DADynamoApp
             File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), output);
 
             // Default, save the rvt
-            bool saveRvt = setupReq?.SaveRevitFile ?? true;
+            bool saveRvt = setupReq?.GenerateOutputModel ?? true;
             Console.WriteLine($"{nameof(saveRvt)} is set to {saveRvt}");
             if (saveRvt)
             {
@@ -248,8 +350,10 @@ namespace DADynamoApp
                 {
                     if (doc.IsModelInCloud)
                     {
+                        Console.WriteLine("Document is in cloud.");
                         if (doc.IsWorkshared) // work-shared/C4R model
                         {
+                            Console.WriteLine("Document is C4R.");
                             // Syncronize with central
                             SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
                             swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
@@ -257,22 +361,66 @@ namespace DADynamoApp
                         }
                         else 
                         {// Single user cloud model
-                            var newLoc = setupReq?.SaveCloudModelLocation;
-                            if (newLoc != null)
+                            Console.WriteLine("Document is single-user cloud model.");
+
+                            // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
+                            doc.SaveAs(setupReq.LocalFileName);
+
+                            /* TODO: figure out if we need to make this work and how.
+
+                            doc.SaveCloudModel();
+
+                            Console.WriteLine($"uploading with token {token}");
+                            // TODO: For single-user cloud models, we need to publish the model after saving so that the changes are reflected in the cloud.
+                            var cmPath = doc.GetCloudModelPath();
+                            var dmClient = new DataManagementClient(null, new StaticAuthenticationProvider(token));
+                            var projId = "b." + setupReq.SaveCloudModelLocation.AccountId;
+
+                            var publishTask = dmClient.ExecutePublishModelAsync(projId, new PublishModelPayload()
                             {
-                                doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
-                            }
-                            else
-                            {
-                                doc.SaveCloudModel();
-                            }
+                                Type = TypeCommands.Commands,
+                                Attributes = new PublishModelPayloadAttributes()
+                                {
+                                    Extension = new PublishModelPayloadAttributesExtension()
+                                    {
+                                        Type = TypeCommandtypePublishmodel.CommandsautodeskBim360C4RModelPublish,
+                                        VarVersion = "1.0.0"
+                                    }
+                                },
+                                Relationships = new PublishModelPayloadRelationships()
+                                {
+                                    Resources = new PublishModelPayloadRelationshipsResources()
+                                    {
+                                        Data = new List<PublishModelPayloadRelationshipsResourcesData>
+                                        {
+                                            new PublishModelPayloadRelationshipsResourcesData()
+                                            {
+                                                Id = cmPath.GetModelGUID().ToString(),
+                                                Type = TypeItem.Items
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+
+                            publishTask.Wait();
+                            PublishModel respo = publishTask.Result;
+                            Console.WriteLine($"Publish result: {JsonConvert.SerializeObject(respo)}");
+                            */
                         }
                     }
                     else
-                    {// Save locally 
-                        RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
-                        ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
-                        doc.SaveAs(path, new SaveAsOptions());
+                    {
+                        /* TODO: Figure ou tif this is useful.
+                        var newLoc = setupReq?.SaveCloudModelLocation;
+                        if (newLoc != null)
+                        {
+                            Console.WriteLine($"Saving to new cloud model location with AccountId: {newLoc.AccountId}, ProjectId: {newLoc.ProjectId}, FolderId: {newLoc.FolderId}, ModelName: {newLoc.ModelName}");
+                            doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
+                        }*/
+
+                        // Save locally 
+                        doc.Save();
                     }
                 }
                 catch (Exception ex)
