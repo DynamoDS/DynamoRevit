@@ -43,7 +43,7 @@ namespace DADynamoApp
         private readonly string PythonDllFolder = "pythonDependencies";
 
 
-        public static List<IUpdater> Updaters = new List<IUpdater>();
+        private List<IUpdater> Updaters = [];
 
         public ExternalDBApplicationResult OnShutdown(ControlledApplication application)
         {
@@ -455,7 +455,6 @@ namespace DADynamoApp
                 }
             }
 
-            model.RunCompleted += Model_RunCompleted;
             try
             {
                 // If the out put folder exists and is empty, then delete it so we don't generate empty output zip files.
@@ -609,11 +608,6 @@ namespace DADynamoApp
             {
                 Console.WriteLine("Could not setup python " + ex.Message);
             }
-        }
-
-        private void Model_RunCompleted(object sender, bool success)
-        {
-            Console.WriteLine($"Run Completed");
         }
     }
 }
