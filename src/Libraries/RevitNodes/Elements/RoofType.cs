@@ -123,7 +123,8 @@ namespace Revit.Elements
             return new Dictionary<string, object>
             {
                 { absorptanceOutputPort, thermalProperties.Absorptance },
-                { thermalTransmittanceOutputPort, thermalProperties.ThermalTransmittance },
+                // TODO: reconcile for Design Automation
+                //{ thermalTransmittanceOutputPort, thermalProperties.ThermalTransmittance },
                 { roughnessOutputPort, thermalProperties.Roughness },
                 { thermalMassOutputPort, thermalProperties.ThermalMass },
                 { thermalResistanceOutputPort, thermalProperties.ThermalResistance }

@@ -18,7 +18,8 @@ namespace Revit.GeometryConversion
                 .Select(mesh.get_Triangle)
                 .Select(tri => IndexGroup.ByIndices(tri.get_Index(0), tri.get_Index(1), tri.get_Index(2)));
 
-            return Autodesk.DesignScript.Geometry.Mesh.ByPointsIndexGroups(pts, tris);
+            // TODO: reconcile for Design Automation
+            return null;// Autodesk.DesignScript.Geometry.Mesh.ByPointsIndexGroups(pts, tris);
 
         }
 
