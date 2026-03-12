@@ -63,7 +63,7 @@ namespace DADynamoApp
         /// <summary>
         /// Gets or sets the name of the Revit model file.
         /// </summary>
-        public string LocalFileName { get; set; } = string.Empty;
+        public string LocalModelFileName { get; set; } = string.Empty;
 
         public OpenCloudModelLocation? OpenCloudModelLocation { get; set; } = null;
 

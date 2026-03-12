@@ -260,11 +260,11 @@ namespace DADynamoApp
                     Console.WriteLine(ex.Message);
                 }
             }
-            else if (setupReq?.LocalFileName != null)
+            else if (setupReq?.LocalModelFileName != null)
             {
                 try
                 {
-                    var localModelPath = Path.Combine(WorkItemFolder, setupReq.LocalFileName);
+                    var localModelPath = Path.Combine(WorkItemFolder, setupReq.LocalModelFileName);
                     Console.WriteLine($"Opening local model at {localModelPath}");
                     doc = app?.OpenDocumentFile(localModelPath);
                 }
@@ -376,7 +376,7 @@ namespace DADynamoApp
                             Console.WriteLine("Document is single-user cloud model.");
 
                             // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
-                            doc.SaveAs(setupReq.LocalFileName);
+                            doc.SaveAs(setupReq.LocalModelFileName);
 
                             /* TODO: figure out if we need to make this work and how.
 
