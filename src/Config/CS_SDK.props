@@ -9,7 +9,7 @@
     <TargetFramework Condition="'$(Platform)' == 'NET10_DA'">net8.0-windows</TargetFramework>
     <TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2026</RevitVersionNumber>
     <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
     <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>

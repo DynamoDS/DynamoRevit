@@ -1,6 +1,6 @@
+using System;
 using System.IO;
 using DADynamoApp;
-using Dynamo.Graph.Workspaces;
 using NUnit.Framework;
 using RevitTestServices;
 using RTF.Framework;
@@ -30,40 +30,39 @@ namespace RevitSystemTests
             base.TearDown();
         }
 
+        // TODO: Refactor DAEntrypoint so that all post-model-startup logic lives in a separate
+        // internal DAApp class that accepts a DynamoModel in its constructor. DAEntrypoint would
+        // just create the model and hand it to new DAApp(model). This test could then do:
+        //   var app = new DAApp(ViewModel.Model);
+        //   app.SetupProfilingHandlers();
+        // ...which tests the actual DA code path without needing to create a DAEntrypoint at all,
+        // and makes it straightforward to test graph running too (pass a work item folder).
+
         /// <summary>
-        /// Verifies that when profiling handlers are set up (mirroring the pattern in DAEntrypoint.SetupProfilingHandlers),
-        /// node execution begin and end events are logged to stdout via DALogger.
+        /// Verifies that DAEntrypoint.SetupProfilingHandlers wires up node execution events that
+        /// call DALogger.SerializeNodeOutputs and write profiling output to stdout.
         /// </summary>
         [Test]
         [TestModel(@".\empty.rfa")]
-        public void NodeExecutionEventsAreLoggedToStdout()
+        public void SetupProfilingHandlers_WritesNodeOutputToStdout()
         {
-            var daLogger = new DALogger(TempFolder);
-
-            // Mirror the WorkspaceOpened subscription from DAEntrypoint.SetupProfilingHandlers
-            Model.WorkspaceOpened += ws =>
-            {
-                if (ws is not HomeWorkspaceModel homeWorkspace) return;
-
-                homeWorkspace.EvaluationStarted += (sender, args) =>
-                {
-                    homeWorkspace.EngineController.EnableProfiling(true, homeWorkspace, homeWorkspace.Nodes);
-                };
-
-                foreach (var node in homeWorkspace.Nodes)
-                {
-                    node.NodeExecutionBegin += nm => daLogger.Log($"Node {nm.Name} started execution.");
-                    node.NodeExecutionEnd += nm => daLogger.Log($"Node {nm.Name} finished execution.");
-                }
-            };
+            // Use the actual production method — SetupProfilingHandlers subscribes to WorkspaceOpened
+            // and wires all the profiling/serialization handlers on the model we already have.
+            var entrypoint = new DAEntrypoint();
+            entrypoint.SetupProfilingHandlers(Model);
 
             string dynPath = Path.GetFullPath(Path.Combine(workingDirectory, @".\Core\SanityCheck.dyn"));
             ViewModel.OpenCommand.Execute(dynPath);
             RunCurrentModel();
 
             var output = capturedOutput.ToString();
-            StringAssert.Contains("Point.ByCoordinates started execution.", output);
-            StringAssert.Contains("Point.ByCoordinates finished execution.", output);
+
+            // Profiling start/end lines must appear
+            StringAssert.Contains("Node Point.ByCoordinates started execution.", output);
+            StringAssert.Contains("Node Point.ByCoordinates finished execution.", output);
+
+            // DALogger.SerializeNodeOutputs must have returned something for the Point node
+            StringAssert.Contains("Node Point.ByCoordinates outputs:", output);
         }
     }
 }

@@ -3,6 +3,8 @@ using ProtoCore;
 using System.Reflection;
 using System.Text.Json;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("RevitSystemTests")]
+
 namespace DADynamoApp;
 
 /// <summary>

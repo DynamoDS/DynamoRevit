@@ -443,7 +443,7 @@ namespace DADynamoApp
             e.Succeeded = true;
         }
 
-        private void SetupProfilingHandlers(DynamoModel model)
+        internal void SetupProfilingHandlers(DynamoModel model)
         {
             model.WorkspaceOpened += ws =>
             {
