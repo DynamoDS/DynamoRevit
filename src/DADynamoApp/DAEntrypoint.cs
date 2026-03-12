@@ -314,8 +314,7 @@ namespace DADynamoApp
                     ProcessMode = TaskProcessMode.Synchronous,
                     CLIMode = true,
                     IsHeadless = true,
-                    IsServiceMode = true,
-                    Logger = new DALogger(WorkItemFolder)
+                    IsServiceMode = true
                 });
 
             LoadMessage = model != null ? "loaded" : "no loaded";
@@ -455,7 +454,7 @@ namespace DADynamoApp
                 EventHandler<EventArgs> evaluationStartedHandler = (sender, args) =>
                 {
                     homeWorkspace.EngineController.EnableProfiling(true, homeWorkspace, homeWorkspace.Nodes);
-                    model.Logger.Log($"Profiling enabled for {homeWorkspace.Name} dynamo workspace");
+                    Console.WriteLine($"{DateTime.UtcNow:u} : Profiling enabled for {homeWorkspace.Name} dynamo workspace");
                 };
 
                 EventHandler<Dynamo.Models.EvaluationCompletedEventArgs> evaluationCompletedHandler = (sender, args) =>
@@ -470,24 +469,21 @@ namespace DADynamoApp
                 {
                     Action<NodeModel> beginHandler = nm =>
                     {
-                        model.Logger.Log($"Node {nm.Name} started execution.");
+                        Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} started execution.");
                     };
 
                     Action<NodeModel> endHandler = nm =>
                     {
-                        if (model.Logger is DALogger daLogger)
-                        {
-                            var outputSummary = daLogger.SerializeNodeOutputs(nm, homeWorkspace.EngineController);
-                            if (!string.IsNullOrEmpty(outputSummary))
-                                model.Logger.Log($"Node {nm.Name} outputs: {outputSummary}");
+                        var outputSummary = DALogger.SerializeNodeOutputs(nm, homeWorkspace.EngineController);
+                        if (!string.IsNullOrEmpty(outputSummary))
+                            Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} outputs: {outputSummary}");
 
-                            var runtimeStatus = homeWorkspace.EngineController.LiveRunnerRuntimeCore.RuntimeStatus;
-                            var nodeMessages = DALogger.GetNodeMessages(runtimeStatus, nm.GUID);
-                            if (!string.IsNullOrEmpty(nodeMessages))
-                                model.Logger.Log($"Node {nm.Name} messages: {nodeMessages}");
-                        }
+                        var runtimeStatus = homeWorkspace.EngineController.LiveRunnerRuntimeCore.RuntimeStatus;
+                        var nodeMessages = DALogger.GetNodeMessages(runtimeStatus, nm.GUID);
+                        if (!string.IsNullOrEmpty(nodeMessages))
+                            Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} messages: {nodeMessages}");
 
-                        model.Logger.Log($"Node {nm.Name} finished execution.");
+                        Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} finished execution.");
                     };
 
                     node.NodeExecutionBegin += beginHandler;

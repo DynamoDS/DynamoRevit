@@ -1,6 +1,4 @@
-using Dynamo.Configuration;
 using Dynamo.Graph.Nodes;
-using Dynamo.Logging;
 using ProtoCore;
 using System.Reflection;
 using System.Text.Json;
@@ -8,10 +6,11 @@ using System.Text.Json;
 namespace DADynamoApp;
 
 /// <summary>
-/// Logger for DynamoRevit Design Automation runs. Writes all log messages to stdout
-/// with a UTC timestamp. Also provides node output serialization for profiling.
+/// Utility helpers for DynamoRevit Design Automation profiling output.
+/// All Dynamo internal logging is already redirected to stdout by IsServiceMode=true.
+/// This class provides node output serialization via reflection into DynamoPlayer.
 /// </summary>
-public class DALogger : DynamoLogger
+internal static class DALogger
 {
     // Cached reflection members for Player's WatchNodeHandler methods
     private static MethodInfo? getNodeValueMethod;
@@ -23,23 +22,11 @@ public class DALogger : DynamoLogger
         DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
     };
 
-    public DALogger(string logDirectory)
-        : base(new DebugSettings(), logDirectory, false, true, false)
-    {
-        Console.WriteLine($"DALogger initialized. LogPath: {this.LogPath}");
-    }
-
-    protected override void Log(string message, LogLevel level, bool reportModification)
-    {
-        Console.WriteLine($"{DateTime.UtcNow:u} : {message}");
-        base.Log(message, level, reportModification);
-    }
-
     /// <summary>
     /// Serializes node output values by getting data from the runtime mirror
     /// and using Player's serialization logic via reflection.
     /// </summary>
-    public string SerializeNodeOutputs(NodeModel node, Dynamo.Engine.EngineController engineController, int maxLength = 2000)
+    public static string SerializeNodeOutputs(NodeModel node, Dynamo.Engine.EngineController engineController, int maxLength = 2000)
     {
         try
         {
@@ -145,7 +132,7 @@ public class DALogger : DynamoLogger
     /// <summary>
     /// Gets runtime warnings for a specific node as a JSON string.
     /// </summary>
-    internal static string GetNodeMessages(RuntimeStatus runtimeStatus, Guid nodeId)
+    public static string GetNodeMessages(RuntimeStatus runtimeStatus, Guid nodeId)
     {
         var warnings = new List<string>();
 
