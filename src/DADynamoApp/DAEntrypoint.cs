@@ -5,6 +5,8 @@ using Autodesk.Revit.DB;
 using DesignAutomationFramework;
 using DSCPython;
 using Dynamo.Applications;
+using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
 using Dynamo.Migration;
 using Dynamo.Models;
 using Dynamo.PythonServices;
@@ -34,6 +36,13 @@ namespace DADynamoApp
         private string DynamoPath;
         private string DynamoRevitPath;
         private ControlledApplication controlledApplication;
+
+        // Store event handler references for cleanup
+        private readonly Dictionary<HomeWorkspaceModel,
+            (EventHandler<EventArgs> evaluationStartedHandler,
+             EventHandler<Dynamo.Models.EvaluationCompletedEventArgs> evaluationCompletedHandler,
+             Dictionary<NodeModel, Action<NodeModel>[]> nodeHandlers)>
+            workspaceHandlers = [];
 
         private string LoadMessage;
         private string WorkItemFolder;
@@ -310,6 +319,8 @@ namespace DADynamoApp
 
             LoadMessage = model != null ? "loaded" : "no loaded";
 
+            SetupProfilingHandlers(model);
+
             var playerHost = new PlayerHostDynamoDefault(model, new DynamoPlayerLogger<PlayerHostDynamoDefault>(logConfig));
             var workflows = new DynamoModelWorkflows(
                 playerHost,
@@ -430,6 +441,89 @@ namespace DADynamoApp
             }
 
             e.Succeeded = true;
+        }
+
+        internal void SetupProfilingHandlers(DynamoModel model)
+        {
+            model.WorkspaceOpened += ws =>
+            {
+                if (ws is not HomeWorkspaceModel homeWorkspace) return;
+
+                var nodeHandlers = new Dictionary<NodeModel, Action<NodeModel>[]>();
+
+                EventHandler<EventArgs> evaluationStartedHandler = (sender, args) =>
+                {
+                    homeWorkspace.EngineController.EnableProfiling(true, homeWorkspace, homeWorkspace.Nodes);
+                    Console.WriteLine($"{DateTime.UtcNow:u} : Profiling enabled for {homeWorkspace.Name} dynamo workspace");
+                };
+
+                EventHandler<Dynamo.Models.EvaluationCompletedEventArgs> evaluationCompletedHandler = (sender, args) =>
+                {
+                    if (workspaceHandlers.TryGetValue(homeWorkspace, out var handlers))
+                    {
+                        CleanupWorkspaceHandlers(homeWorkspace, handlers.evaluationStartedHandler, handlers.evaluationCompletedHandler, handlers.nodeHandlers);
+                    }
+                };
+
+                foreach (var node in homeWorkspace.Nodes)
+                {
+                    Action<NodeModel> beginHandler = nm =>
+                    {
+                        Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} started execution.");
+                    };
+
+                    Action<NodeModel> endHandler = nm =>
+                    {
+                        var outputSummary = DALogger.SerializeNodeOutputs(nm, homeWorkspace.EngineController);
+                        if (!string.IsNullOrEmpty(outputSummary))
+                            Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} outputs: {outputSummary}");
+
+                        var runtimeStatus = homeWorkspace.EngineController.LiveRunnerRuntimeCore.RuntimeStatus;
+                        var nodeMessages = DALogger.GetNodeMessages(runtimeStatus, nm.GUID);
+                        if (!string.IsNullOrEmpty(nodeMessages))
+                            Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} messages: {nodeMessages}");
+
+                        Console.WriteLine($"{DateTime.UtcNow:u} : Node {nm.Name} finished execution.");
+                    };
+
+                    node.NodeExecutionBegin += beginHandler;
+                    node.NodeExecutionEnd += endHandler;
+
+                    nodeHandlers[node] = [beginHandler, endHandler];
+                }
+
+                homeWorkspace.EvaluationStarted += evaluationStartedHandler;
+                homeWorkspace.EvaluationCompleted += evaluationCompletedHandler;
+
+                workspaceHandlers[homeWorkspace] = (evaluationStartedHandler, evaluationCompletedHandler, nodeHandlers);
+            };
+        }
+
+        private void CleanupWorkspaceHandlers(
+            HomeWorkspaceModel workspace,
+            EventHandler<EventArgs>? evaluationStartedHandler,
+            EventHandler<Dynamo.Models.EvaluationCompletedEventArgs>? evaluationCompletedHandler,
+            Dictionary<NodeModel, Action<NodeModel>[]> nodeHandlers)
+        {
+            if (evaluationStartedHandler != null)
+                workspace.EvaluationStarted -= evaluationStartedHandler;
+
+            if (evaluationCompletedHandler != null)
+                workspace.EvaluationCompleted -= evaluationCompletedHandler;
+
+            foreach (var kvp in nodeHandlers)
+            {
+                var node = kvp.Key;
+                var nodeHandlerArray = kvp.Value;
+
+                if (nodeHandlerArray.Length >= 2)
+                {
+                    node.NodeExecutionBegin -= nodeHandlerArray[0];
+                    node.NodeExecutionEnd -= nodeHandlerArray[1];
+                }
+            }
+
+            workspaceHandlers.Remove(workspace);
         }
 
         private void PreInstallPythonDependencies()
