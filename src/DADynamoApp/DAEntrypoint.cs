@@ -21,9 +21,7 @@ using DateTime = System.DateTime;
 
 namespace DADynamoApp
 {
-    [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
-    [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-    public class DAEntrypoint : IExternalDBApplication
+    public class DAEntrypoint 
     {
         private DynamoModel model;
         internal static DynamoPlayerLoggerConfiguration logConfig = new DynamoPlayerLoggerConfiguration() { DynamoLogLevel = Dynamo.Logging.LogLevel.Console, LogLevel = DynamoPlayer.LogLevel.Information };
@@ -49,30 +47,11 @@ namespace DADynamoApp
         {
             model?.Dispose();
 
-            AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
-            AppDomain.CurrentDomain.ProcessExit -= CurrentDomain_ProcessExit;
-            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
-
             controlledApplication.DocumentClosing -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosing;
             controlledApplication.DocumentClosed -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosed;
             controlledApplication.DocumentOpened -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentOpened;
 
             return ExternalDBApplicationResult.Succeeded;
-        }
-
-        private static void CurrentDomain_ProcessExit(object? sender, EventArgs e)
-        {
-            Process proc = Process.GetCurrentProcess();
-            Console.WriteLine($"Dynamo exiting with Peak physical memory {proc.PeakWorkingSet64} bytes");
-            if (proc.HasExited)
-            {
-                Console.WriteLine($"Dynamo exiting with code {proc.ExitCode}");
-            }
-        }
-
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            Console.WriteLine($"Unhandled exception: {e}");
         }
 
         public ExternalDBApplicationResult OnStartup(ControlledApplication application)
@@ -87,10 +66,6 @@ namespace DADynamoApp
 
             var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
             var hostDir = Path.GetDirectoryName(hostloc);
-
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             Console.WriteLine("<<!>> Starting to load D4DA");
 
@@ -115,11 +90,6 @@ namespace DADynamoApp
             {
                 return ExternalDBApplicationResult.Failed;
             }
-        }
-
-        private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
-        {
-            return DynamoRevitAssemblyResolver.ResolveDynamoAssembly(DynamoPath, [Path.Combine(WorkItemFolder, PythonDllFolder)], args);
         }
 
         private static string GetRevitContext(Autodesk.Revit.ApplicationServices.Application app)
