@@ -1,7 +1,7 @@
 ## Im Detail
 `Select Filled Region Type` ermöglicht die Auswahl eines gefüllten Bereichstyps aus allen im aktiven Revit-Dokument verfügbaren Typen.
 
-Im folgenden Beispiel wird eine neue Zeichenansicht im aktiven Revit-Dokument erstellt. In der Ansicht wird ein gefüllter Bereich mit dem Typ "Diagonal ab" erstellt.
+Im folgenden Beispiel wird eine neue Entwurfsansicht im aktiven Revit-Dokument erstellt. In der Ansicht wird ein gefüllter Bereich mit dem Typ "Diagonal ab" erstellt.
 
 ___
 ## Beispieldatei
