@@ -16,6 +16,6 @@
       "NUnit": "3.13.3",
       "NUnit.Engine": "3.13.2",
       "System.Resources.Extensions": "5.0.0"
-    }
+   }
   }
 }

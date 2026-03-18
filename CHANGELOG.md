@@ -1,6 +1,6 @@
 ## 0.6.52
 * Update to .NET 10
-* Update Dynamo Core to 3.6.2.11365
+* Update Dynamo Core to 3.7.0.11437
 
 ## 0.6.51
 * Update Dynamo Core to 3.6.1.9895
