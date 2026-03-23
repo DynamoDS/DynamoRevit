@@ -1,5 +1,10 @@
+## 0.6.53
+* Align DynamoRevit assembly version to 3.7
+* Update Dynamo Core to 3.7.0.11575
+
 ## 0.6.52
-* Update Dynamo Core to 3.6.2.11575
+* Update to .NET 10
+* Update Dynamo Core to 3.7.0.11437
 
 ## 0.6.51
 * Update Dynamo Core to 3.6.1.9895
