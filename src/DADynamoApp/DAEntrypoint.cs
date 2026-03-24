@@ -177,17 +177,24 @@ namespace DADynamoApp
         public void HandleDesignAutomationReadyEvent(object sender, DesignAutomationReadyEventArgs e)
         {
             Console.WriteLine("<<!>> DA event raised.");
-
+            
             var workItemId = Environment.ExpandEnvironmentVariables("%DAS_WORKITEM_ID%");
 
             Console.WriteLine($"<<!>> WorkItemId is '{workItemId}'");
 
             var workItemFileName = $"{workItemId}_job.das";
-            Console.WriteLine($"Looking for WorkItem file at '{workItemFileName}', exists: {File.Exists(workItemFileName)}");
-            var workItemContent = File.ReadAllText(workItemFileName);
-           
-            var token = ExtractTokenFromWorkItem(workItemContent);
-            Console.WriteLine($"<<!>> Token is '{token}'");
+            var workItemExists = File.Exists(workItemFileName);
+            Console.WriteLine($"Looking for WorkItem file at '{workItemFileName}', exists: {workItemExists}");
+            if (workItemExists)
+            {
+                var workItemContent = File.ReadAllText(workItemFileName);
+
+                var token = ExtractTokenFromWorkItem(workItemContent);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    Console.WriteLine($"<<!>> Extracted token from workItem content.");
+                }
+            }
 
             // Local Change
             //WorkItemFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -265,7 +272,7 @@ namespace DADynamoApp
             DocumentManager.Instance.PrepareForDesignAutomation(app);
 
             // Local Change
-            //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2025";
+            //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2026";
 
             var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication.SharedComponentsLocation, DynamoPath);
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
@@ -313,6 +320,13 @@ namespace DADynamoApp
             {
                 var res = dynHandler.HandleRoute("POST", "/v1/graph/run", runContent);
                 output = res.Result;
+
+                // Force transaction close for now.
+                // This is already called on RevitDynamoModel.OnEvaluationCompleted.
+                // TODO: figure out if this is required here (I noticed, a couple of times, saving the rvt failed after running a graph)
+                // ex. Operation is not permitted when there is any open sub-transaction, transaction, or transaction group.
+                // DYN-10310
+                RevitServices.Transactions.TransactionManager.Instance?.ForceCloseTransaction();
             }
             catch (Exception ex)
             {
@@ -345,7 +359,7 @@ namespace DADynamoApp
                             Console.WriteLine("Document is single-user cloud model.");
 
                             // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
-                            doc.SaveAs(setupReq.LocalModelFileName);
+                            doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName));
 
                             /* TODO: figure out if we need to make this work and how.
 
