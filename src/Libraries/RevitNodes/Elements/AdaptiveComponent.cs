@@ -555,7 +555,7 @@ namespace Revit.Elements
                         int numOfPoints = remainingPoints[i].Length;
                         var aPoints = remainingPoints[i].ToXyzs();
 
-                        var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
+                        var creationData = DocumentManager.Instance.CurrentDBDocument.Application.Create.
                             NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
 
                         if (creationData != null)

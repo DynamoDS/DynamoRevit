@@ -12,6 +12,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
