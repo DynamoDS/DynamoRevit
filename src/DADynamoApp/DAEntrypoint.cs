@@ -1,13 +1,10 @@
-﻿using Autodesk.DataManagement;
-using Autodesk.DataManagement.Model;
-using Autodesk.Revit.ApplicationServices;
+﻿using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using DesignAutomationFramework;
 using DSCPython;
 using Dynamo.Applications;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
-using Dynamo.Migration;
 using Dynamo.Models;
 using Dynamo.PythonServices;
 using Dynamo.Scheduler;
@@ -15,14 +12,10 @@ using DynamoPlayer;
 using Greg.AuthProviders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ProtoCore.DesignScriptParser;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Loader;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using static Dynamo.Models.DynamoModel;
 
 namespace DADynamoApp
@@ -220,6 +213,20 @@ namespace DADynamoApp
                 }
             }
 
+            // Ensure we have a pre-built graph outputs folder.
+            try
+            {
+                var graphOutputsFolder = "outputs";
+                if (!Directory.Exists(graphOutputsFolder))
+                {
+                    Directory.CreateDirectory(graphOutputsFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to create output folder. {ex.Message}");
+            }
+
             Document? doc = null;
             var cModel = setupReq?.OpenCloudModelLocation;
             if (cModel != null)
@@ -350,9 +357,12 @@ namespace DADynamoApp
                         {
                             Console.WriteLine("Document is C4R.");
                             // Syncronize with central
-                            SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
-                            swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
-                            doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+                            //SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
+                            //swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
+                            //doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+
+                            // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
+                            doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName));
                         }
                         else 
                         {// Single user cloud model
