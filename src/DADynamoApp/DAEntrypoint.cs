@@ -1,13 +1,10 @@
-﻿using Autodesk.DataManagement;
-using Autodesk.DataManagement.Model;
-using Autodesk.Revit.ApplicationServices;
+﻿using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using DesignAutomationFramework;
 using DSCPython;
 using Dynamo.Applications;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
-using Dynamo.Migration;
 using Dynamo.Models;
 using Dynamo.PythonServices;
 using Dynamo.Scheduler;
@@ -15,14 +12,10 @@ using DynamoPlayer;
 using Greg.AuthProviders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ProtoCore.DesignScriptParser;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Loader;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using static Dynamo.Models.DynamoModel;
 
 namespace DADynamoApp
@@ -243,6 +236,20 @@ namespace DADynamoApp
                 }
             }
 
+            // Ensure we have a pre-built graph output folder.
+            try
+            {
+                var graphOutputFolder = "output";
+                if (!Directory.Exists(graphOutputFolder))
+                {
+                    Directory.CreateDirectory(graphOutputFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to create output folder. {ex.Message}");
+            }
+
             Document? doc = null;
             var cModel = setupReq?.OpenCloudModelLocation;
             if (cModel != null)
@@ -284,7 +291,7 @@ namespace DADynamoApp
             if (doc == null) throw new InvalidOperationException("Could not open revit document.");
 
             var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
-            var asmLocation = Path.GetDirectoryName(hostloc);
+            var asmLocation = controlledApplication.SharedComponentsLocation;
             Console.WriteLine($"using asm at location {asmLocation}");
             Console.WriteLine($"Is Loaded {LoadMessage}");
 
@@ -294,11 +301,10 @@ namespace DADynamoApp
 
             DocumentManager.Instance.PrepareForDesignAutomation(app);
 
-            // Local Change
-            //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2025";
-
-            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication.SharedComponentsLocation, DynamoPath);
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoPath);
+            Console.WriteLine($"{loadedLibGVersion}");
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
+            Console.WriteLine($"{geometryFactoryPath}");
 
             PreInstallPythonDependencies();
 
@@ -367,9 +373,12 @@ namespace DADynamoApp
                         {
                             Console.WriteLine("Document is C4R.");
                             // Syncronize with central
-                            SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
-                            swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
-                            doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+                            //SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
+                            //swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
+                            //doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+
+                            // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
+                            doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName));
                         }
                         else 
                         {// Single user cloud model
