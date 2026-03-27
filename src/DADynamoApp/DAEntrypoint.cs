@@ -213,13 +213,13 @@ namespace DADynamoApp
                 }
             }
 
-            // Ensure we have a pre-built graph outputs folder.
+            // Ensure we have a pre-built graph output folder.
             try
             {
-                var graphOutputsFolder = "outputs";
-                if (!Directory.Exists(graphOutputsFolder))
+                var graphOutputFolder = "output";
+                if (!Directory.Exists(graphOutputFolder))
                 {
-                    Directory.CreateDirectory(graphOutputsFolder);
+                    Directory.CreateDirectory(graphOutputFolder);
                 }
             }
             catch (Exception ex)
@@ -268,7 +268,7 @@ namespace DADynamoApp
             if (doc == null) throw new InvalidOperationException("Could not open revit document.");
 
             var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
-            var asmLocation = Path.GetDirectoryName(hostloc);
+            var asmLocation = controlledApplication.SharedComponentsLocation;
             Console.WriteLine($"using asm at location {asmLocation}");
             Console.WriteLine($"Is Loaded {LoadMessage}");
 
@@ -278,11 +278,10 @@ namespace DADynamoApp
 
             DocumentManager.Instance.PrepareForDesignAutomation(app);
 
-            // Local Change
-            //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2026";
-
-            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication.SharedComponentsLocation, DynamoPath);
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoPath);
+            Console.WriteLine($"{loadedLibGVersion}");
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
+            Console.WriteLine($"{geometryFactoryPath}");
 
             PreInstallPythonDependencies();
 
