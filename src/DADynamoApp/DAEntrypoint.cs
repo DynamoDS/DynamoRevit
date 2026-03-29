@@ -214,11 +214,13 @@ namespace DADynamoApp
             }
 
             // Ensure we have a pre-built graph output folder.
+            var graphOutputFolder = Path.Combine(WorkItemFolder, "output");
             try
             {
-                var graphOutputFolder = "output";
+                Console.WriteLine("Checking for output folder");
                 if (!Directory.Exists(graphOutputFolder))
                 {
+                    Console.WriteLine("Output folder does not exist. Creating..");
                     Directory.CreateDirectory(graphOutputFolder);
                 }
             }
@@ -431,6 +433,20 @@ namespace DADynamoApp
                 {
                     Console.WriteLine(ex.Message);
                 }
+            }
+
+            try
+            {
+                // If the out put folder exists and is empty, then delete it so we don't generate empty output zip files.
+                if (Directory.Exists(graphOutputFolder) && !Directory.EnumerateFileSystemEntries(graphOutputFolder).Any())
+                {
+                    Console.WriteLine("The output folder is empty.");
+                    Directory.Delete(graphOutputFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to create output folder. {ex.Message}");
             }
 
             e.Succeeded = true;
