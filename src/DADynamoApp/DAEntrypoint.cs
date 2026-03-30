@@ -17,6 +17,7 @@ using RevitServices.Persistence;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static Dynamo.Models.DynamoModel;
+using DateTime = System.DateTime;
 
 namespace DADynamoApp
 {
@@ -237,11 +238,17 @@ namespace DADynamoApp
             }
 
             // Ensure we have a pre-built graph output folder.
+            var graphOutputFolder = Path.Combine(WorkItemFolder, "output");
             try
             {
-                var graphOutputFolder = "output";
+                //The output folder is basically a feature that we provide to DAAS_DA users.
+                //It offers an out of the box place where graphs can produce data / content(ex.images, xml reports etc).
+                //If creation of the folder fails, then most likely the graph execution will have nodes that fail and will report those nodes back to the user. ALso the output.zip file will not be sent back to the user.
+                //This ootb "output" folder feature may be scrapped for something more generic in the future
+                Console.WriteLine("Checking for output folder");
                 if (!Directory.Exists(graphOutputFolder))
                 {
+                    Console.WriteLine("Output folder does not exist. Creating..");
                     Directory.CreateDirectory(graphOutputFolder);
                 }
             }
@@ -302,9 +309,7 @@ namespace DADynamoApp
             DocumentManager.Instance.PrepareForDesignAutomation(app);
 
             var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoPath);
-            Console.WriteLine($"{loadedLibGVersion}");
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
-            Console.WriteLine($"{geometryFactoryPath}");
 
             PreInstallPythonDependencies();
 
@@ -451,6 +456,20 @@ namespace DADynamoApp
             }
 
             model.RunCompleted += Model_RunCompleted;
+            try
+            {
+                // If the out put folder exists and is empty, then delete it so we don't generate empty output zip files.
+                if (Directory.Exists(graphOutputFolder) && !Directory.EnumerateFileSystemEntries(graphOutputFolder).Any())
+                {
+                    Console.WriteLine("The output folder is empty.");
+                    Directory.Delete(graphOutputFolder);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to delete the empty output folder. {ex.Message}");
+            }
+
             e.Succeeded = true;
         }
 
