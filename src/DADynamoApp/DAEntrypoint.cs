@@ -281,9 +281,7 @@ namespace DADynamoApp
             DocumentManager.Instance.PrepareForDesignAutomation(app);
 
             var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoPath);
-            Console.WriteLine($"{loadedLibGVersion}");
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
-            Console.WriteLine($"{geometryFactoryPath}");
 
             PreInstallPythonDependencies();
 
