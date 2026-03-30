@@ -17,6 +17,7 @@ using RevitServices.Persistence;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static Dynamo.Models.DynamoModel;
+using DateTime = System.DateTime;
 
 namespace DADynamoApp
 {
@@ -217,6 +218,10 @@ namespace DADynamoApp
             var graphOutputFolder = Path.Combine(WorkItemFolder, "output");
             try
             {
+                //The output folder is basically a feature that we provide to DAAS_DA users.
+                //It offers an out of the box place where graphs can produce data / content(ex.images, xml reports etc).
+                //If creation of the folder fails, then most likely the graph execution will have nodes that fail and will report those nodes back to the user. ALso the output.zip file will not be sent back to the user.
+                //This ootb "output" folder feature may be scrapped for something more generic in the future
                 Console.WriteLine("Checking for output folder");
                 if (!Directory.Exists(graphOutputFolder))
                 {
