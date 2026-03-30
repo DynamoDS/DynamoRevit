@@ -444,7 +444,7 @@ namespace DADynamoApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to create output folder. {ex.Message}");
+                Console.WriteLine($"Failed to delete the empty output folder. {ex.Message}");
             }
 
             e.Succeeded = true;
