@@ -1,3 +1,6 @@
+## 0.6.54
+* Update Dynamo Core to 3.7.0.11777
+
 ## 0.6.53
 * Align DynamoRevit assembly version to 3.7
 * Update Dynamo Core to 3.7.0.11575
