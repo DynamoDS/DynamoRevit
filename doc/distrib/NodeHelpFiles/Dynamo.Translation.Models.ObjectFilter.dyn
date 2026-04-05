@@ -1,0 +1,310 @@
+{
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Translation.Models.ObjectFilter",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectSelector, Translation.Models",
+      "SelectedObjectIds": [],
+      "Id": "f6d8cdce1e19440890fc338a9d9cc45c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "2d71572fdd9648e7acd40bbce52111f2",
+          "Name": "objects",
+          "Description": "CAD data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6adc7012b7874b27a9b9274aa388e89b",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection of a subset of objects.\r\nRun the graph to populate the selection options."
+    },
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectSelector, Translation.Models",
+      "SelectedObjectIds": [],
+      "Id": "52c8feaca9964062a364c5aca4ad0830",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "50672c530c4441cf86d5392f20a3fe82",
+          "Name": "objects",
+          "Description": "CAD data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "892a2613dd98477a8eefe32554d78489",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection of a subset of objects.\r\nRun the graph to populate the selection options."
+    },
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectFilter, Translation.Models",
+      "Conditions": [
+        {
+          "Name": 9,
+          "OP": "IsEqualTo",
+          "Value": "13"
+        }
+      ],
+      "Id": "2e6bf907d48d45a2800024924b50c368",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "05fb3086b9bc4218af0d55e7ef7a9faa",
+          "Name": "objects",
+          "Description": "CAD data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ddba24ba07174bd2ad3d4ce0fc67a13e",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Filters objects that satisfy at least one of the specified conditions (OR-based filtering).\r\nIf you want to filter objects that satisfy all conditions (AND-based filtering), chain another Filter Objects node after this one.\r\nTo add a condition, use the drop-down buttons, then click Add.\r\nNote that you need to run the graph to populate the drop-down lists."
+    },
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectImporter, Translation.Models",
+      "Id": "11303b943f934f9ca266b8a3f96af5a3",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "116c346efac94853a8be3cafc4292511",
+          "Name": "path",
+          "Description": "CAD file to import",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "38a6980d5e344c40b7763dbf0ad631eb",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Imports third-party objects"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "25636a6c700d4c86b896cbbfd493d8e5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c9f158e62e1e4e2388c5ac293a153deb",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\Steve\\Downloads\\North Arrows.dwg",
+      "InputValue": "..\\..\\..\\Downloads\\North Arrows.dwg"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ddba24ba07174bd2ad3d4ce0fc67a13e",
+      "End": "50672c530c4441cf86d5392f20a3fe82",
+      "Id": "aaffd8972d204c1fa99032765c4f6b29",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "38a6980d5e344c40b7763dbf0ad631eb",
+      "End": "2d71572fdd9648e7acd40bbce52111f2",
+      "Id": "7140b44c30d24a7d91ef6866c5bfbab1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "38a6980d5e344c40b7763dbf0ad631eb",
+      "End": "05fb3086b9bc4218af0d55e7ef7a9faa",
+      "Id": "9feadd62e1d4466cade95438dbd79cc3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c9f158e62e1e4e2388c5ac293a153deb",
+      "End": "116c346efac94853a8be3cafc4292511",
+      "Id": "9dfc2613d8fe48daa961eee30c66bc44",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "DynamoATF",
+      "Version": "26.0.2.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "f6d8cdce1e19440890fc338a9d9cc45c",
+        "52c8feaca9964062a364c5aca4ad0830",
+        "2e6bf907d48d45a2800024924b50c368",
+        "11303b943f934f9ca266b8a3f96af5a3"
+      ]
+    },
+    {
+      "Name": "North Arrows.dwg",
+      "ReferenceType": "External",
+      "Nodes": [
+        "25636a6c700d4c86b896cbbfd493d8e5"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -14.176445960998535,
+      "EyeY": 12.279587745666504,
+      "EyeZ": 70.07319641113281,
+      "LookX": 14.339943885803223,
+      "LookY": -15.534936904907227,
+      "LookZ": -69.30972290039062,
+      "UpX": 0.043435804545879364,
+      "UpY": 0.9767488837242126,
+      "UpZ": -0.20993973314762115
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f6d8cdce1e19440890fc338a9d9cc45c",
+        "Name": "Select Geometry File Objects",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1471.6762864978919,
+        "Y": 998.0864054368734
+      },
+      {
+        "Id": "52c8feaca9964062a364c5aca4ad0830",
+        "Name": "Select Geometry File Objects",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2162.447628466093,
+        "Y": 638.6124499953833
+      },
+      {
+        "Id": "2e6bf907d48d45a2800024924b50c368",
+        "Name": "Filter Geometry File Objects",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1460.5290735379629,
+        "Y": 639.0991469959203
+      },
+      {
+        "Id": "11303b943f934f9ca266b8a3f96af5a3",
+        "Name": "Import Geometry File",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1099.5691252762235,
+        "Y": 915.7762121765466
+      },
+      {
+        "Id": "25636a6c700d4c86b896cbbfd493d8e5",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 712.7024923224582,
+        "Y": 915.5601243324253
+      }
+    ],
+    "Annotations": [],
+    "X": -689.2437853974038,
+    "Y": -376.3923359967492,
+    "Zoom": 1.0119274927966058
+  }
+}

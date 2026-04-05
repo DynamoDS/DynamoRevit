@@ -1,11 +1,10 @@
 ## In Depth
-This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
+This is a selection node that lets you choose the revision numbering method used in the project. In practice, this is the Dynamo-facing version of Revit’s revision numbering setting, where revisions are numbered either By Project or By Sheet.
+PerPoject and PerSheet.
 
-In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."  
+In this example a Revision is created and one of the input is using the Select Revision Numbering node.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+For more information on Revisions see link.  https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 ___
 ## Example File
 

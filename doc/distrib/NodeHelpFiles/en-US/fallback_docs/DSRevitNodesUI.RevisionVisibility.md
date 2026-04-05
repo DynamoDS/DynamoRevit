@@ -1,10 +1,9 @@
 ## In Depth
-This node allows you to select the Revision Visibility setting for a revision (here are the available options "CloudsAndTagVisible", "Tag Visible" and "Hidden"). The visibility determines where the selected revision will appear ( example, whether it displays in clouds, tags, sheets, or is hidden).
+This node allows you to choose a Revit revision visibility mode.  Your options are CloudAndTagAndVisibile, TagVisibile, Hidden.
 
-In this example, a new revision is created using the Select Revision Visibility node, value "TagVisible."  
+In this example a revision is being created and the node Select Revision Visibility is being used.
 
-For more information on Revisions see link.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+For more information on Revisions see link.  https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
 
 ___
 ## Example File

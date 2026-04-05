@@ -1,5 +1,5 @@
 {
-  "Uuid": "49c5d9e7-9f4d-457b-bfe9-da9b88da959a",
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
   "IsCustomNode": false,
   "Description": "",
   "Name": "DSRevitNodesUI.RevisionVisibility",
@@ -11,11 +11,11 @@
   "Nodes": [
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "63c7e11890ee45a68660d5160f3611ad",
+      "Id": "6a7e20da472c49eeba552c0fb8c95a7d",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "b062ac03a00643548db0474ae09dc35c",
+          "Id": "554b6070a27a4ab1985bcde674807f17",
           "Name": "name",
           "Description": "Revision Name\n\nstring",
           "UsingDefaultValue": false,
@@ -24,7 +24,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0e296b8784d44747b1f597af6062ea76",
+          "Id": "2656225c02fe46ea89eedbaecf42401b",
           "Name": "revDate",
           "Description": "Revision Date\n\nstring",
           "UsingDefaultValue": false,
@@ -33,7 +33,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "58b1fbe2688d4ee7807c5e5c137b6d4c",
+          "Id": "fa9553048883418788990d75a1a6e56e",
           "Name": "description",
           "Description": "Description\n\nstring",
           "UsingDefaultValue": false,
@@ -42,7 +42,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5419029dbe59442fbfe5eb0883669aaf",
+          "Id": "2dfd2d1fab0449b79b4b4ad474937dcd",
           "Name": "issued",
           "Description": "Issuing status\n\nbool",
           "UsingDefaultValue": false,
@@ -51,7 +51,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "6197f01a15d14924b1b396bbd40f9cb6",
+          "Id": "3b57cc4cac394ff59e0074efff80f0d6",
           "Name": "issuedBy",
           "Description": "Issued by\n\nstring",
           "UsingDefaultValue": false,
@@ -60,7 +60,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0fbaabcb34454738a03ef6167d238deb",
+          "Id": "d4690d487ee64829b09feb906b0f8945",
           "Name": "issuedTo",
           "Description": "Issued to\n\nstring",
           "UsingDefaultValue": false,
@@ -69,7 +69,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "93b758f454b14d2da0254a6fd9fa4e83",
+          "Id": "ac3cb3cba52c42e2a9dd7b2b0efd4fec",
           "Name": "visibility",
           "Description": "Visibility settings\n\nstring\nDefault value : \"\"",
           "UsingDefaultValue": true,
@@ -78,7 +78,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "9656f7ffa8af4cf7abb4304d6676adea",
+          "Id": "0f77406c942340deaec427a23d7a14dc",
           "Name": "numberType",
           "Description": "Number type\n\nstring\nDefault value : \"\"",
           "UsingDefaultValue": true,
@@ -89,7 +89,7 @@
       ],
       "Outputs": [
         {
-          "Id": "f9335fbf6f01450bbd4edcd9bcf2856f",
+          "Id": "8a1d8405c520412ca3a91bcb04a813e4",
           "Name": "Revision",
           "Description": "Revision",
           "UsingDefaultValue": false,
@@ -103,17 +103,17 @@
       "Description": "Construct a new Revit Revision by Name\n\nRevision.ByName (name: string, revDate: string, description: string, issued: bool, issuedBy: string, issuedTo: string, visibility: string = \"\", numberType: string = \"\"): Revision"
     },
     {
-      "ConcreteType": "DSRevitNodesUI.RevisionNumbering, DSRevitNodesUI",
+      "ConcreteType": "DSRevitNodesUI.RevisionNumberType, DSRevitNodesUI",
       "SelectedIndex": 0,
-      "SelectedString": "PerProject",
-      "Id": "3820666edcfa45efb93d1022c9e3ce64",
+      "SelectedString": "Alphanumeric",
+      "Id": "6c40a7766a164ac8bded754f11e93901",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "efc089d6806e4890939cb91e4c3511af",
-          "Name": "Revision Numbering",
-          "Description": "The selected Revision Numbering",
+          "Id": "331a3b461b8f4e11914761e85617cc89",
+          "Name": "Revision Number Type",
+          "Description": "The selected Revision Number Type",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -121,18 +121,38 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Select an way to number the revisions."
+      "Description": "Select a revision number type."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "441e9255e11444ffaa10a7ee264edae1",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6e371026d1a14ef49c4bf9f23faa73e8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Revision Description"
     },
     {
       "ConcreteType": "DSRevitNodesUI.RevisionVisibility, DSRevitNodesUI",
-      "SelectedIndex": 2,
-      "SelectedString": "TagVisible",
-      "Id": "774605306d104fb69f403132a2ff150f",
+      "SelectedIndex": 0,
+      "SelectedString": "CloudAndTagVisible",
+      "Id": "8345861926174435815e40e7934fc946",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "a5d43903a0174fe2b95a626ec06d807e",
+          "Id": "62e902c79a6e4e58a76957b1be287be8",
           "Name": "Revision Visibility",
           "Description": "The selected Revision Visibility",
           "UsingDefaultValue": false,
@@ -146,12 +166,12 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
-      "Id": "eff71c32f96e456eaecf99f16fbe842d",
+      "Id": "0f2114b9280a42d49d7d47311b8b1cd7",
       "NodeType": "BooleanInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "653112f116ca4ca09a0017000065ba63",
+          "Id": "6264e1d356fd4a2f8dd5b0b7f7467515",
           "Name": "",
           "Description": "Boolean",
           "UsingDefaultValue": false,
@@ -166,12 +186,12 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "30f3d3a081664519a980fb59f034bcd3",
+      "Id": "d117323f68ab410c86a0e0bdbf4ead93",
       "NodeType": "StringInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "94cd794f265b486c92f54d73b1c4427e",
+          "Id": "a176b57e35bf4f179d8c805c4a601c9a",
           "Name": "",
           "Description": "String",
           "UsingDefaultValue": false,
@@ -182,16 +202,16 @@
       ],
       "Replication": "Disabled",
       "Description": "Creates a string",
-      "InputValue": "Dynamo Issued To"
+      "InputValue": "Rev Date"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "7c5611a68a3a4e2a8f5ecf2a8cabb045",
+      "Id": "64e41e240e4640e69326437f2db6a5a5",
       "NodeType": "StringInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "d1464e43871c4129bfb66d308d432fbe",
+          "Id": "297eab2a8aff4b1fa82ff186fd39ed07",
           "Name": "",
           "Description": "String",
           "UsingDefaultValue": false,
@@ -202,16 +222,16 @@
       ],
       "Replication": "Disabled",
       "Description": "Creates a string",
-      "InputValue": "Dynamo Issued By"
+      "InputValue": "By Dynamo"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "0460e0725c8645508e3eb56b91c174f0",
+      "Id": "2c77d8c3aa7245fe8d5442890e5b015c",
       "NodeType": "StringInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "223daaae3f2d41e5918bbf3c3d4ff5ad",
+          "Id": "e5174adaeba8435abfa09c9506a86a7b",
           "Name": "",
           "Description": "String",
           "UsingDefaultValue": false,
@@ -222,16 +242,16 @@
       ],
       "Replication": "Disabled",
       "Description": "Creates a string",
-      "InputValue": "Dynamo Desciption"
+      "InputValue": "To Dynamo"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "d17d4e4e33cd48279bc5c0316fecc1d0",
+      "Id": "48e4df065a06436b9c4264546f9c23f5",
       "NodeType": "StringInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "85a36831f1224de783eb97c77aba573b",
+          "Id": "454bcdf1dbaf4e4ca17578fb2cb8b77e",
           "Name": "",
           "Description": "String",
           "UsingDefaultValue": false,
@@ -242,76 +262,56 @@
       ],
       "Replication": "Disabled",
       "Description": "Creates a string",
-      "InputValue": "10-31-2025"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "9ddb00db1e864a78a90e3aa4ffe41a2e",
-      "NodeType": "StringInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "56db990829b54e39a8728839ad156763",
-          "Name": "",
-          "Description": "String",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Creates a string",
-      "InputValue": "Dynamo Revision"
+      "InputValue": "Dynamo Demo"
     }
   ],
   "Connectors": [
     {
-      "Start": "efc089d6806e4890939cb91e4c3511af",
-      "End": "9656f7ffa8af4cf7abb4304d6676adea",
-      "Id": "68929c32040f440dba24f9ac0f4d82ba",
+      "Start": "331a3b461b8f4e11914761e85617cc89",
+      "End": "0f77406c942340deaec427a23d7a14dc",
+      "Id": "149aee236c93463187ef7d3dca4c7cf8",
       "IsHidden": "False"
     },
     {
-      "Start": "a5d43903a0174fe2b95a626ec06d807e",
-      "End": "93b758f454b14d2da0254a6fd9fa4e83",
-      "Id": "2fccacf8bb8f4863b615b8f52259f36d",
+      "Start": "6e371026d1a14ef49c4bf9f23faa73e8",
+      "End": "fa9553048883418788990d75a1a6e56e",
+      "Id": "21b6e47c51074947af1f393bc94d47aa",
       "IsHidden": "False"
     },
     {
-      "Start": "653112f116ca4ca09a0017000065ba63",
-      "End": "5419029dbe59442fbfe5eb0883669aaf",
-      "Id": "5b92d385e958415a80dbd3cd82335999",
+      "Start": "62e902c79a6e4e58a76957b1be287be8",
+      "End": "ac3cb3cba52c42e2a9dd7b2b0efd4fec",
+      "Id": "54f0c542cc05472898d3a5ef77c152b9",
       "IsHidden": "False"
     },
     {
-      "Start": "94cd794f265b486c92f54d73b1c4427e",
-      "End": "0fbaabcb34454738a03ef6167d238deb",
-      "Id": "663e97bab21f40359ec661db67630178",
+      "Start": "6264e1d356fd4a2f8dd5b0b7f7467515",
+      "End": "2dfd2d1fab0449b79b4b4ad474937dcd",
+      "Id": "2fdad40e6f784aa192dc3b251dc6a5d1",
       "IsHidden": "False"
     },
     {
-      "Start": "d1464e43871c4129bfb66d308d432fbe",
-      "End": "6197f01a15d14924b1b396bbd40f9cb6",
-      "Id": "4dab7e120ab045638c5fdce1ffba5d46",
+      "Start": "a176b57e35bf4f179d8c805c4a601c9a",
+      "End": "2656225c02fe46ea89eedbaecf42401b",
+      "Id": "749573d2f5a24dc9972331222bb9299d",
       "IsHidden": "False"
     },
     {
-      "Start": "223daaae3f2d41e5918bbf3c3d4ff5ad",
-      "End": "58b1fbe2688d4ee7807c5e5c137b6d4c",
-      "Id": "46a758a092634fb6b61d059bc27d6d65",
+      "Start": "297eab2a8aff4b1fa82ff186fd39ed07",
+      "End": "3b57cc4cac394ff59e0074efff80f0d6",
+      "Id": "aa64a38c4a1c4ea9bf5c78480f545de9",
       "IsHidden": "False"
     },
     {
-      "Start": "85a36831f1224de783eb97c77aba573b",
-      "End": "0e296b8784d44747b1f597af6062ea76",
-      "Id": "e3451c187609442685ecbae6f17d6921",
+      "Start": "e5174adaeba8435abfa09c9506a86a7b",
+      "End": "d4690d487ee64829b09feb906b0f8945",
+      "Id": "5b58ca4661194714a40c332478c15983",
       "IsHidden": "False"
     },
     {
-      "Start": "56db990829b54e39a8728839ad156763",
-      "End": "b062ac03a00643548db0474ae09dc35c",
-      "Id": "35b6b699128d4c149ee6a4b975f8a8c5",
+      "Start": "454bcdf1dbaf4e4ca17578fb2cb8b77e",
+      "End": "554b6070a27a4ab1985bcde674807f17",
+      "Id": "5f1bf71dde974d568a98762fc85d52b6",
       "IsHidden": "False"
     }
   ],
@@ -343,9 +343,9 @@
   },
   "Bindings": [
     {
-      "NodeId": "63c7e118-90ee-45a6-8660-d5160f3611ad",
+      "NodeId": "6a7e20da-472c-49ee-ba55-2c0fb8c95a7d",
       "Binding": {
-        "ByName_InClassDecl-1_InFunctionScope-1_Instance0_63c7e118-90ee-45a6-8660-d5160f3611ad": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZNusLKhMWgkRayQEQyCzBHuTsLzb3mw55ox4FHM9T6vYxoVg8KbdcKcqJfSUuelUJayUdxdy8HZFqIRs48pJ1M0iumq//Uijl168a4f83JH1F8AAAA="
+        "ByName_InClassDecl-1_InFunctionScope-1_Instance0_6a7e20da-472c-49ee-ba55-2c0fb8c95a7d": "H4sIAAAAAAAACh3LsQ5AQAwG4Hf5Z03q0LRmi9mohsMRi0FuE+9O7N833lhjjmhxO4Z8Hefed47WsbCpmdZkVUpUh62hWYKQpZKtZOVGN2IOajGpo3D0Z/5vEPmIPHimF2wQ1aFfAAAA"
       }
     }
   ],
@@ -373,99 +373,99 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "63c7e11890ee45a68660d5160f3611ad",
+        "Id": "6a7e20da472c49eeba552c0fb8c95a7d",
         "Name": "Revision.ByName",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1087.6568245888768,
-        "Y": 1134.6370132063312
+        "X": 1468.3460167942621,
+        "Y": 1112.0
       },
       {
-        "Id": "3820666edcfa45efb93d1022c9e3ce64",
-        "Name": "Select Revision Numbering",
+        "Id": "6c40a7766a164ac8bded754f11e93901",
+        "Name": "Select Revision Number Type",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 1721.3843124035045
+        "X": 948.9999999999999,
+        "Y": 1765.2460623196293
       },
       {
-        "Id": "774605306d104fb69f403132a2ff150f",
+        "Id": "441e9255e11444ffaa10a7ee264edae1",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 948.9999999999999,
+        "Y": 1010.0
+      },
+      {
+        "Id": "8345861926174435815e40e7934fc946",
         "Name": "Select Revision Visibility",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 1555.5091104731914
+        "X": 948.9999999999999,
+        "Y": 1591.2861797106339
       },
       {
-        "Id": "eff71c32f96e456eaecf99f16fbe842d",
+        "Id": "0f2114b9280a42d49d7d47311b8b1cd7",
         "Name": "Boolean",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 1119.0
+        "X": 948.9999999999999,
+        "Y": 1157.0
       },
       {
-        "Id": "30f3d3a081664519a980fb59f034bcd3",
+        "Id": "d117323f68ab410c86a0e0bdbf4ead93",
         "Name": "String",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 1413.0
+        "X": 948.9999999999999,
+        "Y": 863.0
       },
       {
-        "Id": "7c5611a68a3a4e2a8f5ecf2a8cabb045",
+        "Id": "64e41e240e4640e69326437f2db6a5a5",
         "Name": "String",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 1266.0
+        "X": 948.9999999999999,
+        "Y": 1304.0
       },
       {
-        "Id": "0460e0725c8645508e3eb56b91c174f0",
+        "Id": "2c77d8c3aa7245fe8d5442890e5b015c",
         "Name": "String",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 972.0
+        "X": 948.9999999999999,
+        "Y": 1451.0
       },
       {
-        "Id": "d17d4e4e33cd48279bc5c0316fecc1d0",
+        "Id": "48e4df065a06436b9c4264546f9c23f5",
         "Name": "String",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 825.0
-      },
-      {
-        "Id": "9ddb00db1e864a78a90e3aa4ffe41a2e",
-        "Name": "String",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 554.0,
-        "Y": 678.0
+        "X": 948.9999999999999,
+        "Y": 716.0
       }
     ],
     "Annotations": [],
-    "X": 142.14169812754744,
-    "Y": -604.7618966112937,
-    "Zoom": 0.9540429248828126
+    "X": -20.626400809715165,
+    "Y": -436.65605907275335,
+    "Zoom": 0.7843693280448271
   }
 }
