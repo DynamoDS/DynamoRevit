@@ -1,8 +1,9 @@
 <Project>
 	<Import Project="$(SolutionDir)Config/user_local.props" />
 	<PropertyGroup>
-		<Platforms>NET70;NET80</Platforms>
+		<Platforms>NET70;NET80;NET100</Platforms>
 		<PlatformTarget >x64</PlatformTarget>
+		<TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'NET70'">net7.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
@@ -20,22 +21,25 @@
 
 		<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 
+		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET100'">net10.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
+		<!-- Fallback: Revit 2025 NuGet package only ships net8.0; use it if net10.0 folder is absent -->
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit 2025</REVITAPI>
 
 		<BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</DefaultOutputPath>
+		<DefaultOutputPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit</DefaultOutputPath>
 		<OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
-		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</TestOutputPath>
+		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit</TestOutputPath>
 		
-		<NoWarn>MSB3539</NoWarn>
+		<NoWarn>MSB3539;CS3001;CS3002;CS3003;CS3009;CS3016;CS3027</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 		<DebugSymbols>true</DebugSymbols>
