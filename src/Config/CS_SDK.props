@@ -1,13 +1,10 @@
 <Project>
 	<Import Project="$(SolutionDir)Config/user_local.props" />
 	<PropertyGroup>
-		<Platforms>NET70;NET80;NET100</Platforms>
+		<Platforms>NET100</Platforms>
 		<PlatformTarget >x64</PlatformTarget>
 		<TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'NET70'">net7.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>
+		<DCoreLibSubFolder>net10.0</DCoreLibSubFolder>
 		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
 		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2025</RevitVersionNumber>
 		<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
@@ -21,16 +18,10 @@
 
 		<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET100'">net10.0</DCoreLibSubFolder>
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
-		<!-- Fallback: Revit 2025 NuGet package only ships net8.0; use it if net10.0 folder is absent -->
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit 2025</REVITAPI>
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit 2025</REVITAPI>>
 
 		<BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
