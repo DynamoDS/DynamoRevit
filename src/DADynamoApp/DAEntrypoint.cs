@@ -352,6 +352,9 @@ namespace DADynamoApp
             Console.WriteLine($"{nameof(saveRvt)} is set to {saveRvt}");
             if (saveRvt)
             {
+                // TODO: Remove the hardcoded prefix "output_" and replace with a better system (uuid instead of name ?). Also update it in DAAS.
+                // THe local name may be useful for debugging..
+                const string outputModelLocalName = $"output_{setupReq.LocalModelFileName}";
                 try
                 {
                     if (doc.IsModelInCloud)
@@ -366,14 +369,14 @@ namespace DADynamoApp
                             //doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
 
                             // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
-                            doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName));
+                            doc.SaveAs(Path.Combine(WorkItemFolder, outputModelLocalName));
                         }
                         else 
                         {// Single user cloud model
                             Console.WriteLine("Document is single-user cloud model.");
 
                             // Save the project locally (this will detach the model from the cloud, but we will re-upload at a new location)
-                            doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName));
+                            doc.SaveAs(Path.Combine(WorkItemFolder, outputModelLocalName));
 
                             /* TODO: figure out if we need to make this work and how.
 
@@ -420,7 +423,7 @@ namespace DADynamoApp
                     }
                     else
                     {
-                        /* TODO: Figure ou tif this is useful.
+                        /* TODO: Figure out if this is useful.
                         var newLoc = setupReq?.SaveCloudModelLocation;
                         if (newLoc != null)
                         {
@@ -429,7 +432,7 @@ namespace DADynamoApp
                         }*/
 
                         // Save locally 
-                        doc.SaveAs(setupReq.LocalModelFileName);
+                        doc.SaveAs(Path.Combine(WorkItemFolder, outputModelLocalName));
                     }
                 }
                 catch (Exception ex)
