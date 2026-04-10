@@ -446,7 +446,7 @@ namespace DADynamoApp
                         }*/
 
                         // Save locally 
-                        doc.Save();
+                        doc.SaveAs(Path.Combine(WorkItemFolder, setupReq.LocalModelFileName), new SaveAsOptions() { OverwriteExistingFile = true });
                     }
                 }
                 catch (Exception ex)
