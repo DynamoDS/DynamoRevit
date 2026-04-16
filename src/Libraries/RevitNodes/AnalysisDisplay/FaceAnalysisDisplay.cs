@@ -40,12 +40,14 @@ namespace Revit.AnalysisDisplay
         /// 
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="data"></param>
+        /// <param name="surface"></param>
+        /// <param name="sampleLocations"></param>
+        /// <param name="samples"></param>
         /// <param name="resultsName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
         protected FaceAnalysisDisplay(
-            Autodesk.Revit.DB.View view, ISurfaceData<Autodesk.DesignScript.Geometry.UV, double> data, string resultsName, string description,Type unitType)
+            Autodesk.Revit.DB.View view, Surface surface, Autodesk.DesignScript.Geometry.UV[] sampleLocations, IEnumerable<double> samples, string resultsName, string description,Type unitType)
         {
 
             SpatialFieldManager sfm;
@@ -56,7 +58,7 @@ namespace Revit.AnalysisDisplay
             var refPriIds = new Dictionary<Reference, int>();
             var primitiveIds = new List<int>();
 
-            var reference = data.Surface.Tags.LookupTag(DefaultTag) as Reference;
+            var reference = surface.Tags.LookupTag(DefaultTag) as Reference;
             if (reference == null)
             {
                 // Dont' throw an exception here. Handle the case of a bad tag
@@ -74,7 +76,7 @@ namespace Revit.AnalysisDisplay
                 int primitiveId;
                 if (refPriIds.TryGetValue(reference, out primitiveId))
                 {
-                    InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+                    InternalSetSpatialFieldValues(primitiveId, surface, sampleLocations, samples, resultsName, description, unitType);
 
                     TransactionManager.Instance.TransactionTaskDone();
 
@@ -94,7 +96,7 @@ namespace Revit.AnalysisDisplay
                     InternalSetSpatialPrimitiveIds(primitiveIds);
                     InternalSetReferencePrimitiveIdPairs(refPriIds);
 
-                    InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+                    InternalSetSpatialFieldValues(primitiveId, surface, sampleLocations, samples, resultsName, description, unitType);
                 }
             }
             else
@@ -111,7 +113,7 @@ namespace Revit.AnalysisDisplay
                 InternalSetSpatialPrimitiveIds(primitiveIds);
                 InternalSetReferencePrimitiveIdPairs(refPriIds);
 
-                InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+                InternalSetSpatialFieldValues(primitiveId, surface, sampleLocations, samples, resultsName, description, unitType);
             }
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -126,16 +128,17 @@ namespace Revit.AnalysisDisplay
         /// input sequences should be of the same length.
         /// </summary>
         /// <param name="primitiveId"></param>
-        /// <param name="data"></param>
+        /// <param name="surface"></param>
+        /// <param name="sampleLocations"></param>
+        /// <param name="samples"></param>
         /// <param name="schemaName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
         private void 
-            InternalSetSpatialFieldValues(int primitiveId, ISurfaceData<Autodesk.DesignScript.Geometry.UV, 
-            double> data, string schemaName, string description, Type unitType)
+            InternalSetSpatialFieldValues(int primitiveId, Surface surface, Autodesk.DesignScript.Geometry.UV[] sampleLocations, IEnumerable<double> samples, string schemaName, string description, Type unitType)
         {
             // Get the surface reference
-            var reference = data.Surface.Tags.LookupTag(DefaultTag) as Reference;
+            var reference = surface.Tags.LookupTag(DefaultTag) as Reference;
 
             var el = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId);
             var pointLocations = new List<UV>();
@@ -144,16 +147,16 @@ namespace Revit.AnalysisDisplay
                 var face = el.GetGeometryObjectFromReference(reference) as Autodesk.Revit.DB.Face;
                 if (face != null)
                 {
-                    foreach (var loc in data.ValueLocations)
+                    foreach (var loc in sampleLocations)
                     {
-                        var pt = data.Surface.PointAtParameter(loc.U, loc.V);
+                        var pt = surface.PointAtParameter(loc.U, loc.V);
                         var faceLoc = face.Project(pt.ToXyz()).UVPoint;
                         pointLocations.Add(faceLoc);
                     }
                 }
             }
 
-            var valList = data.Values.Select(v => new ValueAtPoint(new List<double>() { v }));
+            var valList = samples.Select(v => new ValueAtPoint(new List<double>() { v }));
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
@@ -227,9 +230,7 @@ namespace Revit.AnalysisDisplay
                 description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
-            var data = SurfaceData.BySurfacePointsAndValues(surface, sampleLocations, samples);
-
-            return new FaceAnalysisDisplay(view.InternalView, data, name, description, unitType);
+            return new FaceAnalysisDisplay(view.InternalView, surface, sampleLocations, samples, name, description, unitType);
         }
 
         #endregion

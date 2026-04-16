@@ -3,7 +3,7 @@ L'option « Obtenir le paramètre de famille » sélectionne un paramètre en 
 
 La chaîne fournie est utile avec « Element.GetParameterValueByName » et « Element.SetParameterByName ».
 
-Dans l'exemple ci-dessous, le paramètre « Marque de type » est obtenu à partir de la famille de portes indiquée.
+ Dans l'exemple ci-dessous, le paramètre « Identifiant du type » est obtenu à partir de la famille de portes indiquée.
 ___
 ## Exemple de fichier
 

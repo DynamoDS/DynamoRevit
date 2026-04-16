@@ -443,9 +443,9 @@ namespace Revit.Elements
         /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinates in world space
         /// </summary>
         /// <param name="familyType">Family Type. Also called Family Symbol.</param>
-        /// <param name="x">X coordinate in meters</param>
-        /// <param name="y">Y coordinate in meters</param>
-        /// <param name="z">Z coordinate in meters</param>
+        /// <param name="x">X coordinate in project units</param>
+        /// <param name="y">Y coordinate in project units</param>
+        /// <param name="z">Z coordinate in project units</param>
         /// <returns></returns>
         public static FamilyInstance ByCoordinates(FamilyType familyType, double x = 0, double y = 0, double z = 0)
         {
@@ -463,7 +463,7 @@ namespace Revit.Elements
         /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API), it's coordinates in world space, and the Level
         /// </summary>
         /// <param name="familyType">Family Type. Also called Family Symbol.</param>
-        /// <param name="point">Point in meters.</param>
+        /// <param name="point">Point in project units.</param>
         /// <param name="level">Level to host Family Instance.</param>
         /// <returns></returns>
         public static FamilyInstance ByPointAndLevel(FamilyType familyType, Point point, Level level)

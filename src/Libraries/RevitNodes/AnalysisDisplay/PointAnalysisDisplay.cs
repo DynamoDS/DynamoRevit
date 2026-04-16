@@ -26,11 +26,12 @@ namespace Revit.AnalysisDisplay
         /// Create a Point Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="data"></param>
+        /// <param name="dataLocations"></param>
+        /// <param name="values"></param>
         /// <param name="resultsName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
-        private PointAnalysisDisplay(Autodesk.Revit.DB.View view, PointData data, string resultsName, string description, Type unitType)
+        private PointAnalysisDisplay(Autodesk.Revit.DB.View view, IEnumerable<Point> dataLocations, IEnumerable<double> values, string resultsName, string description, Type unitType)
         {
             SpatialFieldManager sfm;
             var primitiveIds = new List<int>();
@@ -57,7 +58,7 @@ namespace Revit.AnalysisDisplay
             
             InternalSetSpatialFieldManager(sfm);
 
-            InternalSetSpatialFieldValues(data, ref primitiveIds, resultsName, description, unitType);
+            InternalSetSpatialFieldValues(dataLocations, values, ref primitiveIds, resultsName, description, unitType);
             InternalSetSpatialPrimitiveIds(primitiveIds);
             TransactionManager.Instance.TransactionTaskDone();
             SetElementAndPrimitiveIdsForTrace(sfm, primitiveIds);
@@ -70,12 +71,13 @@ namespace Revit.AnalysisDisplay
         /// Set the spatial field values for the current spatial field primitive.  The two 
         /// input sequences should be of the same length.
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="dataLocations"></param>
+        /// <param name="values"></param>
         /// <param name="primitiveIds"></param>
         /// <param name="schemaName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
-        private void InternalSetSpatialFieldValues(IStructuredData<Point, double> data, ref List<int> primitiveIds, string schemaName, string description, Type unitType)
+        private void InternalSetSpatialFieldValues(IEnumerable<Point> dataLocations, IEnumerable<double> values, ref List<int> primitiveIds, string schemaName, string description, Type unitType)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
@@ -84,13 +86,13 @@ namespace Revit.AnalysisDisplay
 
             var chunkSize = 1000;
 
-            var dataLocations = data.ValueLocations.Select(l=>l.ToXyz());
-            var values = data.Values.ToList();
+            var dataLocations2 = dataLocations.Select(l=>l.ToXyz());
+            //var values = data.Values.ToList();
 
-            while (dataLocations.Any()) 
+            while (dataLocations2.Any()) 
             {
                 // Compute the chunks
-                var pointLocationChunk = dataLocations.Take(chunkSize);
+                var pointLocationChunk = dataLocations2.Take(chunkSize);
                 var valuesChunk = values.Take(chunkSize).ToList();
 
                 // Create the ValueAtPoint objects
@@ -163,8 +165,7 @@ namespace Revit.AnalysisDisplay
                 description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
-            var data = PointData.ByPointsAndValues(sampleLocations, samples);
-            return new PointAnalysisDisplay(view.InternalView, data, name, description, unitType);
+            return new PointAnalysisDisplay(view.InternalView, sampleLocations, samples, name, description, unitType);
         }
 
         #endregion

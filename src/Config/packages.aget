@@ -1,10 +1,7 @@
 {
   "nuget": {
     "references": {
-      "DynamicLanguageRuntime": "1.2.2",
-      "Newtonsoft.Json": "13.0.1",
-      "NUnit": "3.13.3",
-      "NUnit.Engine": "3.13.2"
+      
     }
   }
 }

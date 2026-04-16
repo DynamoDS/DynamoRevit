@@ -1,4 +1,4 @@
-## En detalle
+## En detalle:
 "CeilingType.GetThermalProperties" devuelve las propiedades térmicas del tipo de techo especificado.
 
 En el ejemplo siguiente, se devuelve el tipo de techo "Genérico" y las propiedades térmicas se recuperan con "CeilingType.GetThermalProperties".

@@ -309,7 +309,8 @@ namespace Dynamo.Applications
                 // Show splash screen when dynamo is started, otherwise run UIless mode when needed.
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true))
                 {
-                    var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
+                    //var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
+                    var splashScreenInitializerFN = new Action(() =>
                     {
                         try
                         {
@@ -317,12 +318,12 @@ namespace Dynamo.Applications
 
                             if (Journaling.IsJournalReplaying())
                             {
-                                var closeSplashScreen = new DynamoExternalEventHandler(new Action(() =>
-                                {
-                                    splashScreen?.RequestLaunchDynamo(false);
-                                }));
-                                var closeSplashScreenEvt = ExternalEvent.Create(closeSplashScreen);
-                                closeSplashScreenEvt.Raise();
+                                //var closeSplashScreen = new DynamoExternalEventHandler(new Action(() =>
+                                //{
+                                splashScreen?.RequestLaunchDynamo(false);
+                                //}));
+                                //var closeSplashScreenEvt = ExternalEvent.Create(closeSplashScreen);
+                                //closeSplashScreenEvt.Raise();
                             }
                         }
                         catch (Exception ex)
@@ -341,11 +342,11 @@ namespace Dynamo.Applications
                                 RevitDynamoModel = null;
                             }
                         }
-                    }));
+                    });
 
                     /* Register DynamoExternalEventHandler so Revit will call our callback
                     we requested with API access. */
-                    SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
+                    //SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
 
                     extCommandData = commandData;
                     UpdateSystemPathForProcess();
@@ -355,7 +356,8 @@ namespace Dynamo.Applications
                     our callback within an api context. */
                     splashScreen.DynamicSplashScreenReady += () =>
                     {
-                        SplashScreenExternalEvent.Raise();
+                        // SplashScreenExternalEvent.Raise();
+                        splashScreenInitializerFN();
                     };
                     splashScreen.Closed += OnSplashScreenClosed;
 
@@ -363,11 +365,12 @@ namespace Dynamo.Applications
                     IntPtr mwHandle = commandData.Application.MainWindowHandle;
                     new WindowInteropHelper(splashScreen).Owner = mwHandle;
 
-                    // show the splashscreen.
-                    splashScreen.Show();
-
                     // Disable the Dynamo button in Revit to avoid launching multiple instances.
                     DynamoRevitApp.DynamoButtonEnabled = false;
+
+                    // show the splashscreen.
+                    //splashScreen.Show();
+                    splashScreen.ShowDialog(); // TODO (REVIT-245847): Temporary solution - using modal splash screen as a workaround.
 
                     return Result.Succeeded;
                 }
@@ -575,9 +578,6 @@ namespace Dynamo.Applications
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData),
                 "Dynamo", "Dynamo Revit");
-            var commonDataFolder = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.CommonApplicationData),
-                "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
 
             bool isAutomationMode = CheckJournalForKey(extCommandData, JournalKeys.AutomationModeKey);
 
@@ -629,19 +629,21 @@ namespace Dynamo.Applications
             //Register DynamoExternalEventHandler so Revit will call our callback
             //we requested with API access.
 
-            var appEventHandler = new DynamoExternalEventHandler(new Action(() =>
+            //var appEventHandler = new DynamoExternalEventHandler(new Action(() =>
+            var appInitializerFN = new Action(() =>
             {
                 UpdateLibraryLayoutSpec();
 
                 const int timeout = 1000 * 60; // 60s timeout
                 Journaling.WriteAsyncEvent("Dynamo UI loaded", () => { }, timeout);
-            }));
+            });
 
-            DynamoAppExternalEvent = ExternalEvent.Create(appEventHandler);
+            //DynamoAppExternalEvent = ExternalEvent.Create(appEventHandler);
 
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
-            dynamoView.Loaded += (o, e) => DynamoAppExternalEvent.Raise();
+            //dynamoView.Loaded += (o, e) => DynamoAppExternalEvent.Raise();
+            dynamoView.Loaded += (o, e) => appInitializerFN();
 
             return dynamoView;
         }

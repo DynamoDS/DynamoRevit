@@ -1,0 +1,243 @@
+{
+  "Uuid": "cfb0dbaf-34b1-42cc-b682-902c7918a038",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.Utilities.UnitsUtilities.ConvertToCurrentProjectLengthUnit",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "38416e345fd445abaa88e962d2f5c984",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a2def3f8474e4872bca0aef43ea87f19",
+          "Name": "value",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3f337d7256ee4cd4ac4a0b6214061089",
+          "Name": "unitTypeId",
+          "Description": "string\nDefault value : \"autodesk.unit.unit:meters-1.0.0\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2ea6e9f795524c43b14e347e64105496",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.Utilities.UnitsUtilities.ConvertToCurrentProjectLengthUnit@double,string",
+      "Replication": "Auto",
+      "Description": "UnitsUtilities.ConvertToCurrentProjectLengthUnit (value: double, unitTypeId: string = \"autodesk.unit.unit:meters-1.0.0\"): double"
+    },
+    {
+      "ConcreteType": "UnitsUI.Units, UnitsNodeModels",
+      "SelectedIndex": 211,
+      "SelectedString": "Meters",
+      "Id": "6dab3780d9fc431a97b1cfab35a3d263",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d406fe93ab64469847d38c37b2fc864",
+          "Name": "Unit",
+          "Description": "The selected Unit",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a Unit type"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "20220ba3ea084801b95af27fe293b70b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4000077d90f5496992c10238eb821f41",
+          "Name": "unit",
+          "Description": "DynamoUnits.Unit",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a27bed60fe634979b7e89ac05207e7f1",
+          "Name": "string",
+          "Description": "Forge TypeId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Unit.TypeId",
+      "Replication": "Auto",
+      "Description": "Gets the Forge type schema identifier for a Unit\n\nUnit.TypeId: string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "d0a3edf81f1d47fa912934802c18018b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0cf47022525c45d0a2ecc9fcceb4afaf",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 75.7
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8d406fe93ab64469847d38c37b2fc864",
+      "End": "4000077d90f5496992c10238eb821f41",
+      "Id": "5f6a4ab70a6c4d3b82b3c5b18d40c13c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a27bed60fe634979b7e89ac05207e7f1",
+      "End": "3f337d7256ee4cd4ac4a0b6214061089",
+      "Id": "73006c4cba0545d3842e9ed30b44a508",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0cf47022525c45d0a2ecc9fcceb4afaf",
+      "End": "a2def3f8474e4872bca0aef43ea87f19",
+      "Id": "6e47d61852e84055b94015e774d3c1bf",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "38416e345fd445abaa88e962d2f5c984",
+        "Name": "UnitsUtilities.ConvertToCurrentProjectLengthUnit",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 386.24662445221134,
+        "Y": 475.08336119451553
+      },
+      {
+        "Id": "6dab3780d9fc431a97b1cfab35a3d263",
+        "Name": "Units",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -157.80329805478675,
+        "Y": 623.5761565428896
+      },
+      {
+        "Id": "20220ba3ea084801b95af27fe293b70b",
+        "Name": "Unit.TypeId",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 125.28290747990536,
+        "Y": 623.5761565428896
+      },
+      {
+        "Id": "d0a3edf81f1d47fa912934802c18018b",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -157.80329805478675,
+        "Y": 475.88132397156005
+      }
+    ],
+    "Annotations": [],
+    "X": 220.08408472057147,
+    "Y": -351.17113959559674,
+    "Zoom": 1.2045634474291997
+  }
+}

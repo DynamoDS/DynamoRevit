@@ -1,0 +1,149 @@
+{
+  "Uuid": "1ba4e72e-5ef7-4ab6-8854-7bd47d7ee05a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.StructuralFraming.Location",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "7219f57e-6781-42c8-b33b-d5eee181914c-000993d8"
+      ],
+      "Id": "7b544eaecfa94ee68190339918dc9997",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e863bffa89f045b08ff06a5c069aa551",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8226fbe8657d4accacd07e80f6eb1932",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f18bb34b438246e38c5d9fad63f29241",
+          "Name": "structuralFraming",
+          "Description": "Revit.Elements.StructuralFraming",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "edd184feb5bc4e44a63c30c24687a6a9",
+          "Name": "Curve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.StructuralFraming.Location",
+      "Replication": "Auto",
+      "Description": "Gets curve geometry from location of the specified structural element\n\nStructuralFraming.Location: Curve"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e863bffa89f045b08ff06a5c069aa551",
+      "End": "f18bb34b438246e38c5d9fad63f29241",
+      "Id": "8c959b6e7f3847fe8877cb1c32e3a74e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 100.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7b544eaecfa94ee68190339918dc9997",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 233.14285714285722,
+        "Y": 167.42857142857144
+      },
+      {
+        "Id": "8226fbe8657d4accacd07e80f6eb1932",
+        "Name": "StructuralFraming.Location",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 533.1428571428571,
+        "Y": 167.42857142857144
+      }
+    ],
+    "Annotations": [],
+    "X": -512.6919377652054,
+    "Y": -132.29816124469602,
+    "Zoom": 2.327722772277228
+  }
+}

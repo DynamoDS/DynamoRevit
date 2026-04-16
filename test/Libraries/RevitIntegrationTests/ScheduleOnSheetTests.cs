@@ -89,25 +89,6 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Script\FilterScheduleView.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
-            
-            var selectFamilyInstance = AllNodes
-                .OfType<Dynamo.Nodes.DSModelFamilyInstanceSelection>()
-                .FirstOrDefault(n => n.Name == "Select Family Instance");
-
-            RunCurrentModel();
-
-            //The id of the family isn't preserve in the script so we should reselect the element
-            var selection = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.Selection;
-            var selectedElementId = selection.GetElementIds()
-                .Select(id => id.Value.ToString())
-                .ToList();
-            var familyInstances = selectedElementId
-                .Select(id => DocumentManager.Instance.CurrentDBDocument.GetElement(new ElementId(int.Parse(id))) as FamilyInstance)
-                .Where(instance => instance != null)
-                .ToList();
-
-            // Update the selection with the converted list
-            selectFamilyInstance.UpdateSelection(familyInstances);
 
             RunCurrentModel();
 

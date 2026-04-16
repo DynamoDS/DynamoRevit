@@ -1,0 +1,277 @@
+{
+  "Uuid": "47f48afb-65a0-422e-a632-96c8a746386c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.AdaptiveComponent.ByPoints",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Adaptive Component:Adaptive Type",
+      "Id": "c287b81fbbad4282b61ec08fc711b653",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45701a26b8834fd99721f5bdf5d39e59",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ff44ee4e521245478a6d468f647c934e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "94d17581879149a1a3f70c154d4473d6",
+          "Name": "points",
+          "Description": "a two-dimensional array of points\n\nPoint[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "365351ee95c84ff8860180b6ef708232",
+          "Name": "familyType",
+          "Description": "a family type to use to create the adaptive components\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "89eed2aa10d44a9cb0e8be190fdbb3a9",
+          "Name": "AdaptiveComponent[]..[]",
+          "Description": "AdaptiveComponent[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[][],Revit.Elements.FamilyType",
+      "Replication": "Auto",
+      "Description": "Create a list of adaptive components from two-dimensional array of points\n\nAdaptiveComponent.ByPoints (points: Point[][], familyType: FamilyType): AdaptiveComponent[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "a756e94d345f4f6abaf1d7528f4a293b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "195b5fa70631492aab3035b0b07105d7",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 20.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "45b4a7d494df430bb69d6d99470ed2bd",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bcda44c58bb34264ac8e0655a1bcf2be",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "20f5d079501148d9a5fc9fb5dbc461fd",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a0ed9ec85b543cfbe29c0aed7b76cc9",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "68211a2d975741f3bb426c7f1489b9bd",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "45701a26b8834fd99721f5bdf5d39e59",
+      "End": "365351ee95c84ff8860180b6ef708232",
+      "Id": "cf6f6ae2853b44c181a375c6bc392dc2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "195b5fa70631492aab3035b0b07105d7",
+      "End": "bcda44c58bb34264ac8e0655a1bcf2be",
+      "Id": "22a52d3a6ffd44289b73ff2eb752212c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "195b5fa70631492aab3035b0b07105d7",
+      "End": "20f5d079501148d9a5fc9fb5dbc461fd",
+      "Id": "6d5d486650914383b55ba085981b22b3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "195b5fa70631492aab3035b0b07105d7",
+      "End": "0a0ed9ec85b543cfbe29c0aed7b76cc9",
+      "Id": "ea8f8a4001134061b08031ae84f77e3b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "68211a2d975741f3bb426c7f1489b9bd",
+      "End": "94d17581879149a1a3f70c154d4473d6",
+      "Id": "4b62141abaf447c580e57390ce1af2df",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "ff44ee4e-5212-4547-8a6d-468f647c934e",
+      "Binding": {
+        "ByPoints_InClassDecl-1_InFunctionScope-1_Instance0_ff44ee4e-5212-4547-8a6d-468f647c934e": "H4sIAAAAAAAACi3LMRKCQAwF0Lv82sysRDdCbUNtSbb4TFaGhkK3Y7g7Fr7+TTuCjRiwO17ts27L+Pw6hsnRd8rgfZaqQbl1RpnN3pJqzhrXVGkh6eehpKNcHOPW/l3VUi4HjnICLWfuaGMAAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -36.99443817138672,
+      "EyeY": 2.30711030960083,
+      "EyeZ": 51.41897201538086,
+      "LookX": 34.5560417175293,
+      "LookY": 5.956752300262451,
+      "LookZ": -57.894344329833984,
+      "UpX": -0.15350833535194397,
+      "UpY": 0.9540915489196777,
+      "UpZ": 0.2571859061717987
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c287b81fbbad4282b61ec08fc711b653",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1253.416760961269,
+        "Y": 4172.680230081794
+      },
+      {
+        "Id": "ff44ee4e521245478a6d468f647c934e",
+        "Name": "AdaptiveComponent.ByPoints",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1833.2013630661918,
+        "Y": 3977.748228314723
+      },
+      {
+        "Id": "a756e94d345f4f6abaf1d7528f4a293b",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1219.2589715475642,
+        "Y": 3935.441210803707
+      },
+      {
+        "Id": "45b4a7d494df430bb69d6d99470ed2bd",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1457.7608908892928,
+        "Y": 3914.830099708596
+      }
+    ],
+    "Annotations": [],
+    "X": -2103.6043057350294,
+    "Y": -7273.5938696790145,
+    "Zoom": 1.901159800022934
+  }
+}

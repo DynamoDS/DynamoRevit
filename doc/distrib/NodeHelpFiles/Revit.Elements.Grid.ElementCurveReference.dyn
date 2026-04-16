@@ -1,0 +1,193 @@
+{
+  "Uuid": "58398e89-4f18-430a-9ffb-79ab68c56c85",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Grid.ElementCurveReference",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "296557b1c3b54e92a4fceafd2e78cac8",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "08721e29c226495982ff303b3753279e",
+          "Name": "grid",
+          "Description": "Revit.Elements.Grid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "376749a00f134d489311779ea34605e6",
+          "Name": "ElementCurveReference",
+          "Description": "ElementCurveReference",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Grid.ElementCurveReference",
+      "Replication": "Auto",
+      "Description": "Get a Reference to the underlying Curve Geometry of this Element\n\nGrid.ElementCurveReference: ElementCurveReference"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 165,
+      "SelectedString": "Grid",
+      "Id": "5933f836e0ad46f9b2de0ff7f3a46baf",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "569bccb2533640dd8d075fce1457298d",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "dcb25ef3710543f894e6e0780b5a1354",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "16255eea29914376ae283ba6f80bbe4e",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a162e4a3f3e9499b8c7ebe25c9b5f5e4",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "569bccb2533640dd8d075fce1457298d",
+      "End": "16255eea29914376ae283ba6f80bbe4e",
+      "Id": "1ef4a02d0c434b5e8d5ff92514167661",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a162e4a3f3e9499b8c7ebe25c9b5f5e4",
+      "End": "08721e29c226495982ff303b3753279e",
+      "Id": "9382efb2c38b4faf826fda5bc998f6ff",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "296557b1c3b54e92a4fceafd2e78cac8",
+        "Name": "Grid.ElementCurveReference",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 626.73254937048,
+        "Y": 172.26353081525355
+      },
+      {
+        "Id": "5933f836e0ad46f9b2de0ff7f3a46baf",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 19.193728297173664,
+        "Y": 172.99362088689716
+      },
+      {
+        "Id": "dcb25ef3710543f894e6e0780b5a1354",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 315.80235188855977,
+        "Y": 172.79843207429346
+      }
+    ],
+    "Annotations": [],
+    "X": 370.2035002208361,
+    "Y": 173.6079649201772,
+    "Zoom": 1.5546925571943866
+  }
+}

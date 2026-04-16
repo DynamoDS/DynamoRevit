@@ -1,0 +1,569 @@
+{
+  "Uuid": "a5d69d74-1c26-447a-9a5d-7307ab61141f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ElevationMarker.ByViewTypeLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e598017e6e2e4adaaa14f42c69495981",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a523427373f941f6b74a6ceb50a30cfb",
+          "Name": "elevationMarker",
+          "Description": "Revit.Elements.ElevationMarker",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e839b567b9044143ac265e88c24a7365",
+          "Name": "planView",
+          "Description": "The PlanView in which the ElevationMarker is visible. The new elevation ViewSection will derive its extents and inherit settings from the ViewPlan.\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ae0f10d9e5a5465389a5d24d3823c1f7",
+          "Name": "index",
+          "Description": "The index on the ElevationMarker where the new elevation ViewSection will be placed. The elevation marker can have up to four views, indexed from 0 to 3.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "633022bd27564edf9eab830adc7b2fce",
+          "Name": "SectionView",
+          "Description": "The new elevation ViewSection.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex@Revit.Elements.Views.View,int",
+      "Replication": "Auto",
+      "Description": "Creates a new elevation ViewSection on the ElevationMarker at the desired index.\n\nElevationMarker.CreateElevationByMarkerIndex (planView: View, index: int): SectionView"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8638233b200c484a8f715b16b77f7f7a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1d1b80a638484186a60ef3366e5d295f",
+          "Name": "viewFamilyType",
+          "Description": "The ViewFamilyType that will be used by all elevations hosted on the new ElevationMarker.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a74ce76207f43068da716a814864ae7",
+          "Name": "location",
+          "Description": "The desired origin for the ElevationMarker.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c68bb4cbf7cf44c880318d8677eb38d3",
+          "Name": "initialViewScale",
+          "Description": "The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size (e.g. input 100 for 1:100 scale).\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "34324da8d876413eafd5f456136147fc",
+          "Name": "ElevationMarker",
+          "Description": "The new ElevationMarker element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ElevationMarker.ByViewTypeLocation@Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,int",
+      "Replication": "Auto",
+      "Description": "Creates a new ElevationMarker.\n\nElevationMarker.ByViewTypeLocation (viewFamilyType: Element, location: Point, initialViewScale: int): ElevationMarker"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction, DynamoCore",
+      "FunctionSignature": "DSCore.List.Join@var[]..[]",
+      "FunctionType": "VariableArgument",
+      "Id": "0935362459c34871a45cf1c2a183e831",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4244b42f0e444eda8da97e144037095a",
+          "Name": "list0",
+          "Description": "Lists to join into one.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e347c7ebd8b74ccc93c058c5369582f9",
+          "Name": "list1",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "16e63f9ffad84d09b06d5ffebba81aff",
+          "Name": "list",
+          "Description": "Joined list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Concatenates all given lists into a single list.\n\nList.Join (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "9ceff884782a420e86cae66dfebfc6c8",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f1484ed903144660a15c4a681c5c47f3",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 2.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "8f0ca604138645f489a11db8e8c6b81f",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4929db5423f842e78b864ae27a24c718",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "bf58f7fc4f4644bc91dfd542140c956f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cf772c7de35d4e0d815817734854fa18",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4950ca65611045d998a3a27f7a32c842",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "925e8aaaa6324858be0a245ed236587a",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "b4b58dfde12448189d5dd789101f95a1",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ed7cd18f0b3d4a6e9551198cb46bc31e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 4.0
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewFamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 13,
+      "SelectedString": "Interior Elevation",
+      "Id": "d88daa131eb6491dafea24e564068764",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "943fe1e060404961ba725d2ae207442e",
+          "Name": "ViewFamilyType",
+          "Description": "The selected ViewFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All view family types in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 111,
+      "SelectedString": "L1",
+      "Id": "6b9e6c3e647e4d1bbff8b5f5ce1970cf",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "858eab1d201145f4b450e4dc7196f558",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": -80.0,
+      "StepValue": 0.1,
+      "Id": "7732d537bff9417d86633ba8c7fa757f",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f367b7a616da418ba291c51c2d0c54d4",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": -70.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "fbbaf2783bed487cbd8da2fff307dd4b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f1d10de4b1e34b0fa57b897f6422bb3b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 5.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "34324da8d876413eafd5f456136147fc",
+      "End": "a523427373f941f6b74a6ceb50a30cfb",
+      "Id": "f7390f8d63a3447baffc7835a3528eb4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16e63f9ffad84d09b06d5ffebba81aff",
+      "End": "ae0f10d9e5a5465389a5d24d3823c1f7",
+      "Id": "39346901bdf4401b927d323579f7ed54",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f1484ed903144660a15c4a681c5c47f3",
+      "End": "e347c7ebd8b74ccc93c058c5369582f9",
+      "Id": "ab03ee905ea44a3f9ba2ae9e27bfceee",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4929db5423f842e78b864ae27a24c718",
+      "End": "4244b42f0e444eda8da97e144037095a",
+      "Id": "fe6e7354698b4ccdb62b27a34034ce82",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "925e8aaaa6324858be0a245ed236587a",
+      "End": "5a74ce76207f43068da716a814864ae7",
+      "Id": "82f2d604de2745379b9ff6f2262004ba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ed7cd18f0b3d4a6e9551198cb46bc31e",
+      "End": "c68bb4cbf7cf44c880318d8677eb38d3",
+      "Id": "6aa1805fb9e140819323f4ae9d5cfcb3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "943fe1e060404961ba725d2ae207442e",
+      "End": "1d1b80a638484186a60ef3366e5d295f",
+      "Id": "ff04067c8da74b408ebede07f6cac676",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "858eab1d201145f4b450e4dc7196f558",
+      "End": "e839b567b9044143ac265e88c24a7365",
+      "Id": "fe8aac4ab97f485bbdb67c1267d4719f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f367b7a616da418ba291c51c2d0c54d4",
+      "End": "cf772c7de35d4e0d815817734854fa18",
+      "Id": "2ad044b77fa144e2b19d44dcd5e2d5ed",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f1d10de4b1e34b0fa57b897f6422bb3b",
+      "End": "4950ca65611045d998a3a27f7a32c842",
+      "Id": "72e9a364c8e04928a39c3bd017eb2b95",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e598017e6e2e4adaaa14f42c69495981",
+        "Name": "ElevationMarker.CreateElevationByMarkerIndex",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2643.100039141622,
+        "Y": 569.8738186148549
+      },
+      {
+        "Id": "8638233b200c484a8f715b16b77f7f7a",
+        "Name": "ElevationMarker.ByViewTypeLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2031.9985695898154,
+        "Y": 627.6360426799341
+      },
+      {
+        "Id": "0935362459c34871a45cf1c2a183e831",
+        "Name": "List.Join",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2238.141698289711,
+        "Y": 918.5752624177454
+      },
+      {
+        "Id": "9ceff884782a420e86cae66dfebfc6c8",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2033.5334747824031,
+        "Y": 1006.4510176099483
+      },
+      {
+        "Id": "8f0ca604138645f489a11db8e8c6b81f",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2033.5334747824031,
+        "Y": 872.8710045393271
+      },
+      {
+        "Id": "bf58f7fc4f4644bc91dfd542140c956f",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1632.9008866612767,
+        "Y": 635.5795230498502
+      },
+      {
+        "Id": "b4b58dfde12448189d5dd789101f95a1",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1725.9008866612767,
+        "Y": 826.0261384046711
+      },
+      {
+        "Id": "d88daa131eb6491dafea24e564068764",
+        "Name": "View Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1568.9008866612767,
+        "Y": 453.14199912620336
+      },
+      {
+        "Id": "6b9e6c3e647e4d1bbff8b5f5ce1970cf",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2031.9985695898154,
+        "Y": 405.24787486078264
+      },
+      {
+        "Id": "7732d537bff9417d86633ba8c7fa757f",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1104.695732470812,
+        "Y": 632.6853352290423
+      },
+      {
+        "Id": "fbbaf2783bed487cbd8da2fff307dd4b",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1104.0,
+        "Y": 821.0490051713817
+      }
+    ],
+    "Annotations": [],
+    "X": -654.4432743724988,
+    "Y": -20.160440171002847,
+    "Zoom": 0.8192165832990417
+  }
+}

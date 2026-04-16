@@ -30,3 +30,4 @@ common:
         - doc\distrib\Templates\en-US\*.dyn, doc\distrib\Templates\%langMsNet%\*.dyn
         - doc\distrib\Templates\en-US\filenames.json, doc\distrib\Templates\%langMsNet%\filenames.json
         - doc\distrib\Samples\en-US\Revit\*.dyn, doc\distrib\Samples\%langMsNet%\Revit\*.dyn
+        - doc\distrib\Samples\en-US\Revit\filenames.json, doc\distrib\Samples\%langMsNet%\Revit\filenames.json

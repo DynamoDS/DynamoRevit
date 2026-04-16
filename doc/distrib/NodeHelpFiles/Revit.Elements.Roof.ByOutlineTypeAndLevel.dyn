@@ -1,0 +1,451 @@
+{
+  "Uuid": "ef3b7871-f08e-4157-ba0c-b5fd598c43e8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Roof.ByOutlineTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d4f4503e499c4d78b53566ab09944ddf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "aa83cd8bd36e4b54983534ac06628e88",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2de946e9623644eb877cb211b02144e3",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "17f0907329814c7882c3548e368ad4ee",
+          "Name": "Rectangle",
+          "Description": "Rectangle created by width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the WCS origin in the WCS XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "33e033de61524cfe89c50bae53d25052",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dfa779a03f7741f581760ef499d1b226",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "781f4cb37f5b422f8cd7a7b4974116ad",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6051cd135c2540fdb759163107260fdc",
+          "Name": "outline",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b3f1cb88074c49418d007b3f808e559b",
+          "Name": "roofType",
+          "Description": "RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7d1c9def41d54ccd91ff27bffaf52dfb",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1b567a919e13478db70bfe1e6945c2d4",
+          "Name": "Roof",
+          "Description": "The Roof",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Roof.ByOutlineTypeAndLevel@Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.RoofType,Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Roof given its curve outline and Level\n\nRoof.ByOutlineTypeAndLevel (outline: Curve[], roofType: RoofType, level: Level): Roof"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "402ea4283cf649928c36e4c7a6724034",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "93d18115cdab4a4c99718d2c899a72c2",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Base Offset From Level"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dee495db3a9a4b6dac48872c7669e49e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "72709f63bba949bc925c94fd6df87228",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "724cbafddc79455293767db5510d0e8a",
+          "Name": "parameterName",
+          "Description": "The name of the parameter to set.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "01b16dabf14c4ccc813b0b907b73b181",
+          "Name": "value",
+          "Description": "The value.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "53ac966ee28a46b183e383d6657db6f3",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.SetParameterByName@string,var",
+      "Replication": "Auto",
+      "Description": "Set one of the element's parameters.\n\nElement.SetParameterByName (parameterName: string, value: var): Element"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RoofTypes, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Generic - 12\"",
+      "Id": "3c0256ea0c424d83b3e204c12f60f861",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "af4516432df3446886acee898ad92eb7",
+          "Name": "Roof Types",
+          "Description": "The selected Roof Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All roof types in the current document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "80e89ab8a6234319a92541adf6832d40",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "969799da876148699c1c311bde326232",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 3,
+      "SelectedString": "Green Roof Hardscape",
+      "Id": "732424b6157b47058cdb0d5b025d8b3d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45c0e77307bb4c06b07497536d8f911f",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "17f0907329814c7882c3548e368ad4ee",
+      "End": "6051cd135c2540fdb759163107260fdc",
+      "Id": "7cd73a1eeb7b4620bccda9bb40b19a12",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dfa779a03f7741f581760ef499d1b226",
+      "End": "aa83cd8bd36e4b54983534ac06628e88",
+      "Id": "e651909ce1474178b3ce9b2bb5f5ca34",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dfa779a03f7741f581760ef499d1b226",
+      "End": "2de946e9623644eb877cb211b02144e3",
+      "Id": "ac32461b0b864e6d82f8fcae5443f4c3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1b567a919e13478db70bfe1e6945c2d4",
+      "End": "72709f63bba949bc925c94fd6df87228",
+      "Id": "4f34303841034bb48c85f39ac32c75e8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "93d18115cdab4a4c99718d2c899a72c2",
+      "End": "724cbafddc79455293767db5510d0e8a",
+      "Id": "c34088c050d249d59cb217bf884327ff",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "af4516432df3446886acee898ad92eb7",
+      "End": "b3f1cb88074c49418d007b3f808e559b",
+      "Id": "bb5fd718ca3e4c8f9bd9bf5fdf47a5ee",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "969799da876148699c1c311bde326232",
+      "End": "01b16dabf14c4ccc813b0b907b73b181",
+      "Id": "fc508444566146a3b8652b5757abbd51",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "45c0e77307bb4c06b07497536d8f911f",
+      "End": "7d1c9def41d54ccd91ff27bffaf52dfb",
+      "Id": "53a0cecb3ef2428998389ec17fb55ca0",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "781f4cb3-7f5b-422f-8cd7-a7b4974116ad",
+      "Binding": {
+        "ByOutlineTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_781f4cb3-7f5b-422f-8cd7-a7b4974116ad": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSb9QGnRmGoki1i6QDAIUke4OwnjZ36gUgUDHsZU7/M68sgYGN50fSzqKIbVU6tiaS3aUfFlU9Hd25TIGBeTaGA0jHzV/7oQrOnji3f5ABZCuLtfAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d4f4503e499c4d78b53566ab09944ddf",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1643.980164205904,
+        "Y": 472.7501898199241
+      },
+      {
+        "Id": "33e033de61524cfe89c50bae53d25052",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1195.980164205904,
+        "Y": 489.7501898199241
+      },
+      {
+        "Id": "781f4cb37f5b422f8cd7a7b4974116ad",
+        "Name": "Roof.ByOutlineTypeAndLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2014.2550738234088,
+        "Y": 573.8774493823082
+      },
+      {
+        "Id": "402ea4283cf649928c36e4c7a6724034",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2012.980164205904,
+        "Y": 817.7501898199241
+      },
+      {
+        "Id": "dee495db3a9a4b6dac48872c7669e49e",
+        "Name": "Element.SetParameterByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2460.9801642059037,
+        "Y": 786.7501898199241
+      },
+      {
+        "Id": "3c0256ea0c424d83b3e204c12f60f861",
+        "Name": "Roof Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1643.980164205904,
+        "Y": 684.1727494925494
+      },
+      {
+        "Id": "80e89ab8a6234319a92541adf6832d40",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2012.980164205904,
+        "Y": 964.7501898199241
+      },
+      {
+        "Id": "732424b6157b47058cdb0d5b025d8b3d",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1635.0557968833716,
+        "Y": 855.3960322251374
+      }
+    ],
+    "Annotations": [],
+    "X": -1325.995713079296,
+    "Y": -315.8795127076911,
+    "Zoom": 1.1917937712929567
+  }
+}

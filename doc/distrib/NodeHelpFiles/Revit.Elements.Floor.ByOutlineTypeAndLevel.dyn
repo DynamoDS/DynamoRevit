@@ -1,0 +1,311 @@
+{
+  "Uuid": "bd0e7cfb-6a89-4b62-999e-164da305a3c7",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Floor.ByOutlineTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b295e73fc2eb4553bcda8aa6e2e8d111",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "fd7b55ff6f324e3295e1e07381c48ec0",
+          "Name": "outlineCurves",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da2ba3e0f3fa47b5912236380c324a50",
+          "Name": "floorType",
+          "Description": "FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a5fe40efee2b43fbaf569d903f47af0e",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "316acacce96d400b89f47c67d32addb9",
+          "Name": "Floor",
+          "Description": "The floor",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Floor.ByOutlineTypeAndLevel@Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.FloorType,Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Floor given its curve outline and Level\n\nFloor.ByOutlineTypeAndLevel (outlineCurves: Curve[], floorType: FloorType, level: Level): Floor"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FloorTypes, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Generic - 12\"",
+      "Id": "9e2a2aefbba343db8a9cb5faef2b0752",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3c951e70ddfa4783baf37bd833f51865",
+          "Name": "Floor Type",
+          "Description": "The selected Floor Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All floor types available in the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Level 1",
+      "Id": "f13a8e71b6814c58bafb218f0d3bc9a8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d872d51c05714a56abaed85e52e7f803",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7f9fdd2ad13a4c9cac2ac578b6c41f2a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b49b8ad0ef29493d8be3b2da0a54a4b8",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "79505d6d1f7d48b2b9c994b23eac4ff6",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ea9da603d7b5472495ae44013841a348",
+          "Name": "Rectangle",
+          "Description": "Rectangle created by width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the WCS origin in the WCS XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "0eb45d4e3f9a4b2398ad741d4893582c",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "49d01036443b4948b032f7cd4ac8ac10",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3c951e70ddfa4783baf37bd833f51865",
+      "End": "da2ba3e0f3fa47b5912236380c324a50",
+      "Id": "5f5c07ba930b48f2a35697a77d7919dd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d872d51c05714a56abaed85e52e7f803",
+      "End": "a5fe40efee2b43fbaf569d903f47af0e",
+      "Id": "639e3d1f4adb4b8fbce1b1cccd90c2e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ea9da603d7b5472495ae44013841a348",
+      "End": "fd7b55ff6f324e3295e1e07381c48ec0",
+      "Id": "8caf85c9f3284d369755d7134a647fbb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "49d01036443b4948b032f7cd4ac8ac10",
+      "End": "b49b8ad0ef29493d8be3b2da0a54a4b8",
+      "Id": "2e3cee6a0bde4cf5912f9b1d5fcb0efe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "49d01036443b4948b032f7cd4ac8ac10",
+      "End": "79505d6d1f7d48b2b9c994b23eac4ff6",
+      "Id": "b54cc84cb65842df972758bdc7b4b40a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "b295e73f-c2eb-4553-bcda-8aa6e2e8d111",
+      "Binding": {
+        "ByOutlineTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_b295e73f-c2eb-4553-bcda-8aa6e2e8d111": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miYLK3ugMWgkRWwlJRgEmSP8OwnHn/XBXlrBiEewtPu8jnkSjALt2WKqiaLtTBw0U1E2Us01JQuZLZBzbqieg6ATzFf7r49+iPzi3T7oESd9XgAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b295e73fc2eb4553bcda8aa6e2e8d111",
+        "Name": "Floor.ByOutlineTypeAndLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1692.249258578391,
+        "Y": 881.158769355907
+      },
+      {
+        "Id": "9e2a2aefbba343db8a9cb5faef2b0752",
+        "Name": "Floor Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1325.249258578391,
+        "Y": 925.158769355907
+      },
+      {
+        "Id": "f13a8e71b6814c58bafb218f0d3bc9a8",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1325.249258578391,
+        "Y": 1073.1587693559068
+      },
+      {
+        "Id": "7f9fdd2ad13a4c9cac2ac578b6c41f2a",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1325.249258578391,
+        "Y": 747.158769355907
+      },
+      {
+        "Id": "0eb45d4e3f9a4b2398ad741d4893582c",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 877.2492585783909,
+        "Y": 764.158769355907
+      }
+    ],
+    "Annotations": [],
+    "X": -1161.519689736381,
+    "Y": -1045.321343033987,
+    "Zoom": 1.545620359375
+  }
+}

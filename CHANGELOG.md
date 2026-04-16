@@ -1,3 +1,59 @@
+## 0.7.78
+* DynamoRevit sample families content resave
+
+## 0.7.77
+* Update Dynamo Core to 4.0.2.3852
+
+## 0.7.76
+* Update Dynamo Core to 4.0.1.3703
+
+## 0.7.75
+* rearrange some overlapping nodes in templates
+
+## 0.7.74
+* some scripts and help files translations
+* move 3 templates for German only from internal together with other templates
+
+## 0.7.73
+* fix splash screen automatic start in test mode after made modal
+
+## 0.7.72
+* make splash screen modal
+
+## 0.7.71
+* remove unnecessary dependency on NUnit.Engine to fix regression tests
+
+## 0.7.70
+* updated FilterScheduleView test
+* resaved samples en-US
+
+## 0.7.69
+* Add Diagnostic Tripod-1 point.rfa
+* remove dependency on aget
+
+## 0.7.68
+* Update one sample to PythonNet3
+* renamed samples on all languages to allow better samples filenames' translation
+
+## 0.7.67
+* Update Dynamo Core to 4.0.0.3277
+
+## 0.7.66
+* Improve reg tests InstallDllTest and PackageDllTest to check for file version instead of assembly version
+
+## 0.7.65
+* Re-save sample scripts
+
+## 0.7.64
+* Update common data folder location
+
+## 0.7.63
+* Update Dynamo Core to 4.0.0-beta3076
+* Update Revit subelement test
+
+## 0.7.62
+* Improve regression tests PackageDllTest and InstallDllTest to check dll versions against a list of expected versions
+
 ## 0.7.61
 * Update Dynamo Core to 4.0.0-beta2972
 

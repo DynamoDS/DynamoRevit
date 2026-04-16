@@ -1,0 +1,311 @@
+{
+  "Uuid": "41cd4cec-1c82-49b5-b3e0-1f409242feba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Ceiling.ByOutlineTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.CeilingTypes, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "2' x 4' ACT System",
+      "Id": "76966cf98bca4b0ab7061e08aaa93464",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ef9985eb64794a808522029feb0ac555",
+          "Name": "Ceiling Type",
+          "Description": "The selected Ceiling Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All ceiling types available in the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "L1 - Block 35",
+      "Id": "d010e6c52aa7427783bec3e683782487",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78c74586e4cc4e5fbf22d86063f2ab0e",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8d1b804dc6d84a3fa5eb90e1e70a3624",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "842ef5e90b114681923d931f79282cb4",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d69f07b58f6e4a0fad7bee1014dd7bab",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bf067456bd714c169cbfb3123294f5f7",
+          "Name": "Rectangle",
+          "Description": "Rectangle created by width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the WCS origin in the WCS XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "80f9be061cd1449f885168060391e0df",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d0419c4898d54180bb161a9333534527",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0472db292e14488ab67a88d276feb15d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e5e0662bd6404881bea685397abb20d4",
+          "Name": "outline",
+          "Description": "PolyCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9c2b71138c184d13b66713a7025c61df",
+          "Name": "ceilingType",
+          "Description": "CeilingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "df6ea2c058d44f739f5efe2c0de33d1a",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ea0f7c5201194e46aadae736693cdd2b",
+          "Name": "Ceiling",
+          "Description": "The ceiling",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Ceiling.ByOutlineTypeAndLevel@Autodesk.DesignScript.Geometry.PolyCurve,Revit.Elements.CeilingType,Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Ceiling given its curve outline and Level\n\nCeiling.ByOutlineTypeAndLevel (outline: PolyCurve, ceilingType: CeilingType, level: Level): Ceiling"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ef9985eb64794a808522029feb0ac555",
+      "End": "9c2b71138c184d13b66713a7025c61df",
+      "Id": "facebbd04b9f478d97bf4d886f9007a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78c74586e4cc4e5fbf22d86063f2ab0e",
+      "End": "df6ea2c058d44f739f5efe2c0de33d1a",
+      "Id": "2a1d9cfbcc9f45a09976ae34ab317de8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bf067456bd714c169cbfb3123294f5f7",
+      "End": "e5e0662bd6404881bea685397abb20d4",
+      "Id": "b5036cee48ec451bac8d93d78e914988",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d0419c4898d54180bb161a9333534527",
+      "End": "d69f07b58f6e4a0fad7bee1014dd7bab",
+      "Id": "6a037ab2e474470dbebf47ecab9d0b98",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d0419c4898d54180bb161a9333534527",
+      "End": "842ef5e90b114681923d931f79282cb4",
+      "Id": "2c979f41c8714adcada6af049de2a86d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "0472db29-2e14-488a-b67a-88d276feb15d",
+      "Binding": {
+        "ByOutlineTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_0472db29-2e14-488a-b67a-88d276feb15d": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7cBAnJmi9noGTgVZzE4mvPd3fz6Nz/Ycs3o8Qimep/XMQ6CXrDusWWTCnnvV/JWLanrlKyWPaSOmROTMS5x1iJoBONV/+titCaEF+/yAS0nC7ZfAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "76966cf98bca4b0ab7061e08aaa93464",
+        "Name": "Ceiling Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 560.5,
+        "Y": 533.5
+      },
+      {
+        "Id": "d010e6c52aa7427783bec3e683782487",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 559.5,
+        "Y": 701.5
+      },
+      {
+        "Id": "8d1b804dc6d84a3fa5eb90e1e70a3624",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 561.5,
+        "Y": 332.5
+      },
+      {
+        "Id": "80f9be061cd1449f885168060391e0df",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 111.5,
+        "Y": 353.5
+      },
+      {
+        "Id": "0472db292e14488ab67a88d276feb15d",
+        "Name": "Ceiling.ByOutlineTypeAndLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 922.5,
+        "Y": 499.5
+      }
+    ],
+    "Annotations": [],
+    "X": 67.0507145944589,
+    "Y": -262.8754456473069,
+    "Zoom": 1.545620359375
+  }
+}

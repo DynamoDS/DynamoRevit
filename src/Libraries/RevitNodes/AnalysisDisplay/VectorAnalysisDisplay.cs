@@ -27,11 +27,13 @@ namespace Revit.AnalysisDisplay
         /// Create a Vector Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="data"></param>
+        /// <param name="locations"></param>
+        /// <param name="values"></param>
         /// <param name="resultsName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
-        private VectorAnalysisDisplay(Autodesk.Revit.DB.View view, VectorData data, 
+        private VectorAnalysisDisplay(Autodesk.Revit.DB.View view,
+            IEnumerable<Autodesk.DesignScript.Geometry.Point> locations, IEnumerable<Vector> values,
             string resultsName, string description, Type unitType)
         {
             SpatialFieldManager sfm;
@@ -60,7 +62,7 @@ namespace Revit.AnalysisDisplay
             InternalSetSpatialFieldManager(sfm);
 
             var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive();
-            InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+            InternalSetSpatialFieldValues(primitiveId, locations, values, resultsName, description, unitType);
             primitiveIds.Add(primitiveId);
             InternalSetSpatialPrimitiveIds(primitiveIds);
             TransactionManager.Instance.TransactionTaskDone();
@@ -75,19 +77,20 @@ namespace Revit.AnalysisDisplay
         /// input sequences should be of the same length.
         /// </summary>
         /// <param name="primitiveId"></param>
-        /// <param name="data"></param>
+        /// <param name="locations"></param>
+        /// <param name="values"></param>
         /// <param name="schemaName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
-        private void InternalSetSpatialFieldValues(int primitiveId, VectorData data, string schemaName, string description, Type unitType)
+        private void InternalSetSpatialFieldValues(int primitiveId, IEnumerable<Autodesk.DesignScript.Geometry.Point> locations, IEnumerable<Vector> values, string schemaName, string description, Type unitType)
         {
-            var valList = data.Values.Select(v => new VectorAtPoint(new List<XYZ> { v.ToXyz() }));
+            var valList = values.Select(v => new VectorAtPoint(new List<XYZ> { v.ToXyz() }));
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             var sampleValues = new FieldValues(valList.ToList());
 
             // Convert the sample points to a special Revit Type
-            var samplePts = new FieldDomainPointsByXYZ(data.ValueLocations.Select(p=>p.ToXyz()).ToList());
+            var samplePts = new FieldDomainPointsByXYZ(locations.Select(p=>p.ToXyz()).ToList());
 
             // Get the analysis results schema
             var schemaIndex = GetAnalysisResultSchemaIndex(schemaName, description, unitType);
@@ -147,8 +150,7 @@ namespace Revit.AnalysisDisplay
                 description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
-            var data = VectorData.ByPointsAndValues(sampleLocations, samples );
-            return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);
+            return new VectorAnalysisDisplay(view.InternalView, sampleLocations, samples, name, description, unitType);
         }
 
         #endregion

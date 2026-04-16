@@ -1,0 +1,193 @@
+{
+  "Uuid": "ef3b7871-f08e-4157-ba0c-b5fd598c43e8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Roof.Points",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "eaa73906b81d4138ad395daf5ecef366",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c6eefa699dae4a658d919a7d026b27d3",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4420ad455448418f9f81c643ee721745",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 491,
+      "SelectedString": "OST_Roofs",
+      "Id": "85fd4c51269b4e1687a4611cac74a7db",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7bc52c3f45dd4664aaa9a9a978e1ca07",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "57f2c312df404003b972ff7916e1af00",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9e35df202eb14afa92098576b9fca9de",
+          "Name": "roof",
+          "Description": "Revit.Elements.Roof",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "63ebf877db874adf9f1e44ae8288c8f1",
+          "Name": "Point[]",
+          "Description": "Point[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Roof.Points",
+      "Replication": "Auto",
+      "Description": "Get Slab Shape Points\n\nRoof.Points: Point[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4420ad455448418f9f81c643ee721745",
+      "End": "9e35df202eb14afa92098576b9fca9de",
+      "Id": "aaa83078499345a899bf11fd23beb3c8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7bc52c3f45dd4664aaa9a9a978e1ca07",
+      "End": "c6eefa699dae4a658d919a7d026b27d3",
+      "Id": "4f59a91778224b93ab273b3c4b9b6afb",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "eaa73906b81d4138ad395daf5ecef366",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 980.5,
+        "Y": 758.0
+      },
+      {
+        "Id": "85fd4c51269b4e1687a4611cac74a7db",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 654.0,
+        "Y": 758.0
+      },
+      {
+        "Id": "57f2c312df404003b972ff7916e1af00",
+        "Name": "Roof.Points",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1399.3443611875532,
+        "Y": 758.0
+      }
+    ],
+    "Annotations": [],
+    "X": -399.56865625,
+    "Y": -610.40785,
+    "Zoom": 1.33823125
+  }
+}

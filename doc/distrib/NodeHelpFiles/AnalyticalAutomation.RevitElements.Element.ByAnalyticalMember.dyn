@@ -1,0 +1,246 @@
+{
+  "Uuid": "39e2c0eb-7bff-45b9-aee0-5f6ef84ab1a6",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.RevitElements.Element.ByAnalyticalMember",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c8976c8b7fe24fa0ac43a4e793968f3b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0dedbfe1bde7441d899be595e61fa209",
+          "Name": "analyticalMember",
+          "Description": "Analytical member which will be a base for a newly created structural element, or which will have its associated element updated.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d0caeb2536eb4e83a413e6090d87ec20",
+          "Name": "updateGeometry",
+          "Description": "Specifies if the geometry of an associated physical element should be updated to match the geometry of the analytical member.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fc2498dce60647dbaa8e4b3112d04925",
+          "Name": "updateParameters",
+          "Description": "Specifies if parameters of an associated physical element should be updated to match the parameters of the analytical member.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "48113ba087b04c33b86bf08baf634a07",
+          "Name": "preserveExistingJoin",
+          "Description": "Specifies if the settings of structural joins should be preserved for an updated associated structural framing.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c1f990e2a342464e8d8b32fa69569d1d",
+          "Name": "generateDefaultJoin",
+          "Description": "Specifies if default structural joins should be created for a structural framing. For an associated structural framing, the option will cause changes only if preserveExistingJoin = false.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "952a79d3b2764a5991122a8853a96b40",
+          "Name": "Element",
+          "Description": "Physical element (structural framing or column) associated with the analytical member.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.RevitElements.Element.ByAnalyticalMember@Revit.Elements.Element,bool,bool,bool,bool",
+      "Replication": "Auto",
+      "Description": "Creates a linear structural element (structural framing or column) based on an analytical member. If a selected analytical member is not associated with any element, a newly created structural element will inherit the geometry and parameters from the analytical member. If a selected analytical member is already associated with an element, the associated element geometry and/or parameters can be updated.\n\nElement.ByAnalyticalMember (analyticalMember: Element, updateGeometry: bool = true, updateParameters: bool = true, preserveExistingJoin: bool = true, generateDefaultJoin: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a04047a7-b797-4f50-bcf6-c26b51dd5389-0009bf7e"
+      ],
+      "Id": "2e8ad72146aa4e769e197c4167ddb7ca",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fe4944f389e44e69be943aea1ff29bcc",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "df2043fbb2eb4f37902488ae57e3a047",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "00890a6974cb47af9507ec21e697c6b1",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fe4944f389e44e69be943aea1ff29bcc",
+      "End": "0dedbfe1bde7441d899be595e61fa209",
+      "Id": "99725bffedc044b4b00d38d6b026202e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00890a6974cb47af9507ec21e697c6b1",
+      "End": "d0caeb2536eb4e83a413e6090d87ec20",
+      "Id": "91d876732b8640a5ba150f71b24b61f7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00890a6974cb47af9507ec21e697c6b1",
+      "End": "fc2498dce60647dbaa8e4b3112d04925",
+      "Id": "5f29f399ceb64165a6086fd5232a0f3c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00890a6974cb47af9507ec21e697c6b1",
+      "End": "48113ba087b04c33b86bf08baf634a07",
+      "Id": "c37d2bd45edb42ad9634d77686951765",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "00890a6974cb47af9507ec21e697c6b1",
+      "End": "c1f990e2a342464e8d8b32fa69569d1d",
+      "Id": "4f69a27ee56e409ab80ab5995a1e9bc2",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "c8976c8b-7fe2-4fa0-ac43-a4e793968f3b",
+      "Binding": {
+        "ByAnalyticalMember_InClassDecl-1_InFunctionScope-1_Instance0_c8976c8b-7fe2-4fa0-ac43-a4e793968f3b": "H4sIAAAAAAAACouuVkpJLElUslKqjlEKLinKzEv3dIlRsopRSk1MM00xNLHUNTRNNNA1MTRI0k00SUrSNTAwN0gxTzMzsUwxB3IMLJMtzMxilHRilDzzSsB6zUwMDY3MapVqYwHwopHJXgAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c8976c8b7fe24fa0ac43a4e793968f3b",
+        "Name": "Element.ByAnalyticalMember",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 327.13322685196493,
+        "Y": 51.54234227486927
+      },
+      {
+        "Id": "2e8ad72146aa4e769e197c4167ddb7ca",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 15.909382643893764,
+        "Y": 51.54234227486927
+      },
+      {
+        "Id": "df2043fbb2eb4f37902488ae57e3a047",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 15.909382643893764,
+        "Y": 219.18683803660758
+      }
+    ],
+    "Annotations": [],
+    "X": 114.71231723032906,
+    "Y": 35.178416971565326,
+    "Zoom": 1.4379320034746506
+  }
+}

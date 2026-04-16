@@ -1,0 +1,222 @@
+{
+  "Uuid": "1ba4e72e-5ef7-4ab6-8854-7bd47d7ee05a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.AnalyticalElements.AnalyticalMember.Curve",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2656a36d6bbe4abe84ab741998269248",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "87350e4ce668467f959b3c9bff1129d8",
+          "Name": "analyticalMember",
+          "Description": "AnalyticalAutomation.AnalyticalElements.AnalyticalMember",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a4722a0816804cafbdc1f7a6a0e7a898",
+          "Name": "Curve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.AnalyticalElements.AnalyticalMember.Curve",
+      "Replication": "Auto",
+      "Description": "Gets the geometric representation (Curve) of an AnalyticalMember.\n\nAnalyticalMember.Curve: Curve"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b028f1d2-be2a-4ae3-a727-1f043ba5a58b-000bbf41"
+      ],
+      "Id": "afcfe773b51f4afb9940ae4092ee0b9d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e41b69be1a144e3ea092c268bba757d6",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f61d2c60b110430ab273b1da1235d363",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e1781aa245504e9f883c4679b57f84af",
+          "Name": "element",
+          "Description": "Instance of a StructuralFraming or a StructuralColumn.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e6d7098a5ba44bc7b426fbd4656ecc20",
+          "Name": "updateGeometry",
+          "Description": "Specifies if the AnalyticalMember should inherit geometry and geometrical parameters of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7f73358708884806be357d34dddcd672",
+          "Name": "updateParameters",
+          "Description": "Specifies if the AnalyticalMember should inherit parameters' values of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28ff82eeb1134037bca3fdc0dd4910b3",
+          "Name": "addAssociation",
+          "Description": "Specifies if the AnalyticalMember should be associated with the creating element. true: add the association; false: break the association (if exists); null: do nothing - the previous association remains.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bc17092750a7475490c2995f468e88f9",
+          "Name": "AnalyticalMember",
+          "Description": "AnalyticalMember",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.AnalyticalElements.AnalyticalMember.ByElement@Revit.Elements.Element,bool,bool,bool",
+      "Replication": "Auto",
+      "Description": "Creates an AnalyticalMember based on a physical element: StructuralFraming or StructuralColumn. The AnalyticalMember may derive properties of the creating element and may be associated with it. [check this node Help to see examples and restrictions]\n\nAnalyticalMember.ByElement (element: Element, updateGeometry: bool = true, updateParameters: bool = true, addAssociation: bool = true): AnalyticalMember"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e41b69be1a144e3ea092c268bba757d6",
+      "End": "e1781aa245504e9f883c4679b57f84af",
+      "Id": "55ed1f97d01c4057b5375fc0ac1a550f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bc17092750a7475490c2995f468e88f9",
+      "End": "87350e4ce668467f959b3c9bff1129d8",
+      "Id": "42a65373b77f40b4bffaba3936b14244",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2656a36d6bbe4abe84ab741998269248",
+        "Name": "AnalyticalMember.Curve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 5454.11302128748,
+        "Y": 189.96583414176877
+      },
+      {
+        "Id": "afcfe773b51f4afb9940ae4092ee0b9d",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 4781.184730848736,
+        "Y": 189.96583414176877
+      },
+      {
+        "Id": "f61d2c60b110430ab273b1da1235d363",
+        "Name": "AnalyticalMember.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 5065.648876068108,
+        "Y": 189.96583414176877
+      }
+    ],
+    "Annotations": [],
+    "X": -6766.481052328055,
+    "Y": -5.935535360625408,
+    "Zoom": 1.421505638231546
+  }
+}

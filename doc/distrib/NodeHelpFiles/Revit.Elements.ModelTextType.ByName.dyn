@@ -1,0 +1,147 @@
+{
+  "Uuid": "2aec38b6-9dd8-4066-8db2-76fe528a9008",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ModelTextType.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fafa08ef7e9e47808bc2a979a2d840c1",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "376b5126a2a2447b8930fdced5538aa4",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "43e636f2299f4f559227fb9821188292",
+          "Name": "ModelTextType",
+          "Description": "ModelTextType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ModelTextType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a ModelTextType from the current document by name\n\nModelTextType.ByName (name: string): ModelTextType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "2b035887ca40401da05063febc124f1d",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b399b7e005984d988dcb092aa8a05611",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "10\" Trebuchet MS"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b399b7e005984d988dcb092aa8a05611",
+      "End": "376b5126a2a2447b8930fdced5538aa4",
+      "Id": "cf72a82285c7415f915f991f6762380d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -14.484270095825195,
+      "EyeY": 12.279584884643555,
+      "EyeZ": 70.00949096679688,
+      "LookX": 14.339940071105957,
+      "LookY": -15.534934997558594,
+      "LookZ": -69.30970764160156,
+      "UpX": 0.04343581944704056,
+      "UpY": 0.9767491221427917,
+      "UpZ": -0.20993980765342712
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "fafa08ef7e9e47808bc2a979a2d840c1",
+        "Name": "ModelTextType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 888.978867182796,
+        "Y": 872.4572350045984
+      },
+      {
+        "Id": "2b035887ca40401da05063febc124f1d",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 552.1085119278514,
+        "Y": 879.4694146685289
+      }
+    ],
+    "Annotations": [],
+    "X": -1183.5802837607118,
+    "Y": -2042.3086184789572,
+    "Zoom": 2.7151830709477043
+  }
+}

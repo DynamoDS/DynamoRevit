@@ -1,0 +1,248 @@
+{
+  "Uuid": "ae82ae30-c6b5-4563-ac91-2e39f3dad583",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.AppearanceAssetElement.GetRenderingAssetTextureImages",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a84c3dd1729144d68fe8bbe732732ef6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e1a4b5c45cfe44be97da70867fa7dd15",
+          "Name": "appearanceAssetElement",
+          "Description": "Revit.Elements.AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "88aa6cf85a57488484a6afc1e3d59cc4",
+          "Name": "imageProperties",
+          "Description": "The list of all the properties that have images connected. A property's meaning can be queried in Revit API documentation, e.g., for \"GenericDiffuse.UnifiedbitmapBitmap\", it means property \"GenericDiffuse\" connects a texture asset which has a \"UnifiedbitmapBitmap\" property",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "190b0ba7cd8243d79278d9e22c20db62",
+          "Name": "imagePaths",
+          "Description": "The list of all the image path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.AppearanceAssetElement.GetRenderingAssetTextureImages",
+      "Replication": "Auto",
+      "Description": "Get texture image path of the appearance asset\n\nAppearanceAssetElement.GetRenderingAssetTextureImages ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "b947c0020365408cb1da838342ac5fbe",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "8efde05a8de74ac784e737deb907e615",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "39100cd08fb8492c98159e101821d625",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 14,
+      "SelectedString": "AppearanceAssetElement",
+      "Id": "05b12bf3abab4dc1a992fd154cecb60d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c5b12c8a2b9a468b91742c5d0b60cf95",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7fd79d5deef54f8aa6b152be65c62ceb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0ebe43b5c77049e38bbc7e882f8f180b",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d34a5ae969f345069390b716e4f563e3",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "39100cd08fb8492c98159e101821d625",
+      "End": "e1a4b5c45cfe44be97da70867fa7dd15",
+      "Id": "795f023c01c94a0384351ffba4a5515b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "39100cd08fb8492c98159e101821d625",
+      "End": "0ebe43b5c77049e38bbc7e882f8f180b",
+      "Id": "fae40b1fcc734ff8b79e5566fd8c10fe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c5b12c8a2b9a468b91742c5d0b60cf95",
+      "End": "8efde05a8de74ac784e737deb907e615",
+      "Id": "ebdf7488be8e49939569091e893f8cfc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a84c3dd1729144d68fe8bbe732732ef6",
+        "Name": "AppearanceAssetElement.GetRenderingAssetTextureImages",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1549.413927451185,
+        "Y": 658.0
+      },
+      {
+        "Id": "b947c0020365408cb1da838342ac5fbe",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1211.7124567843791,
+        "Y": 673.3004811911873
+      },
+      {
+        "Id": "05b12bf3abab4dc1a992fd154cecb60d",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 771.0,
+        "Y": 667.2765570980474
+      },
+      {
+        "Id": "7fd79d5deef54f8aa6b152be65c62ceb",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1577.9745597333622,
+        "Y": 1133.184475789031
+      }
+    ],
+    "Annotations": [],
+    "X": -418.1410106478638,
+    "Y": -582.6517795572053,
+    "Zoom": 1.1047642563030273
+  }
+}

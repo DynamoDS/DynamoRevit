@@ -1,0 +1,156 @@
+{
+  "Uuid": "c421e913-aefd-4886-9419-484eb4938237",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ListFromFile",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f81247f44e504f848c5323823f76fcfc",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "abbae55358b642aba287cbbec6f9c772",
+          "Name": "filePath",
+          "Description": "Source file path for the ConnectionTypes. If it is null this node will use the current model as source\n\nstring\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3a74461874034cf7bf40c28092429555",
+          "Name": "ConnectionTypes",
+          "Description": "A list of connections",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ListFromFile@string",
+      "Replication": "Auto",
+      "Description": "Lists the ConnectionTypes located in the specified file path, which are available for loading into the current document.\n\nConnectionType.ListFromFile (filePath: string = null): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "b9c4b94b041547c2afde189bdd52241f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "913dd323732b410187fd425c04f28bba",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\kjwil\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\ACO_Supermarket building_2022_AISC.0001_SADE.rvt",
+      "InputValue": "..\\..\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\ACO_Supermarket building_2022_AISC.0001_SADE.rvt"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "913dd323732b410187fd425c04f28bba",
+      "End": "abbae55358b642aba287cbbec6f9c772",
+      "Id": "4805076b972f446789d89f892d9ceb49",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "ACO_Supermarket building_2022_AISC.0001_SADE.rvt",
+      "ReferenceType": "External",
+      "Nodes": [
+        "b9c4b94b041547c2afde189bdd52241f"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f81247f44e504f848c5323823f76fcfc",
+        "Name": "ConnectionType.ListFromFile",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2950.7722563167627,
+        "Y": 2062.934592428031
+      },
+      {
+        "Id": "b9c4b94b041547c2afde189bdd52241f",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2041.7722563167627,
+        "Y": 2062.934592428031
+      }
+    ],
+    "Annotations": [],
+    "X": -1138.2653653614657,
+    "Y": -1126.3745754491588,
+    "Zoom": 0.6050219216804101
+  }
+}

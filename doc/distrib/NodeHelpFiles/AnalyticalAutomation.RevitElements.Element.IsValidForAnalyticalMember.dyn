@@ -1,0 +1,205 @@
+{
+  "Uuid": "38522659-0bfc-4028-be96-2e4cc10f1597",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.RevitElements.Element.IsValidForAnalyticalMember",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9d9e2b57b74341c9bd6704afb0aed653",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f644838b4a224dce86dd485c944f1628",
+          "Name": "element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "056ec717f0954e72ba5b626acb1c7d3a",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bca2a0ca421a458780edf04498574f50",
+          "Name": "exceptionMessage",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.RevitElements.Element.IsValidForAnalyticalMember@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Checks if a Revit model element is valid for being a base for AnalyticalMember. If so, it can be an input of the AnalyticalMember.ByElement method. If the method result is false, it provides the exception message informing about the cause.\n\nElement.IsValidForAnalyticalMember (element: Element): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "49d67e99f21f4d159f0647e13ef2f16e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "90eac92ac5b940df8f0470cc31556f44",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7587724a05d749de98d74540e2db93c6",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 769857,
+      "MinimumValue": 687839,
+      "StepValue": 1,
+      "Id": "49308a1e86424615a795c9b6de360385",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "21604042606b44d1b8fc5434673b5772",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 769857
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7587724a05d749de98d74540e2db93c6",
+      "End": "f644838b4a224dce86dd485c944f1628",
+      "Id": "47fa2537d92e4c4aa5545b81681998a5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "21604042606b44d1b8fc5434673b5772",
+      "End": "90eac92ac5b940df8f0470cc31556f44",
+      "Id": "36bccd65ab6c45c1a52bd8fe4cecf2b6",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -37.28171157836914,
+      "EyeY": 45.97184753417969,
+      "EyeZ": 148.02828979492188,
+      "LookX": 32.28171157836914,
+      "LookY": -34.97184753417969,
+      "LookZ": -156.02828979492188,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9d9e2b57b74341c9bd6704afb0aed653",
+        "Name": "Element.IsValidForAnalyticalMember",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -259.7115722400792,
+        "Y": -598.0763487904318
+      },
+      {
+        "Id": "49d67e99f21f4d159f0647e13ef2f16e",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -531.3510238347318,
+        "Y": -598.0763487904318
+      },
+      {
+        "Id": "49308a1e86424615a795c9b6de360385",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -973.8476182865272,
+        "Y": -598.0763487904318
+      }
+    ],
+    "Annotations": [],
+    "X": 909.9301824015006,
+    "Y": 764.8769088906702,
+    "Zoom": 0.9035604399276828
+  }
+}

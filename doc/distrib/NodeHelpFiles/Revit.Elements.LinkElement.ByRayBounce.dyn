@@ -1,0 +1,390 @@
+{
+  "Uuid": "f391a529-fcc3-41f2-b425-5f1574d91659",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.LinkElement.ByRayBounce",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ad4f6912ef3c4ce4961a0812e77d5a29",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "72aa496628394e6087752ae186ad688f",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.XAxis",
+      "Replication": "Auto",
+      "Description": "Get the canonical X axis Vector (1,0,0)\n\nVector.XAxis ( ): Vector"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "37fd3b2f33144df59a1b528756dd31e5",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9771f6465ee0491dabe2c113fd9e7149",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 9
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "Id": "302a7b9a829944dbb491670136cf0ce9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6767f47535fc43098728a82d72401fed",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f79fa5bc9c734d4aa6aac15275e24f3d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b6b1e9aa496a4e48be47df035b62e4d7",
+          "Name": "origin",
+          "Description": "Origin point of the ray\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "91cbb519770f47d4958a2346f6a317fa",
+          "Name": "direction",
+          "Description": "Direction of the ray\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "be91d104bc704ed38437c42b3b2da73b",
+          "Name": "maxBounces",
+          "Description": "Maximum number of bounces\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6367a30737a740f399ff0233d240d2eb",
+          "Name": "view",
+          "Description": "3D view from the Revit model\n\nView3D",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "411fb15de9bf41d6b218442d0dec8837",
+          "Name": "points",
+          "Description": "Positions hit by ray bounce",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c589adf7d4546f9a12039879d79184c",
+          "Name": "linkedElement",
+          "Description": "Linked elements hit by ray bounce",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkElement.ByRayBounce@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector,int,Revit.Elements.Views.View3D",
+      "Replication": "Auto",
+      "Description": "Returns points and linked elements hit by ray bounce from the given origin point and direction\n\nLinkElement.ByRayBounce (origin: Point, direction: Vector, maxBounces: int, view: View3D): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "11b81ab8058f41ec99604ce037d6eff3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0385145aa41840c2b12777027821a012",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4d812a3d2a8349c6ac13680f63b1275a",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1904dcc7933d44b1b24b1cd75c8d93f3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "609a7a429de442c886a60ba082dde0ea",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5ac43dd8afb49ffaef8a9ef1f9d398c",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.StartPoint",
+      "Replication": "Auto",
+      "Description": "Get the start Point along the Curve\n\nCurve.StartPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "97926e32-0494-4448-aec5-d83bb933a11e-0017690a"
+      ],
+      "Id": "973997b5b0344d4991f5230c2204fcea",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "14663cea94904f248ce50e9433db7392",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "72aa496628394e6087752ae186ad688f",
+      "End": "91cbb519770f47d4958a2346f6a317fa",
+      "Id": "d97791d897cb468abbfc8021250b61aa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9771f6465ee0491dabe2c113fd9e7149",
+      "End": "be91d104bc704ed38437c42b3b2da73b",
+      "Id": "cc4ef1b22b8f43d5b56a64eb8e25aec7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6767f47535fc43098728a82d72401fed",
+      "End": "6367a30737a740f399ff0233d240d2eb",
+      "Id": "7bb079626c214719a37e193b3f91e143",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4d812a3d2a8349c6ac13680f63b1275a",
+      "End": "609a7a429de442c886a60ba082dde0ea",
+      "Id": "9957c0712b674fe487943d68b98f6638",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a5ac43dd8afb49ffaef8a9ef1f9d398c",
+      "End": "b6b1e9aa496a4e48be47df035b62e4d7",
+      "Id": "3ecd0edc2a4c488bbcdbc994c3b7ff06",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "14663cea94904f248ce50e9433db7392",
+      "End": "0385145aa41840c2b12777027821a012",
+      "Id": "5c6d3b3ada19453282bb6c9c473a1f63",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ad4f6912ef3c4ce4961a0812e77d5a29",
+        "Name": "Vector.XAxis",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1661.2202784343822,
+        "Y": 825.0227082117189
+      },
+      {
+        "Id": "37fd3b2f33144df59a1b528756dd31e5",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1478.2202784343822,
+        "Y": 956.4451938208064
+      },
+      {
+        "Id": "302a7b9a829944dbb491670136cf0ce9",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1608.2202784343822,
+        "Y": 1111.1845720379579
+      },
+      {
+        "Id": "f79fa5bc9c734d4aa6aac15275e24f3d",
+        "Name": "LinkElement.ByRayBounce",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1987.1697739477831,
+        "Y": 694.3546693576077
+      },
+      {
+        "Id": "11b81ab8058f41ec99604ce037d6eff3",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1315.6728154650575,
+        "Y": 650.0
+      },
+      {
+        "Id": "1904dcc7933d44b1b24b1cd75c8d93f3",
+        "Name": "Curve.StartPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1630.2202784343822,
+        "Y": 650.0
+      },
+      {
+        "Id": "973997b5b0344d4991f5230c2204fcea",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1031.0,
+        "Y": 650.0
+      }
+    ],
+    "Annotations": [],
+    "X": -1200.8599115503469,
+    "Y": -750.4036966985099,
+    "Zoom": 1.409728763980008
+  }
+}

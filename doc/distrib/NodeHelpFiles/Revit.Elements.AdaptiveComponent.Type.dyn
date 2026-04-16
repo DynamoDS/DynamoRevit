@@ -1,0 +1,193 @@
+{
+  "Uuid": "87040d79-9d01-4bfd-90f7-fcc78d9f6425",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.AdaptiveComponent.Type",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "Id": "9584edb8bb954f75bd4c491128886817",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "414cdb3ed4f44ee58e2ed5c352200d92",
+          "Name": "Family Type",
+          "Description": "The Family Type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "09eb09b21bce4dd985ec1b70a3d218d7",
+          "Name": "Elements",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified family type from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Diagnostic Tripod-1 point:Diagnostic Tripod-1 point",
+      "Id": "c75acf695ff34e58afd7226fd3e37219",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4ee9c6153222406088bd9686f52b9788",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4bb03dbd02814c8d80f6145b5c3d4811",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "36428577af2e41e7a0fad1e32720f477",
+          "Name": "adaptiveComponent",
+          "Description": "Revit.Elements.AdaptiveComponent",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2618241dcc054693a17edeb7f1549577",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.AdaptiveComponent.Type",
+      "Replication": "Auto",
+      "Description": "AdaptiveComponent.Type: FamilyType"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "09eb09b21bce4dd985ec1b70a3d218d7",
+      "End": "36428577af2e41e7a0fad1e32720f477",
+      "Id": "1031a29b861d400cbb8d37a87dcf9d74",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4ee9c6153222406088bd9686f52b9788",
+      "End": "414cdb3ed4f44ee58e2ed5c352200d92",
+      "Id": "f97ef74819c9490eb3ee263a51d57e62",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9584edb8bb954f75bd4c491128886817",
+        "Name": "All Elements of Family Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2364.5877479631986,
+        "Y": 683.4505821252876
+      },
+      {
+        "Id": "c75acf695ff34e58afd7226fd3e37219",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1789.0909789288012,
+        "Y": 683.4505821252876
+      },
+      {
+        "Id": "4bb03dbd02814c8d80f6145b5c3d4811",
+        "Name": "AdaptiveComponent.Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2701.7988027118818,
+        "Y": 683.4505821252876
+      }
+    ],
+    "Annotations": [],
+    "X": -1458.7923697238505,
+    "Y": -316.28293120423757,
+    "Zoom": 0.8321501741712704
+  }
+}

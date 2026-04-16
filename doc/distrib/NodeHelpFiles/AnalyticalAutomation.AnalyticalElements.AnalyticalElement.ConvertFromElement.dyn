@@ -1,0 +1,222 @@
+{
+  "Uuid": "cb0f7e35-bb98-4c4e-9f3e-80b6efb14dfe",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.AnalyticalElements.AnalyticalElement.ConvertFromElement",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b028f1d2-be2a-4ae3-a727-1f043ba5a58b-000bbf41"
+      ],
+      "Id": "099055f7ce024fe8bc4c56ecaa88336b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7691410aa6874a41bebf2f29a964ecb4",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9e44a7940a2843efbf5da039f19b193f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5db9771a62ae453ca1e2b2957804726b",
+          "Name": "element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ba6d96e9958d4f32b68837aae134ae6b",
+          "Name": "AnalyticalElement",
+          "Description": "AnalyticalElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.AnalyticalElements.AnalyticalElement.ConvertFromElement@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Converts an existing Revit Element into an AnalyticalElement.\n\nAnalyticalElement.ConvertFromElement (element: Element): AnalyticalElement"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2f9106edf2ab478ca83d13ec7bc53ce4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "40fe058748f34777bb125cbe0d00bba6",
+          "Name": "element",
+          "Description": "Instance of a StructuralFraming or a StructuralColumn.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b6eee5beaea240f7837af25d9f886e66",
+          "Name": "updateGeometry",
+          "Description": "Specifies if the AnalyticalMember should inherit geometry and geometrical parameters of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0fc69aa6ab2846b18875491949922db7",
+          "Name": "updateParameters",
+          "Description": "Specifies if the AnalyticalMember should inherit parameters' values of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e98fb0bab7af4c42a94670f6e322cb19",
+          "Name": "addAssociation",
+          "Description": "Specifies if the AnalyticalMember should be associated with the creating element. true: add the association; false: break the association (if exists); null: do nothing - the previous association remains.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "48b2cce571b84b74b70c49ca974a557a",
+          "Name": "AnalyticalMember",
+          "Description": "AnalyticalMember",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.AnalyticalElements.AnalyticalMember.ByElement@Revit.Elements.Element,bool,bool,bool",
+      "Replication": "Auto",
+      "Description": "Creates an AnalyticalMember based on a physical element: StructuralFraming or StructuralColumn. The AnalyticalMember may derive properties of the creating element and may be associated with it. [check this node Help to see examples and restrictions]\n\nAnalyticalMember.ByElement (element: Element, updateGeometry: bool = true, updateParameters: bool = true, addAssociation: bool = true): AnalyticalMember"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7691410aa6874a41bebf2f29a964ecb4",
+      "End": "40fe058748f34777bb125cbe0d00bba6",
+      "Id": "f52596a9b1984052a9c4d999071dba2e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "48b2cce571b84b74b70c49ca974a557a",
+      "End": "5db9771a62ae453ca1e2b2957804726b",
+      "Id": "6b7d1c14f15248e3972b9eade766e32e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "099055f7ce024fe8bc4c56ecaa88336b",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 642.3019446474977,
+        "Y": 545.5445762308545
+      },
+      {
+        "Id": "9e44a7940a2843efbf5da039f19b193f",
+        "Name": "AnalyticalElement.ConvertFromElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1286.9151169436516,
+        "Y": 545.5445762308545
+      },
+      {
+        "Id": "2f9106edf2ab478ca83d13ec7bc53ce4",
+        "Name": "AnalyticalMember.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 912.6085307955747,
+        "Y": 545.5445762308545
+      }
+    ],
+    "Annotations": [],
+    "X": -814.433194608651,
+    "Y": -441.7113496363437,
+    "Zoom": 1.314698175282787
+  }
+}

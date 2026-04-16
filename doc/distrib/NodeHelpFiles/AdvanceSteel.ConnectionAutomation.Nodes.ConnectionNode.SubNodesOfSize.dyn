@@ -1,0 +1,250 @@
+{
+  "Uuid": "2b4679b4-7f26-4a2a-bfae-f9e541cbfffd",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.SubNodesOfSize",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "568446",
+        "568448",
+        "568711",
+        "568752",
+        "569133",
+        "569135",
+        "569137"
+      ],
+      "Id": "687f8564a1ae42cfad9c2608329e5c7f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e368469c740e455481864491b4f73df4",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9340227ab9fe40b2a83425d23b9ad370",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "dc7102ce10404892bdf6234231a5f5c1",
+          "Name": "objects",
+          "Description": "A list of structure data elements.\n\nModelObject[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e4a7fc50d2af4acf92740733c1fa75e0",
+          "Name": "ConnectionNode[]",
+          "Description": "A list of connection nodes. For more info, see grouping.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.FromStructure@AdvanceSteel.ConnectionAutomation.Nodes.ModelObject[]",
+      "Replication": "Auto",
+      "Description": "Groups structure data elements into connection nodes.\n\nConnectionNode.FromStructure (objects: ModelObject[]): ConnectionNode[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "70a38001439047b38a6ca4ea0c71617c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ed3b7764a6ef46938c3f2265498bae69",
+          "Name": "node",
+          "Description": "The connection node or a list of connection nodes.\n\nConnectionNode",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ff5f8c85d10041c28bac04bbc6d6a1bf",
+          "Name": "noOfZones",
+          "Description": "The specified number of zones.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "90b82ead701f400da3cd4f976f60bce6",
+          "Name": "ConnectionNode[]",
+          "Description": "A list of connection subnodes. For more info, see arrangements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.SubNodesOfSize@AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode,int",
+      "Replication": "Auto",
+      "Description": "For connection nodes that have at least the specified number of elements or zones, it turns each input node into a list of subnodes, where each subnode is a different arrangement of the elements in the original connection node.\n\nConnectionNode.SubNodesOfSize (node: ConnectionNode, noOfZones: int): ConnectionNode[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 10.0,
+      "MinimumValue": 1.0,
+      "StepValue": 1.0,
+      "Id": "6cfe1d4ba06a4bf9a5e1941fda588496",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9157fd7daf974d0ebabbdc796754245b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 3.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e368469c740e455481864491b4f73df4",
+      "End": "dc7102ce10404892bdf6234231a5f5c1",
+      "Id": "1652dc8b99f04e12a7387416fa013c20",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e4a7fc50d2af4acf92740733c1fa75e0",
+      "End": "ed3b7764a6ef46938c3f2265498bae69",
+      "Id": "84858334878a48839f6e58903b92d57f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9157fd7daf974d0ebabbdc796754245b",
+      "End": "ff5f8c85d10041c28bac04bbc6d6a1bf",
+      "Id": "8a365c6ffa534b48b95c84247e615ebc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "687f8564a1ae42cfad9c2608329e5c7f",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2098.271985899671,
+        "Y": -1834.7973299486443
+      },
+      {
+        "Id": "9340227ab9fe40b2a83425d23b9ad370",
+        "Name": "ConnectionNode.FromStructure",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2515.72387412441,
+        "Y": -1834.7973299486443
+      },
+      {
+        "Id": "70a38001439047b38a6ca4ea0c71617c",
+        "Name": "ConnectionNode.SubNodesOfSize",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2952.3431412646623,
+        "Y": -1834.7973299486443
+      },
+      {
+        "Id": "6cfe1d4ba06a4bf9a5e1941fda588496",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2496.72387412441,
+        "Y": -1371.706937135277
+      }
+    ],
+    "Annotations": [],
+    "X": -1587.6540546379251,
+    "Y": 1474.9202281816204,
+    "Zoom": 0.7709458380555595
+  }
+}

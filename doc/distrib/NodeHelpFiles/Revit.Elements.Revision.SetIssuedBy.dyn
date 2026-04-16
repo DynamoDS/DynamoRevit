@@ -1,0 +1,193 @@
+{
+  "Uuid": "18c52c39-e6b5-4ee0-9460-b2cf07a4edf4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Revision.SetIssuedBy",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "89f637f6ad4a4de092a7f7a74ea1c513",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2ff11f4077954233b8d34632a3feaa65",
+          "Name": "revision",
+          "Description": "Revit.Elements.Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ae6e046838804ceb8bab5693e1b1cd97",
+          "Name": "value",
+          "Description": "IssuedBy\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6bf6725175de44e3bc41245be0e89404",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Revision.SetIssuedBy@string",
+      "Replication": "Auto",
+      "Description": "Set IssuedBy\n\nRevision.SetIssuedBy (value: string): void"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RevitRevisions, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Seq. 1 - Revision 1",
+      "Id": "56bf327a402b4a13b23372b69f08f490",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "83e47d3727224d47ac38def8ecc72c59",
+          "Name": "Revision",
+          "Description": "The selected Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select an existing Revit Revision from the active document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7134a65426d34c379ed6fd3b1aec7338",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80a8230499e94606829072f4b45ea1ec",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "ABC"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "83e47d3727224d47ac38def8ecc72c59",
+      "End": "2ff11f4077954233b8d34632a3feaa65",
+      "Id": "8d98321a5cc0412fb716b64af7128c61",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "80a8230499e94606829072f4b45ea1ec",
+      "End": "ae6e046838804ceb8bab5693e1b1cd97",
+      "Id": "b2956dacc3b14c57a085d788e618ee88",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "89f637f6ad4a4de092a7f7a74ea1c513",
+        "Name": "Revision.SetIssuedBy",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 726.0180301267967,
+        "Y": 185.59999999999994
+      },
+      {
+        "Id": "56bf327a402b4a13b23372b69f08f490",
+        "Name": "Select Revision",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 243.19999999999987,
+        "Y": 187.99999999999997
+      },
+      {
+        "Id": "7134a65426d34c379ed6fd3b1aec7338",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 245.59999999999997,
+        "Y": 348.0
+      }
+    ],
+    "Annotations": [],
+    "X": -420.07847735191626,
+    "Y": -287.4130897671006,
+    "Zoom": 2.6180075187969924
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "Uuid": "18b88673-cea8-4c3f-988d-192227949634",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.PerformanceAdviserRule.Description",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Line": {
+        "Key": "Autodesk.DesignScript.Geometry.Line",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Wall": {
+        "Key": "Revit.Elements.Wall",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "72f1aab3bf554c03952ae4dc56437f4c",
+      "Name": "Performance Adviser Rules",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "View clipping is disabled",
+      "Description": "All Performance Adviser rules.",
+      "SelectedIndex": 14
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.PerformanceAdviserRules, DSRevitNodesUI",
+      "SelectedIndex": 14,
+      "SelectedString": "View clipping is disabled",
+      "Id": "72f1aab3bf554c03952ae4dc56437f4c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eb4890e9b6eb4e389af2bfa8d338a56a",
+          "Name": "Performance Adviser Rules",
+          "Description": "The selected Performance Adviser Rules",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All Performance Adviser rules."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "15bff224f4004dcf89111045215fa28e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d05e5ab4ee5a416aab2f3bae4bc3bf3f",
+          "Name": "performanceAdviserRule",
+          "Description": "Revit.Elements.PerformanceAdviserRule",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "09ec29ec3c254dccb9c0452724a0a731",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.PerformanceAdviserRule.Description",
+      "Replication": "Auto",
+      "Description": "The description of the rule.\n\nPerformanceAdviserRule.Description: string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 420.0,
+      "WatchHeight": 40.0,
+      "Id": "fd6894f52d6e4245999a118f545c60eb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "6ef2a8f2486442ada4475e8887dd6851",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cacb5873a6764083997c2974ff66c2ed",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "eb4890e9b6eb4e389af2bfa8d338a56a",
+      "End": "d05e5ab4ee5a416aab2f3bae4bc3bf3f",
+      "Id": "e70b8cff721a4378b57e221945db5f8d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "09ec29ec3c254dccb9c0452724a0a731",
+      "End": "6ef2a8f2486442ada4475e8887dd6851",
+      "Id": "9e3ef9c9290c4070aa6180f990813983",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "72f1aab3bf554c03952ae4dc56437f4c",
+        "Name": "Performance Adviser Rules",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 161.5347830066695,
+        "Y": 274.9188973550046
+      },
+      {
+        "Id": "15bff224f4004dcf89111045215fa28e",
+        "Name": "PerformanceAdviserRule.Description",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 677.500621653843,
+        "Y": 275.984098569808
+      },
+      {
+        "Id": "fd6894f52d6e4245999a118f545c60eb",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1117.8232512171376,
+        "Y": 277.55947460320436
+      }
+    ],
+    "Annotations": [],
+    "X": -109.61718509141406,
+    "Y": 114.76458707266431,
+    "Zoom": 1.3832419893238923
+  }
+}
