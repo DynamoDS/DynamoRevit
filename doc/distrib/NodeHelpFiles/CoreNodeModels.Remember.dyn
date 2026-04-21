@@ -1,0 +1,285 @@
+{
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "CoreNodeModels.Remember",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Remember, CoreNodeModels",
+      "Cache": "[{\"ConcreteTypeid\":\"dynamo.geometry:sab-1.0.0\",\"sab\":\"QUNJUyBCaW5hcnlGaWxlvAIAAAAAAAABAAAAAAAAAAcETGliRwcUQVNNIDIzMS4zLjEuNjU1MzUgTlQHGE1vbiBBcHIgMjAgMTE6MTQ6NTIgMjAyNgYAAAAAAECPQAaN7bWg98awPga7vdfZ33zbPQ0EYm9keQz/////BP////8M/////wwBAAAADP////8MAgAAABENBGx1bXAM/////wT/////DP////8M/////wwDAAAADAAAAAARDQl0cmFuc2Zvcm0M/////wT/////FAAAAAAAAPA/AAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAPA/AAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAADwPwsLCxENBXNoZWxsDP////8E/////wz/////DP////8M/////wwEAAAADP////8MAQAAABENBGZhY2UM/////wT/////DP////8MBQAAAAwGAAAADAMAAAAM/////wwHAAAACwsRDQRmYWNlDP////8E/////wz/////DAgAAAAMCQAAAAwDAAAADP////8MCgAAAAsLEQ0EbG9vcAz/////BP////8M/////wz/////DAsAAAAMBAAAABEOBXBsYW5lDQdzdXJmYWNlDP////8E/////wz/////EwMAAAAAFFrAjgAAAADwN0D8/////78XwBQ2D8B73zr/PAAAAAAAAPA/AM/n/oCGsTkUAAAAAAAAAAAAz+f+gIaxuQAAAAAAAPA/CwsLCwsRDQRmYWNlDP////8E/////wz/////DAwAAAAMDQAAAAwDAAAADP////8MDgAAAAsLEQ0EbG9vcAz/////BP////8M/////wz/////DA8AAAAMBQAAABEOBXBsYW5lDQdzdXJmYWNlDP////8E/////wz/////EwIAAAAAFFrAkQAAAACwOUD+/////78XwBQAAAAAAADwv8DZXZUotNW5EoW6m65StbkUEoW6m65StbkAAAAAAAAAAAAAAAAAAPA/CwsLCwsRDQZjb2VkZ2UM/////wT/////DP////8MEAAAAAwRAAAADBIAAAAMEwAAAAsMBgAAAAz/////EQ0EZmFjZQz/////BP////8M/////wwUAAAADBUAAAAMAwAAAAz/////DBYAAAALCxENBGxvb3AM/////wT/////DP////8M/////wwXAAAADAgAAAARDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xNXVVVVVSlZwJAAAAAAsDlA+/////+/F8AUknLzPZi/6zkAAAAAAADwP4DQpJbPela5FAAAAAAAAACAgNCkls96VjkAAAAAAADwPwsLCwsLEQ0GY29lZGdlDP////8E/////wz/////DBgAAAAMGQAAAAwaAAAADBsAAAALDAkAAAAM/////xENBmNvZWRnZQz/////BP////8M/////wwcAAAADAsAAAAMHQAAAAweAAAACwwGAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MCwAAAAwcAAAADBgAAAAMHwAAAAoMBgAAAAz/////EQ0GY29lZGdlDP////8E/////wz/////DBoAAAAMIAAAAAwLAAAADBMAAAAKDCEAAAAM/////xENBGVkZ2UM/////wT/////DP////8MIgAAAAYAAAAAAAAAAAwjAAAABgAAAAAAAPA/DAsAAAAMJAAAAAsHB3Vua25vd24RDQRmYWNlDP////8E/////wz/////DCUAAAAMJgAAAAwDAAAADP////8MJwAAAAsLEQ0EbG9vcAz/////BP////8M/////wz/////DCgAAAAMDAAAABEOBXBsYW5lDQdzdXJmYWNlDP////8E/////wz/////E6qqqqqqPlvAPKuqqqrKOUD5/////78XwBQAAAAAAADwv5F7k3YKhYC5kXuTdgqFYLkUkXuTdgqFYLkAAAAAAAAAAAAAAAAAAPA/CwsLCwsRDQZjb2VkZ2UM/////wT/////DP////8MKQAAAAwqAAAADCsAAAAMLAAAAAsMDQAAAAz/////EQ0GY29lZGdlDP////8E/////wz/////DC0AAAAMDwAAAAwRAAAADB8AAAALDAkAAAAM/////xENBmNvZWRnZQz/////BP////8M/////wwPAAAADC0AAAAMKQAAAAwuAAAACgwJAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MKwAAAAwSAAAADA8AAAAMGwAAAAoMIQAAAAz/////EQ0EZWRnZQz/////BP////8M/////wwvAAAABgAAAAAAAAAADCIAAAAGIAAAAAAA/D8MDwAAAAwwAAAACwcHdW5rbm93bhENBmNvZWRnZQz/////BP////8M/////wwRAAAADBAAAAAMMQAAAAwyAAAACwwGAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MMwAAAAw0AAAADBAAAAAMHgAAAAoMJgAAAAz/////EQ0EZWRnZQz/////BP////8M/////wwjAAAABgAAAAAAAAAADDUAAAAGAFVVVVVVlT8MEAAAAAw2AAAACwcHdW5rbm93bhENBGVkZ2UM/////wT/////DP////8MIgAAAAYAAAAAAAAAAAw3AAAABgBVVVVVVZU/DBgAAAAMOAAAAAsHB3Vua25vd24RDQZjb2VkZ2UM/////wT/////DP////8MEgAAAAw5AAAADDMAAAAMOgAAAAoMIQAAAAz/////EQ0EbG9vcAz/////BP////8M/////wz/////DCAAAAAMOwAAABENBnZlcnRleAz/////BP////8M/////wwbAAAADDwAAAARDQZ2ZXJ0ZXgM/////wT/////DP////8MEwAAAAw9AAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAFFrAjgAAAADwN0D9/////78XwBQAAAAAAADwvwAAAAAAAAA9AAAAAAAAAAAKBgAAAAAAAAAACgYAAAAAAADwPxENBGZhY2UM/////wT/////DP////8MOwAAAAw+AAAADAMAAAAM/////ww/AAAACwsRDQRsb29wDP////8E/////wz/////DP////8MMwAAAAwUAAAAEQ4FcGxhbmUNB3N1cmZhY2UM/////wT/////DP////8TAwAAAABUWsCQAAAAAPA3QP7/////vxfAFAAAAAAAAPA/4rpqMXbwAL0SYGKwSWirORQSYGKwSWirOQAAAAAAAAAAAAAAAAAA8L8LCwsLCxENBmNvZWRnZQz/////BP////8M/////wxAAAAADEEAAAAMQgAAAAxDAAAACwwVAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MRAAAAAwXAAAADBkAAAAMLgAAAAsMDQAAAAz/////EQ0GY29lZGdlDP////8E/////wz/////DBcAAAAMRAAAAAxFAAAADEYAAAAKDA0AAAAM/////xENBmNvZWRnZQz/////BP////8M/////wxHAAAADBoAAAAMFwAAAAwsAAAACgwhAAAADP////8RDQRlZGdlDP////8E/////wz/////DEgAAAAGAAAAAAAAAAAMLwAAAAagVVVVVVUNQAwXAAAADEkAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DBkAAAAMGAAAAAxKAAAADEsAAAALDAkAAAAM/////xENBGVkZ2UM/////wT/////DP////8MLwAAAAYAAAAAAAAAAAxMAAAABgBVVVVVVZU/DCkAAAAMTQAAAAsHB3Vua25vd24RDQZ2ZXJ0ZXgM/////wT/////DP////8MLAAAAAxOAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAFFrAkAAAAACwOUD9/////78XwBQAAAAAAAAAAAAAAAAAAPC/AAAAAAAAAAAKBgAAAAAAAAAACgYgAAAAAAD8PxENBmNvZWRnZQz/////BP////8M/////wxPAAAADEoAAAAMHAAAAAwyAAAACgxQAAAADP////8RDQRlZGdlDP////8E/////wz/////DDUAAAAGAAAAAAAAAAAMNwAAAAYAAAAAAADwPwwcAAAADFEAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DFIAAAAMHQAAAAwgAAAADDoAAAALDCYAAAAM/////xENBmNvZWRnZQz/////BP////8M/////wwdAAAADFIAAAAMTwAAAAxTAAAACwwmAAAADP////8RDQZ2ZXJ0ZXgM/////wT/////DP////8MHgAAAAxUAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAVFrAkAAAAADwN0D9/////78XwBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8D8KBgAAAAAAAAAACgYAVVVVVVWVPxENBnZlcnRleAz/////BP////8M/////wwfAAAADFUAAAARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8TAwAAAAAUWsCOAAAAAPA3QP3/////vxfAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwPwoGAAAAAAAAAAAKBgBVVVVVVZU/EQ0GY29lZGdlDP////8E/////wz/////DCAAAAAMQgAAAAxWAAAADFcAAAAKDCEAAAAM/////xENBGVkZ2UM/////wT/////DP////8MIwAAAAYAAAAAAAAAAAxYAAAABrCqqqqqqv0/DDMAAAAMWQAAAAsHB3Vua25vd24RDQRmYWNlDP////8E/////wz/////DFoAAAAMIQAAAAwDAAAADP////8MWwAAAAsLEQ0FcG9pbnQM/////wT/////DP////8TAwAAAAAUWsCOAAAAAPA3QP3/////vxfAEQ0FcG9pbnQM/////wT/////DP////8TAwAAAABUWsCQAAAAAPA3QP3/////vxfAEQ0EbG9vcAz/////BP////8M/////wz/////DFwAAAAMJQAAABEOBXBsYW5lDQdzdXJmYWNlDP////8E/////wz/////E1dVVVVVKVnAO6uqqqq6M0D9/////78XwBQAAAAAAADwPzIPVM5u4Rc6Mw9Uzm7hB7oUMw9Uzm7hB7oAAAAAAAAAAAAAAAAAAPC/CwsLCwsRDQZjb2VkZ2UM/////wT/////DP////8MXQAAAAwoAAAADF4AAAAMXwAAAAsMFQAAAAz/////EQ0GY29lZGdlDP////8E/////wz/////DCgAAAAMXQAAAAxgAAAADGEAAAAKDBUAAAAM/////xENBmNvZWRnZQz/////BP////8M/////ww5AAAADGIAAAAMKAAAAAxDAAAACgwhAAAADP////8RDQRlZGdlDP////8E/////wz/////DGMAAAAGAAAAAAAAAAAMZAAAAAYAAAAAAEAYQAwoAAAADGUAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DCoAAAAMKQAAAAxmAAAADGcAAAALDA0AAAAM/////xENBmNvZWRnZQz/////BP////8M/////wxoAAAADGkAAAAMKgAAAAxGAAAACwxqAAAADP////8RDQRlZGdlDP////8E/////wz/////DEgAAAAGAAAAAAAAAAAMawAAAAYAVVVVVVWVPwxFAAAADGwAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DG0AAAAMKwAAAAxpAAAADG4AAAAKDCEAAAAM/////xENBnZlcnRleAz/////BP////8M/////wxuAAAADG8AAAARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8TVlVVVVUpWcCQAAAAALA5QP3/////vxfAFAAAAAAAAPC/AAAAAAAAAAAAAAAAAAAAAAoGAAAAAAAAAAAKBqBVVVVVVQ1AEQ0GY29lZGdlDP////8E/////wz/////DDEAAAAMZgAAAAwtAAAADEsAAAAKDFAAAAAM/////xENBGVkZ2UM/////wT/////DP////8MNwAAAAYAAAAAAAAAAAxMAAAABiAAAAAAAPw/DC0AAAAMcAAAAAsHB3Vua25vd24RDQZ2ZXJ0ZXgM/////wT/////DP////8MLgAAAAxxAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAFFrAkAAAAACwOUD9/////78XwBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8D8KBgAAAAAAAAAACgYAVVVVVVWVPxENBXBvaW50DP////8E/////wz/////EwMAAAAAFFrAkAAAAACwOUD9/////78XwBENBmNvZWRnZQz/////BP////8M/////wxyAAAADDEAAAAMNAAAAAxTAAAACgxQAAAADP////8RDQRsb29wDP////8E/////wz/////DP////8McgAAAAxzAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAVFrAkAAAAADwN0CoqqqqqqoXwBQAAAAAAADwPwAAAAAAAAC9AAAAAAAAAAAKBgAAAAAAAAAACgYAAAAAAADwPxENBmNvZWRnZQz/////BP////8M/////ww0AAAADDMAAAAMdAAAAAx1AAAACgwmAAAADP////8RDQRlZGdlDP////8E/////wz/////DHYAAAAGAAAAAAAAAAAMNQAAAAawqqqqqqr9Pww0AAAADHcAAAALBwd1bmtub3duEQ0FcG9pbnQM/////wT/////DP////8TAwAAAABUWsCQAAAAAPA3QKiqqqqqqhfAEQ0FcG9pbnQM/////wT/////DP////8TAwAAAAAUWsCOAAAAAPA3QKiqqqqqqhfAEQ0GY29lZGdlDP////8E/////wz/////DGAAAAAMdAAAAAw5AAAADFcAAAALDHgAAAAM/////xENBGVkZ2UM/////wT/////DP////8MWAAAAAYAAAAAAAAAAAxjAAAABiBVVVVVVQ1ADFYAAAAMeQAAAAsHB3Vua25vd24RDQZ2ZXJ0ZXgM/////wT/////DP////8MVwAAAAx6AAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwMAAAAAVFrAkAAAAADwN0D9/////78XwBQRoQhFKEIBPQAAAAAAAPA/AAAAAAAAAAAKBgAAAAAAAAAACgawqqqqqqr9PxENBGZhY2UM/////wT/////DP////8MewAAAAx8AAAADAMAAAAM/////wx9AAAACwsRDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xMBAAAAAFRawDyrqqqqyjlA//////+/F8AUKSz6XnJqMLmEGtPQfnMXOQAAAAAAAPC/FAAAAAAAAPC/AAAAAAAAAAApLPpecmowOQsLCwsLEQ0GY29lZGdlDP////8E/////wz/////DH4AAAAMfwAAAAyAAAAADIEAAAALDD4AAAAM/////xENBmNvZWRnZQz/////BP////8M/////wxBAAAADEAAAAAMggAAAAyDAAAACwwVAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MhAAAAAyFAAAADEAAAAAMXwAAAAoMhgAAAAz/////EQ0EZWRnZQz/////BP////8M/////wxkAAAABgAAAAAAAAAADIcAAAAGAFVVVVVVlT8MQAAAAAyIAAAACwcHdW5rbm93bhENBmNvZWRnZQz/////BP////8M/////wyJAAAADFYAAAAMQQAAAAxhAAAACwx4AAAADP////8RDQRlZGdlDP////8E/////wz/////DGMAAAAGAAAAAAAAAAAMigAAAAYAVVVVVVWVPwxgAAAADIsAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DEIAAAAMgAAAAAyEAAAADIwAAAAKDCEAAAAM/////xENBnZlcnRleAz/////BP////8M/////wxXAAAADI0AAAARDQZ2ZXJ0ZXgM/////wT/////DP////8MQwAAAAyOAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E6uqqqqqPlvAO6uqqqrKOUD9/////78XwBQAAAAAAAAAAAAAAAAAAPC/AAAAAAAAAAAKBgAAAAAAAAAACgYAAAAAAEAYQBENBmNvZWRnZQz/////BP////8M/////wxKAAAADI8AAAAMRAAAAAxnAAAACgxQAAAADP////8RDQRlZGdlDP////8E/////wz/////DEwAAAAGAAAAAAAAAAAMawAAAAagVVVVVVUNQAxEAAAADJAAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DJEAAAAMRQAAAAyPAAAADJIAAAALDGoAAAAM/////xENBmNvZWRnZQz/////BP////8M/////wxFAAAADJEAAAAMRwAAAAxuAAAACwxqAAAADP////8RDQRsb29wDP////8E/////wz/////DP////8MaQAAAAyTAAAAEQ0GdmVydGV4DP////8E/////wz/////DEYAAAAMlAAAABEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwJAAAAAAsDlA/f////+/F8AUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/CgYAAAAAAAAAAAoGAFVVVVVVlT8RDQZjb2VkZ2UM/////wT/////DP////8MgAAAAAxHAAAADJUAAAAMlgAAAAoMIQAAAAz/////EQ0EZWRnZQz/////BP////8M/////wyXAAAABgAAAAAAAAAADEgAAAAGqKqqqqoqAUAMaQAAAAyYAAAACwcHdW5rbm93bhENBXBvaW50DP////8E/////wz/////E1ZVVVVVKVnAkAAAAACwOUD9/////78XwBEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xMDAAAAABRawI4AAAAA8DdAqKqqqqqqF8AUAAAAAAAAAAAAAAAAAADwPwAAAAAAAAAACgYAAAAAAAAAAAoGIAAAAAAA/D8RDQVwb2ludAz/////BP////8M/////xMDAAAAABRawJAAAAAAsDlAqKqqqqqqF8ARDQZjb2VkZ2UM/////wT/////DP////8MggAAAAxPAAAADIkAAAAMmQAAAAoMUAAAAAz/////EQ0EZmFjZQz/////BP////8M/////wyTAAAADFAAAAAMAwAAAAz/////DJoAAAALCxENBmNvZWRnZQz/////BP////8M/////wxWAAAADIkAAAAMUgAAAAx1AAAACwx4AAAADP////8RDQRlZGdlDP////8E/////wz/////DHYAAAAGAAAAAAAAAAAMWAAAAAYAVVVVVVWVPwx0AAAADJsAAAALBwd1bmtub3duEQ0GdmVydGV4DP////8E/////wz/////DJkAAAAMnAAAABEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xMCAAAAAFRawDurqqqqyjlAqKqqqqqqF8AUEaEIRShCAb0AAAAAAADwvwAAAAAAAAAACgYAAAAAAAAAAAoGsKqqqqqq/T8RDQRsb29wDP////8E/////wz/////DP////8MVgAAAAydAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwIAAAAAVFrAO6uqqqrKOUD9/////78XwBQAAAAAAADwvwAAAAAAAAAAAAAAAAAAAAAKBgAAAAAAAAAACgYgVVVVVVUNQBENBXBvaW50DP////8E/////wz/////EwIAAAAAVFrAO6uqqqrKOUD9/////78XwBENBGZhY2UM/////wT/////DP////8McwAAAAyGAAAADAMAAAAM/////wyeAAAACwsRDQRsb29wDP////8E/////wz/////DP////8MlQAAAAxaAAAAEQ4FcGxhbmUNB3N1cmZhY2UM/////wT/////DP////8TVlVVVVUpWcDmVVVVVTU0QPz/////vxfAFAAAAAAAAPA/UwnMrXUri7nUhZ+MKfuQuRTUhZ+MKfuQuQAAAAAAAAAAAAAAAAAA8L8LCwsLCxENBmNvZWRnZQz/////BP////8M/////wyfAAAADFwAAAAMoAAAAAyhAAAACww+AAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MXAAAAAyfAAAADKIAAAAMowAAAAsMPgAAAAz/////EQ0GY29lZGdlDP////8E/////wz/////DGIAAAAMbQAAAAxcAAAADIEAAAAKDCEAAAAM/////xENBGVkZ2UM/////wT/////DP////8MpAAAAAYAAAAAAAAAAAylAAAABsCqqqqqqt4/DFwAAAAMpgAAAAsHB3Vua25vd24RDQZjb2VkZ2UM/////wT/////DP////8MpwAAAAxyAAAADF0AAAAMgwAAAAoMUAAAAAz/////EQ0EZWRnZQz/////BP////8M/////wyHAAAABgAAAAAAAAAADIoAAAAGAAAAAABAGEAMXQAAAAyoAAAACwcHdW5rbm93bhENBmNvZWRnZQz/////BP////8M/////wyiAAAADF4AAAAMYgAAAAyMAAAACwyGAAAADP////8RDQZjb2VkZ2UM/////wT/////DP////8MXgAAAAyiAAAADKcAAAAMqQAAAAsMhgAAAAz/////EQ0EbG9vcAz/////BP////8M/////wz/////DIQAAAAMewAAABENBnZlcnRleAz/////BP////8M/////wxfAAAADKoAAAARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8Tq6qqqqo+W8A7q6qqqrozQP3/////vxfAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwPwoGAAAAAAAAAAAKBgBVVVVVVZU/EQ0GY29lZGdlDP////8E/////wz/////DHQAAAAMYAAAAAxyAAAADJkAAAALDHgAAAAM/////xENBnZlcnRleAz/////BP////8M/////wxhAAAADKsAAAARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8Tq6qqqqo+W8A7q6qqqso5QP3/////vxfAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwPwoGAAAAAAAAAAAKBgBVVVVVVZU/EQ0EZWRnZQz/////BP////8M/////wxkAAAABgAAAAAAAAAADKQAAAAGqKqqqqqqIEAMhAAAAAysAAAACwcHdW5rbm93bhENBXBvaW50DP////8E/////wz/////E6uqqqqqPlvAO6uqqqrKOUD9/////78XwBENBXBvaW50DP////8E/////wz/////E6uqqqqqPlvAO6uqqqq6M0D9/////78XwBENBmNvZWRnZQz/////BP////8M/////wxmAAAADK0AAAAMaAAAAAySAAAACgxQAAAADP////8RDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8TAwAAAAAUWsCQAAAAALA5QKiqqqqqqhfAFAAAAAAAAPA/AAAAAAAAAAAAAAAAAAAAAAoGAAAAAAAAAAAKBqBVVVVVVQ1AEQ0GY29lZGdlDP////8E/////wz/////DGkAAAAMaAAAAAyuAAAADK8AAAAKDGoAAAAM/////xENBGVkZ2UM/////wT/////DP////8MawAAAAYAAAAAAAAAAAywAAAABqiqqqqqKgFADGgAAAAMsQAAAAsHB3Vua25vd24RDQRmYWNlDP////8E/////wz/////DJ0AAAAMagAAAAwDAAAADP////8MsgAAAAsLEQ0FcG9pbnQM/////wT/////DP////8TVlVVVVUpWcCQAAAAALA5QKiqqqqqqhfAEQ0GY29lZGdlDP////8E/////wz/////DK4AAAAMoAAAAAxtAAAADJYAAAALDHwAAAAM/////xENBGVkZ2UM/////wT/////DP////8MpQAAAAYAAAAAAAAAAAyXAAAABqiqqqqqqgpADJUAAAAMswAAAAsHB3Vua25vd24RDQZ2ZXJ0ZXgM/////wT/////DP////8MlgAAAAy0AAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E1ZVVVVVKVnAO6uqqqqKN0D9/////78XwBQAAAAAAAAAAAAAAAAAAPA/AAAAAAAAAAAKBgAAAAAAAAAACgaoqqqqqioBQBENBGVkZ2UM/////wT/////DP////8MigAAAAYAAAAAAAAAAAx2AAAABiBVVVVVVQ1ADIkAAAAMtQAAAAsHB3Vua25vd24RDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xMCAAAAAFRawDyrqqqqyjlAqaqqqqqqF8AUSc01Jki6XLlYo+aX+O5TuQAAAAAAAPA/FAAAAAAAAPA/AAAAAAAAAIBJzTUmSLpcOQsLCwsLEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////EwIAAAAAVFrAO6uqqqrKOUCoqqqqqqoXwBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8KBgAAAAAAAAAACgYAVVVVVVWVPxENBXBvaW50DP////8E/////wz/////EwIAAAAAVFrAO6uqqqrKOUCoqqqqqqoXwBENBGZhY2UM/////wT/////DP////8M/////wx4AAAADAMAAAAM/////wy2AAAACwsRDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xOrqqqqqj5bwDqrqqqqujNA+v////+/F8AUKcnBvorLnrkAAAAAAADwvwsZugaBqF45FAAAAAAAAAAACxm6BoGoXrkAAAAAAADwvwsLCwsLEQ0GY29lZGdlDP////8E/////wz/////DH8AAAAMfgAAAAy3AAAADLgAAAALDD4AAAAM/////xENBmNvZWRnZQz/////BP////8M/////wyVAAAADLkAAAAMfgAAAAyhAAAACgx8AAAADP////8RDQRlZGdlDP////8E/////wz/////DKUAAAAGAAAAAAAAAAAMugAAAAYAVVVVVVWVPwx+AAAADLsAAAALBwd1bmtub3duEQ0GY29lZGdlDP////8E/////wz/////DIUAAAAMhAAAAAx/AAAADKMAAAAKDIYAAAAM/////xENBGVkZ2UM/////wT/////DP////8MvAAAAAYAAAAAAAAAAAykAAAABgBVVVVVVZU/DH8AAAAMvQAAAAsHB3Vua25vd24RDQZ2ZXJ0ZXgM/////wT/////DP////8MgQAAAAy+AAAAEQ0GdmVydGV4DP////8E/////wz/////DIEAAAAMvwAAABEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwDurqqqqujNA/f////+/F8AUAAAAAAAAAAAAAAAAAADwPwAAAAAAAAAACgYAAAAAAAAAAAoGwKqqqqqq3j8RDQZjb2VkZ2UM/////wT/////DP////8MtwAAAAyCAAAADIUAAAAMqQAAAAoMUAAAAAz/////EQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E6uqqqqqPlvAO6uqqqq6M0CoqqqqqqoXwBQAAAAAAAAAAAAAAAAAAPA/AAAAAAAAAAAKBgAAAAAAAAAACgYAAAAAAEAYQBENBGVkZ2UM/////wT/////DP////8MvAAAAAYAAAAAAAAAAAyHAAAABqiqqqqqqiBADIUAAAAMwAAAAAsHB3Vua25vd24RDQVwb2ludAz/////BP////8M/////xOrqqqqqj5bwDurqqqqujNAqKqqqqqqF8ARDQVwb2ludAz/////BP////8M/////xOrqqqqqj5bwDurqqqqyjlAqKqqqqqqF8ARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8Tq6qqqqo+W8A7q6qqqrozQP3/////vxfAFAAAAAAAAPA/AAAAAAAAAAAAAAAAAAAAAAoGAAAAAAAAAAAKBqiqqqqqqiBAEQ0GY29lZGdlDP////8E/////wz/////DI8AAAAMtwAAAAy5AAAADMEAAAAKDFAAAAAM/////xENBmNvZWRnZQz/////BP////8M/////wy5AAAADJUAAAAMkQAAAAyvAAAACwx8AAAADP////8RDQRlZGdlDP////8E/////wz/////DJcAAAAGAAAAAAAAAAAMsAAAAAYAVVVVVVWVPwyuAAAADMIAAAALBwd1bmtub3duEQ0GdmVydGV4DP////8E/////wz/////DK8AAAAMwwAAABEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwJAAAAAAsDlAqKqqqqqqF8AUAAAAAAAAAAAAAAAAAADwvwAAAAAAAAAACgYAAAAAAAAAAAoGqKqqqqoqAUARDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xNXVVVVVSlZwDurqqqqijdA/P////+/F8AUAAAAAAAA8D9eDfanQXjrOWwRDVpDR6A5FGwRDVpDR6A5AAAAAAAAAAAAAAAAAADwvwsLCwsLEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E1ZVVVVVKVnA5lVVVVU1NED9/////78XwBQAAAAAAAAAAAAAAAAAAPA/AAAAAAAAAAAKBgAAAAAAAAAACgaoqqqqqqoKQBENBXBvaW50DP////8E/////wz/////E1ZVVVVVKVnAO6uqqqqKN0D9/////78XwBEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xOrqqqqqj5bwDurqqqqyjlAqKqqqqqqF8AUAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAACgYAAAAAAAAAAAoGIFVVVVVVDUARDgVwbGFuZQ0Hc3VyZmFjZQz/////BP////8M/////xMCAAAAAFRawDqrqqqqyjlA+v////+/F8AUcDsN/izmxLkAAAAAAADwPxDSpJbPema5FAAAAAAAAACAENKkls96ZjkAAAAAAADwPwsLCwsLEQ0GY29lZGdlDP////8E/////wz/////DK0AAAAMpwAAAAyfAAAADLgAAAAKDFAAAAAM/////xENBGVkZ2UM/////wT/////DP////8MugAAAAYAAAAAAAAAAAy8AAAABsCqqqqqqt4/DJ8AAAAMxAAAAAsHB3Vua25vd24RDQZjb2VkZ2UM/////wT/////DP////8MoAAAAAyuAAAADK0AAAAMwQAAAAsMfAAAAAz/////EQ0GdmVydGV4DP////8E/////wz/////DKEAAAAMxQAAABEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwOZVVVVVNTRA/f////+/F8AUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA/CgYAAAAAAAAAAAoGAFVVVVVVlT8RDQZ2ZXJ0ZXgM/////wT/////DP////8MuAAAAAzGAAAAEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E1ZVVVVVKVnAO6uqqqq6M0CoqqqqqqoXwBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8KBgAAAAAAAAAACgYAVVVVVVWVPxENBXBvaW50DP////8E/////wz/////E1ZVVVVVKVnAO6uqqqq6M0D9/////78XwBENBXBvaW50DP////8E/////wz/////E1ZVVVVVKVnA5lVVVVU1NED9/////78XwBEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwDurqqqqujNAqKqqqqqqF8AUAAAAAAAA8L8AAAAAAAAAAAAAAAAAAAAACgYAAAAAAAAAAAoGqKqqqqqqIEARDQRlZGdlDP////8E/////wz/////DLAAAAAGAAAAAAAAAAAMugAAAAaoqqqqqqoKQAy5AAAADMcAAAALBwd1bmtub3duEQ4Ic3RyYWlnaHQNBWN1cnZlDP////8E/////wz/////E1ZVVVVVKVnAO6uqqqqKN0D9/////78XwBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8D8KBgAAAAAAAAAACgYAVVVVVVWVPxENBXBvaW50DP////8E/////wz/////E1ZVVVVVKVnAO6uqqqqKN0CoqqqqqqoXwBEOCHN0cmFpZ2h0DQVjdXJ2ZQz/////BP////8M/////xNWVVVVVSlZwOZVVVVVNTRAqKqqqqqqF8AUAAAAAAAAAAAAAAAAAADwvwAAAAAAAAAACgYAAAAAAAAAAAoGwKqqqqqq3j8RDQVwb2ludAz/////BP////8M/////xNWVVVVVSlZwOZVVVVVNTRAqKqqqqqqF8ARDQVwb2ludAz/////BP////8M/////xNWVVVVVSlZwDurqqqqujNAqKqqqqqqF8ARDghzdHJhaWdodA0FY3VydmUM/////wT/////DP////8TVlVVVVUpWcA7q6qqqoo3QKiqqqqqqhfAFAAAAAAAAAAAAAAAAAAA8L8AAAAAAAAAAAoGAAAAAAAAAAAKBqiqqqqqqgpAEQ4DRW5kDgJvZg4EQUNJUw0EZGF0YQ==\"}]",
+      "Id": "fcf3e4442f1342ed93740a7a098f08ee",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "698b0b946a17485ca00375bbb89cbebf",
+          "Name": ">",
+          "Description": "Data to sample and store in the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "87ca5d24d31146a287a09b8086c53fa5",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Store data passing through this node to the Dynamo file. Return the stored data if the input is null."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 245,
+      "SelectedString": "OST_Floors",
+      "Id": "b19a05d73ee942659e993c1841451b1b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9faf99004b274e27add61b166e377539",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "c8fe266977c744f2a67fcb37fc5c13ba",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "b48fa3987c1246979a02c35b4dcd4588",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b4a433ce19a84584a54ac749aa006493",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "643138c0d8d84f60a83abc1dffed2075",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "803f096a48754b22aaacea7a79e1f832",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c77208ffd2394e12b6ec4132b3c8bc1c",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4b67f4b8ce434b59991e8fe39deb8650",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7c70bb4171a046a7abc59fef16c1fd03",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5e287d38c85b4eb49bc5dc5a1f71e97e",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9faf99004b274e27add61b166e377539",
+      "End": "b48fa3987c1246979a02c35b4dcd4588",
+      "Id": "43b2eaf3a6694301908996d36100c19f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b4a433ce19a84584a54ac749aa006493",
+      "End": "803f096a48754b22aaacea7a79e1f832",
+      "Id": "47c68199c6fb4d1995026d1bc1c4c85c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c77208ffd2394e12b6ec4132b3c8bc1c",
+      "End": "7c70bb4171a046a7abc59fef16c1fd03",
+      "Id": "c2065b56f8f4419f87f519f4562e3fcd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5e287d38c85b4eb49bc5dc5a1f71e97e",
+      "End": "698b0b946a17485ca00375bbb89cbebf",
+      "Id": "ce2624a4b1a745ac83dad7e8bf375bbf",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "fcf3e4442f1342ed93740a7a098f08ee",
+        "Name": "Remember",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1503.682382048994,
+        "Y": 627.77969762419
+      },
+      {
+        "Id": "b19a05d73ee942659e993c1841451b1b",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 191.68238204899387,
+        "Y": 627.77969762419
+      },
+      {
+        "Id": "c8fe266977c744f2a67fcb37fc5c13ba",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 527.6823820489939,
+        "Y": 627.77969762419
+      },
+      {
+        "Id": "643138c0d8d84f60a83abc1dffed2075",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 884.6823820489939,
+        "Y": 627.77969762419
+      },
+      {
+        "Id": "4b67f4b8ce434b59991e8fe39deb8650",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1160.682382048994,
+        "Y": 627.77969762419
+      }
+    ],
+    "Annotations": [],
+    "X": -107.97796636069097,
+    "Y": -459.1648792386609,
+    "Zoom": 1.33823125
+  }
+}

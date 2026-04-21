@@ -1,0 +1,214 @@
+{
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Translation.Models.ObjectSelector",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectImporter, Translation.Models",
+      "Id": "215a4b203d164da8812fef2fb3de7aa6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "2070fb04018340f9aa81364179f71964",
+          "Name": "path",
+          "Description": "CAD file to import",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da197ba0bfa14cc6ad486642c0223090",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Imports third-party objects"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "397f80f956534aa3ae59a2ede4da8b9f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f3821921c40f4f5a9663beadde462d32",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\Steve\\Downloads\\North Arrows.dwg",
+      "InputValue": "..\\..\\..\\Downloads\\North Arrows.dwg"
+    },
+    {
+      "ConcreteType": "Dynamo.Translation.Models.ObjectSelector, Translation.Models",
+      "SelectedObjectIds": [
+        "16",
+        "27",
+        "33"
+      ],
+      "Id": "364e64c974464f04a41167e60bff888b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "11212efd6d514b1486e185dd25bcbf95",
+          "Name": "objects",
+          "Description": "CAD data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "03747fe0bbcd427eaf618955c7a8e097",
+          "Name": "objects",
+          "Description": "CAD data.\r\nTo convert CAD data into geometries, connect to a Convert To Geometries node.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection of a subset of objects.\r\nRun the graph to populate the selection options."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "da197ba0bfa14cc6ad486642c0223090",
+      "End": "11212efd6d514b1486e185dd25bcbf95",
+      "Id": "15033f331b854b60a4ce2bf88619ac91",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f3821921c40f4f5a9663beadde462d32",
+      "End": "2070fb04018340f9aa81364179f71964",
+      "Id": "8c7df9a661404ba4a9fa4a46c8ddeded",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "DynamoATF",
+      "Version": "26.0.2.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "215a4b203d164da8812fef2fb3de7aa6",
+        "364e64c974464f04a41167e60bff888b"
+      ]
+    },
+    {
+      "Name": "North Arrows.dwg",
+      "ReferenceType": "External",
+      "Nodes": [
+        "397f80f956534aa3ae59a2ede4da8b9f"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "215a4b203d164da8812fef2fb3de7aa6",
+        "Name": "Import Geometry File",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1259.3462265548294,
+        "Y": 429.0
+      },
+      {
+        "Id": "397f80f956534aa3ae59a2ede4da8b9f",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 858.0,
+        "Y": 429.0
+      },
+      {
+        "Id": "364e64c974464f04a41167e60bff888b",
+        "Name": "Select Geometry File Objects",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1633.9162620145921,
+        "Y": 429.0
+      }
+    ],
+    "Annotations": [],
+    "X": -986.684911593949,
+    "Y": -275.43013186834,
+    "Zoom": 1.426391646568321
+  }
+}

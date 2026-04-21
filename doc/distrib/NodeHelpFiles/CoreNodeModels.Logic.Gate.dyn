@@ -1,0 +1,331 @@
+{
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "CoreNodeModels.Logic.Gate",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1e221b552086428dae6d55ec16611728",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1ce09e60925d463bb2da67cfb6029538",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "948633a8722e41fb907c0e750a32dab8",
+          "Name": "Geometry[]",
+          "Description": "Geometry[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Explode",
+      "Replication": "Auto",
+      "Description": "Separates compound or non-separated elements into their component parts.\n\nGeometry.Explode ( ): Geometry[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3b109e70611d4ee998a0e58da251458c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d275a5f226514f11b5e628c007d5bfab",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c0f46bb22e7b4c4b97e75cf4b3e99271",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "6314fbf6fb3044e3a7e4d4f02984f39b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "1e92d4e1556148b390a56986020b71fd",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "16d9cde50971418c8736be52b6502d2f",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "879bb3d336cf4daaa9107b2379220571",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2374d39c5b8a408d8d44cf97caf19426",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "16bffde6b28848b4a949a4f8167fa04d",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 160,
+      "SelectedString": "OST_CurtainWallPanels",
+      "Id": "545fdb0ec7bf434487fad30d289283ac",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "83a9bb9c462045b1bffaeb14eef1662f",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Logic.Gate, CoreNodeModels",
+      "InputValue": true,
+      "Id": "baba8f28e7d243f6ad440f5ef281f247",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f63cdd94828043bc97746b6d8e69bf19",
+          "Name": ">",
+          "Description": "Data to pass to a downstream node with gated controls.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ace1b0e0bd8049c0a62d639425f99404",
+          "Name": ">",
+          "Description": "Data",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Block data passing through this node to downstream nodes. Node returns the input data only if the node value is set to Open.\r\n\r\nIn Generative Design workflows, this node should be used to control and block the behavior of nodes that will place elements in Revit"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c0f46bb22e7b4c4b97e75cf4b3e99271",
+      "End": "f63cdd94828043bc97746b6d8e69bf19",
+      "Id": "d6e37acd2380410c8ffe4b709486b472",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16d9cde50971418c8736be52b6502d2f",
+      "End": "2374d39c5b8a408d8d44cf97caf19426",
+      "Id": "0ae5dc4cee4140588d3397050491f98e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16bffde6b28848b4a949a4f8167fa04d",
+      "End": "d275a5f226514f11b5e628c007d5bfab",
+      "Id": "ea4c9178b331456dbfc46af5b42ddf55",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "83a9bb9c462045b1bffaeb14eef1662f",
+      "End": "1e92d4e1556148b390a56986020b71fd",
+      "Id": "8b635ddd0c14484799053c4fa8c38ac7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ace1b0e0bd8049c0a62d639425f99404",
+      "End": "1ce09e60925d463bb2da67cfb6029538",
+      "Id": "70f963f8f53240cfb6a47ba13aa26a04",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -112.22754669189453,
+      "EyeY": 5.004157066345215,
+      "EyeZ": -40.16264724731445,
+      "LookX": 5.164665222167969,
+      "LookY": -2.982386827468872,
+      "LookZ": -3.0800704956054688,
+      "UpX": 0.38160666823387146,
+      "UpY": 0.8958706259727478,
+      "UpZ": -0.2275789976119995
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1e221b552086428dae6d55ec16611728",
+        "Name": "Geometry.Explode",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1567.3155875054226,
+        "Y": 663.3211643634088
+      },
+      {
+        "Id": "3b109e70611d4ee998a0e58da251458c",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 883.7907639281325,
+        "Y": 663.3211643634088
+      },
+      {
+        "Id": "6314fbf6fb3044e3a7e4d4f02984f39b",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 250.7907639281325,
+        "Y": 663.3211643634088
+      },
+      {
+        "Id": "879bb3d336cf4daaa9107b2379220571",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 607.7907639281325,
+        "Y": 663.3211643634088
+      },
+      {
+        "Id": "545fdb0ec7bf434487fad30d289283ac",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -85.20923607186751,
+        "Y": 663.3211643634088
+      },
+      {
+        "Id": "baba8f28e7d243f6ad440f5ef281f247",
+        "Name": "Gate",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1226.7907639281325,
+        "Y": 663.3211643634088
+      }
+    ],
+    "Annotations": [],
+    "X": 107.07659801402542,
+    "Y": -188.34900063416114,
+    "Zoom": 1.1375820522947402
+  }
+}
