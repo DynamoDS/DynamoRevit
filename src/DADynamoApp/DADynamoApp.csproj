@@ -62,7 +62,7 @@
         <Copy SourceFiles="@(DynamoPlayerFiles)"
               DestinationFiles="@(DynamoPlayerFiles->'$(OutputPath)\..\%(RecursiveDir)%(Filename)%(Extension)')" />
     </Target>
-    <Target Name="publish_bundle" AfterTargets="Build">
+    <Target Name="publish_bundle" AfterTargets="CopyDynamoPlayerFiles">
         <PropertyGroup>
             <BundleOutputPath>$(SolutionDir)\..\DynamoRevitDA.bundle\</BundleOutputPath>
         </PropertyGroup>
@@ -80,11 +80,14 @@
         <Copy SourceFiles="@(DynamoCoreFiles)"
               DestinationFiles="@(DynamoCoreFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
         -->
-        <!-- Copy this project's build output into Contents/Revit, preserving subdirectory structure -->
+        <!-- Copy everything from the OutputPath parent (net8.0 build output + DynamoPlayer binaries) into Contents/Revit -->
+        <PropertyGroup>
+            <RevitOutputParentPath>$([System.IO.Path]::GetFullPath('$(OutputPath)..\'))</RevitOutputParentPath>
+        </PropertyGroup>
         <ItemGroup>
-            <RevitBuildFiles Include="$(OutputPath)**\*.*" />
+            <RevitBuildFiles Include="$(RevitOutputParentPath)**\*.*" />
         </ItemGroup>
         <Copy SourceFiles="@(RevitBuildFiles)"
-              DestinationFiles="@(RevitBuildFiles->'$(BundleOutputPath)Contents\Revit\%(RecursiveDir)%(Filename)%(Extension)')" />
+              DestinationFiles="@(RevitBuildFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
     </Target>
 </Project>
