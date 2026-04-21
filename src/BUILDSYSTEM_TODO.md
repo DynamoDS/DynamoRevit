@@ -139,6 +139,25 @@ The `publish_bundle` target has a commented-out stub (`TODO: copy DynamoCore con
 
 ---
 
+## How to debug Design Automation locally
+
+There are two options depending on how closely you need to replicate the cloud environment:
+
+**Option 1 — Full Revit (with UI)**
+
+Use the [APS local debug tool](https://github.com/autodesk-platform-services/aps-automation-csharp-revit.local.debug.tool) against a standard Revit installation. This is the easiest way to validate general AppBundle functionality.
+
+**Option 2 — Headless Revit engine (matches cloud)**
+
+Download the exact Design Automation engine from Artifactory:
+`https://art-bobcat.autodesk.com/ui/repos/tree/General/team-designautomation-generic/Revit/Engine`
+
+This is the same headless executable used on the cloud backend — it starts Revit without loading any UI. Before running it, edit `revitcoreconsole.dll.config` to point to your local Revit installation:
+
+```xml
+<add key="RevitPath" value="C:\Program Files\Autodesk\Revit 2026" />
+```
+
 ## 4. Research needed / action items
 
 - [ ] Check `DynamoRevitUtils` Jenkins scripts: which solution, which platform, `dotnet` or VS MSBuild?
