@@ -21,15 +21,7 @@ namespace RevitSystemTests
     [TestFixture]
     class OOTB_D4R_Tests : RevitSystemTestBase
     {
-        /// <summary>
-        /// Locates an OOTB sample .dyn file by checking the standard deployment locations
-        /// used for the revit-d4r-content-samples artifact.
-        /// </summary>
-        /// <param name="scriptFileName">
-        /// The filename of the .dyn script as shipped, e.g. "Revit Color.dyn".
-        /// </param>
-        /// <returns>Absolute path to the .dyn file.</returns>
-        public static string SetupUnzip(string scriptFileName)
+        private static string SetupUnzip(string scriptFileName)
         {
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -45,27 +37,44 @@ namespace RevitSystemTests
             // Priority 1: zip was already extracted from a previous test run
             if (Directory.Exists(extractedSamplesPath))
             {
-                return Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+                var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+                if (File.Exists(resolved))
+                    return resolved;
             }
 
             // Priority 2: zip file is present — extract on first use
             if (Directory.Exists(samplesFolder))
             {
                 var zipFiles = Directory.GetFiles(
-                    samplesFolder,
-                    "revit-d4r-content-samples-*-net10.zip");
+                        samplesFolder,
+                        "revit-d4r-content-samples-*-net10.zip")
+                    .OrderBy(path => path)
+                    .ToArray();
 
-                if (zipFiles.Length > 0)
+                if (zipFiles.Length > 1)
+                {
+                    var matches = zipFiles.Select(path => $"\n  {path}");
+                    throw new InvalidOperationException(
+                        $"Multiple revit-d4r-content-samples archives were found in '{samplesFolder}', " +
+                        $"so the OOTB D4R sample source is ambiguous. Ensure exactly one matching zip is present." +
+                        $"{string.Concat(matches)}");
+                }
+
+                if (zipFiles.Length == 1)
                 {
                     ZipFile.ExtractToDirectory(zipFiles[0], extractedSamplesPath);
-                    return Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+                    var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+                    if (File.Exists(resolved))
+                        return resolved;
                 }
             }
 
             // Priority 3: already-deployed samples (standard Revit install)
             if (Directory.Exists(installedSamplesPath))
             {
-                return Path.Combine(installedSamplesPath, scriptFileName);
+                var resolved = Path.Combine(installedSamplesPath, scriptFileName);
+                if (File.Exists(resolved))
+                    return resolved;
             }
 
             // Provide a useful diagnostic message to help locate the issue
@@ -73,8 +82,8 @@ namespace RevitSystemTests
             {
                 var entries = Directory.EnumerateFileSystemEntries(samplesFolder)
                     .Select(e => $"\n  {e}");
-                throw new DirectoryNotFoundException(
-                    $"Cannot locate OOTB D4R sample scripts.\n" +
+                throw new FileNotFoundException(
+                    $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
                     $"Checked samples folder: {samplesFolder}\n" +
                     $"Contents:{string.Concat(entries)}");
             }
@@ -83,151 +92,93 @@ namespace RevitSystemTests
                 var parentEntries = Directory.Exists(parentDir)
                     ? Directory.EnumerateDirectories(parentDir).Select(e => $"\n  {e}")
                     : Enumerable.Empty<string>();
-                throw new DirectoryNotFoundException(
-                    $"Cannot locate OOTB D4R sample scripts.\n" +
+                throw new FileNotFoundException(
+                    $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
                     $"Expected samples folder not found: {samplesFolder}\n" +
                     $"Parent dir contents:{string.Concat(parentEntries)}");
             }
+        }
+
+        private void OpenAndRunSample(string scriptFileName)
+        {
+            string samplePath = SetupUnzip(scriptFileName);
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Points()
         {
-            string samplePath = SetupUnzip("Revit Geometry Creation Points.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Geometry Creation Points.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Curves()
         {
-            string samplePath = SetupUnzip("Revit Geometry Creation Curves.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Geometry Creation Curves.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Solids()
         {
-            string samplePath = SetupUnzip("Revit Geometry Creation Solids.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Geometry Creation Solids.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Surfaces()
         {
-            string samplePath = SetupUnzip("Revit Geometry Creation Surfaces.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Geometry Creation Surfaces.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Adaptive_Component_Placement()
         {
-            string samplePath = SetupUnzip("Revit Adaptive Component Placement.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Adaptive Component Placement.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Color()
         {
-            string samplePath = SetupUnzip("Revit Color.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Color.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Floors_and_Framing()
         {
-            string samplePath = SetupUnzip("Revit Floors and Framing.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Floors and Framing.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Import_Solid()
         {
-            string samplePath = SetupUnzip("Revit Import Solid.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Import Solid.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Place_Families_By_Level_Set_Parameters()
         {
-            string samplePath = SetupUnzip("Revit Place Families By Level Set Parameters.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Place Families By Level Set Parameters.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Structural_Framing()
         {
-            string samplePath = SetupUnzip("Revit Structural Framing.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            RunCurrentModel();
+            OpenAndRunSample("Revit Structural Framing.dyn");
         }
     }
 }
