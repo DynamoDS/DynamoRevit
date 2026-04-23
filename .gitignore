@@ -227,3 +227,4 @@ test/SystemInJson
 
 # Icon resources
 /src/DynamoRevitIcons/*.resources
+logs/*
