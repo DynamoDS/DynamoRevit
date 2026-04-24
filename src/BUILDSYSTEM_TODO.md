@@ -97,6 +97,67 @@ those build scripts to confirm.
 
 ---
 
+## 4. Build/Package the AppBundle
+
+The target bundle layout is:
+
+```
+DynamoRevitDA.bundle/
+  PackageContents.xml
+  Contents/
+    <DynamoCore files — dlls, nodes, extensions, libg, …>
+    <DynamoPlayer binaries — copied by CopyDynamoPlayerFiles target>
+    Revit/
+      DynamoRevit.addin
+      <DADynamoApp build output — DADynamoApp.dll, DynamoRevitDS.dll, RevitNodes.dll, …>
+```
+
+### What is automated (DADynamoApp.csproj `publish_bundle` target)
+
+Running a normal build of `DADynamoApp.csproj` with `Platform=NET80_DA` now:
+
+1. Compiles `DADynamoApp` and writes output to `$(OutputPath)` (`bin\<Configuration>\net8.0\`).
+2. **`Copy dll`** — copies `GregRevitAuth.dll` into `$(OutputPath)`.
+3. **`CopyDynamoPlayerFiles`** — copies `$(PkgDynamoPlayer)\bin\Release\net8.0\bin\**` into `$(OutputPath)\..` (the parent folder of the DADynamoApp OutputPath, aka where the DynamoCore dlls will be).
+4. **`publish_bundle`** — assembles the bundle at `$(SolutionDir)\..\DynamoRevitDA.bundle\`:
+   - Creates the `Contents\Revit\` directory tree.
+   - Copies `PackageContents.xml` (template at `src/DADynamoApp/app_bundle_template/`) to the bundle root.
+   - Copies `DynamoRevit.addin` (same template) into `Contents\Revit\`.
+   - Copies all of `$(OutputPath)` into `Contents\Revit\`, preserving subdirectory structure.
+
+### What still requires a manual step (TODO)
+
+**DynamoCore** must be built separately from the [Dynamo](https://github.com/DynamoDS/Dynamo) repo (`DynamoCore.sln`) and its output copied into `Contents\` before the bundle is usable. There is currently no Windows CI pipeline for this — the existing pipeline produces a Linux/DAAS-targeted build only.
+
+The `publish_bundle` target has a commented-out stub (`TODO: copy DynamoCore contents`) that should be wired up once a reliable source for the Windows DynamoCore binaries exists.
+
+**Options to resolve:**
+- Extend the existing Linux DAAS pipeline to produce an OS-agnostic DynamoCore NuGet/artifact that works for both DA and DAAS.
+- Add a separate Windows CI pipeline for `DynamoCore.sln` and surface its output as a versioned artifact consumed here.
+- For local development: build `DynamoCore.sln` locally and point `$(Pkgdynamovisualprogramming_servicecoreruntime)` (or an equivalent property) at the output before running `publish_bundle`.
+
+
+---
+
+## How to debug Design Automation locally
+
+There are two options depending on how closely you need to replicate the cloud environment:
+
+**Option 1 — Full Revit (with UI)**
+
+Use the [APS local debug tool](https://github.com/autodesk-platform-services/aps-automation-csharp-revit.local.debug.tool) against a standard Revit installation. This is the easiest way to validate general AppBundle functionality.
+
+**Option 2 — Headless Revit engine (matches cloud)**
+
+Download the exact Design Automation engine from Artifactory:
+`https://art-bobcat.autodesk.com/ui/repos/tree/General/team-designautomation-generic/Revit/Engine`
+
+This is the same headless executable used on the cloud backend — it starts Revit without loading any UI. Before running it, edit `revitcoreconsole.dll.config` to point to your local Revit installation:
+
+```xml
+<add key="RevitPath" value="C:\Program Files\Autodesk\Revit 2026" />
+```
+
 ## 4. Research needed / action items
 
 - [ ] Check `DynamoRevitUtils` Jenkins scripts: which solution, which platform, `dotnet` or VS MSBuild?

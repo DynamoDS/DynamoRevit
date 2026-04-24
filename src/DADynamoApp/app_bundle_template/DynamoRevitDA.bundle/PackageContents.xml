@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage>
+  <Components Description="Dynamo Automation">
+    <RuntimeRequirements OS="Win64"
+                         Platform="Revit"
+                         SeriesMin="R2026"
+                         SeriesMax="R2026" />
+    <ComponentEntry AppName="Dynamo3_6_2"
+                    Version="1.0.0"
+                    ModuleName="./Contents/Revit/DynamoRevit.addin"
+                    AppDescription="Dynamo Automation"
+                    LoadOnCommandInvocation="False"
+                    LoadOnRevitStartup="True" />
+  </Components>
+</ApplicationPackage>

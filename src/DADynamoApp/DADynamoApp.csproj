@@ -55,4 +55,39 @@
     <Target Name="Copy dll" AfterTargets="Build">
         <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DotnetVerSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
     </Target>
+    <Target Name="CopyDynamoPlayerFiles" AfterTargets="Build">
+        <ItemGroup>
+            <DynamoPlayerFiles Include="$(PkgDynamoPlayer)\bin\Release\net8.0\bin\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DynamoPlayerFiles)"
+              DestinationFiles="@(DynamoPlayerFiles->'$(OutputPath)\..\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
+    <Target Name="publish_bundle" AfterTargets="CopyDynamoPlayerFiles">
+        <PropertyGroup>
+            <BundleOutputPath>$(SolutionDir)\..\DynamoRevitDA.bundle\</BundleOutputPath>
+        </PropertyGroup>
+        <MakeDir Directories="$(BundleOutputPath)Contents\Revit" />
+        <!-- Copy static bundle template files -->
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\app_bundle_template\DynamoRevitDA.bundle\PackageContents.xml"
+              DestinationFolder="$(BundleOutputPath)" />
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\app_bundle_template\DynamoRevitDA.bundle\Contents\Revit\DynamoRevit.addin"
+              DestinationFolder="$(BundleOutputPath)Contents\Revit\" />
+        <!-- TODO: copy DynamoCore contents (e.g. from $(Pkgdynamovisualprogramming_servicecoreruntime)\...) into $(BundleOutputPath)Contents\ -->
+        <!--
+        <ItemGroup>
+            <DynamoCoreFiles Include="$(Pkgdynamovisualprogramming_servicecoreruntime)\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DynamoCoreFiles)"
+              DestinationFiles="@(DynamoCoreFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
+        -->
+        <!-- Copy everything from the OutputPath parent (net8.0 build output + DynamoPlayer binaries) into Contents/Revit -->
+        <PropertyGroup>
+            <RevitOutputParentPath>$([System.IO.Path]::GetFullPath('$(OutputPath)..\'))</RevitOutputParentPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <RevitBuildFiles Include="$(RevitOutputParentPath)**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(RevitBuildFiles)"
+              DestinationFiles="@(RevitBuildFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
 </Project>
