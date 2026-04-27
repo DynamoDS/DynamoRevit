@@ -1,12 +1,10 @@
 ﻿using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using DesignAutomationFramework;
-using DSCPython;
 using Dynamo.Applications;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
-using Dynamo.PythonServices;
 using Dynamo.Scheduler;
 using DynamoPlayer;
 using Greg.AuthProviders;
@@ -14,10 +12,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static Dynamo.Models.DynamoModel;
-using DateTime = System.DateTime;
 
 namespace DADynamoApp
 {
@@ -288,8 +286,6 @@ namespace DADynamoApp
             var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoPath);
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
 
-            PreInstallPythonDependencies();
-
             model = Dynamo.Applications.Models.RevitDynamoModel.Start(
                 new DefaultStartConfiguration
                 {
@@ -320,6 +316,7 @@ namespace DADynamoApp
 
             DynamoPlayerLogger.Initialize(playerHost);
 
+            // Load dynamo packages from the '${WorkItemFolder}/Packages' folder.
             workflows.LoadDependencies(new GraphTarget() { DependenciesPath = WorkItemFolder });
 
             var dynHandler = new Handler(playerHost, [new DARunGraphController(controller, model, WorkItemFolder)]);
@@ -540,58 +537,6 @@ namespace DADynamoApp
             }
 
             workspaceHandlers.Remove(workspace);
-        }
-
-        private void PreInstallPythonDependencies()
-        {
-            try
-            {
-                // Preload all python assemblies at the PythonDllFolder.
-                foreach (var pyDll in Directory.EnumerateFiles(Path.Combine(WorkItemFolder, PythonDllFolder), "*.dll"))
-                {
-                    Assembly.LoadFrom(pyDll);
-                }
-
-                var pyIncluded = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == "Python.Included");
-                if (pyIncluded == null)
-                {
-                    throw new Exception("Could not find Python.Included assembly");
-                }
-                var type = pyIncluded.GetType("Python.Included.Installer");
-                if (type == null)
-                {
-                    throw new Exception("null Installer type");
-                }
-                var property = type.GetProperty("INSTALL_PATH", BindingFlags.Public | BindingFlags.Static);
-                if (property == null)
-                {
-                    throw new Exception("null INSTALL_PATH property");
-                }
-
-                // Set the python install location to the DA workfolder (that is the only place we have wrie access)
-                property.SetValue(null, WorkItemFolder);
-
-                // Dynamo's 'VerifyEngineReferences' wants all the PythonEngine's dependencies to be in the Dynamo folder.
-                // Temporary until we fix it on the Dynamo side.
-                if (PythonEngineManager.Instance.AvailableEngines.Count == 0)
-                {
-                    PropertyInfo instanceProp = typeof(CPythonEvaluator).GetProperty("Instance", BindingFlags.NonPublic | BindingFlags.Static);
-                    if (instanceProp != null)
-                    {
-                        PythonEngine engine = (PythonEngine)instanceProp.GetValue(null);
-                        if (engine == null)
-                        {
-                            throw new Exception($"Could not get a valid PythonEngine instance");
-                        }
-
-                        PythonEngineManager.Instance.AvailableEngines.Add(engine);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Could not setup python " + ex.Message);
-            }
         }
     }
 }
