@@ -316,6 +316,7 @@ namespace DADynamoApp
 
             DynamoPlayerLogger.Initialize(playerHost);
 
+            // Load dynamo packages from the '${WorkItemFolder}/Packages' folder.
             workflows.LoadDependencies(new GraphTarget() { DependenciesPath = WorkItemFolder });
 
             var dynHandler = new Handler(playerHost, [new DARunGraphController(controller, model, WorkItemFolder)]);
