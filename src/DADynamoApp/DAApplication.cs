@@ -12,7 +12,6 @@ namespace DADynamoApp
     {
         private string ParentPath;
         private string CurrentDirectory;
-        private readonly string PythonDllFolder = "pythonDependencies";
 
         private DAEntrypoint daEntryPoint;
 
@@ -57,7 +56,7 @@ namespace DADynamoApp
 
         private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
         {
-            return DynamoRevitAssemblyResolver.ResolveDynamoAssembly(ParentPath, [Path.Combine(CurrentDirectory, PythonDllFolder)], args);
+            return DynamoRevitAssemblyResolver.ResolveDynamoAssembly(ParentPath, [Path.Combine(CurrentDirectory)], args);
         }
     }
 }

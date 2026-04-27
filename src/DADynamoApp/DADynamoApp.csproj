@@ -41,6 +41,9 @@
     <ItemGroup>
         <Reference Include="DynamoPlayer.Models">
             <HintPath>C:\Users\pinzart\.nuget\packages\dynamoplayer\7.0.3\bin\Release\net10.0\bin\DynamoPlayer.Models.dll</HintPath>
+            <HintPath>$(PkgDynamoPlayer)\bin\Release\net8.0\bin\DynamoPlayer.Models.dll</HintPath>
+            <HintPath>$(PkgDynamoPlayer)\bin\Release\$(DotnetVerSubFolder)\bin\DynamoPlayer.Models.dll</HintPath>
+            <Private>False</Private>
         </Reference>
         <Reference Include="DynamoPlayer.Server">
             <HintPath>$(PkgDynamoPlayer)\bin\Release\$(DotnetVerSubFolder)\bin\DynamoPlayer.Server.dll</HintPath>
