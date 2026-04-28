@@ -249,6 +249,11 @@ namespace Revit.Elements
             return ToposolidType.FromExisting(toposolidType, isRevitOwned);
         }
 
+        public static PropertyLine Wrap(Autodesk.Revit.DB.PropertyLine propertyLine, bool isRevitOwned)
+        {
+            return PropertyLine.FromExisting(propertyLine, isRevitOwned);
+        }
+
         public static object Wrap(Autodesk.Revit.DB.Panel ele, bool isRevitOwned)
         {
             if (AdaptiveComponentInstanceUtils.IsAdaptiveFamilySymbol(ele.Symbol))

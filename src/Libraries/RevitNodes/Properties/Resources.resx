@@ -441,6 +441,21 @@
   <data name="PolyCurvesConversionError" xml:space="preserve">
     <value>Revit does not support turning PolyCurves into ModelCurves. Try exploding your PolyCurve into multiple Curves.</value>
   </data>
+  <data name="PropertyLineConvertFailed" xml:space="preserve">
+    <value>Failed to convert the PropertyLine to a table-based representation. The PropertyLine must already be sketch-based and its sketch must contain only lines and arcs.</value>
+  </data>
+  <data name="PropertyLineInvalidBoundary" xml:space="preserve">
+    <value>The provided curve loops are not a valid PropertyLine boundary. Each loop must be planar, lie on a plane parallel to the XY plane, and must not self-intersect or contain unbounded circles or ellipses.</value>
+  </data>
+  <data name="PropertyLineInvalidPropertyTable" xml:space="preserve">
+    <value>The provided PropertyTable entries are not valid for creating a PropertyLine. Check that distances are not too short and that arc radii are greater than half their segment distance.</value>
+  </data>
+  <data name="PropertyLineNotTableBased" xml:space="preserve">
+    <value>This operation is only valid on table-based PropertyLine elements.</value>
+  </data>
+  <data name="PropertyTableEntryInvalid" xml:space="preserve">
+    <value>The provided distance, bearing, radius, and direction do not form a valid PropertyTableEntry.</value>
+  </data>
   <data name="ReferenceCurveCreationFailure" xml:space="preserve">
     <value>Revit can only create a ReferenceCurve in a Family Document.</value>
   </data>
