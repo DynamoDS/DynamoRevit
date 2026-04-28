@@ -1240,6 +1240,51 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to convert the PropertyLine to a table-based representation. The PropertyLine must already be sketch-based and its sketch must contain only lines and arcs..
+        /// </summary>
+        internal static string PropertyLineConvertFailed {
+            get {
+                return ResourceManager.GetString("PropertyLineConvertFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided curve loops are not a valid PropertyLine boundary. Each loop must be planar, lie on a plane parallel to the XY plane, and must not self-intersect or contain unbounded circles or ellipses..
+        /// </summary>
+        internal static string PropertyLineInvalidBoundary {
+            get {
+                return ResourceManager.GetString("PropertyLineInvalidBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided PropertyTable entries are not valid for creating a PropertyLine. Check that distances are not too short and that arc radii are greater than half their segment distance..
+        /// </summary>
+        internal static string PropertyLineInvalidPropertyTable {
+            get {
+                return ResourceManager.GetString("PropertyLineInvalidPropertyTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This operation is only valid on table-based PropertyLine elements..
+        /// </summary>
+        internal static string PropertyLineNotTableBased {
+            get {
+                return ResourceManager.GetString("PropertyLineNotTableBased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided distance, bearing, radius, and direction do not form a valid PropertyTableEntry..
+        /// </summary>
+        internal static string PropertyTableEntryInvalid {
+            get {
+                return ResourceManager.GetString("PropertyTableEntryInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revit can only create a ReferenceCurve in a Family Document..
         /// </summary>
         internal static string ReferenceCurveCreationFailure {

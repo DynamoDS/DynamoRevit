@@ -215,6 +215,12 @@
                   "path": "RevitNodes.Revit.Elements.Mullion"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.PropertyLine"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.PropertyTableEntry"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.ReferencePlane"
                 },
                 {
