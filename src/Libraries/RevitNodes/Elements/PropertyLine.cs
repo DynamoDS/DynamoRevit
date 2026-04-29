@@ -164,7 +164,7 @@ namespace Revit.Elements
         /// <summary>
         /// The Sketch element backing a sketch-based PropertyLine, or null for a table-based one.
         /// </summary>
-        public Element Sketch
+        public Sketch Sketch
         {
             get
             {
@@ -174,8 +174,8 @@ namespace Revit.Elements
                     return null;
                 }
 
-                Autodesk.Revit.DB.Element revitElement = Document.GetElement(sketchId);
-                return revitElement?.ToDSType(true) as Element;
+                var revitSketch = Document.GetElement(sketchId) as Autodesk.Revit.DB.Sketch;
+                return revitSketch == null ? null : Sketch.FromExisting(revitSketch, true);
             }
         }
 

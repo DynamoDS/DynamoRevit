@@ -242,6 +242,9 @@
                   "path": "RevitNodes.Revit.Elements.Room"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Sketch"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.SketchPlane"
                 },
                 {
