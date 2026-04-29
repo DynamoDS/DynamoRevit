@@ -61,11 +61,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg">
-      <HintPath>$(PACKAGESPATH)\Greg\lib\net8.0\Greg.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\Greg\lib\net10.0\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
-      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net8.0\GregRevitAuth.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net10.0\GregRevitAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
