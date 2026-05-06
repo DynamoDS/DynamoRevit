@@ -133,63 +133,63 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Curves()
         {
             OpenAndRunSample("Revit Geometry Creation Curves.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\ConceptualMass.rfa")]
+        [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void Revit_Geometry_Creation_Solids()
         {
             OpenAndRunSample("Revit Geometry Creation Solids.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\ConceptualMass.rfa")]
+        [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void Revit_Geometry_Creation_Surfaces()
         {
             OpenAndRunSample("Revit Geometry Creation Surfaces.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\AdaptiveComponents.rfa")]
         public void Revit_Adaptive_Component_Placement()
         {
             OpenAndRunSample("Revit Adaptive Component Placement.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\SampleModel.rvt")]
         public void Revit_Color()
         {
             OpenAndRunSample("Revit Color.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\SampleModel.rvt")]
         public void Revit_Floors_and_Framing()
         {
             OpenAndRunSample("Revit Floors and Framing.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\SampleModel.rvt")]
         public void Revit_Import_Solid()
         {
             OpenAndRunSample("Revit Import Solid.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\SampleModel.rvt")]
         public void Revit_Place_Families_By_Level_Set_Parameters()
         {
             OpenAndRunSample("Revit Place Families By Level Set Parameters.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
+        [TestModel(@".\StructuralFraming\StructuralFraming.rvt")]
         public void Revit_Structural_Framing()
         {
             OpenAndRunSample("Revit Structural Framing.dyn");
