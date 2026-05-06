@@ -27,6 +27,10 @@ namespace RevitSystemTests
         {
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+            // NOTE: We intentionally do NOT use the base class SamplesPath (which points to
+            // doc/distrib/Samples/ for Dynamo core samples). The D4R OOTB samples are deployed
+            // at DynamoForRevit\samples\{locale}\Revit\ alongside the plugin.
+            //
             // When deployed to Revit:
             //   assemblyDir = DynamoForRevit\Revit\
             //   parentDir   = DynamoForRevit\
@@ -140,7 +144,7 @@ namespace RevitSystemTests
                 throw new FileNotFoundException(
                     $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
                     $"Expected samples folder not found: {samplesFolder}\n" +
-                    $"Parent dir contents:{string.Concat(parentEntries)}");;
+                    $"Parent dir contents:{string.Concat(parentEntries)}");
             }
         }
 
