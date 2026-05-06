@@ -19,6 +19,7 @@ namespace RevitSystemTests
     ///   1. The already-deployed samples at DynamoForRevit\samples\en-US\Revit\.
     ///   2. A revit-d4r-content-samples-*-net10.zip in the samples directory
     ///      (extracted to a version-keyed cache in %TEMP%\D4RSamples\).
+    ///   3. Any previously cached extraction under %TEMP%\D4RSamples\ (most recent first).
     /// </summary>
     [TestFixture]
     class OOTB_D4R_SampleTests : RevitSystemTestBase
@@ -93,6 +94,18 @@ namespace RevitSystemTests
                     if (File.Exists(resolved))
                         return resolved;
                 }
+            }
+
+            // Priority 3: reuse any previously cached extraction (zip may have been removed)
+            string cacheRoot = Path.Combine(Path.GetTempPath(), "D4RSamples");
+            if (Directory.Exists(cacheRoot))
+            {
+                var cached = Directory.GetDirectories(cacheRoot)
+                    .OrderByDescending(d => Directory.GetLastWriteTime(d))
+                    .Select(d => Path.Combine(d, @"Samples\en-US\Revit", scriptFileName))
+                    .FirstOrDefault(File.Exists);
+                if (cached != null)
+                    return cached;
             }
 
             // Provide a useful diagnostic message to help locate the issue
