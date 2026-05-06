@@ -25,13 +25,16 @@ namespace RevitSystemTests
     {
         private static string ResolveSamplePath(string scriptFileName)
         {
+            // Assembly.GetExecutingAssembly().Location is the standard pattern used throughout
+            // the test framework (RevitSystemTestBase, SystemTest, CoreTests, RegressionTests).
+            // RTF always loads test assemblies from the deployed DynamoForRevit\Revit\ folder.
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             // NOTE: We intentionally do NOT use the base class SamplesPath (which points to
             // doc/distrib/Samples/ for Dynamo core samples). The D4R OOTB samples are deployed
             // at DynamoForRevit\samples\{locale}\Revit\ alongside the plugin.
             //
-            // When deployed to Revit:
+            // When deployed to Revit (via RTF):
             //   assemblyDir = DynamoForRevit\Revit\
             //   parentDir   = DynamoForRevit\
             string parentDir = Path.GetDirectoryName(assemblyDir);
@@ -154,6 +157,10 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
+
+            Assert.IsTrue(
+                ViewModel.Model.CurrentWorkspace.Nodes.Any(),
+                $"Graph '{scriptFileName}' opened but contains no nodes — file may not have loaded correctly.");
 
             AssertNoDummyNodes();
 
