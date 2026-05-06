@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using System.IO.Compression;
+// using System.IO.Compression;  // Needed when zip extraction (priorities 2/3) is enabled
 using System.Linq;
 using System.Reflection;
 using Dynamo.Graph.Nodes;
@@ -14,12 +14,11 @@ namespace RevitSystemTests
     /// Tests for the Out-of-the-Box (OOTB) D4R sample scripts shipped as part of the
     /// revit-d4r-content-samples artifact.
     ///
-    /// The .dyn files are resolved at runtime via <see cref="SetupUnzip"/> which checks,
-    /// in order:
-    ///   1. The already-deployed samples at DynamoForRevit\samples\en-US\Revit\.
-    ///   2. A revit-d4r-content-samples-*-net10.zip in the samples directory
-    ///      (extracted to a version-keyed cache in %TEMP%\D4RSamples\).
-    ///   3. Any previously cached extraction under %TEMP%\D4RSamples\ (most recent first).
+    /// The .dyn files are resolved at runtime via <see cref="SetupUnzip"/> which checks
+    /// the already-deployed samples at DynamoForRevit\samples\en-US\Revit\.
+    ///
+    /// Future consideration: zip-based extraction is available as commented code below
+    /// (priorities 2 and 3) for scenarios where the samples are shipped as a zip artifact.
     /// </summary>
     [TestFixture]
     class OOTB_D4R_SampleTests : RevitSystemTestBase
@@ -44,69 +43,71 @@ namespace RevitSystemTests
                     return resolved;
             }
 
-            // Priority 2: zip file — use version-keyed cache in temp to avoid staleness
-            if (Directory.Exists(samplesFolder))
-            {
-                var zipFiles = Directory.GetFiles(
-                        samplesFolder,
-                        "revit-d4r-content-samples-*-net10.zip")
-                    .OrderBy(path => path)
-                    .ToArray();
-
-                if (zipFiles.Length > 1)
-                {
-                    var matches = zipFiles.Select(path => $"\n  {path}");
-                    throw new InvalidOperationException(
-                        $"Multiple revit-d4r-content-samples archives were found in '{samplesFolder}', " +
-                        $"so the OOTB D4R sample source is ambiguous. Ensure exactly one matching zip is present." +
-                        $"{string.Concat(matches)}");
-                }
-
-                if (zipFiles.Length == 1)
-                {
-                    // Derive cache folder name from zip filename to invalidate on version change
-                    string zipName = Path.GetFileNameWithoutExtension(zipFiles[0]);
-                    string extractedSamplesPath = Path.Combine(Path.GetTempPath(), "D4RSamples", zipName);
-
-                    // If already extracted for this version, use cached
-                    var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
-                    if (File.Exists(resolved))
-                        return resolved;
-
-                    // Extract to staging dir, then move into place to avoid partial cache
-                    string stagingPath = extractedSamplesPath + "_staging_" + Guid.NewGuid().ToString("N")[..8];
-                    try
-                    {
-                        ZipFile.ExtractToDirectory(zipFiles[0], stagingPath);
-                        if (Directory.Exists(extractedSamplesPath))
-                            Directory.Delete(extractedSamplesPath, recursive: true);
-                        Directory.Move(stagingPath, extractedSamplesPath);
-                    }
-                    catch
-                    {
-                        // Clean up staging on failure so next run can retry
-                        if (Directory.Exists(stagingPath))
-                            Directory.Delete(stagingPath, recursive: true);
-                        throw;
-                    }
-
-                    resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
-                    if (File.Exists(resolved))
-                        return resolved;
-                }
-            }
-
-            // Priority 3: reuse any previously cached extraction (zip may have been removed)
-            string cacheRoot = Path.Combine(Path.GetTempPath(), "D4RSamples");
-            if (Directory.Exists(cacheRoot))
-            {
-                var cached = Directory.GetDirectories(cacheRoot)
-                    .OrderByDescending(d => Directory.GetLastWriteTime(d))
-                    .Select(d => Path.Combine(d, @"Samples\en-US\Revit", scriptFileName))
-                    .FirstOrDefault(File.Exists);
-                if (cached != null)
-                    return cached;
-            }
+            #region Future: zip-based extraction (priorities 2 and 3)
+            // // Priority 2: zip file — use version-keyed cache in temp to avoid staleness
+            // if (Directory.Exists(samplesFolder))
+            // {
+            //     var zipFiles = Directory.GetFiles(
+            //             samplesFolder,
+            //             "revit-d4r-content-samples-*-net10.zip")
+            //         .OrderBy(path => path)
+            //         .ToArray();
+            //
+            //     if (zipFiles.Length > 1)
+            //     {
+            //         var matches = zipFiles.Select(path => $"\n  {path}");
+            //         throw new InvalidOperationException(
+            //             $"Multiple revit-d4r-content-samples archives were found in '{samplesFolder}', " +
+            //             $"so the OOTB D4R sample source is ambiguous. Ensure exactly one matching zip is present." +
+            //             $"{string.Concat(matches)}");
+            //     }
+            //
+            //     if (zipFiles.Length == 1)
+            //     {
+            //         // Derive cache folder name from zip filename to invalidate on version change
+            //         string zipName = Path.GetFileNameWithoutExtension(zipFiles[0]);
+            //         string extractedSamplesPath = Path.Combine(Path.GetTempPath(), "D4RSamples", zipName);
+            //
+            //         // If already extracted for this version, use cached
+            //         var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+            //         if (File.Exists(resolved))
+            //             return resolved;
+            //
+            //         // Extract to staging dir, then move into place to avoid partial cache
+            //         string stagingPath = extractedSamplesPath + "_staging_" + Guid.NewGuid().ToString("N")[..8];
+            //         try
+            //         {
+            //             ZipFile.ExtractToDirectory(zipFiles[0], stagingPath);
+            //             if (Directory.Exists(extractedSamplesPath))
+            //                 Directory.Delete(extractedSamplesPath, recursive: true);
+            //             Directory.Move(stagingPath, extractedSamplesPath);
+            //         }
+            //         catch
+            //         {
+            //             // Clean up staging on failure so next run can retry
+            //             if (Directory.Exists(stagingPath))
+            //                 Directory.Delete(stagingPath, recursive: true);
+            //             throw;
+            //         }
+            //
+            //         resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+            //         if (File.Exists(resolved))
+            //             return resolved;
+            //     }
+            // }
+            //
+            // // Priority 3: reuse any previously cached extraction (zip may have been removed)
+            // string cacheRoot = Path.Combine(Path.GetTempPath(), "D4RSamples");
+            // if (Directory.Exists(cacheRoot))
+            // {
+            //     var cached = Directory.GetDirectories(cacheRoot)
+            //         .OrderByDescending(d => Directory.GetLastWriteTime(d))
+            //         .Select(d => Path.Combine(d, @"Samples\en-US\Revit", scriptFileName))
+            //         .FirstOrDefault(File.Exists);
+            //     if (cached != null)
+            //         return cached;
+            // }
+            #endregion
 
             // Provide a useful diagnostic message to help locate the issue
             if (Directory.Exists(samplesFolder))
