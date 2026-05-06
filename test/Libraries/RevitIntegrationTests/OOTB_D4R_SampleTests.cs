@@ -17,8 +17,8 @@ namespace RevitSystemTests
     /// The .dyn files are resolved at runtime via <see cref="SetupUnzip"/> which checks,
     /// in order:
     ///   1. The already-deployed samples at DynamoForRevit\samples\en-US\Revit\.
-    ///   2. A previously-extracted cache in the user's temp directory.
-    ///   3. A revit-d4r-content-samples-*-net10.zip in the samples directory (extracts to temp).
+    ///   2. A revit-d4r-content-samples-*-net10.zip in the samples directory
+    ///      (extracted to a version-keyed cache in %TEMP%\D4RSamples\).
     /// </summary>
     [TestFixture]
     class OOTB_D4R_SampleTests : RevitSystemTestBase
@@ -33,7 +33,6 @@ namespace RevitSystemTests
             string parentDir = Path.GetDirectoryName(assemblyDir);
 
             string samplesFolder = Path.Combine(parentDir, "samples");
-            string extractedSamplesPath = Path.Combine(Path.GetTempPath(), "D4RSamples");
             string installedSamplesPath = Path.Combine(samplesFolder, @"en-US\Revit");
 
             // Priority 1: already-deployed samples (standard Revit install)
@@ -44,15 +43,7 @@ namespace RevitSystemTests
                     return resolved;
             }
 
-            // Priority 2: zip was already extracted from a previous test run
-            if (Directory.Exists(extractedSamplesPath))
-            {
-                var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
-                if (File.Exists(resolved))
-                    return resolved;
-            }
-
-            // Priority 3: zip file is present — extract on first use
+            // Priority 2: zip file — use version-keyed cache in temp to avoid staleness
             if (Directory.Exists(samplesFolder))
             {
                 var zipFiles = Directory.GetFiles(
@@ -72,8 +63,33 @@ namespace RevitSystemTests
 
                 if (zipFiles.Length == 1)
                 {
-                    ZipFile.ExtractToDirectory(zipFiles[0], extractedSamplesPath, overwriteFiles: true);
+                    // Derive cache folder name from zip filename to invalidate on version change
+                    string zipName = Path.GetFileNameWithoutExtension(zipFiles[0]);
+                    string extractedSamplesPath = Path.Combine(Path.GetTempPath(), "D4RSamples", zipName);
+
+                    // If already extracted for this version, use cached
                     var resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
+                    if (File.Exists(resolved))
+                        return resolved;
+
+                    // Extract to staging dir, then move into place to avoid partial cache
+                    string stagingPath = extractedSamplesPath + "_staging_" + Guid.NewGuid().ToString("N")[..8];
+                    try
+                    {
+                        ZipFile.ExtractToDirectory(zipFiles[0], stagingPath);
+                        if (Directory.Exists(extractedSamplesPath))
+                            Directory.Delete(extractedSamplesPath, recursive: true);
+                        Directory.Move(stagingPath, extractedSamplesPath);
+                    }
+                    catch
+                    {
+                        // Clean up staging on failure so next run can retry
+                        if (Directory.Exists(stagingPath))
+                            Directory.Delete(stagingPath, recursive: true);
+                        throw;
+                    }
+
+                    resolved = Path.Combine(extractedSamplesPath, @"Samples\en-US\Revit", scriptFileName);
                     if (File.Exists(resolved))
                         return resolved;
                 }
