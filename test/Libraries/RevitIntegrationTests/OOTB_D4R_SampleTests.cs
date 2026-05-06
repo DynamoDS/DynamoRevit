@@ -14,8 +14,8 @@ namespace RevitSystemTests
     /// Tests for the Out-of-the-Box (OOTB) D4R sample scripts shipped as part of the
     /// revit-d4r-content-samples artifact.
     ///
-    /// The .dyn files are resolved at runtime via <see cref="SetupUnzip"/> which checks
-    /// the already-deployed samples at DynamoForRevit\samples\en-US\Revit\.
+    /// The .dyn files are resolved at runtime via <see cref="ResolveSamplePath"/> which checks
+    /// the already-deployed samples at DynamoForRevit\samples\{locale}\Revit\.
     ///
     /// Future consideration: zip-based extraction is available as commented code below
     /// (priorities 2 and 3) for scenarios where the samples are shipped as a zip artifact.
@@ -23,7 +23,7 @@ namespace RevitSystemTests
     [TestFixture]
     class OOTB_D4R_SampleTests : RevitSystemTestBase
     {
-        private static string SetupUnzip(string scriptFileName)
+        private static string ResolveSamplePath(string scriptFileName)
         {
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -33,14 +33,26 @@ namespace RevitSystemTests
             string parentDir = Path.GetDirectoryName(assemblyDir);
 
             string samplesFolder = Path.Combine(parentDir, "samples");
-            string installedSamplesPath = Path.Combine(samplesFolder, @"en-US\Revit");
 
-            // Priority 1: already-deployed samples (standard Revit install)
-            if (Directory.Exists(installedSamplesPath))
+            // Priority 1: already-deployed samples — probe current culture then en-US fallback
+            if (Directory.Exists(samplesFolder))
             {
-                var resolved = Path.Combine(installedSamplesPath, scriptFileName);
-                if (File.Exists(resolved))
-                    return resolved;
+                var localesToProbe = new[]
+                {
+                    System.Globalization.CultureInfo.CurrentUICulture.Name, // e.g. "fr-FR"
+                    "en-US"
+                }.Distinct();
+
+                foreach (var locale in localesToProbe)
+                {
+                    string localePath = Path.Combine(samplesFolder, locale, "Revit");
+                    if (Directory.Exists(localePath))
+                    {
+                        var resolved = Path.Combine(localePath, scriptFileName);
+                        if (File.Exists(resolved))
+                            return resolved;
+                    }
+                }
             }
 
             #region Future: zip-based extraction (priorities 2 and 3)
@@ -113,6 +125,7 @@ namespace RevitSystemTests
             if (Directory.Exists(samplesFolder))
             {
                 var entries = Directory.EnumerateFileSystemEntries(samplesFolder)
+                    .OrderBy(e => e)
                     .Select(e => $"\n  {e}");
                 throw new FileNotFoundException(
                     $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
@@ -122,18 +135,18 @@ namespace RevitSystemTests
             else
             {
                 var parentEntries = Directory.Exists(parentDir)
-                    ? Directory.EnumerateDirectories(parentDir).Select(e => $"\n  {e}")
+                    ? Directory.EnumerateDirectories(parentDir).OrderBy(e => e).Select(e => $"\n  {e}")
                     : Enumerable.Empty<string>();
                 throw new FileNotFoundException(
                     $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
                     $"Expected samples folder not found: {samplesFolder}\n" +
-                    $"Parent dir contents:{string.Concat(parentEntries)}");
+                    $"Parent dir contents:{string.Concat(parentEntries)}");;
             }
         }
 
         private void OpenAndRunSample(string scriptFileName)
         {
-            string samplePath = SetupUnzip(scriptFileName);
+            string samplePath = ResolveSamplePath(scriptFileName);
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
