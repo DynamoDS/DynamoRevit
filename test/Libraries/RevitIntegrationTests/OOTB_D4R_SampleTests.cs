@@ -30,8 +30,8 @@ namespace RevitSystemTests
             // RTF always loads test assemblies from the deployed DynamoForRevit\Revit\ folder.
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            // NOTE: We intentionally do NOT use the base class SamplesPath (which points to
-            // doc/distrib/Samples/ for Dynamo core samples). The D4R OOTB samples are deployed
+            // NOTE: We intentionally do NOT use the test configuration's core samples location
+            // (doc/distrib/Samples/ for Dynamo core samples). The D4R OOTB samples are deployed
             // at DynamoForRevit\samples\{locale}\Revit\ alongside the plugin.
             //
             // When deployed to Revit (via RTF):
@@ -164,6 +164,29 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
+            // Verify no broken connectors — a missing start/end port indicates a load problem
+            // (e.g. renamed or removed node ports between versions).
+            var brokenConnectors = ViewModel.Model.CurrentWorkspace.Connectors
+                .Where(c => c.Start == null || c.End == null).ToList();
+
+            if (brokenConnectors.Any())
+            {
+                var details = string.Join("\n", brokenConnectors.Select(c =>
+                {
+                    string startInfo = c.Start != null
+                        ? $"{c.Start.Owner?.Name}:{c.Start.Name}[{c.Start.Index}]"
+                        : "<null>";
+                    string endInfo = c.End != null
+                        ? $"{c.End.Owner?.Name}:{c.End.Name}[{c.End.Index}]"
+                        : "<null>";
+                    return $"  Connector {c.GUID}: Start={startInfo} → End={endInfo}";
+                }));
+
+                Assert.Fail(
+                    $"Graph '{scriptFileName}' has {brokenConnectors.Count} broken connector(s) " +
+                    $"with missing start or end port:\n{details}");
+            }
+
             RunCurrentModel();
 
             var errorNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(
@@ -171,8 +194,17 @@ namespace RevitSystemTests
 
             if (errorNodes.Any())
             {
-                var details = string.Join("\n",
-                    errorNodes.Select(n => $"  [{n.State}] {n.Name} ({n.GUID})"));
+                var details = string.Join("\n", errorNodes.Select(n =>
+                {
+                    var messages = n.NodeInfos
+                        .Where(i => i.State == ElementState.Error || i.State == ElementState.Warning)
+                        .Select(i => $"      [{i.State}] {i.Message}");
+                    string msgBlock = messages.Any()
+                        ? "\n" + string.Join("\n", messages)
+                        : " (no message details)";
+                    return $"  [{n.State}] {n.Name} ({n.GetType().Name}, GUID: {n.GUID}){msgBlock}";
+                }));
+
                 Assert.Fail(
                     $"After RunCurrentModel(), {errorNodes.Count} node(s) are in error/warning state " +
                     $"in '{scriptFileName}':\n{details}");
