@@ -1,11 +1,14 @@
 <Project>
   <Import Project="$(SolutionDir)Config/user_local.props" />
+  <Import Project="$(SolutionDir)Config/packages_versions.props" />
   <PropertyGroup>
     <PlatformTarget >x64</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <Platforms>NET100</Platforms>
+    <Platforms>NET100;NET80_DA</Platforms>
     <TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
-    <DCoreLibSubFolder>net10.0</DCoreLibSubFolder>
+    <TargetFramework Condition="'$(Platform)' == 'NET80_DA'">net8.0-windows</TargetFramework>
+    <DCoreLibSubFolder Condition="'$(Platform)' == 'NET80_DA'">net8.0</DCoreLibSubFolder>
+    <DCoreLibSubFolder Condition="'$(Platform)' == 'NET100'">net8.0</DCoreLibSubFolder>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2026</RevitVersionNumber>
     <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
@@ -39,4 +42,13 @@
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="$(Platform.Contains('_DA'))">
+	  <DefineConstants>$(DefineConstants);DESIGN_AUTOMATION</DefineConstants>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ProjectReference>
+      <Private>false</Private>
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
+  </ItemDefinitionGroup>
 </Project>

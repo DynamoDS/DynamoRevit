@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ImportGroup Label="PropertySheets">
+        <Import Project="$(SolutionDir)Config\CS_SDK.props" />
+    </ImportGroup>
+    
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--EnableDynamicLoading prepares the project so that it can be used as a plugin -->
+    <!--https://learn.microsoft.com/en-us/dotnet/core/tutorials/creating-app-with-plugin-support#simple-plugin-with-no-dependencies-->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+    
+    <ItemGroup>
+        <Reference Include="RevitAPI">
+            <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2026.0.0" />
+        <PackageReference Include="Autodesk.DataManagement" Version="2.0.0-beta4" />
+        <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="DynamoPlayer" Version="6.0.2" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="GregRevitAuth" Version="$(GregRevitAuth_VERSION)" GeneratePathProperty="true">
+          <ExcludeAssets>runtime</ExcludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DynamoRevit\DynamoRevit.csproj" />
+      <ProjectReference Include="..\Libraries\RevitNodes\RevitNodes.csproj" />
+      <ProjectReference Include="..\Libraries\RevitServices\RevitServices.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="DynamoPlayer.Models">
+            <HintPath>$(PkgDynamoPlayer)\bin\Release\net8.0\bin\DynamoPlayer.Models.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="DynamoPlayer.Server">
+            <HintPath>$(PkgDynamoPlayer)\bin\Release\net8.0\bin\DynamoPlayer.Server.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="DynamoPlayer.Workflows">
+            <HintPath>$(PkgDynamoPlayer)\bin\Release\net8.0\bin\DynamoPlayer.Workflows.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <Target Name="Copy dll" AfterTargets="Build">
+        <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DotnetVerSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+    </Target>
+    <Target Name="CopyDynamoPlayerFiles" AfterTargets="Build">
+        <ItemGroup>
+            <DynamoPlayerFiles Include="$(PkgDynamoPlayer)\bin\Release\net8.0\bin\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DynamoPlayerFiles)"
+              DestinationFiles="@(DynamoPlayerFiles->'$(OutputPath)\..\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
+    <Target Name="publish_bundle" AfterTargets="CopyDynamoPlayerFiles">
+        <PropertyGroup>
+            <BundleOutputPath>$(SolutionDir)\..\DynamoRevitDA.bundle\</BundleOutputPath>
+        </PropertyGroup>
+        <MakeDir Directories="$(BundleOutputPath)Contents\Revit" />
+        <!-- Copy static bundle template files -->
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\app_bundle_template\DynamoRevitDA.bundle\PackageContents.xml"
+              DestinationFolder="$(BundleOutputPath)" />
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\app_bundle_template\DynamoRevitDA.bundle\Contents\Revit\DynamoRevit.addin"
+              DestinationFolder="$(BundleOutputPath)Contents\Revit\" />
+        <!-- TODO: copy DynamoCore contents (e.g. from $(Pkgdynamovisualprogramming_servicecoreruntime)\...) into $(BundleOutputPath)Contents\ -->
+        <!--
+        <ItemGroup>
+            <DynamoCoreFiles Include="$(Pkgdynamovisualprogramming_servicecoreruntime)\**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DynamoCoreFiles)"
+              DestinationFiles="@(DynamoCoreFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
+        -->
+        <!-- Copy everything from the OutputPath parent (net8.0 build output + DynamoPlayer binaries) into Contents/Revit -->
+        <PropertyGroup>
+            <RevitOutputParentPath>$([System.IO.Path]::GetFullPath('$(OutputPath)..\'))</RevitOutputParentPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <RevitBuildFiles Include="$(RevitOutputParentPath)**\*.*" />
+        </ItemGroup>
+        <Copy SourceFiles="@(RevitBuildFiles)"
+              DestinationFiles="@(RevitBuildFiles->'$(BundleOutputPath)Contents\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
+</Project>
