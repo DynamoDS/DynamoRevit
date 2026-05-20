@@ -1,5 +1,5 @@
 {
-  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "Uuid": "13c2e4df-d341-49b1-b108-4c1982222cc0",
   "IsCustomNode": false,
   "Description": "",
   "Name": "Dynamo.Translation.Models.ObjectFilter",
@@ -152,8 +152,8 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows you to select a file on the system and returns its file path",
-      "HintPath": "C:\\Users\\Steve\\Downloads\\North Arrows.dwg",
-      "InputValue": "..\\..\\..\\Downloads\\North Arrows.dwg"
+      "HintPath": "",
+      "InputValue": ""
     }
   ],
   "Connectors": [
@@ -193,13 +193,6 @@
         "52c8feaca9964062a364c5aca4ad0830",
         "2e6bf907d48d45a2800024924b50c368",
         "11303b943f934f9ca266b8a3f96af5a3"
-      ]
-    },
-    {
-      "Name": "North Arrows.dwg",
-      "ReferenceType": "External",
-      "Nodes": [
-        "25636a6c700d4c86b896cbbfd493d8e5"
       ]
     }
   ],

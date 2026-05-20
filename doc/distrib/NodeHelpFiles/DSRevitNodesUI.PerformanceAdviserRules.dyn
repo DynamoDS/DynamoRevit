@@ -1,5 +1,5 @@
 {
-  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "Uuid": "c2d229c9-a1a8-42d0-9c5a-06de67f127ef",
   "IsCustomNode": false,
   "Description": "",
   "Name": "DSRevitNodesUI.PerformanceAdviserRules",
@@ -174,7 +174,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.4.1.7055",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {

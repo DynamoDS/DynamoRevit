@@ -1,5 +1,5 @@
 ## In Depth
-This node allows you to choose a Revit revision visibility mode.  Your options are CloudAndTagAndVisibile, TagVisibile, Hidden.
+This node allows you to choose a Revit revision visibility mode.  Your options are CloudAndTagVisible, TagVisible, Hidden.
 
 In this example a revision is being created and the node Select Revision Visibility is being used.
 
