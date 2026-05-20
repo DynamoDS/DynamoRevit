@@ -1,5 +1,5 @@
 {
-  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "Uuid": "8e6b6ad4-8d5e-4c1b-a8f6-9f7bb6d9f2c3",
   "IsCustomNode": false,
   "Description": "",
   "Name": "UnitsUI.UnitInput",
@@ -19,7 +19,7 @@
         {
           "Id": "6f55130da51c420fb96c19a3a7136dd8",
           "Name": "Value",
-          "Description": "Converted value of expresion",
+          "Description": "Converted value of expression",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
