@@ -1,0 +1,285 @@
+{
+  "Uuid": "67142c1b-51b1-4ea5-9a50-5cabca5e580e",
+  "IsCustomNode": false,
+  "Description": "Demonstration of RevitNodes.Revit.GeometryReferences.ElementCurveReference.ByCurve - shows how to create Revit curve references from existing element curves for parametric operations",
+  "Name": "Revit.GeometryReferences.ElementCurveReference.ByCurve",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b85087434a59475d8864991b6b08f975",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "de59c522c8eb4863906435a784f6470c",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7e8007a4f8c040a681c0c1ce232dbc78",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "eb576f5485d24fee803410dfa66d7bef",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d046bd782939412c9251d8e897f38f61",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ac9565bc04a147829af13ed664e13971",
+          "Name": "Curve[]",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Curves",
+      "Replication": "Auto",
+      "Description": "The Curves in this Element\n\nElement.Curves: Curve[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "98ff9a26ac8c451aa331fcba4ae9cbd9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a18423f575a042d39af180e7eeda1e07",
+          "Name": "curve",
+          "Description": "A curve from Revit\n\nCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "476b7d2c0ec441ef8dc9f221c042fc1d",
+          "Name": "ElementCurveReference",
+          "Description": "ElementCurveReference",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.GeometryReferences.ElementCurveReference.ByCurve@Autodesk.DesignScript.Geometry.Curve",
+      "Replication": "Auto",
+      "Description": "Try get ElementCurveReference for a Revit Curve.\n\nElementCurveReference.ByCurve (curve: Curve): ElementCurveReference"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 302,
+      "SelectedString": "OST_Lines",
+      "Id": "5ed4fbe00b8e4b17a16674d94982c395",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b901f48b165342258d53035b13c660eb",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "4af088ce96ce4f478bfadea26b6202f5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7be4e419c7cc4b04b354b04b03c50215",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "568b6523d7944279bb98a5fb974490dd",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7e8007a4f8c040a681c0c1ce232dbc78",
+      "End": "d046bd782939412c9251d8e897f38f61",
+      "Id": "b78858254cdc4083a18401d39577fe60",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ac9565bc04a147829af13ed664e13971",
+      "End": "a18423f575a042d39af180e7eeda1e07",
+      "Id": "8160e2ebe81648489f833843614db20c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b901f48b165342258d53035b13c660eb",
+      "End": "7be4e419c7cc4b04b354b04b03c50215",
+      "Id": "b3db56a1ea4e48eaa3ee0d2c461d784c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "568b6523d7944279bb98a5fb974490dd",
+      "End": "de59c522c8eb4863906435a784f6470c",
+      "Id": "9b26e26c6d594cbf82579c2aa62ed262",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b85087434a59475d8864991b6b08f975",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 269.6346628608072,
+        "Y": 108.84080784167507
+      },
+      {
+        "Id": "eb576f5485d24fee803410dfa66d7bef",
+        "Name": "Element.Curves",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 545.6346628608072,
+        "Y": 108.84080784167504
+      },
+      {
+        "Id": "98ff9a26ac8c451aa331fcba4ae9cbd9",
+        "Name": "ElementCurveReference.ByCurve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 866.6346628608072,
+        "Y": 108.84080784167504
+      },
+      {
+        "Id": "5ed4fbe00b8e4b17a16674d94982c395",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -423.3653371391928,
+        "Y": 108.84080784167504
+      },
+      {
+        "Id": "4af088ce96ce4f478bfadea26b6202f5",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -87.36533713919277,
+        "Y": 108.84080784167504
+      }
+    ],
+    "Annotations": [],
+    "X": 599.3930284672495,
+    "Y": 308.90069196647414,
+    "Zoom": 1.2852827688530044
+  }
+}
