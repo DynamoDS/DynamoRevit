@@ -1,0 +1,287 @@
+{
+  "Uuid": "206d5dd9-03c1-4971-9a45-48cbb042c99b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "UnitsUI.Symbols",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 65.0,
+      "WatchHeight": 40.0,
+      "Id": "75b075f837cd4527ab6182ff1397c753",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "70ac3455b4064c81958ac84df9b516f4",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a78cf1a50e584cb0ae1f6d1f8d023029",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8b5daa88e681455a8fbde67204a3c7af",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ab91674d51724c4a92f42e7d67ffdf08",
+          "Name": "value",
+          "Description": "Number value for the expression\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c149f86ee5e94ac6ac1be192bb1b431b",
+          "Name": "precision",
+          "Description": "Bits of precision for the resulting fraction - i.e 2-> 1/4, 7 -> 1/128. Max supported precision is 9 bits\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a1da7472bb6945f2a4a666127b179fa8",
+          "Name": "symbol",
+          "Description": "Symbol type\n\nSymbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4944c70025b548659350b91d14527f05",
+          "Name": "string",
+          "Description": "Formatted unit expression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Symbol.StringifyFraction@double,int,DynamoUnits.Symbol",
+      "Replication": "Auto",
+      "Description": "Returns the formatted expression for a given value and symbol in a fraction format.\n\nSymbol.StringifyFraction (value: double, precision: int, symbol: Symbol): string"
+    },
+    {
+      "ConcreteType": "UnitsUI.Symbols, UnitsNodeModels",
+      "SelectedIndex": 95,
+      "SelectedString": "Feet: '",
+      "Id": "3039f9a042244e44b0e12030683da9d9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "441731c726f14d92adf06b02514d7018",
+          "Name": "Symbol",
+          "Description": "The selected Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a Symbol type"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "616c7ff1c8a44b19a5bf7fb824c77401",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9ecf7a7929444c048147cae3930e278f",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 1.5
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "4fce328191034a7c8e994a700df52d87",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b2f7fac5e46d4e37969bac808bbaeea0",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 1.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4944c70025b548659350b91d14527f05",
+      "End": "70ac3455b4064c81958ac84df9b516f4",
+      "Id": "8ff3cae6c9b342e9ae462bcce8512409",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "441731c726f14d92adf06b02514d7018",
+      "End": "a1da7472bb6945f2a4a666127b179fa8",
+      "Id": "512c21a084744b7b8bedd7880ce1e778",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9ecf7a7929444c048147cae3930e278f",
+      "End": "ab91674d51724c4a92f42e7d67ffdf08",
+      "Id": "b3550f649522457da26aca066dc49cba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b2f7fac5e46d4e37969bac808bbaeea0",
+      "End": "c149f86ee5e94ac6ac1be192bb1b431b",
+      "Id": "67ad9c19d2764950b23b10e08c66450d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "75b075f837cd4527ab6182ff1397c753",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 841.6390928725702,
+        "Y": 345.36025917926565
+      },
+      {
+        "Id": "8b5daa88e681455a8fbde67204a3c7af",
+        "Name": "Symbol.StringifyFraction",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 482.63909287257025,
+        "Y": 345.36025917926565
+      },
+      {
+        "Id": "3039f9a042244e44b0e12030683da9d9",
+        "Name": "Symbols",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 155.63909287257025,
+        "Y": 526.3602591792657
+      },
+      {
+        "Id": "616c7ff1c8a44b19a5bf7fb824c77401",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 155.63909287257025,
+        "Y": 232.36025917926565
+      },
+      {
+        "Id": "4fce328191034a7c8e994a700df52d87",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 155.63909287257025,
+        "Y": 379.36025917926565
+      }
+    ],
+    "Annotations": [],
+    "X": 116.84031742752245,
+    "Y": -129.65408597199917,
+    "Zoom": 1.6800906430589355
+  }
+}

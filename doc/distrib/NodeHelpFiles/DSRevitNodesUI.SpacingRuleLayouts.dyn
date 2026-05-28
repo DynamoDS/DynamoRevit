@@ -1,0 +1,242 @@
+{
+  "Uuid": "191db560-2f82-460d-9e46-5c33ca36f801",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.SpacingRuleLayouts",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.SpacingRuleLayouts, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "FixedNumber",
+      "Id": "3c5de550ff1d42de9214e292803a4791",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b6b6c1be40149ffa2467bf6bdac0e40",
+          "Name": "Autodesk.Revit.DB.SpacingRuleLayout",
+          "Description": "The selected Autodesk.Revit.DB.SpacingRuleLayout",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A spacing rule layout for calculating divided paths."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8861112e63b146a0bd81c864b1d750c7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "57ab22505c7e48eeb59f161592483a36",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "30272a11034245a5a1730731b73b0ddd",
+          "Name": "parameterName",
+          "Description": "The name of the parameter to set.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d3b615cdf66641c98a4a24efddd6f8aa",
+          "Name": "value",
+          "Description": "The value.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "14efc80bc7254342af5313105e3aa870",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.SetParameterByName@string,var",
+      "Replication": "Auto",
+      "Description": "Set one of the element's parameters.\n\nElement.SetParameterByName (parameterName: string, value: var): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "8986e5af-eaf2-4537-ad49-7023eaf26f6d-00007cc6"
+      ],
+      "Id": "ed6bf0aa6dd2459597932bc58c9398bc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7f804c93f1245d8a89149448e5c6729",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "8934818a4a4348a785a800674118d41f",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c1cc16247494816ac72d3bba7be16b5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Layout"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5b6b6c1be40149ffa2467bf6bdac0e40",
+      "End": "d3b615cdf66641c98a4a24efddd6f8aa",
+      "Id": "0459bba83711430f9a055aaf914ac665",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f7f804c93f1245d8a89149448e5c6729",
+      "End": "57ab22505c7e48eeb59f161592483a36",
+      "Id": "96a417113a0e4ae4869307b8a65e93f9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0c1cc16247494816ac72d3bba7be16b5",
+      "End": "30272a11034245a5a1730731b73b0ddd",
+      "Id": "a292e20a003043e4a49917f03d1cd13d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -14.316333770751953,
+      "EyeY": 12.279585838317871,
+      "EyeZ": 70.04424285888672,
+      "LookX": 14.339940071105957,
+      "LookY": -15.534934997558594,
+      "LookZ": -69.30970764160156,
+      "UpX": 0.04242589697241783,
+      "UpY": 0.9540387392044067,
+      "UpZ": -0.2050585001707077
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3c5de550ff1d42de9214e292803a4791",
+        "Name": "Spacing Rule Layout",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 609.9153547690985,
+        "Y": 745.2011181573885
+      },
+      {
+        "Id": "8861112e63b146a0bd81c864b1d750c7",
+        "Name": "Element.SetParameterByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1075.7692149619133,
+        "Y": 534.5272444504641
+      },
+      {
+        "Id": "ed6bf0aa6dd2459597932bc58c9398bc",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 619.6251707105428,
+        "Y": 365.97417929673003
+      },
+      {
+        "Id": "8934818a4a4348a785a800674118d41f",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 620.5961523046872,
+        "Y": 583.776438779181
+      }
+    ],
+    "Annotations": [],
+    "X": -461.1359892666144,
+    "Y": -422.3738113481661,
+    "Zoom": 1.5907768970610712
+  }
+}

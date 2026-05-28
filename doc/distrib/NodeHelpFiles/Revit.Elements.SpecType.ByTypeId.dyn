@@ -1,0 +1,383 @@
+{
+  "Uuid": "206d5dd9-03c1-4971-9a45-48cbb042c99b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.SpecType.ByTypeId",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7ee14ce462d84d148b6f3a4ca7a9fe16",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f20a1f84684249768ea143f09549f73b",
+          "Name": "typeId",
+          "Description": "a schema identifier\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8812eb99728c4ba481276684f6ab872e",
+          "Name": "SpecType",
+          "Description": "SpecType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SpecType.ByTypeId@string",
+      "Replication": "Auto",
+      "Description": "Get a SpecType by Forge schema identifier.\n\nSpecType.ByTypeId (typeId: string): SpecType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "1db235d4f8b048db919612b5aacde991",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9f047f4f9f324bab8a56399564f126c4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "autodesk.spec.aec:length-2.0.0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "33f422ca32b84967ab77cd3cddd4c38b",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5eca3b22aba6498f9bf6bf964a09d179",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "autodesk.spec.aec:area-2.0.0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "970e5043dc40430f920d4da187c16ad6",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2000a850a85a489db640b79b335933ed",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "autodesk.spec.aec:volume-2.0.0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "Id": "7ee5d654c1a049ab9e6e72899e0360ec",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "8b35afa72ced46d9bce08fcdfe937a0b",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eec28a8071f14a4ba4dffa0fbc82e265",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7a1cbdd0bb0348719acad1f3091fb95a",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e8db25e3662947b499012d4dc9060334",
+          "Name": "item3",
+          "Description": "Item Index #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "110341c843c94234a94e2bd6beeda315",
+          "Name": "item4",
+          "Description": "Item Index #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b7cb9e224b4642ae9cf6dee4f97b5587",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list from the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "8c6294697313450bb3a6c90cfdf14843",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d75277e15c7047b0860324df20b9816b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "autodesk.spec:spec.string-2.0.0"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b30abb9fd0074e42857a2efdec8ecd86",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fe4c18c6648f49658de20b7e701f8378",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "autodesk.spec:spec.bool-2.0.0"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9f047f4f9f324bab8a56399564f126c4",
+      "End": "8b35afa72ced46d9bce08fcdfe937a0b",
+      "Id": "73a11c9a3a85480ab87e596df917c0c3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5eca3b22aba6498f9bf6bf964a09d179",
+      "End": "eec28a8071f14a4ba4dffa0fbc82e265",
+      "Id": "e3697d1b5c9449e5941dcb70ceff7dc8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2000a850a85a489db640b79b335933ed",
+      "End": "7a1cbdd0bb0348719acad1f3091fb95a",
+      "Id": "7e74740324144eed8bb41698eb796ff2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b7cb9e224b4642ae9cf6dee4f97b5587",
+      "End": "f20a1f84684249768ea143f09549f73b",
+      "Id": "1a580592c8ae442aa4fba70e48e132df",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d75277e15c7047b0860324df20b9816b",
+      "End": "e8db25e3662947b499012d4dc9060334",
+      "Id": "6850574ef1d64d1b8e6240d19495a60a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fe4c18c6648f49658de20b7e701f8378",
+      "End": "110341c843c94234a94e2bd6beeda315",
+      "Id": "b947666574624a9f80bac1d93a169cf4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7ee14ce462d84d148b6f3a4ca7a9fe16",
+        "Name": "SpecType.ByTypeId",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1321.9284062073311,
+        "Y": 891.5663098176876
+      },
+      {
+        "Id": "1db235d4f8b048db919612b5aacde991",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.9284062073311,
+        "Y": 627.5663098176876
+      },
+      {
+        "Id": "33f422ca32b84967ab77cd3cddd4c38b",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.9284062073311,
+        "Y": 793.5663098176876
+      },
+      {
+        "Id": "970e5043dc40430f920d4da187c16ad6",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.9284062073311,
+        "Y": 959.5663098176876
+      },
+      {
+        "Id": "7ee5d654c1a049ab9e6e72899e0360ec",
+        "Name": "List Create",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1061.9284062073311,
+        "Y": 891.5663098176876
+      },
+      {
+        "Id": "8c6294697313450bb3a6c90cfdf14843",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.9284062073311,
+        "Y": 1125.5663098176876
+      },
+      {
+        "Id": "b30abb9fd0074e42857a2efdec8ecd86",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.9284062073311,
+        "Y": 1291.5663098176876
+      }
+    ],
+    "Annotations": [],
+    "X": -240.24246016993345,
+    "Y": -710.204947829827,
+    "Zoom": 1.2777169841077238
+  }
+}
