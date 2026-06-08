@@ -1,7 +1,7 @@
 ## In Depth
-This node retrieves the internal Revit parameter IDs of subelements.  Those values are the internal Revit parameter IDs, not the parameter display names.
+`Subelement.GetAllParameters` retrieves the internal Revit parameter IDs of subelements, not the parameter display names.
 
-In this example, all elements in the current view are selected and then filtered to show only elements that contain subelements. The subelements are then used as the input to the Subelement.GetAllParameters node. The output is a list of parameter IDs associated with each subelement.  The last node shows the output being used to get the parameter values.
+In the example below, all elements in the current view are selected and filtered to show only elements that contain subelements. The subelements are then used as the input to `Subelement.GetAllParameters`. The output is a list of parameter IDs associated with each subelement. The last node shows the output being used to retrieve the parameter values.
 
 ___
 ## Example File

@@ -1,7 +1,7 @@
 ## In Depth
-This node creates a Revit filter rule based on a selected rule type, parameter, and comparison value.
+`FilterRule.ByRuleType` creates a Revit filter rule based on a selected rule type, parameter, and comparison value.
 
-In this example, a wall type is identified and the Fire Rating parameter is being used as an input to the FilterRule.ByRuleType node along with a value and rule type.  The output is a filter is created.  This filter is then applied to a view.
+In the example below, a wall type is identified and the `Fire Rating` parameter is used as an input to `FilterRule.ByRuleType` along with a value and rule type. The output is a filter rule that is then applied to a view.
 ___
 ## Example File
 
