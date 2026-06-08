@@ -1,0 +1,332 @@
+{
+  "Uuid": "206d5dd9-03c1-4971-9a45-48cbb042c99b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "UnitsUI.Quantities",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b1c84b54d2bd416c8a2e0556a98563dc",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cc88857a6acf4544979f64c9c6580ecc",
+          "Name": "quantity",
+          "Description": "DynamoUnits.Quantity",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62c12d27a5ea4b25b35a2c72dca3a7d6",
+          "Name": "string",
+          "Description": "Forge TypeId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Quantity.TypeId",
+      "Replication": "Auto",
+      "Description": "Gets the Forge type schema identifier for a Quantity\n\nQuantity.TypeId: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "25bb8dc6b2cb484abf757cc3073cbf80",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "63fedf84838e4a1cb7ea2ee7e4277413",
+          "Name": "typeId",
+          "Description": "Forge TypeId string\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dbaf689b44684dad925877d244d9b408",
+          "Name": "Quantity",
+          "Description": "Quantity object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Quantity.ByTypeID@string",
+      "Replication": "Auto",
+      "Description": "Creates a Quantity object from its Forge type schema identifier string.\n\nQuantity.ByTypeID (typeId: string): Quantity"
+    },
+    {
+      "ConcreteType": "UnitsUI.Quantities, UnitsNodeModels",
+      "SelectedIndex": 5,
+      "SelectedString": "Area",
+      "Id": "22ec33cd741748dabdedeab207d3c7eb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "54566d0c7bef48119897d395d091dede",
+          "Name": "Quantity",
+          "Description": "The selected Quantity",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a Quantity type"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ab0aadab0efe4a0a9856cb3e1edec9eb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "325e1a29ffa94515ab56cc002372f72d",
+          "Name": "quantity",
+          "Description": "DynamoUnits.Quantity",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e2a86e399b9d4848b2e8b523c773d5f9",
+          "Name": "Unit[]",
+          "Description": "List of Units",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Quantity.Units",
+      "Replication": "Auto",
+      "Description": "Gets all available Units associated with a Quantity.\n\nQuantity.Units: Unit[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0531018be20949448e42aecd60745667",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5ce788dc08cf42dc8c8a22e7e2831320",
+          "Name": "quantity",
+          "Description": "DynamoUnits.Quantity",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ff2cd29f29a6495e94f56927788c4659",
+          "Name": "string",
+          "Description": "Name of Quantity",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Quantity.Name",
+      "Replication": "Auto",
+      "Description": "Gets the Name of for a Quantity\n\nQuantity.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "409fc8b698734c2c81ac5eb1f9cae001",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "857d9afb0ba14acca4d02ef9e31a955c",
+          "Name": "unit",
+          "Description": "Unit object\n\nUnit",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dc1317f0e0b2400ba2f7c85241472c6d",
+          "Name": "Symbol[]",
+          "Description": "List of Symbols",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Symbol.SymbolsByUnit@DynamoUnits.Unit",
+      "Replication": "Auto",
+      "Description": "Gets all available Symbols associated with a Unit.\n\nSymbol.SymbolsByUnit (unit: Unit): Symbol[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "62c12d27a5ea4b25b35a2c72dca3a7d6",
+      "End": "63fedf84838e4a1cb7ea2ee7e4277413",
+      "Id": "39e2b45f388c4683b2dc423e729bcd94",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "54566d0c7bef48119897d395d091dede",
+      "End": "cc88857a6acf4544979f64c9c6580ecc",
+      "Id": "c166309cab7e4f6392d22cd23baa0e59",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "54566d0c7bef48119897d395d091dede",
+      "End": "5ce788dc08cf42dc8c8a22e7e2831320",
+      "Id": "30ad19c633f341fdb9a8b965e46fe57d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "54566d0c7bef48119897d395d091dede",
+      "End": "325e1a29ffa94515ab56cc002372f72d",
+      "Id": "f2998113e4644aea80be99d8813a67f7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e2a86e399b9d4848b2e8b523c773d5f9",
+      "End": "857d9afb0ba14acca4d02ef9e31a955c",
+      "Id": "c23c3c6bbe1d4baea1d61c19993cd7be",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b1c84b54d2bd416c8a2e0556a98563dc",
+        "Name": "Quantity.TypeId",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1009.098943912589,
+        "Y": 728.9928065204008
+      },
+      {
+        "Id": "25bb8dc6b2cb484abf757cc3073cbf80",
+        "Name": "Quantity.ByTypeID",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1324.098943912589,
+        "Y": 728.9928065204008
+      },
+      {
+        "Id": "22ec33cd741748dabdedeab207d3c7eb",
+        "Name": "Quantities",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 675.0989439125889,
+        "Y": 665.9258518767723
+      },
+      {
+        "Id": "ab0aadab0efe4a0a9856cb3e1edec9eb",
+        "Name": "Quantity.Units",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1008.2350130270597,
+        "Y": 893.2714242309839
+      },
+      {
+        "Id": "0531018be20949448e42aecd60745667",
+        "Name": "Quantity.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1325.8268056836473,
+        "Y": 564.7141888098176
+      },
+      {
+        "Id": "409fc8b698734c2c81ac5eb1f9cae001",
+        "Name": "Symbol.SymbolsByUnit",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1323.2350130270597,
+        "Y": 893.2714242309839
+      }
+    ],
+    "Annotations": [],
+    "X": -678.1402737282633,
+    "Y": -833.9223332765257,
+    "Zoom": 1.545620359375
+  }
+}
