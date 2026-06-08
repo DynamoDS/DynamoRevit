@@ -1,7 +1,7 @@
 ## In Depth
-This node narrows the scope of import geometry by allowing users to manually select which geometry should be passed through.
+`Select Geometry File Objects` narrows the scope of imported geometry by enabling manual selection of which objects are passed through the graph.
 
-In this example, CAD geometry is imported and used in the Select Geometry File Objects node. You can manually select objects to be passed through, like the ones shown here with IDs 16, 27, and 33.
+In the example below, CAD geometry is imported and used in `Select Geometry File Objects`. Specific objects are manually selected for output, such as the objects with IDs 16, 27, and 33 shown here.
 ___
 ## Example File
 

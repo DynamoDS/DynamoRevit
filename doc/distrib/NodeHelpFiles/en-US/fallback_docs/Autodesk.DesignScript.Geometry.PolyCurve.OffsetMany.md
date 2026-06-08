@@ -1,7 +1,7 @@
 ## In Depth
-This node offsets a PolyCurve into one or more new PolyCurves based on the offset distance and plane provided.
+`PolyCurve.OffsetMany` offsets a PolyCurve into one or more new PolyCurves based on the input offset distance and plane.
 
-In this example, a PolyCurve.ByPoints node is used to create the input geometry for the PolyCurve.OffsetMany node. A signed distance value (+ or -) controls the offset direction, an extendCircular Boolean determines how circular edges are handled, and a planeNormal (Vector) defines the normal direction of the plane in which the offset is created.
+In the example below, a `PolyCurve.ByPoints` node creates the input geometry for `PolyCurve.OffsetMany`. A signed distance value (+ or -) controls the offset direction, an `extendCircular` Boolean value determines how circular edges are handled, and a `planeNormal` vector defines the normal direction of the plane in which the offset is created.
 ___
 ## Example File
 
