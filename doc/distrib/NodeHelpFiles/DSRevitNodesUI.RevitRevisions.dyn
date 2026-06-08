@@ -1,5 +1,5 @@
 {
-  "Uuid": "49c5d9e7-9f4d-457b-bfe9-da9b88da959a",
+  "Uuid": "fc770969-cc4a-4bed-a05c-26553c7b5e46",
   "IsCustomNode": false,
   "Description": "",
   "Name": "DSRevitNodesUI.RevitRevisions",
@@ -10,33 +10,12 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "DSRevitNodesUI.RevitRevisions, DSRevitNodesUI",
-      "SelectedIndex": 0,
-      "SelectedString": "Seq. 1 - Schematic Design",
-      "Id": "a7361179a3f0441086177d95b0dd32bc",
-      "NodeType": "ExtensionNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "59bb036d005047888095f3366f53bfca",
-          "Name": "Revision",
-          "Description": "The selected Revision",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select an existing Revit Revision from the active document."
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "fb9e7470a9974ab884f9614dd04483f1",
+      "Id": "4b6c1b66c6dc4586a76ad4225f668f0c",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "dc073f1321a54991994f8472191511c7",
+          "Id": "d73271af12a4483dacfb2dc2e185b4a4",
           "Name": "revision",
           "Description": "Revit.Elements.Revision",
           "UsingDefaultValue": false,
@@ -47,7 +26,37 @@
       ],
       "Outputs": [
         {
-          "Id": "99626d170cab4704b17c781612f4f81f",
+          "Id": "6b1427852e5a40a495b1abee77ecd960",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Revision.Issued",
+      "Replication": "Auto",
+      "Description": "Get Issued\n\nRevision.Issued: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7db3e85a7df1468fa608d4df83bd1e57",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8eea4486f07f4692b804b36f71cd96cd",
+          "Name": "revision",
+          "Description": "Revit.Elements.Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "decfb8d495f9468198c60de3cca33502",
           "Name": "string",
           "Description": "string",
           "UsingDefaultValue": false,
@@ -61,47 +70,38 @@
       "Description": "Get Revision Date\n\nRevision.RevisionDate: string"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "f5aebb312be8491990dbc091bb815204",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "1951f90b0af543328bdea2a4ef83232c",
-          "Name": "revision",
-          "Description": "Revit.Elements.Revision",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
+      "ConcreteType": "DSRevitNodesUI.RevitRevisions, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Seq. 1 - Schematic Design",
+      "Id": "2c4680e0b43b4eaf834d5a1621c43f42",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
       "Outputs": [
         {
-          "Id": "346f957900b942b09598aca1cfefe239",
-          "Name": "bool",
-          "Description": "bool",
+          "Id": "3dab226c677b47bbac95b67fa311c6d0",
+          "Name": "Revision",
+          "Description": "The selected Revision",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.Revision.Issued",
-      "Replication": "Auto",
-      "Description": "Get Issued\n\nRevision.Issued: bool"
+      "Replication": "Disabled",
+      "Description": "Select an existing Revit Revision from the active document."
     }
   ],
   "Connectors": [
     {
-      "Start": "59bb036d005047888095f3366f53bfca",
-      "End": "dc073f1321a54991994f8472191511c7",
-      "Id": "c2d215adefc1421e9120d13b6f5b9921",
+      "Start": "3dab226c677b47bbac95b67fa311c6d0",
+      "End": "d73271af12a4483dacfb2dc2e185b4a4",
+      "Id": "76281e507f8444e4815eed1b3dbbec15",
       "IsHidden": "False"
     },
     {
-      "Start": "59bb036d005047888095f3366f53bfca",
-      "End": "1951f90b0af543328bdea2a4ef83232c",
-      "Id": "ed815431ccee415ab95f8b31c8e4be3d",
+      "Start": "3dab226c677b47bbac95b67fa311c6d0",
+      "End": "8eea4486f07f4692b804b36f71cd96cd",
+      "Id": "e480357af36f4562bbee186f430f3ebb",
       "IsHidden": "False"
     }
   ],
@@ -156,39 +156,39 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "a7361179a3f0441086177d95b0dd32bc",
-        "Name": "Select Revision",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 882.0,
-        "Y": 939.0
-      },
-      {
-        "Id": "fb9e7470a9974ab884f9614dd04483f1",
-        "Name": "Revision.RevisionDate",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1322.4225279666891,
-        "Y": 830.2506899021469
-      },
-      {
-        "Id": "f5aebb312be8491990dbc091bb815204",
+        "Id": "4b6c1b66c6dc4586a76ad4225f668f0c",
         "Name": "Revision.Issued",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1337.0098193872063,
-        "Y": 1070.6340409398088
+        "X": 957.8171883290752,
+        "Y": 675.8455411239618
+      },
+      {
+        "Id": "7db3e85a7df1468fa608d4df83bd1e57",
+        "Name": "Revision.RevisionDate",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 941.25356359119,
+        "Y": 438.0
+      },
+      {
+        "Id": "2c4680e0b43b4eaf834d5a1621c43f42",
+        "Name": "Select Revision",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 536.0,
+        "Y": 538.0454687634447
       }
     ],
     "Annotations": [],
-    "X": -1437.3467059797551,
-    "Y": -1452.5628646163275,
+    "X": -729.7664453924335,
+    "Y": -684.9390347576065,
     "Zoom": 2.056680268334277
   }
 }
