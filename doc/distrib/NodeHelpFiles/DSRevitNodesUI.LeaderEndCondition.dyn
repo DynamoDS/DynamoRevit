@@ -1,0 +1,553 @@
+{
+  "Uuid": "c25c8fb0-e921-49d8-9fb6-501daff4f3a2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.LeaderEndCondition",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.LeaderEndCondition, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Free",
+      "Id": "115c5db276fa43b3b63d3e55d161a57c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "adc1f59b72c24849a0de6335a30eb6e5",
+          "Name": "LeaderEndCondition",
+          "Description": "The selected LeaderEndCondition",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Tag LeaderEnd Condition"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ca4c8e5cd35247b38576bee7ae872824",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e323511903de41d2b38214fecf7354b0",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "580898e3d83642199f9246951674c7fa",
+          "Name": "leaderEndCondition",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e95e29fd77e34423bbe4b711eb87fb30",
+          "Name": "Tag",
+          "Description": "Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Tag.SetLeaderEndCondition@string",
+      "Replication": "Auto",
+      "Description": "Set Tag's LeaderEnd condition.\n\nTag.SetLeaderEndCondition (leaderEndCondition: string): Tag"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "927f229619e947ceb08c2f96ab4185de",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "51f543394cb64ae3ab02687f1d15adce",
+          "Name": "view",
+          "Description": "View to Tag in\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c6f37cc5ab64a15b28fdd375f0496e0",
+          "Name": "element",
+          "Description": "Element to tag\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "78d7e0e7ee504487af08fc2244e5bd31",
+          "Name": "horizontal",
+          "Description": "Place tag horizontal\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dd8d7ce02119482bb80547806154c885",
+          "Name": "addLeader",
+          "Description": "Add a leader\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "39d1ce140aa343b18d3b3d52ff291156",
+          "Name": "horizontalAlignment",
+          "Description": "Horizontal Alignment within the element's extents\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "934cb48217af409bb7585642d918f7c6",
+          "Name": "verticalAlignment",
+          "Description": "Vertical Alignment within the element's extents\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "80d5ea3a346d4b0a93407af575bd6ea8",
+          "Name": "offset",
+          "Description": "Optional: Offset Vector or Tag Location, defaults to 0,0,0\n\nVector\nDefault value : Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "04c7cbc0a0cf4e77af907b7a6d03c1f3",
+          "Name": "isOffset",
+          "Description": "Optional: Specifies if the point is being used as an offset vector or if it specifies the tags location, defaults to true\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5d94c74e6fe549b4b837e911fb6a6ca8",
+          "Name": "Tag",
+          "Description": "Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Tag.ByElement@Revit.Elements.Views.View,Revit.Elements.Element,bool,bool,string,string,Autodesk.DesignScript.Geometry.Vector,bool",
+      "Replication": "Auto",
+      "Description": "Create a Revit Tag for a Revit Element\n\nTag.ByElement (view: View, element: Element, horizontal: bool, addLeader: bool, horizontalAlignment: string, verticalAlignment: string, offset: Vector = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 0), isOffset: bool = true): Tag"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 113,
+      "SelectedString": "L1",
+      "Id": "cf3a0a1095dd42a681491750f7204dc8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c0e9a57be88444bbb1bb55ce66352d6f",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "ca830b05cae34e4e93df2aca0050f499",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "75741965b07348b9a0d95a248b1f8787",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fafaefb6ce4f43f09cb3a45da0d3a95e",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "add4e531701d462582f7b31e4aa2a6fd",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 736,
+      "SelectedString": "OST_Walls",
+      "Id": "ecb723d01f6145fe9b7f6000281e84d4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5968f5ff4e6f463baf0a1b4c6fc54c97",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "1abb97f7408f477a9b38537ffc38bc4e",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c5468156b1d04fc1b71a8339df6dd243",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "9bbfa56c44374bd18e4d8be1e8b5d8b5",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c6d9a405c4ef47c4a1bca4018947a69e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.HorizontalAlignment, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Center",
+      "Id": "6d805af635924ce0ad48be6d2a691d75",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e38c713697a14b9190f8998b2df79576",
+          "Name": "Horizontal Alignment",
+          "Description": "The selected Horizontal Alignment",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the horizontal text alignment style."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.VerticalAlignment, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Middle",
+      "Id": "1e0d2fb9e8c248fb81ee8bc3cbd61970",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4c917747f0414eb2aff97f6e6d0b9339",
+          "Name": "Vertical Alignment",
+          "Description": "The selected Vertical Alignment",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the vertical text alignment style."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "adc1f59b72c24849a0de6335a30eb6e5",
+      "End": "580898e3d83642199f9246951674c7fa",
+      "Id": "076580df456d43e0b9746d81ecef4c90",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5d94c74e6fe549b4b837e911fb6a6ca8",
+      "End": "e323511903de41d2b38214fecf7354b0",
+      "Id": "b3531aebb2bc4e37b68bdd9f6fe776ee",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c0e9a57be88444bbb1bb55ce66352d6f",
+      "End": "fafaefb6ce4f43f09cb3a45da0d3a95e",
+      "Id": "aaff8c2ebab64808a9e3f3c96ef06f25",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c0e9a57be88444bbb1bb55ce66352d6f",
+      "End": "51f543394cb64ae3ab02687f1d15adce",
+      "Id": "347e0965bfbc472f85f57b3ee16b50c0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "add4e531701d462582f7b31e4aa2a6fd",
+      "End": "5c6f37cc5ab64a15b28fdd375f0496e0",
+      "Id": "f1b39462a17049af97ed79498390d452",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5968f5ff4e6f463baf0a1b4c6fc54c97",
+      "End": "75741965b07348b9a0d95a248b1f8787",
+      "Id": "a65af8be59214c09a818b7f9cefe9e53",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c5468156b1d04fc1b71a8339df6dd243",
+      "End": "78d7e0e7ee504487af08fc2244e5bd31",
+      "Id": "8f5adb4979f24958b81b8930ab2e0428",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c6d9a405c4ef47c4a1bca4018947a69e",
+      "End": "dd8d7ce02119482bb80547806154c885",
+      "Id": "3270fa8a9c794e408d21b07a3cf887f8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e38c713697a14b9190f8998b2df79576",
+      "End": "39d1ce140aa343b18d3b3d52ff291156",
+      "Id": "4aba96e3ba2d4cb5826a6438916dfa05",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4c917747f0414eb2aff97f6e6d0b9339",
+      "End": "934cb48217af409bb7585642d918f7c6",
+      "Id": "65aba4e5a2f141b3a8c4417789b93958",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "927f2296-19e9-47ce-b08c-2f96ab4185de",
+      "Binding": {
+        "ByElement_InClassDecl-1_InFunctionScope-1_Instance1_927f2296-19e9-47ce-b08c-2f96ab4185de": "H4sIAAAAAAAACq3arXIcSRQF4Xdp7ImouvXbxibGCz0GU9b0xhKBXTGF3n0VopUwGxXpy/JD59f78fr87+358uPx9ji+/3o/Xr4ex/v9+Ovt339e//754358vx9/nld5RJm30vt5q1fqt9X7vLXHGY8S6ZFHv6UU83w8y/34dj9+vr59/Ru953Tmj+Pjm3K9wvXQrje4XrTrHa5X7fqA6027PuF6166fcH1o1x9wfWrXF1w/tet/tus5Je36C1z3Wn3Cda/VC65rrV4JrmutXhmua61eAde1Vq/d95y0Vq/d95y0Vq/d989Yteu775/nteu775+fdn33PWet1Wv3PWev1d33nL1Wd99z9loF37PXKvievVbB9+y1Cr5nq9WVwPewWl0JfA+r1ZXA97BaXQl8D6vVlcD3sFpdCXwPq9WVwPewWl0JfA+r1ZXA97BaXQl8D69V8L14rYLvxWsVfC9eq+B78VoF34vXKvhetFYz+F60VjP4XrRWM/hetFYz+F60VjP4XrVWM/hetVYz+F61VjP4XrVWM/hetVYz+F69VsH36rUKvlevVfC9eq2C79VrFXxvXqvge9NaDfC9aa0G+N60VgN8b1qrAb43rdUA35vWaoDvTWs1wPemtRrge9NaDfC9a60G+N69VsH37rUKvnevVfC9e62C791rFXzvXqvge9daLeB711ot4HvXWi3g+9BaLeD70Fot4PvQWi3g+9BaLeD70Fot4PvQWi3g+9BaLeD78FoF34fXKvg+vFbB9+m1Cr5Pr1XwfXqtgu9Ta7WC71NrtYLvU2u1gu9Ta7WC71NrtYLvU2u1gu9Ta7WC76fWagXftd3SquC7tltaFXzXdkurgu/abmlV8F3bLa0Kvmu7pVXBd223tCr4ru2WVgXftd3Sarvvoe2WVtt9D223tNrue2i7pdV230PbLa22+x7abmm13ffQdkur7b6Htltabfc9tN3Sarvvoe2WVtt9D223tNrue2i7pdV230PbLa22+x7abmm13ffQdkur7b6Htltabfc9tN3S6uC7tltaHXzXdkurg+/abml18N3bLXXw3dstdfDd2y118N3bLXXw3dstdfDd2y118N3bLXXw3dstdfDd2y118N3bLXXw3dstdfDd2y118N3bLQ3w3dstDfDd2y0N8N3bLQ3w3dstDfDd2y0N8N3bLQ3w3dstDfDd2y0N8N3bLQ3w3dstDfDd2y0N8N3bLQ3w3dstDfDd2y0N8N3bLQ3w3dstTfDd2y1N8N3bLU3w3dstTfDd2y1N8N3bLU3w3dstTfDd2y1N8N3bLU3w3dstTfDd2y1N8N3bLU3w3dstTfDd2y1N8N3bLU3w3dstTfDd2y2d4Lu3WzrBd2+3dILv3m7pBN+93dIJvnu7pRN893ZLJ/ju7ZZO8N3bLZ3gu7dbOsF3b7d0gu/ebukE3792S78/fv8PLJzFjQBEAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "115c5db276fa43b3b63d3e55d161a57c",
+        "Name": "LeaderEnd Condition",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1596.9156336711603,
+        "Y": 2224.177964116797
+      },
+      {
+        "Id": "ca4c8e5cd35247b38576bee7ae872824",
+        "Name": "Tag.SetLeaderEndCondition",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1946.9469561991962,
+        "Y": 2075.3849582882067
+      },
+      {
+        "Id": "927f229619e947ceb08c2f96ab4185de",
+        "Name": "Tag.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1297.6857399128828,
+        "Y": 2071.844942601168
+      },
+      {
+        "Id": "cf3a0a1095dd42a681491750f7204dc8",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 187.6217740918902,
+        "Y": 2214.9999360645634
+      },
+      {
+        "Id": "ca830b05cae34e4e93df2aca0050f499",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 521.7792436645376,
+        "Y": 2063.3384274320665
+      },
+      {
+        "Id": "ecb723d01f6145fe9b7f6000281e84d4",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 187.6217740918902,
+        "Y": 2059.7085491414764
+      },
+      {
+        "Id": "1abb97f7408f477a9b38537ffc38bc4e",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 877.3876161435867,
+        "Y": 2065.298036833571
+      },
+      {
+        "Id": "9bbfa56c44374bd18e4d8be1e8b5d8b5",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 877.3876161435867,
+        "Y": 2212.298036833571
+      },
+      {
+        "Id": "6d805af635924ce0ad48be6d2a691d75",
+        "Name": "Select Horizontal Text Alignment",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 877.3876161435867,
+        "Y": 2359.298036833571
+      },
+      {
+        "Id": "1e0d2fb9e8c248fb81ee8bc3cbd61970",
+        "Name": "Select Vertical Text Alignment",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 875.5450857162341,
+        "Y": 2526.56587153445
+      }
+    ],
+    "Annotations": [],
+    "X": -143.07155135904236,
+    "Y": -1807.083731005143,
+    "Zoom": 1.0358283930620356
+  }
+}
