@@ -1,0 +1,799 @@
+{
+  "Uuid": "57a1c005-b3c9-4b9f-b3af-b85b7a34c818",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.AxonometricView.ByEyePointTargetAndBoundingBox",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cb8b79ff99dc48ccbdab15481bb83a86",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b5453d3772b24930a36fcfcaf2e02dbb",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c8ca31785a524999815c23ee91e85799",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2f9c5dd8ea8b4b81b73b6be9ffe78f85",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "1acb623c5f284ab59f89e96589d728cd",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "517c6cc767ad442d8e5b827c248ebf4d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 50.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "814ea9e9fe844efda5758c07fc27053f",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "77f7af98b10744bbb754fa09ac0e0f9d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 50.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a6fa642da86e4bd7be406a9b914f7999",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3396b00e5973416e99fb0cdc4a28c5a8",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0aec917165964645a36d9d9183431761",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "289e6ac65c584fa6a64d0c9f44396827",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "c0a325d2fd5f48eeb9879574ae0121e6",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "03054d0c2dd74cd2a49683f7973c2ee6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "81e94a2ddbf446849de7843782cbcbd8",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "20bf7d936ca0493f940f49bc28434f50",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ccd7824ef45f420d93f903f5b4f5e4bb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "74e651d7337d4eefaf689704e0318daf",
+          "Name": "min",
+          "Description": "Point\nDefault value : Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "471646df70204d3ebf9e5418cce430a6",
+          "Name": "max",
+          "Description": "Point\nDefault value : Autodesk.DesignScript.Geometry.Point.ByCoordinates(1, 1, 1)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "050a3dde8bfd4858be0f2541a98dacdb",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.ByCorners@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Creates the an axis-aligned BoundingBox spanning between the minimum Point and the maximum Point.\n\nBoundingBox.ByCorners (min: Point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0), max: Point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(1, 1, 1)): BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d11a24075a8a4706a1b114b77d01a1b9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cc83c08682f14a808886c9fea53e30d2",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5fbd38c9f5ba4530a4b51b7907264346",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f8b2bb369604c9f9b6cbafcc8b66e3c",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "3009f812c32f47449a18c5b77c3075fb",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "30ff42d2720848e19643687f15e69c91",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": -10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "f1e881717a2c41fdaef646f759f44eae",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e5b982d0551d41e8bec6bb9e442a8a9a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": -10.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a0ff0f9f51cb46a091aea5c5c2523a92",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bb7f6bb72cf84f1b8ab04cd019b80ab5",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8ead001c9bdc4e6c96375428c2facb83",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a7797c2f0ed948d0a50b657dea66e8b2",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "3e492fad157c4711a924faee338013bd",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "810d346bdf44430b9f9a48f31a5c7e2c",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "d0bf258d0294455bba4f4f01da5c8320",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3ff4de2a53b9423087dc20d0b40905b2",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dcabfe2d223c4e4e8a0d37902abb5097",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "670d88c00800436ca11ea604b9d61a7a",
+          "Name": "eyePoint",
+          "Description": "A Point representing the eye point.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b3404b3083d64655999b6a89051c230e",
+          "Name": "target",
+          "Description": "A Point representing the target of view.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "93f8211eb14a4a9e8584b1c1a96382b9",
+          "Name": "boundingBox",
+          "Description": "A BoundingBox. The view will be cropped to this bounding box\n\nBoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c60a6ba547934d08b1742c81500432af",
+          "Name": "name",
+          "Description": "The name of the view.\n\nstring\nDefault value : \"dynamo3D\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "256e142dba72442b9a50d4f3b526f509",
+          "Name": "isolateElement",
+          "Description": "If this argument is set to true, the element or bounding box will be isolated in the current view by creating a minimum size crop box around it.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "443f38c93bd145a2b8c003f0c5d63b26",
+          "Name": "AxonometricView",
+          "Description": "An AxonometricView object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.AxonometricView.ByEyePointTargetAndBoundingBox@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.BoundingBox,string,bool",
+      "Replication": "Auto",
+      "Description": "Create a Revit Axonometric (isometric) View from an Eye position and target position and Bounding Box\n\nAxonometricView.ByEyePointTargetAndBoundingBox (eyePoint: Point, target: Point, boundingBox: BoundingBox, name: string = \"dynamo3D\", isolateElement: bool = false): AxonometricView"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "d2a98387277a488a83f6d9f5604f823a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e48de0d78f9843c39381acf9483c753c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Dynamo Axonometric View"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "984019a5c11d4ca2b3a23e70c7454bf4",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "af7e42789ce1442a80b98e2b3d4c6f3d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2f9c5dd8ea8b4b81b73b6be9ffe78f85",
+      "End": "670d88c00800436ca11ea604b9d61a7a",
+      "Id": "6619d69d0c0c437495272210429d560e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "517c6cc767ad442d8e5b827c248ebf4d",
+      "End": "b5453d3772b24930a36fcfcaf2e02dbb",
+      "Id": "64e4f1a53ad8427199c3f00a190c594c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "77f7af98b10744bbb754fa09ac0e0f9d",
+      "End": "c8ca31785a524999815c23ee91e85799",
+      "Id": "7b8d138ff2fc4666a026879ad682ece8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "289e6ac65c584fa6a64d0c9f44396827",
+      "End": "b3404b3083d64655999b6a89051c230e",
+      "Id": "a180930c63bb43e485deed37c6d8d55b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "03054d0c2dd74cd2a49683f7973c2ee6",
+      "End": "3396b00e5973416e99fb0cdc4a28c5a8",
+      "Id": "77f7334de1074bc5a190732f2115db3b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "20bf7d936ca0493f940f49bc28434f50",
+      "End": "0aec917165964645a36d9d9183431761",
+      "Id": "a5fce6b5cefe49c3a4be504c1b2a315a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "050a3dde8bfd4858be0f2541a98dacdb",
+      "End": "93f8211eb14a4a9e8584b1c1a96382b9",
+      "Id": "b303cc84bcf648d8a67032436366e4d8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4f8b2bb369604c9f9b6cbafcc8b66e3c",
+      "End": "74e651d7337d4eefaf689704e0318daf",
+      "Id": "3a7464a65ff04d0f833a4543aa850480",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "30ff42d2720848e19643687f15e69c91",
+      "End": "cc83c08682f14a808886c9fea53e30d2",
+      "Id": "a18cb11b2d0c4a2a80406a7d4d362710",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e5b982d0551d41e8bec6bb9e442a8a9a",
+      "End": "5fbd38c9f5ba4530a4b51b7907264346",
+      "Id": "6d3c1dc635b842519b732650b1892d05",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a7797c2f0ed948d0a50b657dea66e8b2",
+      "End": "471646df70204d3ebf9e5418cce430a6",
+      "Id": "7fd63773f5e94bea8b92306ae1407e76",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "810d346bdf44430b9f9a48f31a5c7e2c",
+      "End": "bb7f6bb72cf84f1b8ab04cd019b80ab5",
+      "Id": "acf7228ab4fd4f8d8298ea528881fa2a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3ff4de2a53b9423087dc20d0b40905b2",
+      "End": "8ead001c9bdc4e6c96375428c2facb83",
+      "Id": "fefcd7ef9b4e4497a1b6b80f1b56305b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e48de0d78f9843c39381acf9483c753c",
+      "End": "c60a6ba547934d08b1742c81500432af",
+      "Id": "ef900fb3ab9e4169bfb9862f53cb4199",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "af7e42789ce1442a80b98e2b3d4c6f3d",
+      "End": "256e142dba72442b9a50d4f3b526f509",
+      "Id": "f63e9051171a4c2fb67dd9f9685e3e5b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "dcabfe2d-223c-4e4e-8a0d-37902abb5097",
+      "Binding": {
+        "ByEyePointTargetAndBoundingBox_InClassDecl-1_InFunctionScope-1_Instance0_dcabfe2d-223c-4e4e-8a0d-37902abb5097": "H4sIAAAAAAAACh3LIQ7DMAwF0Lt8PEt2UsVJ8UjxYF3gNuk0EjCFVb37pD3+1gvVh2PGZXiN76e/l6dhNpxT4SaBqcWoNGUv5IcInSouTbXKXog55OI1GR6GpY//DSkJa75xbz/cZ86sXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.2.11575",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -31.308313369750977,
+      "EyeY": 16.249937057495117,
+      "EyeZ": 44.3265495300293,
+      "LookX": 7.515350341796875,
+      "LookY": -34.67613220214844,
+      "LookZ": -49.17401123046875,
+      "UpX": 0.057814858853816986,
+      "UpY": 0.9238793849945068,
+      "UpZ": -0.3782913386821747
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "cb8b79ff99dc48ccbdab15481bb83a86",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 242.14754861807205,
+        "Y": 69.49521705863896
+      },
+      {
+        "Id": "1acb623c5f284ab59f89e96589d728cd",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -84.2557733739095,
+        "Y": -90.45495306163718
+      },
+      {
+        "Id": "814ea9e9fe844efda5758c07fc27053f",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -84.2557733739095,
+        "Y": 57.545046938362816
+      },
+      {
+        "Id": "a6fa642da86e4bd7be406a9b914f7999",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 240.7442266260905,
+        "Y": 256.7217929944917
+      },
+      {
+        "Id": "c0a325d2fd5f48eeb9879574ae0121e6",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -84.2557733739095,
+        "Y": 205.54504693836282
+      },
+      {
+        "Id": "81e94a2ddbf446849de7843782cbcbd8",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -84.2557733739095,
+        "Y": 352.5450469383628
+      },
+      {
+        "Id": "ccd7824ef45f420d93f903f5b4f5e4bb",
+        "Name": "BoundingBox.ByCorners",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 240.7442266260905,
+        "Y": 441.5450469383628
+      },
+      {
+        "Id": "d11a24075a8a4706a1b114b77d01a1b9",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -84.2557733739095,
+        "Y": 499.5450469383628
+      },
+      {
+        "Id": "3009f812c32f47449a18c5b77c3075fb",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -306.2557733739095,
+        "Y": 383.5450469383628
+      },
+      {
+        "Id": "f1e881717a2c41fdaef646f759f44eae",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -306.2557733739095,
+        "Y": 530.5450469383628
+      },
+      {
+        "Id": "a0ff0f9f51cb46a091aea5c5c2523a92",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -88.4657393498544,
+        "Y": 694.1915548261051
+      },
+      {
+        "Id": "3e492fad157c4711a924faee338013bd",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -306.2557733739095,
+        "Y": 677.5450469383628
+      },
+      {
+        "Id": "d0bf258d0294455bba4f4f01da5c8320",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -306.2557733739095,
+        "Y": 824.5450469383628
+      },
+      {
+        "Id": "dcabfe2d223c4e4e8a0d37902abb5097",
+        "Name": "AxonometricView.ByEyePointTargetAndBoundingBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 653.6837502893175,
+        "Y": 371.5450469383628
+      },
+      {
+        "Id": "d2a98387277a488a83f6d9f5604f823a",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 243.55087061005383,
+        "Y": 633.384910842142
+      },
+      {
+        "Id": "984019a5c11d4ca2b3a23e70c7454bf4",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 243.55087061005383,
+        "Y": 799.384910842142
+      }
+    ],
+    "Annotations": [],
+    "X": 637.4630384775677,
+    "Y": 129.42950130754025,
+    "Zoom": 1.1113575327695027
+  }
+}
