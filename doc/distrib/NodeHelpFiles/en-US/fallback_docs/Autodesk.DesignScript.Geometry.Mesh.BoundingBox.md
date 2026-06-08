@@ -1,7 +1,7 @@
 ## In Depth
-This node returns the bounding box of a given mesh.
+`Mesh.BoundingBox` returns the bounding box of a given mesh.
 
-In this example points are generated and used to create a mesh, then used as the input to Mesh.BoundingBox.  The output is a bounding box and is used to extract the MinPoint of the bounding box.
+In the example below, points are generated and used to create a mesh, which is then used as the input to `Mesh.BoundingBox`. The output is a bounding box used to extract the `MinPoint`.
 ___
 ## Example File
 

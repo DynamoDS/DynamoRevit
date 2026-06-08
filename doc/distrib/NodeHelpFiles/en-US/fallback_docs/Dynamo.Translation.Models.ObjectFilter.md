@@ -1,7 +1,7 @@
 ## In Depth
-This node provides filtering rules for objects being processed between systems.
+`Filter Geometry File Objects` provides filtering rules for objects being processed between systems.
 
-In this example, the North Arrows.dwg file is imported into Dynamo and Filter Geometry File Objects is used to customize the search to only show objects where LayerID = 13. The last node displays all objects with those properties.
+In the example below, the North Arrows.dwg file is imported into Dynamo and `Filter Geometry File Objects` is used to customize the search to show only objects where LayerID = 13. The last node displays all objects with those properties.
 ___
 ## Example File
 
