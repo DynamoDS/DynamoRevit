@@ -1114,6 +1114,13 @@ namespace Dynamo.Applications
 
             // Once Dynamo is closed, we want to set the current UI culture back to the default thread culture.
             System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
+
+
+            if (Journaling.IsJournalReplaying() && splashScreen != null)
+            {
+                splashScreen.Close();
+                splashScreen = null;
+            }
         }
 
         /// <summary>
