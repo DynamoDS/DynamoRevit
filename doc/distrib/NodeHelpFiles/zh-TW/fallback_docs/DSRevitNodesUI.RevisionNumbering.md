@@ -1,11 +1,9 @@
 ## 深入資訊
-此節點提供一個下拉式清單，定義在 Revit 專案中如何管理修訂編號 — 整體 (根據專案) 或個別圖紙 (根據圖紙)。
+`Select Revision Numbering` provides the revision numbering method used in the project. Revisions can be numbered either By Project or By Sheet, corresponding to the `PerProject` and `PerSheet` options.
 
-在此範例中，使用 Select Revision Numbering 節點和「PerProject」值建立新修訂。
+In the example below, a revision is created and `Select Revision Numbering` is used as one of the inputs.
 
-如需修訂的更多資訊，請參閱連結。
-https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## 範例檔案
 

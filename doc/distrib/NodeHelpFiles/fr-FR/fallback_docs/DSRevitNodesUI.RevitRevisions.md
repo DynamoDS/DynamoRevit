@@ -1,7 +1,9 @@
 ## Description approfondie
-Ce nœud vous permet de sélectionner un élément de révision précis dans le document Revit actif.
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-Dans cet exemple, le nœud Sélectionner une révision est utilisé en utilisant le menu déroulant et en sélectionnant une révision dans le document actif.  Les 2 derniers noeuds présentent des propriétés de révision.
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Exemple de fichier
 

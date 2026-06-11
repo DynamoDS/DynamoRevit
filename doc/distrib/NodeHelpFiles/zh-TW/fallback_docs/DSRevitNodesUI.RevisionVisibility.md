@@ -1,10 +1,9 @@
 ## 深入資訊
-此節點可讓您選取修訂的「修訂可見性」設定 (可用選項包括:「CloudsAndTagVisible」、「TagVisible」和「Hidden」)。可見性決定所選修訂的顯示位置 (例如，在雲形、標籤、圖紙中顯示，或隱藏)。
+`Select Revision Visibility` provides a Revit revision visibility mode. The options are `CloudAndTagVisible`, `TagVisible`, and `Hidden`.
 
-在此範例中，使用 Select Revision Visibility 節點和「TagVisible」值建立新修訂。
+In the example below, a revision is created using `Select Revision Visibility` as one of the inputs.
 
-如需修訂的更多資訊，請參閱連結。
-https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 
 ___
 ## 範例檔案

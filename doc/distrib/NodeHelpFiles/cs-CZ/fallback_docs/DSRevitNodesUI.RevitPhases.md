@@ -1,7 +1,8 @@
 ## Podrobnosti
-Tento uzel umožňuje vybrat konkrétní fázi z modelu pomocí rozevírací nabídky.
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-V tomto příkladu je vybrána stěna a pomocí uzlu Vybrat fázi se změní její přiřazení fáze. Konečný uzel potvrdí změnu zobrazením aktualizovaného názvu fáze „Existující“.
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## Vzorový soubor
 

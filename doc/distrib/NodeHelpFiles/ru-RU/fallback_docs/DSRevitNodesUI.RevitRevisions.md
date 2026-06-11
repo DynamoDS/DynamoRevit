@@ -1,7 +1,9 @@
 ## Подробности
-Этот узел позволяет выбрать определенный элемент изменения в активном документе Revit.
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-В этом примере узел Select Revision используется для выбора изменения из текущего документа в раскрывающемся меню. В последних двух узлах отображаются некоторые свойства изменения.
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Файл примера
 

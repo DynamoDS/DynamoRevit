@@ -1,11 +1,9 @@
 ## Подробности
-Этот узел предоставляет раскрывающийся список, определяющий способ управления нумерацией изменений в проектах Revit: глобально (по проекту) или по отдельности по листу (по листу).
+`Select Revision Numbering` provides the revision numbering method used in the project. Revisions can be numbered either By Project or By Sheet, corresponding to the `PerProject` and `PerSheet` options.
 
-В этом примере создается новое изменение с помощью узла Select Revision Numbering со значением PerProject.
+In the example below, a revision is created and `Select Revision Numbering` is used as one of the inputs.
 
-Дополнительные сведения об изменениях см. по ссылке.
-https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Файл примера
 

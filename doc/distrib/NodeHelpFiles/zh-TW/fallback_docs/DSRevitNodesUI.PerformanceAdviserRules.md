@@ -1,7 +1,7 @@
 ## 深入資訊
-此節點會擷取「效能顧問」所有可用規則的清單。這些規則與 Revit 用於識別潛在的效能或塑型問題的內建檢查相同。
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-在此範例中，使用 PerformanceAdviserRules 節點從完整清單中提取規則「視圖裁剪已停用」，然後可將該規則連接到其他節點檢查其性質或行為。可協助使用者快速使用特定的效能規則。
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## 範例檔案
 

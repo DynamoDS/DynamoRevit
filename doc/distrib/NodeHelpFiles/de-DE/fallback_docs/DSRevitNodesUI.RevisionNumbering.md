@@ -1,11 +1,9 @@
 ## Im Detail
-Dieser Block enthält eine Dropdown-Liste, in der definiert wird, wie die Änderungsnummerierung in einem Revit-Projekt verwaltet wird: global (PerProject) oder einzeln (PerSheet).
+`Select Revision Numbering` provides the revision numbering method used in the project. Revisions can be numbered either By Project or By Sheet, corresponding to the `PerProject` and `PerSheet` options.
 
-In diesem Beispiel wird eine neue Änderung mithilfe des Blocks Select Revision Numbering und dem Wert PerProject erstellt.
+In the example below, a revision is created and `Select Revision Numbering` is used as one of the inputs.
 
-Weitere Informationen zu Änderungen finden Sie unter dem Link.
-https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Beispieldatei
 

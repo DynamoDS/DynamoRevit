@@ -1,7 +1,9 @@
 ## 詳細
-このノードを使用すると、アクティブな Revit ドキュメントから特定の改訂要素を選択することができます。
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-この例では、ドロップダウン メニューを使用して現在のドキュメントから改訂を選択することで、Select Revision ノードが使用されます。最後の 2 つのノードで、いくつかの改訂プロパティが示されます。
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## サンプル ファイル
 

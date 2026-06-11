@@ -1,7 +1,7 @@
 ## Em profundidade
-Esse nó recupera a lista de todas as regras disponíveis do Consultor de desempenho. Essas regras são as mesmas verificações integradas que o Revit usa para identificar possíveis problemas de desempenho ou modelagem.
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-Neste exemplo, o nó PerformanceAdviserRules é usado para extrair uma regra “O corte de vista está desativado” da lista completa, que pode ser conectada a outros nós para verificar suas propriedades ou comportamento. Isso ajuda os usuários a trabalhar rapidamente com regras de desempenho específicas.
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## Arquivo de exemplo
 

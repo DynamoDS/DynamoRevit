@@ -1,7 +1,9 @@
 ## Em profundidade
-Esse nó permite selecionar um elemento de revisão específico no documento ativo do Revit.
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-Neste exemplo, o nó Selecionar revisão é usado por meio do menu suspenso e selecionando uma revisão no documento atual. Os últimos dois nós mostram algumas propriedades de revisão.
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Arquivo de exemplo
 

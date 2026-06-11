@@ -1,7 +1,8 @@
 ## 詳細
-このノードを使用すると、ドロップダウン メニューを使用してモデルから特定の相を選択することができます。
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-この例では、壁を選択し、Select Phase ノードを適用して壁の相の割り当てを修正します。最後のノードで、更新されたフェーズ名「Existing」を表示して変更を確認します。
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## サンプル ファイル
 

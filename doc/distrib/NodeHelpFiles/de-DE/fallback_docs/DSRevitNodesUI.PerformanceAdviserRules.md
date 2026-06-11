@@ -1,7 +1,7 @@
 ## Im Detail
-Dieser Block ruft die Liste aller verfügbaren Leistungsberater-Regeln ab. Diese Regeln sind dieselben integrierten Prüfungen, die Revit verwendet, um potenzielle Leistungs- oder Modellierungsprobleme zu erkennen.
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-In diesem Beispiel wird der PerformanceAdviserRules-Block verwendet, um die Regel “Zuschneiden deaktiviert für Ansicht” aus der vollständigen Liste abzurufen. Die Regel kann dann mit anderen Blöcken verknüpft werden, um ihre Eigenschaften oder ihr Verhalten zu überprüfen.Dies hilft Benutzern, schnell mit bestimmten Leistungsregeln zu arbeiten.
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## Beispieldatei
 
