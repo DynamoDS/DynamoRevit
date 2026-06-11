@@ -1,7 +1,9 @@
 ## 详细
-此节点可用于从活动的 Revit 文档中选择特定的修订图元。
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-在此示例中，通过使用下拉菜单并从当前文档中选择一个修订来使用“选择修订”节点。最后 2 个节点显示某些修订属性。
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## 示例文件
 

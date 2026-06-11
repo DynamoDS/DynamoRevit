@@ -1,7 +1,7 @@
 ## 詳細
-このノードは、使用可能なすべてのパフォーマンス アドバイザ規則のリストを取得します。これらの規則は、Revit がパフォーマンスやモデリングの潜在的な問題の特定に使用されるのと同じ、組み込みのチェックです。
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-この例では、PerformanceAdviserRules ノードを使用して、完全なリストから「ビュー クリップが無効」という規則を取り出します。この規則を他のノードに接続して、そのプロパティや動作を確認することができます。これにより、ユーザは特定のパフォーマンス規則をすばやく操作することができます。
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,8 @@
 ## Description approfondie
-Ce nœud vous permet de choisir une phase spécifique dans le modèle à l'aide d'un menu déroulant.
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-Dans cet exemple, un mur est sélectionné et le noeud Sélectionner une phase est appliqué pour modifier son affectation de phase. Le nœud final confirme la modification en affichant le nom de phase mis à jour, "Existant".
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## Exemple de fichier
 

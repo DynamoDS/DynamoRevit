@@ -1,7 +1,8 @@
 ## 深入資訊
-此節點可讓您使用下拉式功能表，選擇模型中的特定階段。
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-在此範例中，選取牆，然後套用 Select Phase 節點修改指定的階段。最後一個節點顯示更新的階段名稱「Existing」確認變更。
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## 範例檔案
 

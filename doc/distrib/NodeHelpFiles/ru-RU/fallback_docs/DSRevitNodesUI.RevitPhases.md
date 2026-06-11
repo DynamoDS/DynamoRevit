@@ -1,7 +1,8 @@
 ## Подробности
-Этот узел позволяет выбрать определенную стадию из модели с помощью раскрывающегося меню.
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-В этом примере выбрана стена, и для изменения назначения стадии применяется узел Select Phase. Последний узел подтверждает изменение путем вывода обновленного имени стадии: Existing.
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## Файл примера
 

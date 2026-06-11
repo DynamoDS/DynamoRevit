@@ -1,10 +1,9 @@
 ## In profondità
-Questo nodo consente di selezionare l'impostazione Revision Visibility per una revisione (di seguito sono riportate le opzioni disponibili "CloudsAndTagVisible", "Tag Visible" e "Hidden"). La visibilità determina la posizione in cui comparirà la revisione selezionata (ad esempio, se viene visualizzata in nubi, etichette, tavole o è nascosta).
+`Select Revision Visibility` provides a Revit revision visibility mode. The options are `CloudAndTagVisible`, `TagVisible`, and `Hidden`.
 
-In questo esempio, viene creata una nuova revisione utilizzando il nodo Select Revision Visibility, valore "TagVisible".
+In the example below, a revision is created using `Select Revision Visibility` as one of the inputs.
 
-Per ulteriori informazioni sulle revisioni, vedere il collegamento.
-https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 
 ___
 ## File di esempio

@@ -1,7 +1,7 @@
 ## In Depth
-This node retrieves the list of all available Performance Adviser rules. These rules are the same built-in checks that Revit uses to identify potential performance or modeling issues.
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-In this example, the PerformanceAdviserRules node is used to pull a rule “View clipping is disabled” from the complete list, which can then be connected to other nodes for checking its properties or behavior. This helps users quickly work with specific performance rules.
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## Example File
 

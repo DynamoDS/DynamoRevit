@@ -1,7 +1,8 @@
 ## In Depth
-This node lets you choose a specific Phase from the model using a drop-down menu.
+`Select Phase` provides a phase selected from those available in the active Revit project and returns the selected phase.
 
-In this example, a wall is selected, and the Select Phase node is applied to modify its phase assignment. The final node confirms the change by displaying the updated phase name, "Existing."
+In the example below, a family type and point are used to place a family instance. The instance parameter `Phase Created` is modified using `Select Phase` with the input "Existing."
+
 ___
 ## Example File
 

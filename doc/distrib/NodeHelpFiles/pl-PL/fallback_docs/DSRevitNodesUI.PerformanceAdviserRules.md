@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-Ten węzeł pobiera listę wszystkich dostępnych reguł doradcy wydajności. Reguły te są tymi samymi wbudowanymi testami, których program Revit używa do identyfikowania potencjalnych problemów z wydajnością lub modelowaniem.
+`Performance Adviser Rules` retrieves the Revit Performance Adviser rules available in the current session. These rules represent model health checks that Revit can use to identify elements or conditions that may cause warnings or performance issues.
 
-W tym przykładzie węzeł PerformanceAdviserRules służy do pobrania reguły „View clipping is disabled” (Przycinanie widoku jest wyłączone) z pełnej listy, którą można następnie połączyć z innymi węzłami w celu sprawdzenia jej właściwości lub zachowania. Dzięki temu użytkownicy mogą szybko pracować z określonymi regułami wydajności.
+In the example below, "Overlapping walls" and "Room separation line is not joined" are selected from the drop-down menu of `Performance Adviser Rules` and added to a list. This list is then used as input to execute the selected performance rules for the current file, returning a set of failure messages/results. Other menu options include rules such as "Duplicate instances," "Host contains too many inserts," "Sketch is too complex," and "Too Large Family File."
 ___
 ## Plik przykładowy
 

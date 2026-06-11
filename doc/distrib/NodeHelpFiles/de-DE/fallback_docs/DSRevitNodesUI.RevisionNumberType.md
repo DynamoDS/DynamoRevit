@@ -1,10 +1,9 @@
 ## Im Detail
-Dieser Block ermöglicht Ihnen die Auswahl eines Änderungsnummerntyps aus den verfügbaren Optionen in einem Revit-Projekt. Er wird in der Regel verwendet, um zu definieren, wie Änderungen innerhalb einer Revisionssequenz nummeriert oder mit Buchstaben versehen werden (z. B. numerisch, alphanumerisch oder ohne).
+`Select Revision Number Type` provides a revision numbering type for use in revision-related workflows. The choices are Numeric, Alphanumeric, or None.
 
-In diesem Beispiel wird eine neue Revision mithilfe des Blocks Select Revision Number Type und dem Wert "Alphanumeric" erstellt.
+In the example below, a revision is created and `Select Revision Number Type` is used as one of the inputs.
 
-Weitere Informationen zu Änderungen finden Sie unter dem Link.
-https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Beispieldatei
 

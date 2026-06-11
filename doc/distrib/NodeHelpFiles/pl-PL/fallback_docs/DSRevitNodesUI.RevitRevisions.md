@@ -1,7 +1,9 @@
 ## Informacje szczegółowe
-Ten węzeł umożliwia wybranie określonego elementu rewizji z aktywnego dokumentu programu Revit.
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-W tym przykładzie używany jest węzeł Select Revision przez wybranie rewizji z bieżącego dokumentu z menu rozwijanego. Ostatnie 2 węzły pokazują niektóre właściwości rewizji.
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Plik przykładowy
 

@@ -1,11 +1,9 @@
 ## Em profundidade
-Esse nó fornece uma lista suspensa que define como a numeração de revisão é gerenciada em um projeto do Revit – globalmente (Por projeto) ou individualmente por folha (Por folha).
+`Select Revision Numbering` provides the revision numbering method used in the project. Revisions can be numbered either By Project or By Sheet, corresponding to the `PerProject` and `PerSheet` options.
 
-Neste exemplo, é criada uma nova revisão usando o nó Selecionar numeração de revisão, valor “Por projeto”.
+In the example below, a revision is created and `Select Revision Numbering` is used as one of the inputs.
 
-Para obter mais informações sobre as revisões, consulte o link.
-https://help.autodesk.com/view/RVT/2025/PTB/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Arquivo de exemplo
 
