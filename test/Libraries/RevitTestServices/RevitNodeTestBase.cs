@@ -43,7 +43,8 @@ namespace RevitTestServices
         protected override TestSessionConfiguration GetTestSessionConfiguration()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
-            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath, DynamoRevit.PreloadAsmFromRevit());
+            Version version = ASMPrealoaderUtils.PreloadAsmFromRevit(DynamoRevitApp.ControlledApplication.SharedComponentsLocation, DynamoRevitApp.DynamoCorePath);
+            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath, version);
         }
 
         private static void SetupTransactionManager()

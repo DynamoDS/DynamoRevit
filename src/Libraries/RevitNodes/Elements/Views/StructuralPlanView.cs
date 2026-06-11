@@ -72,7 +72,7 @@ namespace Revit.Elements.Views
         /// <returns>A StructuralPlanView if successful.</returns>
         public static StructuralPlanView ByLevel(Level level)
         {
-            if (!DocumentManager.Instance.CurrentUIApplication.Application.IsStructureEnabled)
+            if (!DocumentManager.Instance.CurrentDBDocument.Application.IsStructureEnabled)
             {
                 throw new InvalidOperationException(Properties.Resources.StructuralPlanNotEnabled);
             }

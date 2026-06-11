@@ -54,6 +54,7 @@
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
+    <ProjectReference Include="$(SolutionDir)DADynamoApp\DADynamoApp.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
     <ProjectReference Include="..\RevitNodesTests\RevitNodesTests.csproj" />
     <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj" />

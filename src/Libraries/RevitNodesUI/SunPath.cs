@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-
+#if !DESIGN_AUTOMATION
 using Autodesk.Revit.UI.Events;
-
+#endif
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
@@ -32,33 +32,38 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
 
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
 
+#if !DESIGN_AUTOMATION
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+#endif
         }
 
         [JsonConstructor]
         public SunSettings(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
-
+#if !DESIGN_AUTOMATION
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+#endif
         }
 
         public override void Dispose()
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
-
+#if !DESIGN_AUTOMATION
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated -= CurrentUIApplication_ViewActivated;
+#endif
             base.Dispose();
         }
 
+#if !DESIGN_AUTOMATION
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
         {
             CurrentUIApplicationOnViewActivated();
         }
-
+#endif
         private void CurrentUIApplicationOnViewActivated()
         {
             settingsID =

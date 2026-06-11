@@ -1,6 +1,5 @@
 ﻿using System;
 using Autodesk.Revit.DB.Events;
-using Autodesk.Revit.UI.Events;
 
 namespace RevitServices.EventHandler
 {
@@ -8,13 +7,18 @@ namespace RevitServices.EventHandler
     /// This is a event handler proxy class to serve as a proxy between the event publisher and
     /// the event subscriber
     /// </summary>
+    [Obsolete("This class will be made internal")]
     public class EventHandlerProxy
     {
         public event EventHandler<DocumentOpenedEventArgs> DocumentOpened;
         public event EventHandler<DocumentClosingEventArgs> DocumentClosing;
         public event EventHandler<DocumentClosedEventArgs> DocumentClosed;
-        public event EventHandler<ViewActivatingEventArgs> ViewActivating;
-        public event EventHandler<ViewActivatedEventArgs> ViewActivated;
+#if !DESIGN_AUTOMATION
+        public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatingEventArgs> ViewActivating;
+        public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatedEventArgs> ViewActivated;
+#endif
+
+        internal static EventHandlerProxy Instance = new();
 
         public void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs args)
         {
@@ -31,15 +35,17 @@ namespace RevitServices.EventHandler
             InvokeEventHandler(DocumentClosed, sender, args);
         }
 
-        public void OnApplicationViewActivating(object sender, ViewActivatingEventArgs args)
+#if !DESIGN_AUTOMATION
+        public void OnApplicationViewActivating(object sender, Autodesk.Revit.UI.Events.ViewActivatingEventArgs args)
         {
             InvokeEventHandler(ViewActivating, sender, args);
         }
 
-        public void OnApplicationViewActivated(object sender, ViewActivatedEventArgs args)
+        public void OnApplicationViewActivated(object sender, Autodesk.Revit.UI.Events.ViewActivatedEventArgs args)
         {
             InvokeEventHandler(ViewActivated, sender, args);
         }
+#endif
 
         private void InvokeEventHandler<T>(EventHandler<T> eventHandler, object sender, T args) where T: EventArgs
         {
