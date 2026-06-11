@@ -1115,7 +1115,7 @@ namespace Dynamo.Applications
             // Once Dynamo is closed, we want to set the current UI culture back to the default thread culture.
             System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
 
-
+            // REVIT-251132: forcefully close splash screen when closing Dynamo if during journal play and if it wasn't already closed
             if (Journaling.IsJournalReplaying() && splashScreen != null)
             {
                 splashScreen.Close();
