@@ -2691,7 +2691,7 @@
       },
       {
         "Id": "265dcfa170924c6fa1c9303de316cddf",
-        "Title": "Questo grafico utilizza diversi metodi per creare la geometria di superficie in Revit. Alcuni metodi possono essere utilizzati in un ambiente di progetto, altri solo in determinati ambienti delle famiglie. \n\nUtilizzare un modello della famiglia Massa concettuale per visualizzare tutti i metodi. \nCreare una famiglia Massa concettuale accedendo a File > Nuovo > Famiglia e selezionare il modello Mass.rft nella cartella Conceptual Mass.",
+        "Title": "Questo grafico utilizza diversi metodi per creare la geometria di superficie in Revit. Alcuni metodi possono essere utilizzati in un ambiente di progetto, altri solo in determinati ambienti delle famiglie. \n\nUtilizzare un modello della famiglia massa concettuale per visualizzare tutti i metodi. \nCreare una famiglia massa concettuale accedendo a File > Nuovo > Famiglia e selezionare il modello Mass.rft nella cartella Conceptual Mass.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
