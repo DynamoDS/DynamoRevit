@@ -1,0 +1,21 @@
+beacode:
+  # Target branch to monitor for merged PRs
+  target_branch: "master"
+
+  # Auto-review non-draft PRs on open; review draft PRs when marked "Ready for review"
+  review_mode: auto
+  review_draft_prs: false
+
+  # Documentation auto-generation (disabled for now)
+  # docs_repo:
+  #   enabled: true
+  #   owner: "DynamoDS"
+  #   name: "DynamoRevit"
+  #   branch: "docs"
+
+  # File exclusions are documented in best-practices.md "## Review Scope".
+  # beacode-app has no file_filters/exclude YAML key; prose scope guides the reviewer.
+
+  guidelines:
+    enabled: true
+    file_path: ".beacode/best-practices.md"
