@@ -144,7 +144,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\StructuralFraming\StructuralFraming.rvt")]
+        [TestModel(@".\StructuralFraming.rvt")]
         public void Revit_Structural_Framing()
         {
             OpenAndRunSample("Revit Structural Framing.dyn");
