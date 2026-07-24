@@ -102,7 +102,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\MassWithBoxAndCone.rfa")]
+        [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Surfaces()
         {
             OpenAndRunSample("Revit Geometry Creation Surfaces.dyn");
