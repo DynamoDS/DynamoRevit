@@ -116,28 +116,28 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\SampleModel.rvt")]
+        [TestModel(@".\DynamoSample_2020.rvt")]
         public void Revit_Color()
         {
             OpenAndRunSample("Revit Color.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\SampleModel.rvt")]
+        [TestModel(@".\DynamoSample_2020.rvt")]
         public void Revit_Floors_and_Framing()
         {
             OpenAndRunSample("Revit Floors and Framing.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\SampleModel.rvt")]
+        [TestModel(@".\DynamoSample_2020.rvt")]
         public void Revit_Import_Solid()
         {
             OpenAndRunSample("Revit Import Solid.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\SampleModel.rvt")]
+        [TestModel(@".\DynamoSample_2020.rvt")]
         public void Revit_Place_Families_By_Level_Set_Parameters()
         {
             OpenAndRunSample("Revit Place Families By Level Set Parameters.dyn");
