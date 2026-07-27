@@ -95,7 +95,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\MassWithBoxAndCone.rfa")]
+        [TestModel(@".\empty.rfa")]
         public void Revit_Geometry_Creation_Solids()
         {
             OpenAndRunSample("Revit Geometry Creation Solids.dyn");
