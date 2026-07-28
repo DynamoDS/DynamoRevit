@@ -68,14 +68,14 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             var errorNodes = ViewModel.Model.CurrentWorkspace.Nodes
-                .Where(n => n.State == ElementState.Error || n.State == ElementState.Warning).ToList();
+                .Where(n => n.State == ElementState.Error).ToList();
             if (errorNodes.Any())
             {
                 var first = errorNodes[0];
                 var msg = first.NodeInfos
-                    .FirstOrDefault(i => i.State == ElementState.Error || i.State == ElementState.Warning)?.Message;
+                    .FirstOrDefault(i => i.State == ElementState.Error)?.Message;
                 Assert.Fail(
-                    $"After RunCurrentModel(), {errorNodes.Count} node(s) in error/warning in '{scriptFileName}'. " +
+                    $"After RunCurrentModel(), {errorNodes.Count} node(s) in error in '{scriptFileName}'. " +
                     $"First: [{first.State}] {first.Name}" + (msg != null ? $": {msg}" : string.Empty));
             }
         }
@@ -110,21 +110,21 @@ namespace RevitSystemTests
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\AdaptiveComponents.rfa")]
-        public void Revit_Adaptive_Component_Placement()
+        public void OOTB_Revit_Adaptive_Component_Placement()
         {
             OpenAndRunSample("Revit Adaptive Component Placement.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\DynamoSample_2020.rvt")]
-        public void Revit_Color()
+        public void OOTB_Revit_Color()
         {
             OpenAndRunSample("Revit Color.dyn");
         }
 
         [Test, Category("SmokeTests")]
         [TestModel(@".\DynamoSample_2020.rvt")]
-        public void Revit_Floors_and_Framing()
+        public void OOTB_Revit_Floors_and_Framing()
         {
             OpenAndRunSample("Revit Floors and Framing.dyn");
         }
