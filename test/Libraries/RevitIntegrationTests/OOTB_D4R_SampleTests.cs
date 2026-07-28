@@ -9,43 +9,19 @@ using RTF.Framework;
 
 namespace RevitSystemTests
 {
-    /// <summary>
-    /// Smoke tests for OOTB D4R sample scripts. Resolves .dyn files from
-    /// DynamoForRevit\samples\{locale}\Revit\ via <see cref="ResolveSamplePath"/>.
-    /// </summary>
     [TestFixture]
     class OOTB_D4R_SampleTests : RevitSystemTestBase
     {
         private static string ResolveSamplePath(string scriptFileName)
         {
             string assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            // Deployed layout: {parentDir}\samples\{locale}\Revit\ (not doc/distrib/Samples)
             string parentDir = Path.GetDirectoryName(assemblyDir);
-            string samplesFolder = Path.Combine(parentDir, "samples");
-
-            if (Directory.Exists(samplesFolder))
-            {
-                foreach (var locale in new[] { System.Globalization.CultureInfo.CurrentUICulture.Name, "en-US" }.Distinct())
-                {
-                    string localePath = Path.Combine(samplesFolder, locale, "Revit");
-                    if (Directory.Exists(localePath))
-                    {
-                        var resolved = Path.Combine(localePath, scriptFileName);
-                        if (File.Exists(resolved))
-                            return resolved;
-                    }
-                }
-            }
-
-            var hint = Directory.Exists(samplesFolder)
-                ? $"Contents:{string.Concat(Directory.EnumerateFileSystemEntries(samplesFolder).OrderBy(e => e).Select(e => $"\n  {e}"))}"
-                : Directory.Exists(parentDir)
-                    ? $"Parent dir contents:{string.Concat(Directory.EnumerateDirectories(parentDir).OrderBy(e => e).Select(e => $"\n  {e}"))}"
-                    : string.Empty;
+            string resolved = Path.Combine(parentDir, "samples", "en-US", "Revit", scriptFileName);
+            if (File.Exists(resolved))
+                return resolved;
 
             throw new FileNotFoundException(
-                $"Cannot locate OOTB D4R sample script '{scriptFileName}'.\n" +
-                $"Samples folder: {samplesFolder}\n{hint}");
+                $"Cannot locate OOTB D4R sample script '{scriptFileName}' under {Path.Combine(parentDir, "samples")}.");
         }
 
         private void OpenAndRunSample(string scriptFileName)
@@ -72,11 +48,9 @@ namespace RevitSystemTests
             if (errorNodes.Any())
             {
                 var first = errorNodes[0];
-                var msg = first.NodeInfos
-                    .FirstOrDefault(i => i.State == ElementState.Error)?.Message;
                 Assert.Fail(
                     $"After RunCurrentModel(), {errorNodes.Count} node(s) in error in '{scriptFileName}'. " +
-                    $"First: [{first.State}] {first.Name}" + (msg != null ? $": {msg}" : string.Empty));
+                    $"First: [{first.State}] {first.Name}");
             }
         }
 
