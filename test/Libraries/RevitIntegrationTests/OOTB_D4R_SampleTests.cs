@@ -44,25 +44,27 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             var errorNodes = ViewModel.Model.CurrentWorkspace.Nodes
-                .Where(n => n.State == ElementState.Error).ToList();
+                .Where(n => n.State == ElementState.Error || n.State == ElementState.Warning).ToList();
             if (errorNodes.Any())
             {
                 var first = errorNodes[0];
+                var msg = first.NodeInfos
+                    .FirstOrDefault(i => i.State == ElementState.Error || i.State == ElementState.Warning)?.Message;
                 Assert.Fail(
-                    $"After RunCurrentModel(), {errorNodes.Count} node(s) in error in '{scriptFileName}'. " +
-                    $"First: [{first.State}] {first.Name}");
+                    $"After RunCurrentModel(), {errorNodes.Count} node(s) in error/warning in '{scriptFileName}'. " +
+                    $"First: [{first.State}] {first.Name}" + (msg != null ? $": {msg}" : string.Empty));
             }
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\empty.rfa")]
+        [TestModel(@".\AdaptiveComponents.rfa")]
         public void Revit_Geometry_Creation_Points()
         {
             OpenAndRunSample("Revit Geometry Creation Points.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\empty.rfa")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void Revit_Geometry_Creation_Curves()
         {
             OpenAndRunSample("Revit Geometry Creation Curves.dyn");
@@ -83,42 +85,42 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\AdaptiveComponents.rfa")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void OOTB_Revit_Adaptive_Component_Placement()
         {
             OpenAndRunSample("Revit Adaptive Component Placement.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void OOTB_Revit_Color()
         {
             OpenAndRunSample("Revit Color.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void OOTB_Revit_Floors_and_Framing()
         {
             OpenAndRunSample("Revit Floors and Framing.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void Revit_Import_Solid()
         {
             OpenAndRunSample("Revit Import Solid.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void Revit_Place_Families_By_Level_Set_Parameters()
         {
             OpenAndRunSample("Revit Place Families By Level Set Parameters.dyn");
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\StructuralFraming.rvt")]
+        [TestModel(@".\Samples\Snowdon Towers Sample Architectural.rvt")]
         public void Revit_Structural_Framing()
         {
             OpenAndRunSample("Revit Structural Framing.dyn");
