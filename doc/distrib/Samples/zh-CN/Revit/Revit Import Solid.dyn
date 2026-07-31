@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "允许直接编写 DesignScript 代码",
-      "Code": "\"工作平面\";"
+      "Code": "\"标高\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",

@@ -1195,7 +1195,7 @@
         {
           "Id": "642fda9615c84dd3acf612b2cc1bd1c8",
           "Name": "string",
-          "Description": "\"Work Plane\"",
+          "Description": "\"Level\"",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "\"Work Plane\";"
+      "Code": "\"Level\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
@@ -3567,7 +3567,7 @@
       },
       {
         "Id": "3384eaf2af26445291a1584055510725",
-        "Title": "Correct the height of the placed Import Instance by setting the Work Plane parameter to the Level which elevation matches the Internal Origin position.",
+        "Title": "Correct the height of the placed Import Instance by setting the Level parameter to the Level which elevation matches the Internal Origin position.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

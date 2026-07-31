@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "Umožňuje přímé vytváření kódu DesignScript.",
-      "Code": "\"Pracovní rovina\";"
+      "Code": "\"Úroveň\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",

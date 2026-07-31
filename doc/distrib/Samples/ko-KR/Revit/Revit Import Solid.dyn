@@ -1195,7 +1195,7 @@
         {
           "Id": "642fda9615c84dd3acf612b2cc1bd1c8",
           "Name": "string",
-          "Description": "\"작업 기준면\"",
+          "Description": "\"레벨\"",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "DesignScript 코드를 직접 작성할 수 있습니다",
-      "Code": "\"작업 기준면\";"
+      "Code": "\"레벨\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
