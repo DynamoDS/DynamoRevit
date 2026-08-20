@@ -1,7 +1,7 @@
 ## Im Detail
-`DraftingView.ByName` erstellt eine Zeichenansicht mit dem angegebenen Namen. Der verwendete Zeichenansichtstyp ist der zuletzt in Revit verwendete.
+`DraftingView.ByName` erstellt eine Entwurfsansicht mit dem angegebenen Namen. Der verwendete Entwurfsansichtstyp ist der zuletzt in Revit verwendete.
 
-Im folgenden Beispiel wird eine Zeichenansicht mit dem Namen "Tür/Flügel Detail" erstellt.
+Im folgenden Beispiel wird eine Entwurfsansicht mit dem Namen "Tür/Flügel Detail" erstellt.
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## Im Detail
 `View.DuplicateView` versucht, die angegebene Ansicht mit der angegebenen Duplizierungsoption zu duplizieren. Wenn die Ansicht nicht dupliziert werden kann, wird ein Nullwert zurückgegeben.
 
-Im folgenden Beispiel werden alle Zeichenansichten aus dem aktuellen Revit-Dokument gesammelt. Die Zeichenansichten werden dann "mit Detaillierung" und dem Präfix (N) dupliziert.
+Im folgenden Beispiel werden alle Entwurfsansichten aus dem aktuellen Revit-Dokument gesammelt. Die Entwurfsansichten werden dann "mit Detaillierung" und dem Präfix (N) dupliziert.
 ___
 ## Beispieldatei
 
