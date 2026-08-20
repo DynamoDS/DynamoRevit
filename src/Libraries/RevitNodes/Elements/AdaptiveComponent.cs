@@ -570,7 +570,7 @@ namespace Revit.Elements
                             throw new Exception(string.Format(Properties.Resources.DesiredNumberOfPoints, i, desiredNumOfPoints, numOfPoints));
                         }
 
-                        var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
+                        var creationData = DocumentManager.Instance.CurrentDBDocument.Application.Create.
                             NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
 
                         if (creationData != null)

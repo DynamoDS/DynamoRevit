@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("082cab33-cbc7-4e58-ae25-f0962f325d6e")]
 [assembly: InternalsVisibleTo("RevitTestServices")]
 [assembly: InternalsVisibleTo("RevitSystemTests")]
+[assembly: InternalsVisibleTo("DADynamoApp")]

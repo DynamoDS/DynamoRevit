@@ -20,28 +20,9 @@ limitations under the License.
   <PropertyGroup>
     <ProductVersion>8.0.30703</ProductVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
     <!-- set UseWPF and UseWindowsForms to 'true' to avoid the warnings introduced by RevitAPIUI.dll dependencies -->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RevitAPI">
@@ -75,6 +56,7 @@ limitations under the License.
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="RevitTraceUtils.cs" />
+    <Compile Condition="$(Platform.Contains('_DA'))" Remove="Threading\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" />

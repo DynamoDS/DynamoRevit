@@ -61,6 +61,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoRevitIcons", "DynamoRevitIcons\DynamoRevitIcons.csproj", "{A31E274C-524A-40CA-85FF-595D3DB53777}"
 	ProjectSection(ProjectDependencies) = postProject
+		{92A46535-D870-4E1A-AED0-7492789E9C4A} = {92A46535-D870-4E1A-AED0-7492789E9C4A}
 		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
 	EndProjectSection
 EndProject
