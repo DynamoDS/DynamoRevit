@@ -1195,7 +1195,7 @@
         {
           "Id": "642fda9615c84dd3acf612b2cc1bd1c8",
           "Name": "string",
-          "Description": "\"レベル\"",
+          "Description": "\"作業面\"",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "DesignScript のコードを直接作成することができます。",
-      "Code": "\"レベル\";"
+      "Code": "\"作業面\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",

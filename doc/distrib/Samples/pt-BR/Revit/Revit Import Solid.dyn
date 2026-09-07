@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "Permite que o código DesignScript seja criado diretamente",
-      "Code": "\"Nível\";"
+      "Code": "\"Plano de trabalho\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",

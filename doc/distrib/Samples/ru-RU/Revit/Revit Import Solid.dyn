@@ -1204,7 +1204,7 @@
       ],
       "Replication": "Disabled",
       "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript",
-      "Code": "\"Уровень\";"
+      "Code": "\"Рабочая плоскость\";"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
