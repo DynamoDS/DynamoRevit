@@ -85,7 +85,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\DynamoSample_2021.rvt")]
+        [TestModel(@".\Snowdon Towers Sample Architectural.rvt")]
         public void OOTB_Revit_Adaptive_Component_Placement()
         {
             OpenAndRunSample("Revit Adaptive Component Placement.dyn");
