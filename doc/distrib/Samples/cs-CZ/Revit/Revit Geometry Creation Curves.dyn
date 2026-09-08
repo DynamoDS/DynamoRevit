@@ -268,7 +268,7 @@
       ],
       "FunctionSignature": "Autodesk.DesignScript.Geometry.PolyCurve.ByPoints@Autodesk.DesignScript.Geometry.Point[],bool",
       "Replication": "Auto",
-      "Description": "Vytvoří objekt PolyCurve spojením bodů. Nastavením parametru 'connectLastToFirst' na true bude objekt PolyCurve uzavřen.\n\nPolyCurve.ByPoints (points: Point[], connectLastToFirst: bool = false): PolyCurve"
+      "Description": "Vytvoří objekt PolyCurve spojením bodů. Nastavením parametru `connectLastToFirst` na true bude objekt PolyCurve uzavřen.\n\nPolyCurve.ByPoints (points: Point[], connectLastToFirst: bool = false): PolyCurve"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",

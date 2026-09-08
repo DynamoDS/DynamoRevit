@@ -1,10 +1,9 @@
 ## 深入資訊
-此節點可讓您從 Revit 專案的可用選項中選取「修訂號碼類型」。通常用於定義修訂順序中的修訂如何編號 (範例包括數字、英數字元或無)。
+`Select Revision Number Type` 提供修訂編號類型，以在修訂相關工作流程中使用。選項包括「數字」、「字母數字」或「無」。
 
-在此範例中，使用 Select Revision Number Type 節點和「Alphabetnumeric」值建立新修訂。
+以下範例建立一個修訂並使用 `Select Revision Number Type` 作為其中一個輸入。
 
-如需修訂的更多資訊，請參閱連結。
-https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+如需修訂的更多資訊，請參閱 [Revit 文件](https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4)。
 ___
 ## 範例檔案
 

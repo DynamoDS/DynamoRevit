@@ -1,11 +1,9 @@
 ## Podrobnosti
-Tento uzel poskytuje rozevírací seznam, který definuje, jakým způsobem je spravováno číslování revizí v projektu aplikace Revit – buď globálně (Podle projektu), nebo individuálně pro výkres (Podle výkresu).
+Uzel `Select Revision Numbering` poskytne metodu číslování revizí používanou v projektu. Revize je možné číslovat buď Podle projektu nebo Podle listu, což odpovídá možnostem `PerProject` a `PerSheet`.
 
-V tomto příkladu je nová revize vytvořena pomocí uzlu Select Revision Numbering (Vybrat číslování revizí) s hodnotou „PerProject“.
+V příkladu níže je vytvořena revize a jako jeden vstup je použit uzel `Select Revision Numbering`.
 
-Další informace o revizích naleznete v odkazu.
-https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+Další informace o revizích naleznete v dokumentu [Revit documentation](https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Vzorový soubor
 
