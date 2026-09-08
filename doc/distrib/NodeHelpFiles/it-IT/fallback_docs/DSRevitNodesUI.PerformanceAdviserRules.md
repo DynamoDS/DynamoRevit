@@ -1,7 +1,7 @@
 ## In profondità
-Questo nodo recupera l'elenco di tutte le regole di Suggerimenti prestazioni disponibili. Queste regole sono le stesse verifiche incorporate utilizzate da Revit per identificare potenziali problemi di prestazioni o di modellazione.
+`Performance Adviser Rules` recupera le regole di Suggerimenti prestazioni di Revit disponibili nella sessione corrente. Queste regole rappresentano controlli dello stato di integrità del modello che Revit può utilizzare per identificare elementi o condizioni che potrebbero causare avvisi o problemi di prestazioni.
 
-In questo esempio, il nodo PerformanceAdviserRules viene utilizzato per estrarre la regola “View clipping is disabled” dall'elenco completo, che può quindi essere connessa ad altri nodi per controllarne le proprietà o il comportamento. Questo aiuta gli utenti a lavorare rapidamente con specifiche regole di prestazioni.
+Nell'esempio seguente, le opzioni "Muri sovrapposti" e "Linea di delimitazione del locale non unita" vengono selezionate dal menu a discesa di `Performance Adviser Rules` e aggiunte ad un elenco. Questo elenco viene quindi utilizzato come input per eseguire le regole delle prestazioni selezionate per il file corrente, restituendo una serie di messaggi di errore/risultati. Altre opzioni del menu includono regole quali "Istanze duplicate," "L'host contiene un numero eccessivo di inserti," "Il disegno è troppo complesso" e "File di famiglia troppo grande".
 ___
 ## File di esempio
 
