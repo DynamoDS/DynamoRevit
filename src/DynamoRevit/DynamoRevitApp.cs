@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.Loader;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -105,7 +106,7 @@ namespace Dynamo.Applications
             {
                 try
                 {
-                    var dynamoRevitAditionsAss = Assembly.LoadFrom(dynamoRevitAditionsPath);
+                    var dynamoRevitAditionsAss = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(dynamoRevitAditionsPath);
                     if (dynamoRevitAditionsAss != null)
                     {
                         var dynamoRevitAditionsLoader = dynamoRevitAditionsAss.CreateInstance("DynamoRevitAdditions.LoadManager");
@@ -341,7 +342,7 @@ namespace Dynamo.Applications
                 assemblyPath = Path.Combine(DynamoRevitApp.DynamoCorePath, assemblyName);
                 if(File.Exists(assemblyPath))
                 {
-                    return Assembly.LoadFrom(assemblyPath);
+                    return AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(assemblyPath);
                 }
 
                 var assemblyLocation = Assembly.GetExecutingAssembly().Location;
@@ -356,7 +357,7 @@ namespace Dynamo.Applications
                     assemblyPath = Path.Combine(parentDirectory.FullName, assemblyName);
                 }
 
-                return (File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null);
+                return (File.Exists(assemblyPath) ? AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(assemblyPath) : null);
             }
             catch (Exception ex)
             {
