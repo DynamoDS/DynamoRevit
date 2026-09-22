@@ -1,5 +1,5 @@
 ## Podrobnosti
-Uzel `SunSettings.SunDirection' vrací směr slunce v daném nastavení slunce jako vektor.
+Uzel `SunSettings.SunDirection` vrací směr slunce v daném nastavení slunce jako vektor.
 
 V níže uvedeném příkladu je směr slunce získán z nastavení slunce aktivního pohledu.
 ___

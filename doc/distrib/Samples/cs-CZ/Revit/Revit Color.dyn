@@ -1693,7 +1693,7 @@
       },
       {
         "Id": "dcc8e7298bcb414c9f85a4bc650cfc01",
-        "Title": "tento výsledek je možné použít jako vstup 'indices' uzlu Color Range",
+        "Title": "tento výsledek je možné použít jako vstup `indices` uzlu Color Range",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1747,7 +1747,7 @@
       },
       {
         "Id": "6721c9001b92484c9c2fca9f5634b516",
-        "Title": "Kliknutím na tlačítko 'Změnit' vyberte prvky z modelu aplikace Revit.",
+        "Title": "Kliknutím na možnost `Změnit` vyberte prvky z modelu aplikace Revit.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

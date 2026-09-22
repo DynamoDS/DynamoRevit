@@ -2804,7 +2804,7 @@
       },
       {
         "Id": "b20d728b0b9a4bbc960f293d13bf11f7",
-        "Title": "Pomocí jednoduchého vzorce vytvořte posloupnost hodnot od minima (0,1) po maximum (0,9) s počtem kroků 'n'.",
+        "Title": "Pomocí jednoduchého vzorce vytvořte posloupnost hodnot od minima (0,1) po maximum (0,9) s počtem kroků `n`",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -2831,7 +2831,7 @@
       },
       {
         "Id": "44ec775e2a9b45dd8078075c84f9695d",
-        "Title": "Kliknutím na symbol > vedle vstupu 'list' použijte úrovně. To znamená, že výsledkem bude položka s indexem 0 z každého nejnižšího vnořeného seznamu (@L2).",
+        "Title": "Kliknutím na symbol > vedle vstupu `list` použijte úrovně. To znamená, že výsledkem bude položka s indexem 0 z každého nejnižšího vnořeného seznamu (@L2).",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
