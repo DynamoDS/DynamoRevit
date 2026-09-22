@@ -2,7 +2,7 @@
   "Uuid": "ae2505fb-e3b7-463e-90ee-293b2831b3df",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Schedules.ScheduleFilter.FiledId",
+  "Name": "Revit.Schedules.ScheduleFilter.FieldId",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -235,9 +235,9 @@
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Schedules.ScheduleFilter.FiledId",
+      "FunctionSignature": "Revit.Schedules.ScheduleFilter.FieldId",
       "Replication": "Auto",
-      "Description": "Related Schedule Field Id\n\nScheduleFilter.FiledId: int"
+      "Description": "Related Schedule Field Id\n\nScheduleFilter.FieldId: int"
     }
   ],
   "Connectors": [
@@ -406,7 +406,7 @@
       },
       {
         "Id": "0c75d70ef2564c988655ce024e472347",
-        "Name": "ScheduleFilter.FiledId",
+        "Name": "ScheduleFilter.FieldId",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,

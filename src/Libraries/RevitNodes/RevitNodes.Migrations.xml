@@ -56,4 +56,8 @@
     <oldName>Revit.Elements.AdaptiveComponent.ByParametersOnCurveReference@double[],Autodesk.DesignScript.Geometry.Curve,Revit.Elements.FamilySymbol</oldName>
     <newName>Revit.Elements.AdaptiveComponent.ByParametersOnCurveReference@double[][],Autodesk.DesignScript.Geometry.Curve,Revit.Elements.FamilySymbol</newName>
   </priorNameHint>
+  <priorNameHint>
+    <oldName>Revit.Schedules.ScheduleFilter.FiledId</oldName>
+    <newName>Revit.Schedules.ScheduleFilter.FieldId</newName>
+  </priorNameHint>
 </migrations>
