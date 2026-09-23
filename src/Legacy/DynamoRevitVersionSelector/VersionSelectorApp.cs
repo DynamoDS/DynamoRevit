@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -157,7 +158,7 @@ namespace Dynamo.Applications
             if (String.IsNullOrEmpty(loadPath))
                 return Result.Failed;
 
-            var ass = Assembly.LoadFrom(loadPath);
+            var ass = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(loadPath);
             var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
             revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { uiControlledApplication });
 
@@ -225,7 +226,7 @@ namespace Dynamo.Applications
             data.WriteToRegistry();
 
             //Initialize application
-            var ass = Assembly.LoadFrom(path);
+            var ass = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(path);
             var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
             if (null == revitApp)
                 return false;
@@ -292,7 +293,7 @@ namespace Dynamo.Applications
 
         private static IEnumerable<DynamoProduct> FindDynamoRevitInstallations(string debugPath, string revitVersion)
         {
-            var assembly = Assembly.LoadFrom(Path.Combine(debugPath, "DynamoInstallDetective.dll"));
+            var assembly = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(Path.Combine(debugPath, "DynamoInstallDetective.dll"));
             var type = assembly.GetType("DynamoInstallDetective.Utilities");
 
             var installationsMethod = type.GetMethod(
