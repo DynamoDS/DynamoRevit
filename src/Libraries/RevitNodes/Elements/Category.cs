@@ -113,7 +113,28 @@ namespace Revit.Elements
                 throw new ArgumentException(Properties.Resources.InvalidCategory);
             }
         }
+         /// <summary>
+        /// Gets Revit Built-in category from current document based on category Id
+        /// </summary>
+        /// <param name="id">Category Id as ElementId</param>
+        /// <returns>Category if present in current document.</returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static Category ById(ElementId categoryId)
+        {
+            try
+            {
+                var document = DocumentManager.Instance.CurrentDBDocument;
+                Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                if(null == category)
+                    throw new ArgumentException(Properties.Resources.InvalidCategory);
 
+                return new Category(category);
+            }
+            catch
+            {
+                throw new ArgumentException(Properties.Resources.InvalidCategory);
+            }
+        }
         #endregion
 
         public override string ToString()
