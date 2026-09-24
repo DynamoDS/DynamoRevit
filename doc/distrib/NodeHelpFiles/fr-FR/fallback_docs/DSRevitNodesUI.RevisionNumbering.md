@@ -1,11 +1,9 @@
 ## Description approfondie
-Ce nœud fournit une liste déroulante qui définit la façon dont la numérotation des révisions est gérée dans un projet Revit, soit globalement (par projet), soit individuellement par feuille (par feuille).
+Select Revision Numbering fournit la méthode de numérotation des révisions utilisée dans le projet. Les révisions peuvent être numérotées Par projet ou Par feuille, ce qui correspond aux options PerProject et PerSheet.
 
-Dans cet exemple, une révision est créée à l'aide du nœud Sélectionner la numérotation de révision, valeur "ParProject".
+Dans l'exemple ci-dessous, une révision est créée, et Select Revision Numbering est utilisé comme l'une des entrées.
 
-Pour plus d'informations sur les révisions, consultez le lien.
-https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+Pour plus d'informations sur les révisions, consultez la [documentation Revit](https://help.autodesk.com/view/RVT/2025/FRA/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Exemple de fichier
 

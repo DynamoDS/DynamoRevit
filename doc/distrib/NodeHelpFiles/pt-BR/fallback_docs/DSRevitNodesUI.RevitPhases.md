@@ -1,7 +1,8 @@
 ## Em profundidade
-Esse nó permite escolher uma fase específica no modelo usando um menu suspenso.
+`Select Phase` fornece uma fase selecionada entre as disponíveis no projeto ativo do Revit e retorna a fase selecionada.
 
-Neste exemplo, uma parede é selecionada e o nó Selecionar fase é aplicado para modificar sua atribuição de fase. O nó final confirma a alteração exibindo o nome atualizado da fase, “Existente”.
+No exemplo abaixo, são usados um tipo de família e ponto para colocar uma instância de família. O parâmetro de instância `Phase Created` é modificado usando `Select Phase` com a entrada “Existente”.
+
 ___
 ## Arquivo de exemplo
 

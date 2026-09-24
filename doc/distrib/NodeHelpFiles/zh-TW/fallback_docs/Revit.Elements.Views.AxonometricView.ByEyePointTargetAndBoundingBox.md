@@ -1,0 +1,8 @@
+## 深入資訊
+`AxonometricView.ByEyePointTargetAndBoundingBox` 會使用視點、目標點、邊界框、名稱和 `isolateElement` 布林值，在 Revit 中建立新的軸測 3D 視圖。
+
+以下範例建立點來定義 3D 視圖的視點和目標位置。還會建立邊界框以控制視圖的裁剪範圍。對 `AxonometricView.ByEyePointTargetAndBoundingBox` 使用這些輸入，同時提供名稱和布林值。輸出是 Revit 中新的軸測 3D 視圖。
+___
+## 範例檔案
+
+![AxonometricView.ByEyePointTargetAndBoundingBox](./Revit.Elements.Views.AxonometricView.ByEyePointTargetAndBoundingBox_img.jpg)

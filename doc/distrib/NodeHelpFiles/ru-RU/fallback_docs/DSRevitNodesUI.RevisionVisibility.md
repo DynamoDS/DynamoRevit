@@ -1,10 +1,9 @@
 ## Подробности
-Этот узел позволяет выбрать параметр Revision Visibility для изменения (доступны параметры CloudsAndTagVisible,Tag Visible и Hidden). Видимость определяет, где будет отображаться выбранное изменение (например, будет ли оно отображаться в облаках, марках, на листах или скрыто).
+Узел `Select Revision Visibility` указывает на режим видимости изменений в Revit. Доступные варианты: `CloudAndTagVisible`, `TagVisible` и `Hidden`.
 
-В этом примере создается новое изменение с помощью узла Select Revision Visibility, значение TagVisible.
+В приведенном ниже примере создается изменение, а в качестве одного из входных параметров используется узел `Select Revision Visibility`.
 
-Дополнительные сведения об изменениях см. по ссылке.
-https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Дополнительные сведения об изменениях см. в [документации по Revit](https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 
 ___
 ## Файл примера
