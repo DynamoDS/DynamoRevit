@@ -386,10 +386,10 @@ namespace Dynamo.Applications
                     // handle initialization steps after RevitDynamoModel is created in UIless mode
                     RevitDynamoModel.HandlePostInitialization();
                     RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUIless;
-
+                    
                     //unsubscribe to the assembly load
                     AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-
+                    
                     return Result.Succeeded;
                 }
 
@@ -613,8 +613,7 @@ namespace Dynamo.Applications
             // so tell Dynamo core we've loaded that version.
             var loadedLibGVersion = PreloadAsmFromRevit();
 
-
-            return RevitDynamoModel.Start(
+            RevitDynamoModel = RevitDynamoModel.Start(
             new RevitDynamoModel.RevitStartConfiguration()
             {
                 DynamoCorePath = corePath,
@@ -629,6 +628,16 @@ namespace Dynamo.Applications
                 ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous,
                 HostAnalyticsInfo = hostAnalyticsInfo
             });
+
+            if (isAutomationMode)
+            {
+                // We need to trick Dynamo into believing that it's in the idle
+                // thread already.
+                IdlePromise.InIdleThread = true;
+                TryOpenAndExecuteWorkspaceInCommandData(commandData);
+            }
+
+            return RevitDynamoModel;
         }
 
         internal static Version PreloadAsmFromRevit()
