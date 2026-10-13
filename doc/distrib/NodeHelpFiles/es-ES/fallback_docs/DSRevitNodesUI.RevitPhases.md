@@ -1,7 +1,8 @@
 ## En detalle:
-Este nodo permite elegir una fase específica del modelo mediante un menú desplegable.
+`Select Phase` permite seleccionar una fase de entre las disponibles en el proyecto activo de Revit y devuelve la fase seleccionada.
 
-En este ejemplo, se selecciona un muro y se aplica el nodo Select Phase para modificar su asignación de fase. El nodo final confirma el cambio mostrando el nombre de fase actualizado, "Existing".
+En el ejemplo siguiente, se utilizan un tipo de familia y un punto para colocar un ejemplar de familia. El parámetro de ejemplar `Phase Created` se modifica mediante `Select Phase` con la entrada "Existing".
+
 ___
 ## Archivo de ejemplo
 
