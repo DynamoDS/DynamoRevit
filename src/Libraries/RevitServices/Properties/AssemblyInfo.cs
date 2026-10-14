@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -9,3 +10,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("026be738-81b6-4a11-bc14-36ee3f718921")]
+[assembly: InternalsVisibleTo("DADynamoApp")]
+[assembly: InternalsVisibleTo("RevitNodes")]
+[assembly: InternalsVisibleTo("DSRevitNodesUI")]
+[assembly: InternalsVisibleTo("DynamoRevitDS")]

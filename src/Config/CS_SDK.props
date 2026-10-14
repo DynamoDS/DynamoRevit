@@ -4,8 +4,9 @@
   <PropertyGroup>
     <PlatformTarget >x64</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <Platforms>NET80;NET100</Platforms>
+    <Platforms>NET80;NET10_DA;NET100</Platforms>
     <TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
+    <TargetFramework Condition="'$(Platform)' == 'NET10_DA'">net10.0-windows</TargetFramework>
     <TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
@@ -40,9 +41,13 @@
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="$(Platform.Contains('_DA'))">
+	  <DefineConstants>$(DefineConstants);DESIGN_AUTOMATION</DefineConstants>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ProjectReference>
       <Private>false</Private>
+      <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemDefinitionGroup>
 </Project>

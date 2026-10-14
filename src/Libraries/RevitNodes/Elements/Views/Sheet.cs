@@ -773,6 +773,7 @@ namespace Revit.Elements.Views
                             }
                         }
                     }
+#if !DESIGN_AUTOMATION
                     if(newSheet == null)
                     {
                         Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
@@ -789,7 +790,8 @@ namespace Revit.Elements.Views
                             }
                         }
                         Document.Delete(elementIds);
-                    }                    
+                    }  
+#endif
                 }
 
                 if (newSheet == null && TraceElements.Count == 0)
@@ -842,7 +844,7 @@ namespace Revit.Elements.Views
             return newSheet;
         }
 
-        #endregion
+#endregion
 
         #region Internal static constructors
 
