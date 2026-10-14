@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <UsingLocalRevitDev Condition="'$(UsingLocalRevitDev)' == '' AND '$(REVITAPI)' != '' AND Exists('$(REVITAPI)\RevitAPI.dll') AND !$([System.String]::Copy('$(REVITAPI)').Contains('\packages\'))">true</UsingLocalRevitDev>
+    <DruUtilsRoot Condition="'$(WORKSPACE_DYNAMOREVITUTILS)' != ''">$(WORKSPACE_DYNAMOREVITUTILS)</DruUtilsRoot>
+    <DruUtilsRoot Condition="'$(DruUtilsRoot)' == '' AND Exists('$(MSBuildThisFileDirectory)..\..\DynamoRevitUtils\build\helpers\ensure-build-dependencies.ps1')">$(MSBuildThisFileDirectory)..\..\DynamoRevitUtils</DruUtilsRoot>
+  </PropertyGroup>
+  <Target Name="EnsureBuildDependencies"
+          BeforeTargets="Build"
+          Condition="'$(DesignTimeBuild)' != 'true' AND '$(SkipEnsureBuildDependencies)' != 'true' AND '$(UsingLocalRevitDev)' != 'true' AND '$(DruUtilsRoot)' != ''">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(DruUtilsRoot)\build\helpers\ensure-build-dependencies.ps1&quot; -WorkspaceRoot &quot;$(MSBuildThisFileDirectory)..&quot;"
+          IgnoreExitCode="false"
+          StandardOutputImportance="High"
+          StandardErrorImportance="High" />
+  </Target>
+</Project>
