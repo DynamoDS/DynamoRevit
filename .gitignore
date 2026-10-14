@@ -186,6 +186,12 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+# Revit SDK binaries (37MB+ — checked out separately, not committed)
+lib/
+
+# RTF test working directory (build artifacts, Revit journals — not committed)
+test/RTFWorkDir/
+
 
 #############
 ## Python
