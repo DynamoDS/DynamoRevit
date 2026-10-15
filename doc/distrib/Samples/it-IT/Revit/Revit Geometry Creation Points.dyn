@@ -1,7 +1,7 @@
 {
   "Uuid": "adfb96bf-c673-4a19-8026-70e80871a954",
   "IsCustomNode": false,
-  "Description": "Questo grafico crea una linea modello e un punto di riferimento nell'ambiente della famiglia Massa concettuale.",
+  "Description": "Questo grafico crea una linea modello e un punto di riferimento nell'ambiente della famiglia massa concettuale.",
   "Name": "Punti di creazione della geometria di Revit",
   "ElementResolver": {
     "ResolutionMap": {}

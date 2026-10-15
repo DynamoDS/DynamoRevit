@@ -115,7 +115,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Tworzy ciąg znaków.",
+      "Description": "Tworzy ciąg.",
       "InputValue": ""
     },
     {

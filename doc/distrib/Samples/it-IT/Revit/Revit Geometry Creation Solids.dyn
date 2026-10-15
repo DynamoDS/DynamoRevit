@@ -2600,7 +2600,7 @@
       {
         "Id": "faef13c7803b46448d0f1573c4154f48",
         "Title": "Crea forma",
-        "DescriptionText": "Utilizzando due linee chiuse delle curve di profilo, crea un elemento Forma (nell'ambiente della famiglia Massa concettuale).",
+        "DescriptionText": "Utilizzando due linee chiuse delle curve di profilo, crea un elemento Forma (nell'ambiente della famiglia massa concettuale).",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
@@ -3181,7 +3181,7 @@
       },
       {
         "Id": "759e968ec84a47409167dcb650c402ed",
-        "Title": "Le forme possono essere create solo come parte di una famiglia Massa concettuale.",
+        "Title": "Le forme possono essere create solo come parte di una famiglia massa concettuale.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -3262,7 +3262,7 @@
       },
       {
         "Id": "4bca3bd9b3064d0486ed499f45763a96",
-        "Title": "Questo grafico utilizza diversi metodi per creare la geometria dei solidi in Revit. Alcuni metodi possono essere utilizzati in un ambiente di progetto, mentre altri solo in alcuni ambienti delle famiglie. \n\nUtilizzare un modello della famiglia Massa concettuale per visualizzare tutti i metodi. \n\nPer aprire una famiglia Massa concettuale, accedere a File > Nuovo > Famiglia > e selezionare il modello Mass.rft\\Conceptual Mass\\Mass.rft.",
+        "Title": "Questo grafico utilizza diversi metodi per creare la geometria dei solidi in Revit. Alcuni metodi possono essere utilizzati in un ambiente di progetto, mentre altri solo in alcuni ambienti delle famiglie. \n\nUtilizzare un modello della famiglia massa concettuale per visualizzare tutti i metodi. \n\nPer aprire una famiglia Massa concettuale, accedere a File > Nuovo > Famiglia > e selezionare il modello Mass.rft\\Conceptual Mass\\Mass.rft.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

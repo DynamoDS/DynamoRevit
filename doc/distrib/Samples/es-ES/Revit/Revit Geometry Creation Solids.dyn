@@ -2600,7 +2600,7 @@
       {
         "Id": "faef13c7803b46448d0f1573c4154f48",
         "Title": "Crear forma",
-        "DescriptionText": "Mediante dos contornos de curva de perfil, cree un elemento de forma (en el entorno de familia de masas conceptuales).",
+        "DescriptionText": "Mediante dos contornos de curva de perfil, cree un elemento de forma (en el entorno de familia de masa conceptual).",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
@@ -3181,7 +3181,7 @@
       },
       {
         "Id": "759e968ec84a47409167dcb650c402ed",
-        "Title": "Las formas solo se pueden crear como parte de una familia de masas conceptuales",
+        "Title": "Las formas solo se pueden crear como parte de una familia de masa conceptual",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -3262,7 +3262,7 @@
       },
       {
         "Id": "4bca3bd9b3064d0486ed499f45763a96",
-        "Title": "Este gráfico utiliza varios métodos para crear geometría sólida en Revit; algunos métodos se pueden utilizar en un entorno de proyecto, otros solo en determinados entornos de familia. \n\nUtilice una plantilla de familia de masas conceptuales para ver todos los métodos.\n\nPara abrir una familia de masas conceptuales, vaya a Archivo > Nuevo > Familia > y seleccione la plantilla Mass.rft, \\Conceptual Mass\\Mass.rft.",
+        "Title": "Este gráfico utiliza varios métodos para crear geometría sólida en Revit; algunos métodos se pueden utilizar en un entorno de proyecto, otros solo en determinados entornos de familia. \n\nUtilice una plantilla de familia de masa conceptual para ver todos los métodos.\n\nPara abrir una familia de masas conceptuales, vaya a Archivo > Nuevo > Familia > y seleccione la plantilla Mass.rft, \\Conceptual Mass\\Mass.rft.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

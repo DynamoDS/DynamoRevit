@@ -1,7 +1,7 @@
 {
   "Uuid": "adfb96bf-c673-4a19-8026-70e80871a954",
   "IsCustomNode": false,
-  "Description": "Este gráfico crea una línea de modelo y un punto de referencia en el entorno de familia de masas conceptuales.",
+  "Description": "Este gráfico crea una línea de modelo y un punto de referencia en el entorno de familia de masa conceptual.",
   "Name": "Puntos de creación de geometría de Revit",
   "ElementResolver": {
     "ResolutionMap": {}
