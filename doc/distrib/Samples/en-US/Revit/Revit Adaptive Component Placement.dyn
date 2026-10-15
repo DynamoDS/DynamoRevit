@@ -1,5 +1,5 @@
 {
-  "Uuid": "8777f033-f09c-47ee-bfca-46427bd1da87",
+  "Uuid": "357b9f9d-bd5c-4f2f-b2cb-d395002503a4",
   "IsCustomNode": false,
   "Description": "This graph positions Adaptive Components by Points in a model.",
   "Name": "Revit Adaptive Component Placement",
@@ -8,16 +8,16 @@
   },
   "Inputs": [
     {
-      "Id": "c9ef7e9c72b241a68d388717c66b4dd6",
+      "Id": "4222fc426b5b47959556c8e60d09f31e",
       "Name": "Family Types",
       "Type": "selection",
       "Type2": "dropdownSelection",
       "Value": "AdaptivePanel:AdaptivePanel",
       "Description": "All family types available in the document.",
-      "SelectedIndex": 5
+      "SelectedIndex": 7
     },
     {
-      "Id": "6b81b78758ad4b52b53add6f747db074",
+      "Id": "f1758d2864d248acba2d2101a000be08",
       "Name": "Select Edges",
       "Type": "selection",
       "Type2": "hostSelection",
@@ -29,11 +29,11 @@
   "Nodes": [
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "b94ef927c46e4c8385680ec8fd75b129",
+      "Id": "2216588a54734e819c3031ceda9772a2",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "09cb13f75f3b43c4a72e241b09b61ace",
+          "Id": "a9835225ba964aeaab8cf97714ddfb82",
           "Name": "points",
           "Description": "a two-dimensional array of points\n\nPoint[][]",
           "UsingDefaultValue": false,
@@ -42,7 +42,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "b00a9630397141d484728e8d62cb9b30",
+          "Id": "712d6e1069574cf4ab8578925db5cca3",
           "Name": "familyType",
           "Description": "a family type to use to create the adaptive components\n\nFamilyType",
           "UsingDefaultValue": false,
@@ -53,7 +53,7 @@
       ],
       "Outputs": [
         {
-          "Id": "9d6c8d51d1d4476e8bdf2cb5da8fdf92",
+          "Id": "ee595cdc86d541f98d8126370658aa68",
           "Name": "AdaptiveComponent[]..[]",
           "Description": "AdaptiveComponent[]..[]",
           "UsingDefaultValue": false,
@@ -67,74 +67,15 @@
       "Description": "Create a list of adaptive components from two-dimensional array of points\n\nAdaptiveComponent.ByPoints (points: Point[][], familyType: FamilyType): AdaptiveComponent[]..[]"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "d0063f8838f5425ca69030b132fa7849",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "1f3c098f62f24966a812783fb2b3c1af",
-          "Name": "curve",
-          "Description": "Autodesk.DesignScript.Geometry.Curve",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1825c44a9fb8410598d947b4b81be465",
-          "Name": "param",
-          "Description": "The parameter at which to evaluate\n\ndouble\nDefault value : 0 (disabled)",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "b235d7ee25614be3b53cb535614f89fe",
-          "Name": "Point",
-          "Description": "Point",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.PointAtParameter@double",
-      "Replication": "CrossProduct",
-      "Description": "Get a Point on the Curve at a specified parameter between StartParameter() and EndParameter()\n\nCurve.PointAtParameter (param: double = 0): Point"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "af7b9fc0acda4b309fe5c241ef8fe097",
-      "NodeType": "CodeBlockNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "2666ffedf1ea4edcb3f251dc2e672eb8",
-          "Name": "list",
-          "Description": "[0, 0.5, 1]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "[0,0.5,1];"
-    },
-    {
       "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
-      "SelectedIndex": 5,
+      "SelectedIndex": 7,
       "SelectedString": "AdaptivePanel:AdaptivePanel",
-      "Id": "c9ef7e9c72b241a68d388717c66b4dd6",
+      "Id": "4222fc426b5b47959556c8e60d09f31e",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "c59535008fb04da990584ca3b7bc3afb",
+          "Id": "475477925b1a4cb0a178bf2d2599d441",
           "Name": "Family Type",
           "Description": "The selected Family Type",
           "UsingDefaultValue": false,
@@ -158,11 +99,11 @@
         "817801dd-655e-443c-9f69-d5f14efae8a3-0019f3af:0:LINEAR",
         "817801dd-655e-443c-9f69-d5f14efae8a3-0019f3b1:0:LINEAR"
       ],
-      "Id": "6b81b78758ad4b52b53add6f747db074",
+      "Id": "f1758d2864d248acba2d2101a000be08",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "1996439372414ccd9d81edfcc526f0bc",
+          "Id": "5cd8aa17c4504b698ab92db2cc540cbc",
           "Name": "Curves",
           "Description": "The selected elements.",
           "UsingDefaultValue": false,
@@ -175,98 +116,12 @@
       "Description": "Select multiple edges."
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "0e04d1abbacd412e8f6026b4c99c1229",
-      "NodeType": "CodeBlockNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "23ed11284a58401bbf47e4c55c059e6f",
-          "Name": "integer",
-          "Description": "0",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "5c81293130da4b0996c20bf22a0a53fe",
-          "Name": "integer",
-          "Description": "2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "0;\n2;"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "130b5e446bad4826acf21af90fea8497",
+      "Id": "1f27181539384385a5e0c45970b57248",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "b8438eccc59e41f88ab78ff158066fa8",
-          "Name": "geometry",
-          "Description": "Autodesk.DesignScript.Geometry.Geometry",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "96cc3e9d809943ebb7e694a3c6abb16b",
-          "Name": "xTranslation",
-          "Description": "Displacement along X-axis.\n\ndouble\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d0e8c3d688c64de58fefd3baf6543449",
-          "Name": "yTranslation",
-          "Description": "Displacement along Y-axis.\n\ndouble\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f11a02654b114aa4bed8b6b8b0503520",
-          "Name": "zTranslation",
-          "Description": "Displacement along Z-axis.\n\ndouble\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "a8a88941291642b297b1c6b8ccd41da5",
-          "Name": "Geometry",
-          "Description": "Transformed Geometry.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Translate@double,double,double",
-      "Replication": "Auto",
-      "Description": "Translates any given geometry by the given displacements in the x, y, and z directions defined in WCS respectively.\n\nGeometry.Translate (xTranslation: double = 0, yTranslation: double = 0, zTranslation: double = 0): Geometry"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "191d07972893454993daa1707deb3180",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "e7eab06e3b7c4e4d8f3f0cd43fbc0121",
+          "Id": "095704f44f094566824278f768cf730b",
           "Name": "list",
           "Description": "List to get the item count of.\n\nvar[]..[]",
           "UsingDefaultValue": false,
@@ -277,7 +132,7 @@
       ],
       "Outputs": [
         {
-          "Id": "16f38a94644947a0866eb9c1f9905a6e",
+          "Id": "aa094fdae679495184d17f0941f9f613",
           "Name": "int",
           "Description": "List length.",
           "UsingDefaultValue": false,
@@ -292,11 +147,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "f8b61e9e3099413c98cf25ce2cc11c4e",
+      "Id": "b3f1e8593a9f4b86af987909995f917d",
       "NodeType": "CodeBlockNode",
       "Inputs": [
         {
-          "Id": "f680b9aa80704f798b33608982460739",
+          "Id": "5c58d5f85fc64c8cafb3ad41187b4a3f",
           "Name": "steps",
           "Description": "steps",
           "UsingDefaultValue": false,
@@ -307,9 +162,9 @@
       ],
       "Outputs": [
         {
-          "Id": "28d33c95d3244a5ab985b54dcb1279c1",
+          "Id": "141b8812685545acb9123685beb020f1",
           "Name": "range",
-          "Description": "0..1..#steps",
+          "Description": "0..360..#steps",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -318,15 +173,15 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "0..1..#steps;"
+      "Code": "0..360..#steps;"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "c0a4c919113e4eccbca87be73233804b",
+      "Id": "f75671f48d924cccb57447a6bc898016",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "872b5f5bd88c4280bdefec79b58b1c6f",
+          "Id": "d3393c85f53a43a387863ace8626516d",
           "Name": "angle",
           "Description": "Angle in degrees to take the sine of.\n\ndouble",
           "UsingDefaultValue": false,
@@ -337,7 +192,7 @@
       ],
       "Outputs": [
         {
-          "Id": "792c5f3d4e1040e8a847899be6250402",
+          "Id": "8233f47178a44e86bfa9972e6feac299",
           "Name": "double",
           "Description": "Sine of the angle.",
           "UsingDefaultValue": false,
@@ -352,11 +207,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "99d7c9323ba34421bcb308c252e3ccb0",
+      "Id": "56a49d94e337469e9c17ea09ab481a14",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "b8a5e67f7a844a109c3d454289a2353d",
+          "Id": "9561d4307ec3467e8387d381321dc7f9",
           "Name": "numbers",
           "Description": "List of numbers to adjust range of.\n\ndouble[]",
           "UsingDefaultValue": false,
@@ -365,7 +220,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "57120e3e08bb426f96d7ad8cdc0559a5",
+          "Id": "9f723980d8614e78bc175524adff38cb",
           "Name": "newMin",
           "Description": "New minimum of the range.\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -374,7 +229,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "fdd6ce5c4e924712a66ef1affc9aa245",
+          "Id": "cd5916ebaa5c46f3b44214ac40b98c4d",
           "Name": "newMax",
           "Description": "New maximum of the range\n\ndouble\nDefault value : 1",
           "UsingDefaultValue": true,
@@ -385,7 +240,7 @@
       ],
       "Outputs": [
         {
-          "Id": "e1f17fcac3364bca822f9b5af648836c",
+          "Id": "1b6141af787a48b6baf49495d5022630",
           "Name": "list",
           "Description": "List remapped to new range.",
           "UsingDefaultValue": false,
@@ -399,53 +254,19 @@
       "Description": "Adjusts the range of a list of numbers while preserving the distribution ratio.\n\nMath.RemapRange (numbers: double[], newMin: double = 0, newMax: double = 1): var[]..[]"
     },
     {
-      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
-      "VariableInputPorts": true,
-      "Id": "fab4dff0b6c54b4e81353b935221d96b",
-      "NodeType": "ExtensionNode",
-      "Inputs": [
-        {
-          "Id": "662e142e6efe47d78c3e96b37fd6f4ea",
-          "Name": "item0",
-          "Description": "Item Index #0",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "0de7f698a4224834b792d20f5859d57d",
-          "Name": "item1",
-          "Description": "Item Index #1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "797602875734479f869f2fba86792722",
-          "Name": "item2",
-          "Description": "Item Index #2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "381555e6f3094be89baefe3a0ff7aee2",
-          "Name": "item3",
-          "Description": "Item Index #3",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 0.74,
+      "MinimumValue": 0.1,
+      "StepValue": 0.01,
+      "Id": "4da46de9c6cd49fba40c8d380fa76d44",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
       "Outputs": [
         {
-          "Id": "7a8fa01029f34867a2b5e0ed607ee48e",
-          "Name": "list",
-          "Description": "A list (type: var[]..[])",
+          "Id": "9792470d6b364c00a04e0ab380865966",
+          "Name": "",
+          "Description": "Double",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -453,26 +274,60 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Makes a new list from the given inputs"
+      "Description": "Produces numeric values",
+      "InputValue": 0.1
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 0.9,
+      "MinimumValue": 0.75,
+      "StepValue": 0.01,
+      "Id": "8c2208e9bb1f4336b60166780157b3da",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e0a9dbb2cae14cbc968cb0063b38b1ca",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.9
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "ab7fa0bc1ad64431924b215509a149f0",
+      "Id": "c191fc21ec7740e097291ca4533585b6",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "322e4ab0f84d41888a3a6397375cfe79",
+          "Id": "d2b90dc6697048dfa1d1712a7ff2e0f8",
           "Name": "list",
-          "Description": "List to fetch an item from.\n\nvar[]..[]",
+          "Description": "The list the element will be inserted to\n\nvar[]..[]",
           "UsingDefaultValue": false,
           "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ca91581d5e994195a64e007cfa3c0c79",
+          "Name": "element",
+          "Description": "The element to be inserted\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 1,
           "UseLevels": true,
           "KeepListStructure": false
         },
         {
-          "Id": "768c8eb24b5140d88148b6116736afe9",
+          "Id": "6aafdf55dea24d25928859f349564e0f",
           "Name": "index",
-          "Description": "Index of the item to be fetched.\n\nint",
+          "Description": "Specifies the location in the list of the element to be inserted\n\nint",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -481,105 +336,47 @@
       ],
       "Outputs": [
         {
-          "Id": "18b68bfeb5504392a1eadf7bbe2af24c",
-          "Name": "item",
-          "Description": "Item in the list at the given index.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
-      "Replication": "Auto",
-      "Description": "Returns an item from the given list that's located at the specified index.\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "54b858bee2934f45b383f516a2365b20",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "a03b8f989e8b482d8197fe7ed83dcb95",
+          "Id": "85bb9de48e654fab9146a8aeed7fcc23",
           "Name": "list",
-          "Description": "List to fetch an item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": true,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "56586db6e9e640e68ab69bbcf1964b11",
-          "Name": "index",
-          "Description": "Index of the item to be fetched.\n\nint",
+          "Description": "List with the element inserted",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "Outputs": [
-        {
-          "Id": "a5d5b960e68945dea722597253f7e318",
-          "Name": "item",
-          "Description": "Item in the list at the given index.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "FunctionSignature": "DSCore.List.Insert@var[]..[],var[]..[],int",
       "Replication": "Auto",
-      "Description": "Returns an item from the given list that's located at the specified index.\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "6bc0efe9cb96471a97066c5d3c27e315",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "9cebdbf0ceef4e3b8522322399f3315c",
-          "Name": "list",
-          "Description": "List to fetch an item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": true,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "a285641def7449d88ca93621c834b39a",
-          "Name": "index",
-          "Description": "Index of the item to be fetched.\n\nint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "662d8be214f14febbe67793b1937dd52",
-          "Name": "item",
-          "Description": "Item in the list at the given index.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
-      "Replication": "Auto",
-      "Description": "Returns an item from the given list that's located at the specified index.\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+      "Description": "Inserts an element into a list at specified index.\n\nList.Insert (list: var[]..[], element: var[]..[], index: int): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "eeb8dc13104745b48d4de6b2b0ed1f75",
+      "Id": "c32dc821c4024ed686bc303f822f920f",
       "NodeType": "CodeBlockNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "883bb6cdd9bc4104b45d78526fdacfad",
+          "Id": "5a20f1ec302b4e2ca1d6dd93a5e07f1f",
+          "Name": "list",
+          "Description": "[0, 1]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "[0,1];"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "6da2f6d71a264b94b680b711751c36a9",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3bb5d4028563478a94c125a8f14f2a37",
           "Name": "integer",
           "Description": "1",
           "UsingDefaultValue": false,
@@ -594,148 +391,61 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "6dc842cd098a4ffeb9c5ec1f22ebdfed",
+      "Id": "0ed65cb5f3fc4dd0a18b68aaded5882e",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "6720fbee63be4d4b95296d66f5dab058",
-          "Name": "lists",
-          "Description": "List of lists to be transposed\n\nvar[]..[]",
+          "Id": "bd127160e18c43fdadbb39a72fca37ec",
+          "Name": "item",
+          "Description": "Item to be added.Item could be an object or a list.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 1,
+          "UseLevels": true,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94764d10bc664d748087ec2c06cac38b",
+          "Name": "list",
+          "Description": "List to add on to.\n\nvar[]..[]",
           "UsingDefaultValue": false,
           "Level": 2,
-          "UseLevels": false,
+          "UseLevels": true,
           "KeepListStructure": false
         }
       ],
       "Outputs": [
         {
-          "Id": "187b9b216b424c5b9252efb60aeb8721",
-          "Name": "lists",
-          "Description": "List of transposed lists",
+          "Id": "042d12ac979c48bfb52364dd56545563",
+          "Name": "list",
+          "Description": "List with added items",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
+      "FunctionSignature": "DSCore.List.AddItemToEnd@var[]..[],var[]..[]",
       "Replication": "Auto",
-      "Description": "Swaps rows and columns in a list of lists. If there are some rows that are shorter than others, null values are inserted as place holders in the resultant array such that it is always rectangular.\n\nList.Transpose (lists: var[]..[]): var[]..[]"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
-      "NumberType": "Double",
-      "MaximumValue": 3.0,
-      "MinimumValue": 0.2,
-      "StepValue": 0.1,
-      "Id": "92f76a138e58430088a8bc5827b008c3",
-      "NodeType": "NumberInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "15ca65e28dbd4fc6b9d50371e9b0f3b0",
-          "Name": "",
-          "Description": "Double",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Produces numeric values",
-      "InputValue": 1.4
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
-      "NumberType": "Double",
-      "MaximumValue": 8.0,
-      "MinimumValue": 3.0,
-      "StepValue": 0.1,
-      "Id": "7b5d3634fb8543ef9ce662f0159d83d7",
-      "NodeType": "NumberInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "b0116657f9c04594b575c976e2026373",
-          "Name": "",
-          "Description": "Double",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Produces numeric values",
-      "InputValue": 4.3
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "7a9264d7a6cf4a0c8a5895a9a2f2db6e",
-      "NodeType": "CodeBlockNode",
-      "Inputs": [
-        {
-          "Id": "ec33be8d5a704a1ba667ddc227d80a49",
-          "Name": "y",
-          "Description": "y",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "c1c8e16af2774e69b1a2ac0f175e896c",
-          "Name": "function",
-          "Description": "-y",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "-y;"
+      "Description": "Adds an item to the end of a list.\n\nList.AddItemToEnd (item: var[]..[], list: var[]..[]): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "c9aa88809504465bb5f22c9d641caf92",
+      "Id": "4ecc9d666ec34dd3a1b27b2bff2def88",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "46f6b0516ca040889132e073b178a028",
-          "Name": "geometry",
-          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "Id": "f77000279eb94384bc750851e9ab009e",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         },
         {
-          "Id": "c2085568e0f749838f91cebfd1063b49",
-          "Name": "xTranslation",
-          "Description": "Displacement along X-axis.\n\ndouble\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "85bb57f01c814062ab77e559b04ffd26",
-          "Name": "yTranslation",
-          "Description": "Displacement along Y-axis.\n\ndouble\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "50f5a82302b344adaf3bd06cf8649253",
-          "Name": "zTranslation",
-          "Description": "Displacement along Z-axis.\n\ndouble\nDefault value : 0",
+          "Id": "a8cb5024f0de4186b70820a4d1e7cf63",
+          "Name": "param",
+          "Description": "The parameter at which to evaluate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -744,28 +454,148 @@
       ],
       "Outputs": [
         {
-          "Id": "5b041e893c264ef4a9ffce297d3d4f10",
-          "Name": "Geometry",
-          "Description": "Transformed Geometry.",
+          "Id": "58a3f089c5944a179f888c32b0b758e0",
+          "Name": "CoordinateSystem",
+          "Description": "CoordinateSystem at parameter of curve",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Translate@double,double,double",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.CoordinateSystemAtParameter@double",
       "Replication": "Auto",
-      "Description": "Translates any given geometry by the given displacements in the x, y, and z directions defined in WCS respectively.\n\nGeometry.Translate (xTranslation: double = 0, yTranslation: double = 0, zTranslation: double = 0): Geometry"
+      "Description": "Get a CoordinateSystem with origin at the point at the given parameter. The XAxis is aligned with the curve normal, the YAxis is aligned with the curve tangent at this point, and the ZAxis is aligned with the up-vector or binormal at this point\n\nCurve.CoordinateSystemAtParameter (param: double = 0): CoordinateSystem"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "285934827aee447eb16ab3751e2d495e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "af4d2e5f0d1643a5b2ee8086f6e6ef25",
+          "Name": "coordinateSystem",
+          "Description": "Parent coordinate system\n\nCoordinateSystem\nDefault value : Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f1c834f3cf9a4e57a1e7574f6402fced",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a5a36f1ce3241f2a838097cd11bb0da",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bc7d577026de46a2860e4bf035602e51",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9dfbf354dd9943358699ea53e1ea902e",
+          "Name": "Point",
+          "Description": "Point at cartesian coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCartesianCoordinates@Autodesk.DesignScript.Geometry.CoordinateSystem,double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point in the given coordinate system with 3 cartesian coordinates\n\nPoint.ByCartesianCoordinates (coordinateSystem: CoordinateSystem = Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin(0, 0, 0), x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 5.0,
+      "MinimumValue": 0.5,
+      "StepValue": 0.01,
+      "Id": "68317698e29c4ae59026b83a830f2b26",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8187b73a2be04e12a39b94a6f4ac30af",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 2.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "46a74988c7ce470e9ade305e3e865793",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0a8411c907a4456fb2c69693c64e4fff",
+          "Name": "x",
+          "Description": "Integer or double value\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9e31ea51bf42421fa6955754c1b4ea15",
+          "Name": "y",
+          "Description": "Integer or double value\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0d80ca7cbefa4915bc46ce702d52f4e8",
+          "Name": "number",
+          "Description": "The product of the two input numbers",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "*@var[]..[],var[]..[]",
+      "Replication": "Longest",
+      "Description": "Returns multiplication of x times y\n\n* (x: var[]..[], y: var[]..[]): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "Id": "99173643f79a425d9e042edd52e25c39",
+      "Id": "83947db88b3346a281aee414984d3129",
       "NodeType": "CodeBlockNode",
       "Inputs": [
         {
-          "Id": "3085c84645544155a9d6700658c05947",
-          "Name": "y",
-          "Description": "y",
+          "Id": "7959128eafa34ba0ab0ec657fb67ac8d",
+          "Name": "offset",
+          "Description": "offset",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -774,9 +604,9 @@
       ],
       "Outputs": [
         {
-          "Id": "41d6499d07c4486a88d1074450a1da80",
-          "Name": "y",
-          "Description": "y",
+          "Id": "607dfaf2b2c442edb18fc05293686e46",
+          "Name": "list",
+          "Description": "[0, offset, 0, -offset]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -785,182 +615,128 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly",
-      "Code": "y;"
+      "Code": "[0,offset,0,-offset];"
     }
   ],
   "Connectors": [
     {
-      "Start": "b235d7ee25614be3b53cb535614f89fe",
-      "End": "322e4ab0f84d41888a3a6397375cfe79",
-      "Id": "b3e2a637e06a496d961f6710a1c4a67a",
+      "Start": "475477925b1a4cb0a178bf2d2599d441",
+      "End": "712d6e1069574cf4ab8578925db5cca3",
+      "Id": "efa8c288bd5e4005a11311ddfd7329a4",
       "IsHidden": "False"
     },
     {
-      "Start": "b235d7ee25614be3b53cb535614f89fe",
-      "End": "a03b8f989e8b482d8197fe7ed83dcb95",
-      "Id": "0c40fb29c7c04d2a8843d94cca7c4180",
+      "Start": "5cd8aa17c4504b698ab92db2cc540cbc",
+      "End": "095704f44f094566824278f768cf730b",
+      "Id": "0f4e39544cd14d749496d693c5d8f097",
       "IsHidden": "False"
     },
     {
-      "Start": "b235d7ee25614be3b53cb535614f89fe",
-      "End": "9cebdbf0ceef4e3b8522322399f3315c",
-      "Id": "37c75ce45e2841b382c976311954fb20",
+      "Start": "5cd8aa17c4504b698ab92db2cc540cbc",
+      "End": "f77000279eb94384bc750851e9ab009e",
+      "Id": "d0f585e0e0054d94aec635ab785c3852",
       "IsHidden": "False"
     },
     {
-      "Start": "2666ffedf1ea4edcb3f251dc2e672eb8",
-      "End": "1825c44a9fb8410598d947b4b81be465",
-      "Id": "f7cf08564e644f4ba9082934906ad06e",
+      "Start": "aa094fdae679495184d17f0941f9f613",
+      "End": "5c58d5f85fc64c8cafb3ad41187b4a3f",
+      "Id": "d69d25f3e07b4d3aadc9af5b3fcae9c0",
       "IsHidden": "False"
     },
     {
-      "Start": "c59535008fb04da990584ca3b7bc3afb",
-      "End": "b00a9630397141d484728e8d62cb9b30",
-      "Id": "ecfe230ce4784f7ba0b0fe09bc02279d",
+      "Start": "141b8812685545acb9123685beb020f1",
+      "End": "d3393c85f53a43a387863ace8626516d",
+      "Id": "f060a5522ff04785970bcdba4348f121",
       "IsHidden": "False"
     },
     {
-      "Start": "1996439372414ccd9d81edfcc526f0bc",
-      "End": "1f3c098f62f24966a812783fb2b3c1af",
-      "Id": "54646c36f1af4fda8bd7b54c9acb2509",
+      "Start": "8233f47178a44e86bfa9972e6feac299",
+      "End": "9561d4307ec3467e8387d381321dc7f9",
+      "Id": "601698c83ab24f578f0cae46c1c98487",
       "IsHidden": "False"
     },
     {
-      "Start": "1996439372414ccd9d81edfcc526f0bc",
-      "End": "e7eab06e3b7c4e4d8f3f0cd43fbc0121",
-      "Id": "657b98b6e70f4b8fb6cc8f17039bd202",
+      "Start": "1b6141af787a48b6baf49495d5022630",
+      "End": "ca91581d5e994195a64e007cfa3c0c79",
+      "Id": "25e7d92eee42453cb44138ef0754184c",
       "IsHidden": "False"
     },
     {
-      "Start": "23ed11284a58401bbf47e4c55c059e6f",
-      "End": "768c8eb24b5140d88148b6116736afe9",
-      "Id": "d601c93ca11343299362b7efd2af24cc",
+      "Start": "1b6141af787a48b6baf49495d5022630",
+      "End": "bd127160e18c43fdadbb39a72fca37ec",
+      "Id": "183d4273bfc34efba4890f9fae2d8bd9",
       "IsHidden": "False"
     },
     {
-      "Start": "5c81293130da4b0996c20bf22a0a53fe",
-      "End": "56586db6e9e640e68ab69bbcf1964b11",
-      "Id": "a9746f9d5a2d47b69b0707920577f9a0",
+      "Start": "9792470d6b364c00a04e0ab380865966",
+      "End": "9f723980d8614e78bc175524adff38cb",
+      "Id": "5451272219cb41ba95ed172f30acebac",
       "IsHidden": "False"
     },
     {
-      "Start": "a8a88941291642b297b1c6b8ccd41da5",
-      "End": "0de7f698a4224834b792d20f5859d57d",
-      "Id": "a822d43222994e26b4a4b52955381c13",
+      "Start": "e0a9dbb2cae14cbc968cb0063b38b1ca",
+      "End": "cd5916ebaa5c46f3b44214ac40b98c4d",
+      "Id": "4d8ddbcd6b364c5b9f753b05820a9c77",
       "IsHidden": "False"
     },
     {
-      "Start": "16f38a94644947a0866eb9c1f9905a6e",
-      "End": "f680b9aa80704f798b33608982460739",
-      "Id": "648edcf1fb3046e2ada1a0db0db46fe0",
+      "Start": "85bb9de48e654fab9146a8aeed7fcc23",
+      "End": "94764d10bc664d748087ec2c06cac38b",
+      "Id": "fb1874b9072c426bb34888b29a0aa69e",
       "IsHidden": "False"
     },
     {
-      "Start": "28d33c95d3244a5ab985b54dcb1279c1",
-      "End": "872b5f5bd88c4280bdefec79b58b1c6f",
-      "Id": "7b24d82bbf204677a2bc563dd466157c",
+      "Start": "5a20f1ec302b4e2ca1d6dd93a5e07f1f",
+      "End": "d2b90dc6697048dfa1d1712a7ff2e0f8",
+      "Id": "7da5a92cf3d2497b86ff5cf1b72ad08a",
       "IsHidden": "False"
     },
     {
-      "Start": "792c5f3d4e1040e8a847899be6250402",
-      "End": "b8a5e67f7a844a109c3d454289a2353d",
-      "Id": "d910de8b249e4f1d9c665c1f372acbaf",
+      "Start": "3bb5d4028563478a94c125a8f14f2a37",
+      "End": "6aafdf55dea24d25928859f349564e0f",
+      "Id": "66737214d18544fa8356a38be2a83e93",
       "IsHidden": "False"
     },
     {
-      "Start": "e1f17fcac3364bca822f9b5af648836c",
-      "End": "f11a02654b114aa4bed8b6b8b0503520",
-      "Id": "22653e24047a4b20ad7da360d3ea9c06",
+      "Start": "042d12ac979c48bfb52364dd56545563",
+      "End": "a8cb5024f0de4186b70820a4d1e7cf63",
+      "Id": "176211d906e04139b98e2851c529a72e",
       "IsHidden": "False"
     },
     {
-      "Start": "e1f17fcac3364bca822f9b5af648836c",
-      "End": "ec33be8d5a704a1ba667ddc227d80a49",
-      "Id": "1f70c88b872c49999dcdc3189bd21b7f",
+      "Start": "042d12ac979c48bfb52364dd56545563",
+      "End": "0a8411c907a4456fb2c69693c64e4fff",
+      "Id": "000e7c7ab4154336b9569581783dd774",
       "IsHidden": "False"
     },
     {
-      "Start": "e1f17fcac3364bca822f9b5af648836c",
-      "End": "50f5a82302b344adaf3bd06cf8649253",
-      "Id": "cb72edbd22d047efa28b1c53860a2a3f",
+      "Start": "58a3f089c5944a179f888c32b0b758e0",
+      "End": "af4d2e5f0d1643a5b2ee8086f6e6ef25",
+      "Id": "c9b1e96759fe4e50b477a9de3f6fde84",
       "IsHidden": "False"
     },
     {
-      "Start": "e1f17fcac3364bca822f9b5af648836c",
-      "End": "3085c84645544155a9d6700658c05947",
-      "Id": "6e71f4b531444f8ca0292dfdbd5dacee",
+      "Start": "9dfbf354dd9943358699ea53e1ea902e",
+      "End": "a9835225ba964aeaab8cf97714ddfb82",
+      "Id": "9cd4379beecb4df287e710b53d0503cb",
       "IsHidden": "False"
     },
     {
-      "Start": "7a8fa01029f34867a2b5e0ed607ee48e",
-      "End": "6720fbee63be4d4b95296d66f5dab058",
-      "Id": "1e0c82c2d0a842a58dd19f4599c55dd4",
+      "Start": "8187b73a2be04e12a39b94a6f4ac30af",
+      "End": "7959128eafa34ba0ab0ec657fb67ac8d",
+      "Id": "8376a6ed2cab4984a5ae9afb64b04083",
       "IsHidden": "False"
     },
     {
-      "Start": "18b68bfeb5504392a1eadf7bbe2af24c",
-      "End": "662e142e6efe47d78c3e96b37fd6f4ea",
-      "Id": "b564f2419c7c4241be0abcb7874b2602",
+      "Start": "0d80ca7cbefa4915bc46ce702d52f4e8",
+      "End": "f1c834f3cf9a4e57a1e7574f6402fced",
+      "Id": "196fcce5a99d4c8a99c82f6082de1db8",
       "IsHidden": "False"
     },
     {
-      "Start": "a5d5b960e68945dea722597253f7e318",
-      "End": "797602875734479f869f2fba86792722",
-      "Id": "9e6d420599c14b47bda91ec645d9e672",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "662d8be214f14febbe67793b1937dd52",
-      "End": "b8438eccc59e41f88ab78ff158066fa8",
-      "Id": "a59c7fe3890c45a3bffd0038f31ae5b1",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "662d8be214f14febbe67793b1937dd52",
-      "End": "46f6b0516ca040889132e073b178a028",
-      "Id": "988505209aaa48f69791ab941417bb05",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "883bb6cdd9bc4104b45d78526fdacfad",
-      "End": "a285641def7449d88ca93621c834b39a",
-      "Id": "d4bd139f0cce4c8e90765db4f4a2c8e6",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "187b9b216b424c5b9252efb60aeb8721",
-      "End": "09cb13f75f3b43c4a72e241b09b61ace",
-      "Id": "b2821f6bd94f44268d8d9719c7e4b09e",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "15ca65e28dbd4fc6b9d50371e9b0f3b0",
-      "End": "57120e3e08bb426f96d7ad8cdc0559a5",
-      "Id": "817d0504eecd453991a427b8eacc758f",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "b0116657f9c04594b575c976e2026373",
-      "End": "fdd6ce5c4e924712a66ef1affc9aa245",
-      "Id": "df97ac8f003b468b83983f75027b968c",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "c1c8e16af2774e69b1a2ac0f175e896c",
-      "End": "d0e8c3d688c64de58fefd3baf6543449",
-      "Id": "66284c40a0d744b498af6387202f321b",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "5b041e893c264ef4a9ffce297d3d4f10",
-      "End": "381555e6f3094be89baefe3a0ff7aee2",
-      "Id": "7e50279a89f5444b945638d35eeb15ed",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "41d6499d07c4486a88d1074450a1da80",
-      "End": "85bb57f01c814062ab77e559b04ffd26",
-      "Id": "28634ece25f54f86bcba26c3ebd96a41",
+      "Start": "607dfaf2b2c442edb18fc05293686e46",
+      "End": "9e31ea51bf42421fa6955754c1b4ea15",
+      "Id": "dfea598f215840edb5a809d28b0b2563",
       "IsHidden": "False"
     }
   ],
@@ -996,96 +772,63 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "4.0.0.3076",
+      "Version": "4.2.1.5887",
       "RunType": "Manual",
       "RunPeriod": "100"
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -21.938243865966797,
-      "EyeY": 9.230457305908203,
-      "EyeZ": -7.329970359802246,
-      "LookX": -39.667633056640625,
-      "LookY": -3.1036128997802734,
-      "LookZ": 8.294654846191406,
-      "UpX": 0.1362249106168747,
-      "UpY": 0.9902682900428772,
-      "UpZ": -0.028485091403126717
+      "EyeX": -121.27762603759766,
+      "EyeY": 30.202051162719727,
+      "EyeZ": 135.7644500732422,
+      "LookX": -1.4192466735839844,
+      "LookY": -28.276540756225586,
+      "LookZ": -133.2576904296875,
+      "UpX": 7.351285603363067E-05,
+      "UpY": 0.9999756813049316,
+      "UpZ": 0.006979601923376322
     },
-    "ConnectorPins": [],
+    "ConnectorPins": [
+      {
+        "Left": 2583.5500049740112,
+        "Top": 1516.3070919461984,
+        "IsHidden": false,
+        "ConnectorGuid": "25e7d92eee42453cb44138ef0754184c"
+      }
+    ],
     "NodeViews": [
       {
-        "Id": "b94ef927c46e4c8385680ec8fd75b129",
+        "Id": "2216588a54734e819c3031ceda9772a2",
         "Name": "AdaptiveComponent.ByPoints",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 4057.9950273967024,
-        "Y": 834.4709467322484
+        "X": 4569.153899218921,
+        "Y": 1725.6861197941003
       },
       {
-        "Id": "d0063f8838f5425ca69030b132fa7849",
-        "Name": "Curve.PointAtParameter",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1516.8938242709416,
-        "Y": 595.4430384524009
-      },
-      {
-        "Id": "af7b9fc0acda4b309fe5c241ef8fe097",
-        "Name": "List of parameters",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1259.3729049931205,
-        "Y": 929.2647578636754
-      },
-      {
-        "Id": "c9ef7e9c72b241a68d388717c66b4dd6",
+        "Id": "4222fc426b5b47959556c8e60d09f31e",
         "Name": "Family Types",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 523.9760455929437,
-        "Y": 1447.2978607159453
+        "X": 924.5011587676785,
+        "Y": 2095.9081624742903
       },
       {
-        "Id": "6b81b78758ad4b52b53add6f747db074",
+        "Id": "f1758d2864d248acba2d2101a000be08",
         "Name": "Select Edges",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 530.5500490414054,
-        "Y": 1175.9156024825365
+        "X": 996.9011587676785,
+        "Y": 1106.1351990889557
       },
       {
-        "Id": "0e04d1abbacd412e8f6026b4c99c1229",
-        "Name": "start and end points indices",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 2672.2485619423865,
-        "Y": 643.5376376216147
-      },
-      {
-        "Id": "130b5e446bad4826acf21af90fea8497",
-        "Name": "Geometry.Translate",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 3014.3502464664384,
-        "Y": 1436.7417945149518
-      },
-      {
-        "Id": "191d07972893454993daa1707deb3180",
+        "Id": "1f27181539384385a5e0c45970b57248",
         "Name": "List.Count",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -1095,7 +838,7 @@
         "Y": 1241.3261476209832
       },
       {
-        "Id": "f8b61e9e3099413c98cf25ce2cc11c4e",
+        "Id": "b3f1e8593a9f4b86af987909995f917d",
         "Name": "Sequence",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -1105,7 +848,7 @@
         "Y": 1241.3261476209832
       },
       {
-        "Id": "c0a4c919113e4eccbca87be73233804b",
+        "Id": "f75671f48d924cccb57447a6bc898016",
         "Name": "Math.Sin",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -1115,7 +858,7 @@
         "Y": 1241.3261476209832
       },
       {
-        "Id": "99d7c9323ba34421bcb308c252e3ccb0",
+        "Id": "56a49d94e337469e9c17ea09ab481a14",
         "Name": "Math.RemapRange",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -1125,119 +868,119 @@
         "Y": 1281.963229888423
       },
       {
-        "Id": "fab4dff0b6c54b4e81353b935221d96b",
-        "Name": "List Create",
+        "Id": "4da46de9c6cd49fba40c8d380fa76d44",
+        "Name": "Minimum Parameter Displacement",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3496.771118243306,
-        "Y": 723.1441902120356
+        "X": 928.1011587676785,
+        "Y": 1392.5784399352892
       },
       {
-        "Id": "ab7fa0bc1ad64431924b215509a149f0",
-        "Name": "List.GetItemAtIndex",
+        "Id": "8c2208e9bb1f4336b60166780157b3da",
+        "Name": "Maximum Parameter Displacement",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3049.7312856128606,
-        "Y": 465.88970197642175
+        "X": 928.1011587676785,
+        "Y": 1627.0216807816228
       },
       {
-        "Id": "54b858bee2934f45b383f516a2365b20",
-        "Name": "List.GetItemAtIndex",
+        "Id": "c191fc21ec7740e097291ca4533585b6",
+        "Name": "List.Insert",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3050.9353382999793,
-        "Y": 697.6412473574605
+        "X": 2829.584625697935,
+        "Y": 1422.0027668882517
       },
       {
-        "Id": "6bc0efe9cb96471a97066c5d3c27e315",
-        "Name": "List.GetItemAtIndex",
+        "Id": "c32dc821c4024ed686bc303f822f920f",
+        "Name": "Code Block",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2265.567116160058,
-        "Y": 895.9425557008457
+        "X": 2644.8872694786896,
+        "Y": 1398.7474133209353
       },
       {
-        "Id": "eeb8dc13104745b48d4de6b2b0ed1f75",
-        "Name": "Mid point index",
+        "Id": "6da2f6d71a264b94b680b711751c36a9",
+        "Name": "Code Block",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1940.3212071693326,
-        "Y": 928.1087414866699
+        "X": 2644.8872694786896,
+        "Y": 1536.7777370812557
       },
       {
-        "Id": "6dc842cd098a4ffeb9c5ec1f22ebdfed",
-        "Name": "List.Transpose",
+        "Id": "0ed65cb5f3fc4dd0a18b68aaded5882e",
+        "Name": "List.AddItemToEnd",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3697.8185303503255,
-        "Y": 719.8426979298367
+        "X": 3094.6461897189574,
+        "Y": 1281.963229888423
       },
       {
-        "Id": "92f76a138e58430088a8bc5827b008c3",
-        "Name": "min Displacement",
+        "Id": "4ecc9d666ec34dd3a1b27b2bff2def88",
+        "Name": "Curve.CoordinateSystemAtParameter",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "ShowGeometry": true,
-        "X": 521.8979228173796,
-        "Y": 1661.5778119396248
+        "ShowGeometry": false,
+        "X": 3584.1790444886065,
+        "Y": 1109.8002534629234
       },
       {
-        "Id": "7b5d3634fb8543ef9ce662f0159d83d7",
-        "Name": "max Displacement",
+        "Id": "285934827aee447eb16ab3751e2d495e",
+        "Name": "Point.ByCartesianCoordinates",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 523.5971574892187,
-        "Y": 1806.352623984311
+        "X": 4180.875754994399,
+        "Y": 1494.5834384752563
       },
       {
-        "Id": "7a9264d7a6cf4a0c8a5895a9a2f2db6e",
-        "Name": "Negate value",
+        "Id": "68317698e29c4ae59026b83a830f2b26",
+        "Name": "Maximum Offset Distance",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2723.430242281117,
-        "Y": 1485.5596366297973
+        "X": 928.1011587676785,
+        "Y": 1861.4649216279563
       },
       {
-        "Id": "c9aa88809504465bb5f22c9d641caf92",
-        "Name": "Geometry.Translate",
+        "Id": "46a74988c7ce470e9ade305e3e865793",
+        "Name": "*",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 3033.176456327984,
-        "Y": 1769.1233429138792
+        "X": 3892.127399741503,
+        "Y": 1533.1254030415016
       },
       {
-        "Id": "99173643f79a425d9e042edd52e25c39",
-        "Name": "Negate value",
+        "Id": "83947db88b3346a281aee414984d3129",
+        "Name": "Code Block",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2690.844107369333,
-        "Y": 1836.542899573254
+        "X": 3491.526996445068,
+        "Y": 1684.9846640213357
       }
     ],
     "Annotations": [
       {
-        "Id": "7e1f96772a304ef8959cd75f3a5a4fe1",
+        "Id": "8525225d5f7b4568840fabeecc12d72b",
         "Title": "Info",
         "DescriptionText": "",
         "IsExpanded": true,
@@ -1246,20 +989,20 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "3380824479aa4b19b1287d064567a332",
-          "431987b465b44dc09eb7b88d570befe7",
-          "278575d9f70a4065b31e24800ea8af8d"
+          "768e5b55d1d04343b07919e90662cf96",
+          "b4280cb3f8324eefbb0d3fdbe7b770e3",
+          "926e8bf0801c4408a2d95f78d3486fbd"
         ],
         "HasNestedGroups": false,
-        "Left": 513.5745535857296,
-        "Top": 503.0831975028156,
-        "Width": 319.4759306930765,
-        "Height": 439.59640016811426,
+        "Left": 968.1011587676785,
+        "Top": 498.80149796026996,
+        "Width": 318.4000000000001,
+        "Height": 435.97952173758637,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": 576.4165308361489,
-        "InitialHeight": 447.5964001681143,
-        "TextblockHeight": 63.333333333333336,
+        "InitialTop": 572.00149796027,
+        "InitialHeight": 386.3795217375864,
+        "TextblockHeight": 63.2,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1267,7 +1010,7 @@
         "Background": "#FFA4E1FF"
       },
       {
-        "Id": "21dd466b01aa46e9acedf53f7bebfbcc",
+        "Id": "e074818e04d84b56b924b904084a150a",
         "Title": "Inputs",
         "DescriptionText": "",
         "IsExpanded": true,
@@ -1276,24 +1019,27 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "6b81b78758ad4b52b53add6f747db074",
-          "c9ef7e9c72b241a68d388717c66b4dd6",
-          "7b5d3634fb8543ef9ce662f0159d83d7",
-          "92f76a138e58430088a8bc5827b008c3",
-          "80d7bfade1e448fe8bc6362b7b7952b3",
-          "459f18f8d80f437db27d96b65f407b3d",
-          "77c6ea9e233f43ba977326f3594954c4"
+          "f1758d2864d248acba2d2101a000be08",
+          "4222fc426b5b47959556c8e60d09f31e",
+          "8c2208e9bb1f4336b60166780157b3da",
+          "4da46de9c6cd49fba40c8d380fa76d44",
+          "68317698e29c4ae59026b83a830f2b26",
+          "085b779c5dfa4bf39797c90e352feab2",
+          "01655468a73f43089ea3c6c5ee130650",
+          "b2ce7ffecaaf46f09786add3e403ff33",
+          "807ac80b59f94f75b1638fb7904c6fd2",
+          "b6c5382c84ac4da29f94cfd467c7d24e"
         ],
         "HasNestedGroups": false,
-        "Left": 511.8979228173796,
-        "Top": 1043.9156024825368,
-        "Width": 773.4114561088975,
-        "Height": 894.1036881684411,
+        "Left": 914.5011587676785,
+        "Top": 974.5351990889556,
+        "Width": 372.0000000000001,
+        "Height": 1253.5729633853346,
         "FontSize": 36.0,
         "GroupStyleId": "883066aa-1fe2-44a4-9bd1-c3df86bfe9f6",
-        "InitialTop": 1117.24893581587,
-        "InitialHeight": 834.1036881684411,
-        "TextblockHeight": 63.333333333333336,
+        "InitialTop": 1047.7351990889556,
+        "InitialHeight": 1493.7106757885406,
+        "TextblockHeight": 63.2,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1301,8 +1047,8 @@
         "Background": "#FFFFB8D8"
       },
       {
-        "Id": "31433f573778440ab5bc141a848eda1f",
-        "Title": "To Revit: Place component",
+        "Id": "9024b3001f644337b789a1405a702948",
+        "Title": "Places the adaptive components in Revit",
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1310,19 +1056,19 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "b94ef927c46e4c8385680ec8fd75b129",
-          "c0fc76ff7d594730b7e16f5c31962c88"
+          "2216588a54734e819c3031ceda9772a2",
+          "c2a5301863894e97949b060a605bf090"
         ],
         "HasNestedGroups": false,
-        "Left": 4047.9950273967024,
-        "Top": 630.4709467322485,
-        "Width": 354.0,
-        "Height": 363.6666666666665,
+        "Left": 4559.153899218921,
+        "Top": 1522.0861197941003,
+        "Width": 354.39999999999964,
+        "Height": 363.79999999999995,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": 747.1376133989152,
-        "InitialHeight": 232.33333333333326,
-        "TextblockHeight": 106.66666666666667,
+        "InitialTop": 1638.4861197941004,
+        "InitialHeight": 232.19999999999982,
+        "TextblockHeight": 106.4,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1330,68 +1076,7 @@
         "Background": "#FFFFC999"
       },
       {
-        "Id": "26b382cf60514af8a68280f216c6910a",
-        "Title": "Grab mid point from each curve",
-        "DescriptionText": "",
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [
-          "6bc0efe9cb96471a97066c5d3c27e315",
-          "eeb8dc13104745b48d4de6b2b0ed1f75",
-          "3042251207704205a0f6cc39fe6ac33e"
-        ],
-        "HasNestedGroups": false,
-        "Left": 1930.3212071693326,
-        "Top": 691.9425557008456,
-        "Width": 605.245908990725,
-        "Height": 367.8328524524911,
-        "FontSize": 36.0,
-        "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": 765.2758890341789,
-        "InitialHeight": 307.832852452491,
-        "TextblockHeight": 63.333333333333336,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFB9F9E1"
-      },
-      {
-        "Id": "4ebb38770c0a40cab4b58ce1af6cd435",
-        "Title": "Grab start and end points from each curve",
-        "DescriptionText": "",
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [
-          "0e04d1abbacd412e8f6026b4c99c1229",
-          "ab7fa0bc1ad64431924b215509a149f0",
-          "54b858bee2934f45b383f516a2365b20",
-          "d752a9ec387e4cd1a5809b64510e3959"
-        ],
-        "HasNestedGroups": false,
-        "Left": 2662.2485619423865,
-        "Top": 349.22303530975506,
-        "Width": 647.0201096909263,
-        "Height": 508.0848787143721,
-        "FontSize": 36.0,
-        "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": 465.88970197642175,
-        "InitialHeight": 376.7515453810388,
-        "TextblockHeight": 106.66666666666667,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFB9F9E1"
-      },
-      {
-        "Id": "27720fa4e16d4e0b842c2b6504d72d29",
+        "Id": "b7e3219c73264096a85ec582bd04c09c",
         "Title": "Create a Sine wave",
         "DescriptionText": "",
         "IsExpanded": true,
@@ -1400,25 +1085,25 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "191d07972893454993daa1707deb3180",
-          "f8b61e9e3099413c98cf25ce2cc11c4e",
-          "c0a4c919113e4eccbca87be73233804b",
-          "99d7c9323ba34421bcb308c252e3ccb0",
-          "02e1a6c6d759486f89cb0896f48eb442",
-          "784d4bf56b5143b79ec2aed941d48010",
-          "0e12f041d06d4e90a4de32ff73d6a5b8",
-          "956062d2ac834a30b51e8f05d28f10aa"
+          "1f27181539384385a5e0c45970b57248",
+          "b3f1e8593a9f4b86af987909995f917d",
+          "f75671f48d924cccb57447a6bc898016",
+          "56a49d94e337469e9c17ea09ab481a14",
+          "057b6c25685d403585bfe20196e3941a",
+          "c2b12249d64d4e5c99f9dbcd12fd155c",
+          "ad6cc559cdfc4ced89d38d96af5b5f6a",
+          "c751452b658143a781f20f014d04c3cc"
         ],
         "HasNestedGroups": false,
         "Left": 1335.4543431631162,
-        "Top": 1109.3261476209834,
+        "Top": 1109.726147620983,
         "Width": 1190.8362883058237,
-        "Height": 366.97041560077287,
+        "Height": 366.0370822674399,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": 1182.6594809543167,
-        "InitialHeight": 244.30374893410635,
-        "TextblockHeight": 63.333333333333336,
+        "InitialTop": 1182.926147620983,
+        "InitialHeight": 244.03708226743993,
+        "TextblockHeight": 63.2,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1426,8 +1111,8 @@
         "Background": "#FFB9F9E1"
       },
       {
-        "Id": "85d54b242de04e8abc40be58c68637cf",
-        "Title": "Displace mid points",
+        "Id": "33a7681ee353458c91e1de2b3489abd5",
+        "Title": "Builds the list of values for coordinate control points along each respective curve's length",
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1435,21 +1120,23 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "130b5e446bad4826acf21af90fea8497",
-          "7a9264d7a6cf4a0c8a5895a9a2f2db6e",
-          "d3a843ef268646b49aa2b7d0049c6864",
-          "24f70f88535b4a6aa1a3d0aed97fcd53"
+          "c191fc21ec7740e097291ca4533585b6",
+          "c32dc821c4024ed686bc303f822f920f",
+          "6da2f6d71a264b94b680b711751c36a9",
+          "ba1b5e3375e7435dbe8e238d53a360ac",
+          "f34ee81b201e43129e2d4b9a1cfcd69c",
+          "0ed65cb5f3fc4dd0a18b68aaded5882e"
         ],
         "HasNestedGroups": false,
-        "Left": 2659.430242281117,
-        "Top": 1304.741794514952,
-        "Width": 623.586670851988,
-        "Height": 359.6666666666665,
+        "Left": 2634.8872694786896,
+        "Top": 1049.563229888423,
+        "Width": 709.3589202402677,
+        "Height": 619.4145071928328,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": 1378.0751278482853,
-        "InitialHeight": 252.48450878151198,
-        "TextblockHeight": 63.333333333333336,
+        "InitialTop": 1209.1632298884228,
+        "InitialHeight": 283.03032376032047,
+        "TextblockHeight": 149.6,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1457,8 +1144,8 @@
         "Background": "#FFB9F9E1"
       },
       {
-        "Id": "d8a009c0fe3b447a97e5d336cca5850e",
-        "Title": "Rejoin points in lists",
+        "Id": "5f2a65e62c34418a82b7dfffa35772cf",
+        "Title": "Get a coordinate system at the start, sin wave value, end, and sin wave value of each curve",
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1466,20 +1153,18 @@
         "UserSetWidth": 0.0,
         "UserSetHeight": 0.0,
         "Nodes": [
-          "fab4dff0b6c54b4e81353b935221d96b",
-          "6dc842cd098a4ffeb9c5ec1f22ebdfed",
-          "0bad35fbc42141e3aebac9990ef67869"
+          "4ecc9d666ec34dd3a1b27b2bff2def88"
         ],
         "HasNestedGroups": false,
-        "Left": 3486.771118243306,
-        "Top": 587.8426979298366,
-        "Width": 439.38074544035317,
-        "Height": 362.9681589488656,
+        "Left": 3574.1790444886065,
+        "Top": 863.8002534629234,
+        "Width": 369.5999999999999,
+        "Height": 418.20000000000005,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": 661.17603126317,
-        "InitialHeight": 206.9681589488656,
-        "TextblockHeight": 63.333333333333336,
+        "InitialTop": 1109.8002534629234,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 236.0,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
@@ -1487,8 +1172,41 @@
         "Background": "#FFB9F9E1"
       },
       {
-        "Id": "3380824479aa4b19b1287d064567a332",
-        "Title": "Curtain Wall Grid Lines have been pre-selected from Revit, Element IDs saved with the Dynamo file",
+        "Id": "2951728f7edf41e7b46feb60fa42545b",
+        "Title": "Create a point at the mapped offset at each coordinate system on the curve",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [
+          "285934827aee447eb16ab3751e2d495e",
+          "46a74988c7ce470e9ade305e3e865793",
+          "1b8a771951364f6e8447b4a3af46c0cc",
+          "83947db88b3346a281aee414984d3129",
+          "00b5f2ac881847ceb2fd15a4e71d169c",
+          "28592c3fffb54b299a57593e43d41065"
+        ],
+        "HasNestedGroups": false,
+        "Left": 3481.526996445068,
+        "Top": 1305.383438475256,
+        "Width": 1004.5487585493311,
+        "Height": 511.80122554607965,
+        "FontSize": 36.0,
+        "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
+        "InitialTop": 1421.7834384752562,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 106.4,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "768e5b55d1d04343b07919e90662cf96",
+        "Title": "Curtain wall grid lines will be pre-selected if you run this graph the Snowdon Towers Sample Architectural.rvt file in the Samples folder located with your Revit installation: \n\nC:\\Program Files\\Autodesk\\Revit 2027\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1497,8 +1215,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 523.7171509454729,
-        "Top": 887.0129310042632,
+        "Left": 978.1011587676785,
+        "Top": 580.00149796027,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1513,33 +1231,7 @@
         "Background": "#FFC1D676"
       },
       {
-        "Id": "431987b465b44dc09eb7b88d570befe7",
-        "Title": "\nRun this graph the Snowdon Towers Sample Architectural.rvt file in the Samples folder located with your Revit installation: \n\nC:\\Program Files\\Autodesk\\Revit 2027\\Samples\n\nRun this graph after you load the adaptive family AdaptivePanel.rfa from the Dynamo datasets location.",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 525.7132008348375,
-        "Top": 584.4165308361489,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676"
-      },
-      {
-        "Id": "278575d9f70a4065b31e24800ea8af8d",
+        "Id": "b4280cb3f8324eefbb0d3fdbe7b770e3",
         "Title": "Place Adaptive Components relative to some elements selected in a Revit file. \n\nAdaptive components require a set of points equal to the number of Placement points of the Family being placed",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -1549,8 +1241,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 523.5745535857296,
-        "Top": 758.1481499646369,
+        "Left": 984.5011587676785,
+        "Top": 821.3810196978563,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1565,7 +1257,7 @@
         "Background": "#FFC1D676"
       },
       {
-        "Id": "80d7bfade1e448fe8bc6362b7b7952b3",
+        "Id": "085b779c5dfa4bf39797c90e352feab2",
         "Title": "Select Curtain Wall Grid Lines ",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -1575,8 +1267,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 579.216715708072,
-        "Top": 1125.24893581587,
+        "Left": 1045.7011587676784,
+        "Top": 1055.7351990889556,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1589,11 +1281,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "6b81b78758ad4b52b53add6f747db074"
+        "PinnedNode": "f1758d2864d248acba2d2101a000be08"
       },
       {
-        "Id": "5cadcd68144f4f848232bf190545ef25",
-        "Title": "Create a list of point positions along a curve, 0 being the Start, 0.5 - Middle and 1 being the End ",
+        "Id": "01655468a73f43089ea3c6c5ee130650",
+        "Title": "Select Adaptive Component family. Original intent was the family \"AdaptivePanel:AdaptivePanel\".",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1602,8 +1294,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 1214.3729049931205,
-        "Top": 864.5980911970087,
+        "Left": 956.1011587676785,
+        "Top": 2031.1081624742899,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1616,11 +1308,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "af7b9fc0acda4b309fe5c241ef8fe097"
+        "PinnedNode": "4222fc426b5b47959556c8e60d09f31e"
       },
       {
-        "Id": "459f18f8d80f437db27d96b65f407b3d",
-        "Title": "Select Adaptive Component family",
+        "Id": "b2ce7ffecaaf46f09786add3e403ff33",
+        "Title": "Set the minimum displacement at the fin's mid point",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1629,8 +1321,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 796.309378926277,
-        "Top": 1396.6311940492787,
+        "Left": 953.5011587676786,
+        "Top": 1327.778439935289,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1643,11 +1335,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "c9ef7e9c72b241a68d388717c66b4dd6"
+        "PinnedNode": "4da46de9c6cd49fba40c8d380fa76d44"
       },
       {
-        "Id": "77c6ea9e233f43ba977326f3594954c4",
-        "Title": "Set the minimum and maximum displacement for the fin middle point",
+        "Id": "057b6c25685d403585bfe20196e3941a",
+        "Title": "Create a sequence of N values from 0 to 360",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1656,8 +1348,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 553.231256150713,
-        "Top": 1596.9111452729583,
+        "Left": 1619.0800641809365,
+        "Top": 1190.926147620983,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1670,37 +1362,10 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "92f76a138e58430088a8bc5827b008c3"
+        "PinnedNode": "b3f1e8593a9f4b86af987909995f917d"
       },
       {
-        "Id": "02e1a6c6d759486f89cb0896f48eb442",
-        "Title": "Create a sequence of N values from 0 to 1",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 1617.8133975142696,
-        "Top": 1190.6594809543167,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "f8b61e9e3099413c98cf25ce2cc11c4e"
-      },
-      {
-        "Id": "784d4bf56b5143b79ec2aed941d48010",
+        "Id": "c2b12249d64d4e5c99f9dbcd12fd155c",
         "Title": "Count how many source curves are selected",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -1711,7 +1376,7 @@
         "Nodes": [],
         "HasNestedGroups": false,
         "Left": 1345.4543431631162,
-        "Top": 1190.6594809543167,
+        "Top": 1190.926147620983,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1724,11 +1389,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "191d07972893454993daa1707deb3180"
+        "PinnedNode": "1f27181539384385a5e0c45970b57248"
       },
       {
-        "Id": "0e12f041d06d4e90a4de32ff73d6a5b8",
-        "Title": "Create a sine wave",
+        "Id": "ad6cc559cdfc4ced89d38d96af5b5f6a",
+        "Title": "Create a sine wave from the sequence of values",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1737,8 +1402,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 1989.1757711469563,
-        "Top": 1190.6594809543167,
+        "Left": 1912.3757711469561,
+        "Top": 1190.926147620983,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1751,11 +1416,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "c0a4c919113e4eccbca87be73233804b"
+        "PinnedNode": "f75671f48d924cccb57447a6bc898016"
       },
       {
-        "Id": "956062d2ac834a30b51e8f05d28f10aa",
-        "Title": "Remap the values of the sine wave to a new Max and MIn",
+        "Id": "c751452b658143a781f20f014d04c3cc",
+        "Title": "Remap the values of the sine wave to a new Max and MIn parameter displacement",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1765,7 +1430,7 @@
         "Nodes": [],
         "HasNestedGroups": false,
         "Left": 2216.29063146894,
-        "Top": 1217.2965632217565,
+        "Top": 1217.1632298884228,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1778,172 +1443,10 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "99d7c9323ba34421bcb308c252e3ccb0"
+        "PinnedNode": "56a49d94e337469e9c17ea09ab481a14"
       },
       {
-        "Id": "d3a843ef268646b49aa2b7d0049c6864",
-        "Title": "For Y displacement, negate the value to displace towards the outside of the Curtain Wall",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 2669.430242281117,
-        "Top": 1420.8929699631308,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "7a9264d7a6cf4a0c8a5895a9a2f2db6e"
-      },
-      {
-        "Id": "24f70f88535b4a6aa1a3d0aed97fcd53",
-        "Title": "Displace the middle points of the fin",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 3035.683579799772,
-        "Top": 1386.0751278482853,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "130b5e446bad4826acf21af90fea8497"
-      },
-      {
-        "Id": "7ba619375cc04240a16eee4d881f31d2",
-        "Title": "Locate start, middle and end points on each curve",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 1498.8938242709416,
-        "Top": 544.7763717857341,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "d0063f8838f5425ca69030b132fa7849"
-      },
-      {
-        "Id": "3042251207704205a0f6cc39fe6ac33e",
-        "Title": "Use list Levels of the input 'list'. By default, the result of the node will be the list with the index one (the second curve). Right-Click on the 'list' input and select 'Use Levels' at @L2. This will select the item with index 1 from each nested list (middle points from each curve)",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 2228.900449493391,
-        "Top": 773.2758890341789,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "6bc0efe9cb96471a97066c5d3c27e315"
-      },
-      {
-        "Id": "d752a9ec387e4cd1a5809b64510e3959",
-        "Title": "Similar to selecting the Mid point, use Levels to select the start and end points from each curve",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 3025.9353382999793,
-        "Top": 632.9745806907938,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "54b858bee2934f45b383f516a2365b20"
-      },
-      {
-        "Id": "0bad35fbc42141e3aebac9990ef67869",
-        "Title": "Flip the matrix and organize lists in sets of 3",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "UserSetWidth": 0.0,
-        "UserSetHeight": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 3660.151863683659,
-        "Top": 669.17603126317,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "IsOptionalInPortsCollapsed": false,
-        "IsUnconnectedOutPortsCollapsed": false,
-        "HasToggledOptionalInPorts": false,
-        "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "6dc842cd098a4ffeb9c5ec1f22ebdfed"
-      },
-      {
-        "Id": "c0fc76ff7d594730b7e16f5c31962c88",
+        "Id": "c2a5301863894e97949b060a605bf090",
         "Title": "Adaptive components can be positioned using sets of points equal to the number of Placement points of the Family.",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -1953,8 +1456,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 4077.9950273967024,
-        "Top": 755.1376133989152,
+        "Left": 4589.353899218921,
+        "Top": 1646.4861197941004,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1967,11 +1470,11 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "b94ef927c46e4c8385680ec8fd75b129"
+        "PinnedNode": "2216588a54734e819c3031ceda9772a2"
       },
       {
-        "Id": "0340ea408f03483c957d6555689bcbbb",
-        "Title": "Displace the middle points of the fin",
+        "Id": "926e8bf0801c4408a2d95f78d3486fbd",
+        "Title": "Before running this graph load the utilized family named \"AdaptivePanel.rfa\" from the following location:\r\n\nC:\\Program Files\\Autodesk\\Revit 2027\\AddIns\\DynamoForRevit\\Samples\\Data\\AdaptivePanel.rfa",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1980,8 +1483,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 3054.5097896613174,
-        "Top": 1718.4566762472127,
+        "Left": 986.1011587676785,
+        "Top": 700.6912588290631,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1993,12 +1496,11 @@
         "IsUnconnectedOutPortsCollapsed": false,
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
-        "Background": "#FFC1D676",
-        "PinnedNode": "c9aa88809504465bb5f22c9d641caf92"
+        "Background": "#FFC1D676"
       },
       {
-        "Id": "1e34222e75c343ba9c314076df54734a",
-        "Title": "For Y displacement, negate the value to displace towards the outside of the Curtain Wall",
+        "Id": "807ac80b59f94f75b1638fb7904c6fd2",
+        "Title": "Set the maximum displacement at the fin's mid point",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -2007,8 +1509,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 2636.844107369333,
-        "Top": 1771.8762329065876,
+        "Left": 952.5011587676786,
+        "Top": 1562.2216807816226,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2021,11 +1523,173 @@
         "HasToggledOptionalInPorts": false,
         "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
-        "PinnedNode": "99173643f79a425d9e042edd52e25c39"
+        "PinnedNode": "8c2208e9bb1f4336b60166780157b3da"
+      },
+      {
+        "Id": "b6c5382c84ac4da29f94cfd467c7d24e",
+        "Title": "Set the maximum displacement at the fin's mid point",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 952.5011587676786,
+        "Top": 1796.6649216279561,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "68317698e29c4ae59026b83a830f2b26"
+      },
+      {
+        "Id": "ba1b5e3375e7435dbe8e238d53a360ac",
+        "Title": "Inserts the remapped value between 0 and 1",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 2798.584625697935,
+        "Top": 1371.6027668882516,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "c191fc21ec7740e097291ca4533585b6"
+      },
+      {
+        "Id": "f34ee81b201e43129e2d4b9a1cfcd69c",
+        "Title": "Append the sin wave value to the end of each respective list",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 3068.2461897189573,
+        "Top": 1217.1632298884228,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "0ed65cb5f3fc4dd0a18b68aaded5882e"
+      },
+      {
+        "Id": "1b8a771951364f6e8447b4a3af46c0cc",
+        "Title": "Multiply the parameters by the respective offset values of [0, max offset, 0, -max offset]",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 3845.127399741503,
+        "Top": 1468.3254030415014,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "46a74988c7ce470e9ade305e3e865793"
+      },
+      {
+        "Id": "00b5f2ac881847ceb2fd15a4e71d169c",
+        "Title": "Uses the offset value to create points at each coordinate system along the curves.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 4197.875754994399,
+        "Top": 1429.7834384752562,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "285934827aee447eb16ab3751e2d495e"
+      },
+      {
+        "Id": "28592c3fffb54b299a57593e43d41065",
+        "Title": "The 0's ensures no offset value at the start and end of each curve. The + and - offset ensure the offset is applied at the sin wave.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 3495.126996445068,
+        "Top": 1605.7846640213359,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
+        "Background": "#FFC1D676",
+        "PinnedNode": "83947db88b3346a281aee414984d3129"
       }
     ],
-    "X": -154.32323955100765,
-    "Y": -156.66900013058947,
-    "Zoom": 0.4291228236886349
+    "X": 92.1954130384338,
+    "Y": 223.63407973964496,
+    "Zoom": 0.1894644727270262
   }
 }
