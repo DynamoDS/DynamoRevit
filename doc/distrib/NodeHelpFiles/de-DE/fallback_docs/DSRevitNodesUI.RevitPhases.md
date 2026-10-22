@@ -1,7 +1,8 @@
 ## Im Detail
-Mit diesem Block können Sie eine bestimmte Phase aus dem Modell mithilfe eines Dropdown-Menüs auswählen.
+`Select Phase` stellt eine Phase bereit, die aus den im aktiven Revit-Projekt verfügbaren Phasen ausgewählt wird, und gibt die ausgewählte Phase zurück.
 
-In diesem Beispiel wird eine Wand ausgewählt, und der Block Select Phase wird angewendet, um die Phasenzuweisung zu ändern. Der letzte Block bestätigt die Änderung, indem der aktualisierte Phasenname ("Existing") angezeigt wird.
+Im folgenden Beispiel werden ein Familientyp und Punkt zum Platzieren einer Familieninstanz verwendet. Der Exemplarparameter `Phase Created` wird mit `Select Phase` und der Eingabe "Existing" geändert.
+
 ___
 ## Beispieldatei
 

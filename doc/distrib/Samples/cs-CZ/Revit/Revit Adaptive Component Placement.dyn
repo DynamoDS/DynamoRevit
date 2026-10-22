@@ -1863,7 +1863,7 @@
       },
       {
         "Id": "3042251207704205a0f6cc39fe6ac33e",
-        "Title": "Použijte úrovně seznamu u vstupu 'list'. Ve výchozím nastavení bude výsledkem uzlu seznam s indexem jedna (druhá křivka). Klikněte pravým tlačítkem na vstup 'list' a vyberte položku 'Použít úrovně' na @L2. Tím vyberete položku s indexem 1 z každého vnořeného seznamu (středové body z každé křivky).",
+        "Title": "Použijte úrovně seznamu u vstupu `list`. Ve výchozím nastavení bude výsledkem uzlu seznam s indexem jedna (druhá křivka). Klikněte pravým tlačítkem na vstup `list` a vyberte položku `Použít úrovně` na @L2. Tím vyberete položku s indexem 1 z každého vnořeného seznamu (středové body z každé křivky).",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
