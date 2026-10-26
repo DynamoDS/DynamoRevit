@@ -714,6 +714,29 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\materials.rvt")]
+        public void MaterialsDropDown()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\MaterialsDropDown.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSRevitNodesUI.Materials>();
+            Assert.NotNull(selectNode);
+
+            // the dropdown should list every material in the document
+            var materialCount = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.Material))
+                .GetElementCount();
+            Assert.AreEqual(materialCount, selectNode.Items.Count);
+
+            var material = GetPreviewValue(selectNode.GUID.ToString()) as Revit.Elements.Material;
+            Assert.NotNull(material);
+            Assert.AreEqual("Glass", material.Name);
+        }
+
+        [Test]
         [Category("SmokeTests")]
         [TestModel(@".\Selection\Selection.rfa")]
         public void SelectReference()
