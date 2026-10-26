@@ -475,6 +475,13 @@
     <value>All ceiling types available in the document.</value>
     <comment>Description for Ceiling Types</comment>
   </data>
+  <data name="MaterialsDescription" xml:space="preserve">
+    <value>Select a material in the active document</value>
+    <comment>Description for Materials</comment>
+  </data>
+  <data name="NoMaterialsAvailable" xml:space="preserve">
+    <value>No materials available.</value>
+  </data>
   <data name="PickFamilyInstancesDescription" xml:space="preserve">
     <value>Pick multiple Family Instances from the Revit document.</value>
   </data>

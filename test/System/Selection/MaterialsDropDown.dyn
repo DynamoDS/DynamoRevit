@@ -1,0 +1,76 @@
+{
+  "Uuid": "6bb66049-deb9-412b-85e6-1b22b23077ed",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "MaterialsDropDown",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Materials, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Glass",
+      "NodeType": "ExtensionNode",
+      "Id": "14e0b8bb7355432a9be90994735cc1d7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "62afb09cd45141ddbf2b468cc6c84fd3",
+          "Name": "Material",
+          "Description": "The selected Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": null
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7736",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Materials",
+        "Id": "14e0b8bb7355432a9be90994735cc1d7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 308.66666666666669,
+        "Y": 297.33333333333337
+      }
+    ],
+    "Annotations": [],
+    "X": -60.777814470842344,
+    "Y": -78.625930480561522,
+    "Zoom": 1.33823125
+  }
+}

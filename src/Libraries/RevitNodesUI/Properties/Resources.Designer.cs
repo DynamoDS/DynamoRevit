@@ -322,6 +322,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a material in the active document.
+        /// </summary>
+        internal static string MaterialsDescription {
+            get {
+                return ResourceManager.GetString("MaterialsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No active Revit document found..
         /// </summary>
         internal static string NoActiveDocumentFound {
@@ -354,6 +363,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string NoFloorTypesAvailable {
             get {
                 return ResourceManager.GetString("NoFloorTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No materials available..
+        /// </summary>
+        internal static string NoMaterialsAvailable {
+            get {
+                return ResourceManager.GetString("NoMaterialsAvailable", resourceCulture);
             }
         }
         
