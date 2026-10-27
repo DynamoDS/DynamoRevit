@@ -1,11 +1,9 @@
 ## 상세
-이 노드는 Revit 프로젝트에서 수정기호 번호 지정이 관리되는 방법을 전역적으로(프로젝트당) 또는 시트당 개별적으로(시트당) 정의하는 드롭다운 리스트를 제공합니다.
+`Select Revision Numbering`은 프로젝트에서 사용하는 수정기호 번호 지정 방식을 제공합니다. 수정기호의 번호는 프로젝트 기준 또는 시트 기준으로 지정할 수 있으며, 각각 `PerProject` 및 `PerSheet` 옵션에 해당합니다.
 
-이 예에서는 수정기호 번호 지정 선택 노드의 값인 "PerProject"을 사용하여 새 수정기호를 작성합니다.
+아래 예제에서는 수정기호를 작성하고 `Select Revision Numbering`을 입력 중 하나로 사용합니다.
 
-수정기호에 대한 자세한 내용은 링크를 참고하십시오.
-https://help.autodesk.com/view/RVT/2025/KOR/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+수정기호에 대한 자세한 내용은 [Revit 문서](https://help.autodesk.com/view/RVT/2025/KOR/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4)를 참조하십시오.
 ___
 ## 예제 파일
 
