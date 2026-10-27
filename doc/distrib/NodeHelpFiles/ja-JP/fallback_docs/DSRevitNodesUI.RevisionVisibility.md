@@ -1,10 +1,9 @@
 ## 詳細
-このノードを使用すると、改訂の改訂表示設定を選択することができます(ここで使用可能なオプションは「CloudsAndTagVisible」、「Tag Visible」、「Hidden」です)。表示設定によって、選択した改訂がどこに表示されるか(雲マーク、タグ、シートのいずれかに表示、非表示など)が決まります。
+`Select Revision Visibility` により、Revit の改訂表示モードを指定できます。選択肢は `CloudAndTagVisible`、`TagVisible`、`Hidden` です。
 
-この例では、Select Revision Visibility ノード、値「TagVisible」を使用して新しい改訂が作成されます。
+次の例では、`Select Revision Visibility` を入力の 1 つとして使用し、改訂を作成しています。
 
-改訂の詳細については、リンクを参照してください。
-https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+改訂の詳細については、Revit のドキュメント(https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4)を参照してください。
 
 ___
 ## サンプル ファイル
