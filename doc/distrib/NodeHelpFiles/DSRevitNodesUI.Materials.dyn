@@ -1,0 +1,148 @@
+{
+  "Uuid": "1e9eb5de-9e25-494f-b4c4-6cd8f032c238",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.Materials",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Materials, DSRevitNodesUI",
+      "SelectedIndex": 296,
+      "SelectedString": "Wood",
+      "Id": "bffaf5b8f0484ff0b04c4269fce2ed72",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5f64dcad615c427a93cc7ce6ec581c78",
+          "Name": "Material",
+          "Description": "The selected Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a material in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "42b212aa1395439aa5133e892746a872",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a1da1f2d3f8d4aeb9f291c86adf00dd1",
+          "Name": "material",
+          "Description": "Revit.Elements.Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fc2d7725be6642c6a5cbe36b21daba25",
+          "Name": "Color",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.SurfacePatternColor",
+      "Replication": "Auto",
+      "Description": "Get SurfacePatternColor\n\nMaterial.SurfacePatternColor: Color"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5f64dcad615c427a93cc7ce6ec581c78",
+      "End": "a1da1f2d3f8d4aeb9f291c86adf00dd1",
+      "Id": "c88ee8ff0b2a4c678787f26edee17a78",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "4.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "10.3",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "4.2.0.5752",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "bffaf5b8f0484ff0b04c4269fce2ed72",
+        "Name": "Materials",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 132.0000000000001,
+        "Y": 127.60000000000008
+      },
+      {
+        "Id": "42b212aa1395439aa5133e892746a872",
+        "Name": "Material.SurfacePatternColor",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 448.83471686406335,
+        "Y": 125.78117317925131
+      }
+    ],
+    "Annotations": [],
+    "X": -58.51659187917517,
+    "Y": 18.243714565810713,
+    "Zoom": 0.8476185719982269
+  }
+}

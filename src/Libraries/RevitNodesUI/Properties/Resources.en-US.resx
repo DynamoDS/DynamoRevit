@@ -476,7 +476,7 @@
     <comment>Description for Ceiling Types</comment>
   </data>
   <data name="MaterialsDescription" xml:space="preserve">
-    <value>Select a material in the active document</value>
+    <value>Select a material in the active document.</value>
     <comment>Description for Materials</comment>
   </data>
   <data name="NoMaterialsAvailable" xml:space="preserve">

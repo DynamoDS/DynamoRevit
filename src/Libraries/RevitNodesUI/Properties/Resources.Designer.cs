@@ -322,7 +322,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a material in the active document.
+        ///   Looks up a localized string similar to Select a material in the active document..
         /// </summary>
         internal static string MaterialsDescription {
             get {
