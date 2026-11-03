@@ -873,6 +873,56 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Materials")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("MaterialsDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Material")]
+    public class Materials : RevitDropDownBase
+    {
+        private const string outputName = "Material";
+
+        public Materials() : base(outputName) { }
+
+        [JsonConstructor]
+        public Materials(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            //find all materials in the project
+            var elements = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.Material))
+                .ToElements();
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoMaterialsAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (!CanBuildOutputAst(Properties.Resources.NoMaterialsAvailable))
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
+            var node = AstFactory.BuildFunctionCall(
+                "Revit.Elements.ElementSelector",
+                "ByElementId",
+                new List<AssociativeNode>
+                {
+                    AstFactory.BuildIntNode(((Autodesk.Revit.DB.Material)Items[SelectedIndex].Item).Id.Value)
+                });
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
+
     public abstract class AllElementsInBuiltInCategory : RevitDropDownBase 
     {
         private string noTypesMessage;
