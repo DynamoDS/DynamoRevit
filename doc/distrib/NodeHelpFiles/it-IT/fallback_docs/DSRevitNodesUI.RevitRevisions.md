@@ -1,7 +1,9 @@
 ## In profondità
-Questo nodo consente di selezionare un elemento revisione specifico dal documento di Revit attivo.
+`Select Revision` fornisce un modo per selezionare una revisione dal progetto di Revit corrente.
 
-In questo esempio, viene utilizzato il nodo Select Revision utilizzando il menu a discesa e selezionando una revisione dal documento corrente. Gli ultimi 2 nodi mostrano alcune proprietà di revisione.
+Nell'esempio seguente, viene utilizzato il nodo`Select Revision` con l'opzione "Seq. 1 - Schematic Design" selezionata. L'output viene quindi utilizzato come input per recuperare la data della revisione e lo stato di emissione.
+
+Per ulteriori informazioni sulle revisioni, vedere la [documentazione di Revit](https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## File di esempio
 
