@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Revit.Elements;
 using RevitTestServices;
@@ -21,14 +22,19 @@ namespace RevitNodesTests.Elements
             ElementId overrideParamId = new ElementId(BuiltInParameter.MEP_SEGMENT_OVERRIDE);
             double newValue = 1.0;
             var elbow = ElementSelector.ByElementId(m_testElbowId, true);
-            foreach (Revit.Elements.Subelement subelem in elbow.Subelements)
+            var analyticalDuctSegments = elbow.Subelements
+                .Where(s => s.Category.Id == (long)BuiltInCategory.OST_DuctAnalyticalSegments)
+                .ToList();
+            Assert.That(analyticalDuctSegments.Count, Is.GreaterThan(0));
+
+            foreach (Revit.Elements.Subelement subelem in analyticalDuctSegments)
             {
                 int intValue = (int)SegmentOverrideType.OverrideLossCoefficient;
                 subelem.SetParameterValue(overrideParamId, new IntegerParameterValue(intValue));
                 subelem.SetParameterValue(lossCoeffParamId, new DoubleParameterValue(newValue));
             }
 
-            foreach (Revit.Elements.Subelement subelem in elbow.Subelements)
+            foreach (Revit.Elements.Subelement subelem in analyticalDuctSegments)
             {
                 var flowValue = subelem.GetParameterValue(lossCoeffParamId);
                 Assert.AreEqual((double)flowValue, newValue);
