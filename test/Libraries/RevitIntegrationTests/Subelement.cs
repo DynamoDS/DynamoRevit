@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -29,20 +29,34 @@ namespace RevitSystemTests
             var subelemElement = GetFlattenedPreviewValues("8e50e4cab1bd4517abc6d3ca81d11110");
             Assert.IsTrue(subelemElement.All(e => e.ToString() == "Duct"));
 
-            // Both nodes replicate over the same subelement list, so ids[i] and values[i]
-            // belong to the same subelement.
-            var allParams = GetPreviewCollection("01312066e09b4b1e86b76bad85944e9f");
+            // Both nodes replicate over the same subelement list, so allParams[i] and
+            // paramValues[i] belong to the same subelement.
+            var allParams = GetPreviewValuesPerSubelement("01312066e09b4b1e86b76bad85944e9f");
             Assert.AreEqual(subelemCat.Count, allParams.Count);
-            var paramValues = GetPreviewCollection("c0448b187dc74bce8e0ecbfba591d0fc");
+            var paramValues = GetPreviewValuesPerSubelement("c0448b187dc74bce8e0ecbfba591d0fc");
             Assert.AreEqual(allParams.Count, paramValues.Count);
             for (int i = 0; i < allParams.Count; i++)
             {
-                var ids = ((IEnumerable)allParams[i]).Cast<object>().ToList();
-                var values = ((IEnumerable)paramValues[i]).Cast<object>().ToList();
-                Assert.IsNotEmpty(ids);
-                Assert.AreEqual(ids.Count, values.Count);
-                Assert.IsTrue(values.Any(v => v.ToString() == "Supply Air"));
+                Assert.IsNotEmpty(allParams[i]);
+                Assert.AreEqual(allParams[i].Count, paramValues[i].Count);
+                Assert.IsTrue(paramValues[i].Any(v => v.ToString() == "Supply Air"));
             }
+        }
+
+        /// <summary>
+        /// Returns the node's output as one value list per subelement, without flattening.
+        /// </summary>
+        private List<List<object>> GetPreviewValuesPerSubelement(string guid)
+        {
+            var data = GetRuntimeMirror(GetVarName(guid)).GetData();
+            Assert.IsTrue(data.IsCollection);
+            return data.GetElements()
+                .Select(e =>
+                {
+                    Assert.IsTrue(e.IsCollection);
+                    return e.GetElements().Select(x => x.Data).ToList();
+                })
+                .ToList();
         }
     }
 }
