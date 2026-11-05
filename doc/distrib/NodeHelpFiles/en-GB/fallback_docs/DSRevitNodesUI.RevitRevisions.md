@@ -1,7 +1,9 @@
 ## In Depth
-This node allows you to select a specific Revision element from the active Revit document.
+`Select Revision` provides a way to select a revision from the current Revit project.
 
-In this example, the Select Revision node is used by using the drop down menu and selecting a revision from the current document.  The last 2 nodes show some revision properties.
+In the example below, `Select Revision` is used with "Seq. 1 - Schematic Design" selected. The output is then used as an input to retrieve the revision's date and issued status.
+
+For more information on revisions, see the [Revit documentation](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Example File
 

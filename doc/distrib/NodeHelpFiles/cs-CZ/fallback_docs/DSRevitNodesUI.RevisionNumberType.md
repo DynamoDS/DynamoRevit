@@ -1,10 +1,9 @@
 ## Podrobnosti
-Tento uzel umožňuje vybrat Typ čísla revize z dostupných možností v projektu aplikace Revit. Obvykle se používá k definování způsobu číslování nebo označování revizí písmeny v rámci sekvence revizí (například číselné, alfanumerické nebo žádné).
+Uzel `Select Revision Number Type` poskytne typ číslování revizí k použití v pracovních postupech, které souvisejí s revizemi. Mezi typy patří Numerické, Alfanumerické nebo Žádné.
 
-V tomto příkladu je vytvořena nová revize pomocí hodnoty „Alfanumerické“ uzlu Vyberte typ čísla revize.
+V příkladu níže je vytvořena revize a jako jeden vstup se použil uzel `Select Revision Number Type`.
 
-Další informace o revizích naleznete v odkazu.
-https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
+Další informace o revizích naleznete v dokumentu [Revit documentation](https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Vzorový soubor
 

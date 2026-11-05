@@ -1,11 +1,9 @@
 ## Informacje szczegółowe
-Ten węzeł udostępnia listę rozwijaną, która definiuje sposób zarządzania numerowaniem rewizji w projekcie programu Revit — globalnie (Per Project) lub indywidualnie według arkusza (Per Sheet).
+Węzeł Select Revision Numbering udostępnia metodę numeracji rewizji używaną w projekcie. Rewizje mogą być numerowane wg projektu (opcja PerProject) lub wg arkusza (PerSheet).
 
-W tym przykładzie tworzona jest nowa rewizja przy użyciu węzła Select Revision Numbering i wartości „PerProject”.
+W tym przykładzie jest tworzona rewizja przy użyciu węzła Select Revision Numbering i służy ona jako jedne z danych wejściowych.
 
-Aby uzyskać więcej informacji na temat rewizji, skorzystaj z łącza.
-https://help.autodesk.com/view/RVT/2025/PLK/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4
-
+Aby uzyskać więcej informacji na temat rewizji, zapoznaj się z [dokumentacją programu Revit](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-0F2A9A13-0A88-4D18-9DF7-C0296DE0FFE4).
 ___
 ## Plik przykładowy
 
