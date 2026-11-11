@@ -723,6 +723,9 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
+            // The test graph contains only the Materials node
+            Assert.AreEqual(1, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+
             var selectNode =
                 ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSRevitNodesUI.Materials>();
             Assert.NotNull(selectNode);
