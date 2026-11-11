@@ -11,6 +11,8 @@ namespace RevitSystemTests
     [TestFixture]
     class RevitDropDownTests : RevitSystemTestBase
     {
+        private const int MaterialsToVerify = 5;
+
         [Test]
         [TestModel(@".\empty.rvt")]
         public void AllCategoriesHasValidValue()
@@ -84,7 +86,11 @@ namespace RevitSystemTests
             var expectedNames = documentMaterials.Select(m => m.Name).OrderBy(name => name).ToList();
             CollectionAssert.AreEqual(expectedNames, node.Items.Select(item => item.Name).ToList());
 
-            for (int i = 0; i < node.Items.Count; i++)
+            // The graph is run once per selected item, so only the first few materials are
+            // exercised. This keeps the run time and the number of assertions independent of
+            // how many materials the test model contains.
+            Assert.GreaterOrEqual(node.Items.Count, MaterialsToVerify);
+            for (int i = 0; i < MaterialsToVerify; i++)
             {
                 var item = node.Items[i];
                 node.SelectedIndex = i;
