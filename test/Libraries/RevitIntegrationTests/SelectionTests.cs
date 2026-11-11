@@ -714,6 +714,39 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\Material\GetMaterialByName.rfa")]
+        public void MaterialsDropDown()
+        {
+            const string expectedMaterialName = "Glass";
+
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\MaterialsDropDown.dyn"));
+
+            RunCurrentModel();
+
+            // The test graph contains only the Materials node
+            Assert.AreEqual(1, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSRevitNodesUI.Materials>();
+            Assert.NotNull(selectNode);
+
+            // The saved selection is restored by name when the graph is opened
+            Assert.AreEqual(expectedMaterialName, selectNode.SelectedString);
+            Assert.AreEqual(expectedMaterialName, selectNode.Items[selectNode.SelectedIndex].Name);
+            Assert.AreEqual(ElementState.Active, selectNode.State);
+
+            var material = GetPreviewValue(selectNode.GUID.ToString()) as Revit.Elements.Material;
+            Assert.NotNull(material);
+            Assert.AreEqual(expectedMaterialName, material.Name);
+
+            // The output wraps the matching material from the Revit document
+            var expectedMaterial = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.Material))
+                .First(m => m.Name == expectedMaterialName);
+            Assert.AreEqual(expectedMaterial.Id.Value, material.Id);
+        }
+
+        [Test]
         [Category("SmokeTests")]
         [TestModel(@".\Selection\Selection.rfa")]
         public void SelectReference()
