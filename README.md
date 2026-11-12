@@ -5,11 +5,14 @@
 
 ## How to build and use DynamoRevit
 
-To use a locally built DynamoRevit plugin inside Revit, you'll need to do three things:
+To use a locally built DynamoRevit plugin inside Revit, you'll need to go through the steps below:
 1. [Build DynamoRevit](#1-build-dynamorevit)
 2. [Get or Build Dynamo Core](#2-get-or-build-dynamo-core)
 3. [Associate DynamoRevit with DynamoCore](#3-associate-dynamorevit-with-dynamo-core)
 4. [Create a Revit Addin](#4-create-a-revit-addin)
+5. [Match Dynamo Build Version](#5-match-dynamo-build-version)
+6. [Build Local Nuget Packages](#6-build-local-nuget-packages)
+7. [Remove conflicting assemblies](#7-remove-conflicting-assemblies)
 
 ### 1. Build DynamoRevit
 
@@ -21,9 +24,10 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 - Make sure you have the following installed on your computer:
    - For Revit 2024 and older: [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download)
    - For Revit 2025 and newer: [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) for Windows x64
-- Copy `RevitAPI.dll`&`RevitAPIUI.dll` to the folder `DynamoRevit\lib\Revit Preview Release\net48`, these 2 dlls are in the folder same with `Revit.exe` installed on your computer
+- Copy `RevitAPI.dll`&`RevitAPIUI.dll` to the folder `DynamoRevit\lib\Revit Preview Release\net8.0` (create the necessary folders manually), these 2 dlls are in the folder same with `Revit.exe` installed on your computer (`C:\Program Files\Autodesk\Revit 2025`)
 	(if you want to build other branch of DynamoRevit, but corresponding version of Revit is not installed locally, you can get these dlls from https://www.nuget.org/ )
-- Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2020`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder.
+- Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2025`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder (under `Solution Items\config in the Visual Studio solution`).
+    ```<RevitVersionNumber>2025</RevitVersionNumber>```
 - Open `DynamoRevit.All.sln` in Visual Studio, and select a build configuration (Debug | Release)
    - For Revit 2025 and newer you need Visual Studio 2022 (17.8.0 or newer)
 
@@ -77,6 +81,48 @@ This .addin file should be placed in the following location:
 where `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the output folder of the **Dynamo for Revit** build you created in step 1.
 
 Now you should be able to launch Revit and see the Dynamo and Dynamo Player icons on the Manage tab. If you experience issues, check the troubleshooting tips in the next section.
+
+### 5. Match Dynamo Build Version
+
+By default, the DynamoRevitDS.dll version is set to `27.0.0`. To match this to your current DynamoCore build, locate the `AssemblyInfoGenerator\AssemblySharedInfo.tt` file. Do the same for both DynamoRevit and Dynamo. Replace the last lines in the file:
+
+```
+<#+
+int MajorVersion = 27;
+int MinorVersion = 0;
+int BuildNumber = 0;
+int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2025,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
+#>
+```
+
+with the current Dynamo version, eg.
+
+```
+<#+
+int MajorVersion = 3;
+int MinorVersion = 6;
+int BuildNumber = 0;
+// The datetime baseline we choose using this algorithm will affect build number and all nuget packages uploaded
+// Please only change when major or minor version got incremented
+int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2023,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
+#>
+```
+
+### 6. Build Local Nuget Packages
+
+- Build Dynamo Core in ( Release ) configuration. 
+- Navigate to your `C:\Workspace\GitHub\Dynamo\tools\NuGet` folder
+- run the BuildPackages.bat as per the isntructions below (```.\BuildPackages.bat "template-nuget" "...\GitHub\Dynamo\bin\AnyCPU\Release"```) replacing the second path with your actual `Release` build folder
+- for further information read below and follow the link provided
+**At this stage, working with the nuget configuration is difficult for an outsider and very unreliable.**
+
+### 7. Remove conflicting assemblies
+
+Greedy-loading assemblies will conflict with current Dynamo dependencies. Remove the following AddIns to resolve this issue:
+- GenerativeDesign
+- GenerativeDesign.Extension
+- GenerativeDesign.Revit
+- GenerativeDesignForRevit
 
 ### Build dynamo revit against a local version of Dynamo
 
