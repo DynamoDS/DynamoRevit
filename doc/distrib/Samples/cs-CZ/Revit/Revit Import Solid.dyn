@@ -3136,7 +3136,7 @@
       },
       {
         "Id": "f80c8ae18e254b44abb89021161a103a",
-        "Title": "Chcete-li získat přehlednější pohled na konečný výsledek, klikněte pravým tlačítkem a zrušte zaškrtnutí možnosti 'Náhled geometrie'.",
+        "Title": "Chcete-li získat přehlednější pohled na konečný výsledek, klikněte pravým tlačítkem a zrušte zaškrtnutí možnosti `Náhled geometrie`.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -3513,7 +3513,7 @@
       },
       {
         "Id": "feee2c03bc0d49c4ad910796c26a43d7",
-        "Title": "Všechny vstupy označené hodnotou 'IsInput' je možné nastavit z aplikace Přehrávač skriptů Dynamo.",
+        "Title": "Všechny vstupy označené hodnotou `IsInput` je možné nastavit z aplikace Přehrávač skriptů Dynamo.",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

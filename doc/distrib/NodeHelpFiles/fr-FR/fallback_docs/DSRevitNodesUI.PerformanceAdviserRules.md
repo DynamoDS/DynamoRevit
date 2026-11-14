@@ -1,7 +1,7 @@
 ## Description approfondie
-Ce nœud récupère la liste de toutes les règles de Performance Adviser disponibles. Ces règles sont les mêmes que celles utilisées par Revit pour identifier les problèmes potentiels de performance ou de modélisation.
+Performance Adviser Rules récupère les règles du Performance Adviser de Revit disponibles dans la session en cours. Ces règles correspondent à des contrôles d'intégrité du modèle que Revit peut utiliser pour identifier les éléments ou les conditions susceptibles de générer des avertissements ou des problèmes de performances.
 
-Dans cet exemple, le nœud PerformanceAdviserRules est utilisé pour extraire la règle "Le rognage de la vue est désactivé" à partir de la liste complète, règle qui peut ensuite être connectée à d'autres nœuds pour vérifier ses propriétés ou son comportement. Cela permet aux utilisateurs de travailler rapidement avec des règles de performance spécifiques.
+Dans l'exemple ci-dessous, les éléments "Murs qui se chevauchent" et "La ligne de séparation de pièce n'est pas jointe" sont sélectionnés dans le menu déroulant de Performance Adviser Rules, puis ajoutés à une liste. Cette liste est ensuite utilisée comme entrée pour exécuter les règles de performance sélectionnées pour le fichier actif, ce qui renvoie un ensemble de messages/résultats d'échec. Les autres options de menu incluent des règles telles que "Instances dupliquées", "L'hôte contient trop d'insertions", "L'esquisse est trop complexe" et "Fichier de famille trop volumineux".
 ___
 ## Exemple de fichier
 
