@@ -1,7 +1,8 @@
 ## Informacje szczegółowe
-Ten węzeł umożliwia wybranie określonego etapu z modelu za pomocą menu rozwijanego.
+Węzeł Select Phase podaje etap wybrany spośród dostępnych w aktywnym projekcie programu Revit. Zwraca wybrany etap.
 
-W tym przykładzie zostaje wybrana ściana i węzeł Select Phase jest stosowany w celu zmodyfikowania jej przypisania etapu. Końcowy węzeł potwierdza zmianę, wyświetlając zaktualizowaną nazwę etapu „Existing”.
+W tym przykładzie typ rodziny i punkt służą do umieszczenia wystąpienia rodziny. Parametr wystąpienia Phase Created (Etap utworzenia) jest modyfikowany przy użyciu węzła Select Phase z wejściem Existing (Istnieje).
+
 ___
 ## Plik przykładowy
 
