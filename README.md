@@ -1,68 +1,104 @@
 # Dynamo for Revit
-**Dynamo for Revit** is a plugin for Revit and a library of [Dynamo](https://github.com/DynamoDS/Dynamo) Nodes. It's also often referred to as **DynamoRevit** or **D4R** for short.
 
-**Dynamo for Revit** has different branches for different versions of Revit. For example, to run **Dynamo for Revit** on Revit 2016 you want the **Dynamo for Revit** 2016 branch.
+**Dynamo for Revit** is a plugin for Revit and a library of [Dynamo](https://github.com/DynamoDS/Dynamo) nodes. It is also commonly referred to as **DynamoRevit** or **D4R**.
+
+**Dynamo for Revit** maintains separate branches for different Revit versions. For example, to run **Dynamo for Revit** on Revit 2016, use the **Dynamo for Revit** 2016 branch.
 
 ## How to build and use DynamoRevit
 
-To use a locally built DynamoRevit plugin inside Revit, you'll need to do three things:
-1. [Build DynamoRevit](#1-build-dynamorevit)
-2. [Get or Build Dynamo Core](#2-get-or-build-dynamo-core)
-3. [Associate DynamoRevit with DynamoCore](#3-associate-dynamorevit-with-dynamo-core)
-4. [Create a Revit Addin](#4-create-a-revit-addin)
+To use a locally built DynamoRevit plugin within Revit, complete the following steps:
+
+1. [Prerequisites](#prerequisites)
+2. [Build DynamoRevit](#1-build-dynamorevit)
+3. [Get or Build Dynamo Core](#2-get-or-build-dynamo-core)
+4. [Associate DynamoRevit with DynamoCore](#3-associate-dynamorevit-with-dynamo-core)
+5. [Create a Revit Addin](#4-create-a-revit-addin)
+
+### Prerequisites
+
+Ensure the following software is installed on your system:
+
+- **Revit**: Revit 2026 (.NET 8), Revit 2027 or later (.NET 10)
+- **Visual Studio**: Visual Studio 2022 (17.8.0 or newer)
+- **.NET SDK**: [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) for Windows x64
+- **.NET SDK**: [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) for Windows x64
 
 ### 1. Build DynamoRevit
 
-- Clone the DynamoRevit repository.
-```
-git clone https://github.com/DynamoDS/DynamoRevit.git
-```
-- Get the branch for the version of Revit you want to use. For the latest release of Revit or a preview release, master may be fine. Otherwise, run `git checkout Revit2019` or similar.
-- Make sure you have the following installed on your computer:
-   - For Revit 2024 and older: [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download)
-   - For Revit 2025 and newer: [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) for Windows x64
-- Copy `RevitAPI.dll`&`RevitAPIUI.dll` to the folder `DynamoRevit\lib\Revit Preview Release\net48`, these 2 dlls are in the folder same with `Revit.exe` installed on your computer
-	(if you want to build other branch of DynamoRevit, but corresponding version of Revit is not installed locally, you can get these dlls from https://www.nuget.org/ )
-- Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2020`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder.
-- Open `DynamoRevit.All.sln` in Visual Studio, and select a build configuration (Debug | Release)
-   - For Revit 2025 and newer you need Visual Studio 2022 (17.8.0 or newer)
+- Clone the DynamoRevit repository:
+
+  > `git clone https://github.com/DynamoDS/DynamoRevit.git`
+
+- Check out the branch corresponding to your target Revit version:
+
+  - For the latest Revit release: `git checkout master`
+  - For older Revit releases: `git checkout Revit2026`
+
+- Open `DynamoRevit.All.sln` in Visual Studio and select a build configuration:
+
+  - Configuration: `Debug` or `Release`
+  - Platform: `NET80` (or `NET100` for Revit 2027 and later)
+
+- (Optional) Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g., `2025`, `2026`, `2027`). If not set, it defaults to `"Preview Release"`.
+
+- If Revit is not installed locally or you need to use a specific version, copy `RevitAPI.dll` & `RevitAPIUI.dll` to the appropriate folder based on your build platform. These DLLs are located in the same folder as `Revit.exe` on your computer:
+
+  - `DynamoRevit\lib\Revit Preview Release\net8.0` (for NET80 builds), OR
+  - `DynamoRevit\lib\Revit Preview Release\net10.0` (for NET100 builds)
+
+  - If you want to build other branches of DynamoRevit but the corresponding version of Revit is not installed locally, you can get these DLLs from [NuGet](https://www.nuget.org/).
+
+  > **Revit API DLL Lookup Order**
+  >
+  > The build process automatically locates Revit API DLLs in the following order:
+  >
+  > 1. Custom `REVITAPI` paths defined in `src/Config/user_local.props` (highest priority if set)
+  > 2. `$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0` (or `net10.0`)
+  > 3. `C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)`
+  > 4. `C:\Program Files\Autodesk\Revit $(RevitVersionNumber)`
+  > 5. `C:\Program Files\Autodesk\Revit Preview Release`
+
+- Build `DynamoRevit` solution to produce the right version of `DynamoRevitDS.dll` (i.e. `4.0.0.xxxx` in this case).
 
 ### 2. Get or Build Dynamo Core
 
-It's often helpful to build both DynamoRevit and Dynamo Core from source. To do that:
-- Clone Dynamo Core from https://github.com/dynamods/dynamo
-- Get the branch for the version of Dynamo that you want to use. For the latest release of Revit or a preview release, master is fine. Otherwise, run `git checkout RC2.2.0_master` or similar.
-- Build Dynamo according to the instructions in the [README](https://github.com/DynamoDS/Dynamo/blob/master/README.md).
+Building both DynamoRevit and DynamoCore from source is often beneficial for development. To build from source:
 
-It's also possible to use the prebuilt Dynamo that ships with Revit, or to retrieve a particular Dynamo Core version from Nuget without building it yourself. These approaches need to be documented.
+- Clone Dynamo Core from https://github.com/dynamods/dynamo
+- Check out the branch for your target Dynamo version. For the latest Revit release or preview releases, use the `master` branch. For release candidate testing, select the appropriate branch (e.g., `RC4.0.0_master`).
+- Build Dynamo following the instructions in the [README](https://github.com/DynamoDS/Dynamo/blob/master/README.md).
+
+Alternatively, you can use the prebuilt Dynamo that ships with Revit or retrieve a specific Dynamo Core version from NuGet without building from source. Documentation for these approaches is pending.
 
 ### 3. Associate DynamoRevit with Dynamo Core
 
-After DynamoRevit is built, you will notice that there is a `Dynamo.config` file in DynamoRevit\bin\AnyCPU\Debug[Or Release]. With this file you must specify which DynamoCore you want to run with the DynamoRevit build.
+After building DynamoRevit, a `Dynamo.config` file will be generated at `DynamoRevit\bin\NET100\Debug\Dynamo.config` (or `Release`). This configuration file specifies which DynamoCore installation to use with your DynamoRevit build.
 
-For example, if you specify
+For example, the following configuration:
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <appSettings>
-     <add key="DynamoRuntime" value="C:\Workspace\GitHub\Dynamo\bin\AnyCPU\Debug"/>
+     <add key="DynamoRuntime" value="C:\my\repos\Dynamo\bin\AnyCPU\Debug"/>
   </appSettings>
 </configuration>
 ```
-you will run DynamoRevit with the DynamoCore at `C:\Workspace\GitHub\Dynamo\bin\AnyCPU\Debug`. This is especially useful when you want to test the DynamoRevit built with different flavors of DynamoCore, or you are using RTF to test a built version of DynamoRevit. Rebuilding will overwrite this file, so you must replace the path each time you build.
+
+will configure DynamoRevit to use the DynamoCore located at `C:\my\repos\Dynamo\bin\AnyCPU\Debug`. This configuration is particularly useful for testing DynamoRevit with different DynamoCore versions or when using the Revit Test Framework (RTF) with a custom build. Note that rebuilding will overwrite this file, requiring you to update the path after each build.
 
 ### 4. Create a Revit Addin
 
-Starting in Revit 2020, there is a version of DynamoCore and the DynamoRevit addin included in the Revit install folder. First, remove or delete the DynamoForRevit addin folder from the following location: `C:\Program Files\Autodesk\Revit 2020\AddIns`
+Beginning with Revit 2020, DynamoCore and the DynamoRevit addin are included in the Revit installation folder. For development purposes, first remove or delete the DynamoForRevit addin folder from: `%ProgramFiles%\Autodesk\Revit 2026\AddIns`.
 
-For development, you'll have to manually create an addin file that instructs Revit to load the plugin on startup. A DynamoRevit addin file looks like this:
+For development, you must manually create an addin file that instructs Revit to load your custom plugin on startup. A `DynamoForRevit.addin` file should be structured as follows:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>Dynamo For Revit</Name>
-    <Assembly>"D:\DynamoRevit\bin\AnyCPU\Debug\Revit\DynamoRevitDS.dll"</Assembly>
+    <Assembly>"C:\my\repos\DynamoRevit\bin\NET100\Debug\Revit\DynamoRevitDS.dll"</Assembly>
     <AddInId>8D83C886-B739-4ACD-A9DB-1BC78F315B2B</AddInId>
     <FullClassName>Dynamo.Applications.DynamoRevitApp</FullClassName>
     <VendorId>ADSK</VendorId>
@@ -71,12 +107,13 @@ For development, you'll have to manually create an addin file that instructs Rev
 </RevitAddIns>
 ```
 
-This .addin file should be placed in the following location:
--  `ProgramData/Autodesk/Revit/Addins/<version>`
+Place this `DynamoForRevit.addin` file in the following location:
 
-where `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the output folder of the **Dynamo for Revit** build you created in step 1.
+- `%AppData%\Autodesk\Revit\Addins\<version>`
 
-Now you should be able to launch Revit and see the Dynamo and Dynamo Player icons on the Manage tab. If you experience issues, check the troubleshooting tips in the next section.
+where `<version>` corresponds to your target Revit version. Note that the `Assembly` tag must point to the output folder of the **Dynamo for Revit** build created in step 1.
+
+After completing these steps, launch Revit to verify that the Dynamo and Dynamo Player icons appear on the Manage tab. If you encounter issues, refer to the troubleshooting section below.
 
 ### Build dynamo revit against a local version of Dynamo
 
