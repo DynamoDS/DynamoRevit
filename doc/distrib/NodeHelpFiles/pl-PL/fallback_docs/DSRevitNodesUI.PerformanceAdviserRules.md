@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-Ten węzeł pobiera listę wszystkich dostępnych reguł doradcy wydajności. Reguły te są tymi samymi wbudowanymi testami, których program Revit używa do identyfikowania potencjalnych problemów z wydajnością lub modelowaniem.
+Węzeł Performance Adviser Rules pobiera reguły doradcy wydajności programu Revit dostępne w bieżącej sesji. Reprezentują one testy kondycji modelu, przy użyciu których program Revit może identyfikować elementy i warunki wywołujące ostrzeżenia lub problemy z wydajnością.
 
-W tym przykładzie węzeł PerformanceAdviserRules służy do pobrania reguły „View clipping is disabled” (Przycinanie widoku jest wyłączone) z pełnej listy, którą można następnie połączyć z innymi węzłami w celu sprawdzenia jej właściwości lub zachowania. Dzięki temu użytkownicy mogą szybko pracować z określonymi regułami wydajności.
+W tym przykładzie z menu rozwijanego „Reguły doradcy wydajności” są wybierane opcje „Nakładające się ściany” i „Niepołączona linia rozdziału pomieszczeń” i następuje ich dodanie do listy, która służy jako dane wejściowe podczas wykonywania wybranych reguł wydajności dotyczących bieżącego pliku. Jest zwracany zestaw komunikatów o niepowodzeniu i wyników. Inne dostępne opcje menu obejmują reguły takie jak „Powielone wystąpienia”, „Obiekt nadrzędny zawierający zbyt wiele wstawek”, „Zbyt złożony szkic” i „Zbyt duży plik rodziny”.
 ___
 ## Plik przykładowy
 

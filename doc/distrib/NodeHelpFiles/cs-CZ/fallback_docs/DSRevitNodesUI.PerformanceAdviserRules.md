@@ -1,7 +1,7 @@
 ## Podrobnosti
-Tento uzel načte seznam všech dostupných pravidel nástroje Poradce pro výkon. Tato pravidla představují stejné vestavěné kontroly, které aplikace Revit používá k identifikaci potenciálních problémů s výkonem nebo modelováním.
+Uzel `Performance Adviser Rules` načte seznam všech dostupných pravidel nástroje Poradce pro výkon Revit v aktuální relaci. Tato pravidla představují modelové vestavěné kontroly, které aplikace Revit může použít k identifikaci prvků nebo podmínek, které mohou způsobit varování nebo problémy s výkonem.
 
-V tomto příkladu se uzel PerformanceAdviserRules používá k vyžádání pravidla „Oříznutí pohledu je zakázáno“ z úplného seznamu, které pak lze připojit k jiným uzlům a zkontrolovat jeho vlastnosti nebo chování. To pomáhá uživatelům rychle pracovat se specifickými pravidly výkonu.
+V příkladu se níže se z rozevírací nabídky uzlu PerformanceAdviserRules vyberou možnosti „Překrývající se stěny“ a „Oddělovací čára mistností není spojena“ a přidají se do seznamu. Tento seznam se poté použije jako vstup ke spuštění vybraných pravidel výkonu pro aktuální soubor, čímž vrátí sadu chybových zpráv/výsledků. Další možnosti nabídky obsahují pravidla typu „Duplicitní instance“, „Hostitel obsahuje příliš mnoho vložek“, „Skica je příliš složitá“ a „Příliš velký soubor rodiny“.
 ___
 ## Vzorový soubor
 
