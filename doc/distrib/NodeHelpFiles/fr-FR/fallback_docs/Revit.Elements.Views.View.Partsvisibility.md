@@ -1,5 +1,5 @@
 ## Description approfondie
-`View.PartsVisibility` renvoie le paramètre de visibilité pour les éléments de pièce dans la vue donnée. Dans Revit, les pièces dans Revit permettent de diviser les familles système en sous-composants. Par conséquent, il existe différentes façons d'afficher les objets.
+`View.PartsVisibility` renvoie le paramètre de visibilité pour les éléments divisés dans la vue donnée. Dans Revit, la fonction Éléments permet de diviser les familles système en sous-composants. Par conséquent, il existe différentes façons d'afficher les objets.
 
 Les valeurs de ce noeud sont les suivantes :
 - Non défini : la visibilité des pièces n'est pas définie pour la vue.
@@ -7,7 +7,7 @@ Les valeurs de ce noeud sont les suivantes :
 - AfficherUniquementOriginaux : affiche les éléments d'origine, et non les pièces, de la vue.
 - AfficherLesPiècesEtLesOriginaux : affiche les éléments d'origine et les éléments de la vue.
 
-Dans l'exemple ci-dessous, l'option de visibilité des pièces est renvoyée pour la vue active.
+Dans l'exemple ci-dessous, l'option de visibilité des éléments est renvoyée pour la vue active.
 ___
 ## Exemple de fichier
 
