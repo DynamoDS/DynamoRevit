@@ -97,7 +97,26 @@ namespace Revit.Elements.InternalUtilities
                     result = param.AsInteger();
                     break;
                 case StorageType.Double:
-                    result = param.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(param.Definition.GetDataType());
+                    var specTypeId = param.Definition.GetDataType();
+                    var unitTypeId = DocumentManager
+                        .Instance.CurrentDBDocument.GetUnits()
+                        .GetFormatOptions(specTypeId)
+                        .GetUnitTypeId();
+                    if (
+                        unitTypeId
+                        is UnitTypeId.SlopeDegree
+                            or UnitTypeId.Celsius
+                            or UnitTypeId.Fahrenheit
+                    )
+                    {
+                        result = UnitUtils.ConvertFromInternalUnits(param.AsDouble(), unitTypeId);
+                    }
+                    else
+                    {
+                        result =
+                            param.AsDouble()
+                            * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(specTypeId);
+                    }
                     break;
                 default:
                     throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
@@ -152,7 +171,20 @@ namespace Revit.Elements.InternalUtilities
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception(Properties.Resources.ParameterStorageNotNumber);
 
-            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.GetDataType());
+            var specTypeId = param.Definition.GetDataType();
+            var unitTypeId = DocumentManager
+                .Instance.CurrentDBDocument.GetUnits()
+                .GetFormatOptions(specTypeId)
+                .GetUnitTypeId();
+            if (unitTypeId is UnitTypeId.SlopeDegree or UnitTypeId.Celsius or UnitTypeId.Fahrenheit)
+            {
+                var valueToSet = UnitUtils.ConvertFromInternalUnits(param.AsDouble(), unitTypeId);
+            }
+            else
+            {
+                var valueToSet =
+                    value * UnitConverter.DynamoToHostFactor(param.Definition.GetDataType());
+            }
 
             param.Set(valueToSet);
         }
@@ -169,12 +201,10 @@ namespace Revit.Elements.InternalUtilities
         [SupressImportIntoVM]
         public static void SetParameterValue(Autodesk.Revit.DB.Parameter param, int value)
         {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
+            if (param.StorageType != StorageType.Integer)
+                throw new Exception(Properties.Resources.ParameterStorageNotInteger);
 
-            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.GetDataType());
-
-            param.Set(valueToSet);
+            param.Set(value);
         }
 
         [SupressImportIntoVM]

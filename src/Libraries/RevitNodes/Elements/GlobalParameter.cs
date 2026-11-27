@@ -1,10 +1,10 @@
 ﻿using System;
 using Autodesk.DesignScript.Runtime;
+using Dynamo.Graph.Nodes;
 using DynamoServices;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Dynamo.Graph.Nodes;
 
 namespace Revit.Elements
 {
@@ -139,7 +139,7 @@ namespace Revit.Elements
                     return GlobalParameter.FromExisting(global, true);
                 }
             }
-            
+
             return null;
         }
 
@@ -148,7 +148,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Name
         /// </summary>
-        new public string Name
+        public new string Name
         {
             get
             {
@@ -188,9 +188,26 @@ namespace Revit.Elements
                     else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.DoubleParameterValue))
                     {
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
+                        var specTypeId = this.InternalGlobalParameter.GetDefinition().GetDataType();
+                        var unitTypeId = DocumentManager
+                            .Instance.CurrentDBDocument.GetUnits()
+                            .GetFormatOptions(specTypeId)
+                            .GetUnitTypeId();
+                        if (
+                            unitTypeId
+                            is UnitTypeId.SlopeDegree
+                                or UnitTypeId.Celsius
+                                or UnitTypeId.Fahrenheit
+                        )
+                        {
+                            return UnitUtils.ConvertFromInternalUnits(
+                                valueDouble.Value,
+                                unitTypeId
+                            );
+                        }
 
-                        return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                            this.InternalGlobalParameter.GetDefinition().GetDataType());
+                        return valueDouble.Value
+                            * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(specTypeId);
                     }
                     else
                     {
@@ -218,7 +235,7 @@ namespace Revit.Elements
                 // get document and open transaction
                 Autodesk.Revit.DB.Document document = Application.Document.Current.InternalDocument;
                 TransactionManager.Instance.EnsureInTransaction(document);
-                
+
                 if (value == null)
                 {
                     parameter.InternalGlobalParameter.SetValue(
@@ -236,8 +253,29 @@ namespace Revit.Elements
                 }
                 else if (value.GetType() == typeof(double) || value.GetType() == typeof(long))
                 {
-                    double dValue = value.GetType() == typeof(long) ? (double)(long)value : (double)value;
-                    var valueToSet = dValue * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetDataType());
+                    double dValue =
+                        value.GetType() == typeof(long) ? (double)(long)value : (double)value;
+                    var specTypeId = parameter
+                        .InternalGlobalParameter.GetDefinition()
+                        .GetDataType();
+                    var unitTypeId = DocumentManager
+                        .Instance.CurrentDBDocument.GetUnits()
+                        .GetFormatOptions(specTypeId)
+                        .GetUnitTypeId();
+                    if (
+                        unitTypeId
+                        is UnitTypeId.SlopeDegree
+                            or UnitTypeId.Celsius
+                            or UnitTypeId.Fahrenheit
+                    )
+                    {
+                        dValue = UnitUtils.ConvertFromInternalUnits(dValue, unitTypeId);
+                    }
+                    else
+                    {
+                        var valueToSet = dValue * UnitConverter.DynamoToHostFactor(specTypeId);
+                    }
+
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
                 }
@@ -306,7 +344,7 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-        
+
         /// <summary>
         /// Create a new Global Parameter by Name and Type
         /// </summary>
